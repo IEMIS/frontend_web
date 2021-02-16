@@ -31,13 +31,13 @@ class NavLeft extends Component {
                     <li className={navItemClass.join(' ')}>
                         <Dropdown alignRight={dropdownRightAlign}>
                             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
-                                Dropdown
+                                Filter by District
                             </Dropdown.Toggle>
                             <ul>
                                 <Dropdown.Menu>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Action</a></li>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Another action</a></li>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Something else here</a></li>
+                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>District A</a></li>
+                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>District B</a></li>
+                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>District C</a></li>
                                 </Dropdown.Menu>
                             </ul>
                         </Dropdown>
