@@ -90,7 +90,7 @@ class Dashboard extends React.Component {
                         <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{width: '40px'}} src={avatar1} alt="activity-user"/></a>
                     </div>
                     <div className="media-body">
-                        <h6 className="m-0 d-inline">Silje Larsen</h6>
+                        <h6 className="m-0 d-inline"> <a href={DEMO.BLANK_LINK}>Silje Larsen</a></h6>
                         <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-up f-22 m-r-10 text-c-green"/>3784</span>
                     </div>
                 </div>
@@ -322,7 +322,7 @@ class Dashboard extends React.Component {
                     <Col md={6} xl={4}>
                         <Card>
                             <Card.Header>
-                                <Card.Title as='h5'>Rating</Card.Title>
+                                <Card.Title as='h5'>Student % in a Class</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <div className="row align-items-center justify-content-center m-b-20">
@@ -379,13 +379,13 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md={6} xl={8} className='m-b-30'>
                         <Tabs defaultActiveKey="today" id="uncontrolled-tab-example">
-                            <Tab eventKey="today" title="Today">
+                            <Tab eventKey="today" title="Staff Request ">
                                 {tabContent}
                             </Tab>
-                            <Tab eventKey="week" title="This Week">
+                            <Tab eventKey="week" title="Parent Request">
                                 {tabContent}
                             </Tab>
-                            <Tab eventKey="all" title="All">
+                            <Tab eventKey="all" title="All Request">
                                 {tabContent}
                             </Tab>
                         </Tabs>
