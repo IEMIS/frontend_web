@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Fullscreen from "react-full-screen";
 import windowSize from 'react-window-size';
@@ -8,7 +8,7 @@ import Navigation from './Navigation';
 import NavBar from './NavBar';
 import Breadcrumb from './Breadcrumb';
 import Loader from "../Loader";
-import routes from "../../../routes";
+import routes from "../../../screen/admin/routes";
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
@@ -69,12 +69,15 @@ class AdminLayout extends Component {
                                         <div className="page-wrapper">
                                             <Suspense fallback={<Loader/>}>
                                                 <Switch>
-                                                    {menu
+                                                    {
+                                                    menu
+
                                                     /**
+                                                     * <Redirect from="/" to={this.props.defaultPath} />
+                                                     * 
                                                      * <Redirect from="/" to={this.props.defaultPath} />
                                                      */
                                                     }
-                                                    <Redirect from="/" to={this.props.defaultPath} />
                                                 </Switch>
                                             </Suspense>
                                         </div>
