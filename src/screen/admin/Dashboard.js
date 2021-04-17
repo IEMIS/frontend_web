@@ -79,6 +79,8 @@ const datum2 = [
     {key: "Eight", y: 5, color: "#FE8A7D"}
 ];
 
+
+
 class Dashboard extends React.Component {
     render() {
 

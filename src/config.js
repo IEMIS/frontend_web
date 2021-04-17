@@ -1,8 +1,6 @@
 export default {
-    defaultPath: '/admin',
-    //defaultPath: '/board/auth/signin-1',
-    //basename: '/datta-able/react/default', // only at build time to set, like /datta-able
-    basename: '/dashboard', // only at build time to set, like /datta-able
+    defaultPath: '/#/auth/signin',
+    basename: '/dashboard',
     layout: 'vertical', // vertical, horizontal (not available in lite version)
     preLayout: null, // (not available in lite version)
     collapseMenu: false, // mini-menu
