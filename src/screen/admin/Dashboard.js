@@ -187,7 +187,7 @@ class Dashboard extends React.Component {
                     <Col xl={4}>
                         <Card>
                             <Card.Body>
-                                <h6 className='mb-4'>Total Number of Disctricts</h6>
+                                <h6 className='mb-4'>Total Number of Districts</h6>
                                 <div className="row d-flex align-items-center">
                                     <div className="col-9">
                                         <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 20</h3>
