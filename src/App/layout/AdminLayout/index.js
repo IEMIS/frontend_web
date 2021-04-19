@@ -49,7 +49,7 @@ class AdminLayout extends Component {
 
         const menu = routes.map((route, index) => {
             return (route.component) ? (
-                <Route
+                <PrivateRoute
                     key={index}
                     path={route.path}
                     exact={route.exact}
