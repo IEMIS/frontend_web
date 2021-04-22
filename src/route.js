@@ -1,17 +1,17 @@
 import React from 'react';
 
 const Home = React.lazy(()=>import('./screen/Auth/welcome/Home'))
-const AdminSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
-const AdminForget = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
-const AdminReset = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
+const AdminSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const AdminForget = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const AdminReset = React.lazy(() => import('./screen/Auth/admin/SignIn'))
 
-const DSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
-const DForget = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
-const DReset = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
+const DSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const DForget = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const DReset = React.lazy(() => import('./screen/Auth/admin/SignIn'))
 
-const SchoolSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
-const SchoolForget = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
-const SchoolReset = React.lazy(() => import('./screen/Auth/admin/SignIn1'))
+const SchoolSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const SchoolForget = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const SchoolReset = React.lazy(() => import('./screen/Auth/admin/SignIn'))
 
 const route = [
     { path: '/', exact: true, name: 'Home', component: Home },

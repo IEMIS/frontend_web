@@ -5,7 +5,7 @@ import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 
-class SignUp1 extends React.Component {
+class SignIn extends React.Component {
     render () {
         return(
             <Aux>
@@ -23,7 +23,7 @@ class SignUp1 extends React.Component {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
-                                <h3 className="mb-4">Login</h3>
+                                <h3 className="mb-4">Admin Login | </h3>
                                 <div className="input-group mb-3">
                                     <input type="email" className="form-control" placeholder="Email"/>
                                 </div>
@@ -37,8 +37,7 @@ class SignUp1 extends React.Component {
                                     </div>
                                 </div>
                                 <button className="btn btn-primary shadow-2 mb-4">Login</button>
-                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/reset-password-1">Reset</NavLink></p>
-                                <p className="mb-0 text-muted">Don’t have an account? <NavLink to="/auth/signup-1">Signup</NavLink></p>
+                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/admin/forget">Reset</NavLink></p>
                             </div>
                         </div>
                     </div>
@@ -48,4 +47,4 @@ class SignUp1 extends React.Component {
     }
 }
 
-export default SignUp1;
+export default SignIn;
