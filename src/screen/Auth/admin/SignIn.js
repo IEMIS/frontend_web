@@ -37,7 +37,7 @@ class SignIn extends React.Component {
                                     </div>
                                 </div>
                                 <button className="btn btn-primary shadow-2 mb-4">Login</button>
-                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/admin/forget">Reset</NavLink></p>
+                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/admin/forgetgit ">Reset</NavLink></p>
                             </div>
                         </div>
                     </div>
