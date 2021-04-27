@@ -5,13 +5,13 @@ const AdminSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
 const AdminForget = React.lazy(() => import('./screen/Auth/admin/Forget'))
 const AdminReset = React.lazy(() => import('./screen/Auth/admin/Reset'))
 
-const DSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
-const DForget = React.lazy(() => import('./screen/Auth/admin/SignIn'))
-const DReset = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const DSignIn = React.lazy(() => import('./screen/Auth/district/SignIn'))
+const DForget = React.lazy(() => import('./screen/Auth/district/Forget'))
+const DReset = React.lazy(() => import('./screen/Auth/district/Reset'))
 
-const SchoolSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
-const SchoolForget = React.lazy(() => import('./screen/Auth/admin/SignIn'))
-const SchoolReset = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const SchoolSignIn = React.lazy(() => import('./screen/Auth/school/SignIn'))
+const SchoolForget = React.lazy(() => import('./screen/Auth/school/Forget'))
+const SchoolReset = React.lazy(() => import('./screen/Auth/school/Reset'))
 
 const route = [
     { path: '/', exact: true, name: 'Home', component: Home },
