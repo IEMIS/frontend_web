@@ -22,7 +22,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.0.0",
     "react-window-size": "^1.2.2",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "sweetalert2": "^10.16.6"
   },
   "scripts": {
     "start": "react-scripts start",

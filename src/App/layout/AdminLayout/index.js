@@ -75,7 +75,14 @@ class AdminLayout extends Component {
                                             <Suspense fallback={<Loader/>}>
                                                 <Switch>
                                                     { menu }
+                                                    {
+                                                    /*
+                                                    ===== todo === 
+                                                    a page not found 
                                                     <Redirect from="/" to="admin" />
+                                                    */
+                                                    }
+                                                    
                                                 </Switch>
                                             </Suspense>
                                         </div>

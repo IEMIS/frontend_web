@@ -2,7 +2,7 @@ export default {
     items: [
         {
             id: 'navigation',
-            title: 'admin Menu',
+            title: 'District Menu',
             type: 'group',
             icon: 'icon-navigation',
             children: [
@@ -10,28 +10,28 @@ export default {
                     id: 'dashboard',
                     title: 'Dashboard',
                     type: 'item',
-                    url: '/admin',
+                    url: '/district',
                     icon: 'feather icon-home',
                 },
                 {
                     id: 'm-district',
                     title: 'Manage District',
                     type: 'item',
-                    url: '/admin/district',
+                    url: '/district',
                     icon: 'feather icon-feather',
                 },
                 {
                     id: 'm-school',
                     title: 'Manage School',
                     type: 'item',
-                    url: '/admin/school',
+                    url: '/school',
                     icon: 'feather book',
                 },
                 {
                     id: 'm-students',
                     title: 'Manage Students',
                     type: 'item',
-                    url: '/admin/students',
+                    url: '/students',
                     icon: 'feather icon-book-open',
                 }
             ],
@@ -44,9 +44,9 @@ export default {
             children: [
                 {
                     id: 'disabled-menu',
-                    title: 'Admin Signout',
+                    title: 'Dsitrict Signout',
                     type: 'item',
-                    url: '/admin/signout',
+                    url: '/district/signout',
                     classes: 'nav-item ',
                     icon: 'feather icon-power'
                 }
