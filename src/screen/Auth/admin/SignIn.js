@@ -51,12 +51,14 @@ const SignIn = () => {
 
             let Toast = Swal.mixin({
                 toast: true,
+                timerProgressBar: true,
                 position: 'top-end',
                 showConfirmButton: false,
                 timer: 3000
             });
 
             Toast.fire({
+                animation: true,
                 type: 'success',
                 title: 'Signed in successfully'
             })

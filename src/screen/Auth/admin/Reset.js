@@ -6,20 +6,22 @@ import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 import Swal from 'sweetalert2'
 
-import {forget} from './api';
+import {reset} from './api';
 
 //class SignIn extends React.Component {
 
-const Forget = () => {
+const Reset = () => {
   
 
     //render () {
         const [values, setValues] = useState({
             loading:false,
-            email:"",
+            resetToken:"",
+            password:"",
+            passwordConfirmation:"",
             redirectToPage:false
         })
-        const {loading, email, redirectToPage} = values;
+        const {loading, password, passwordConfirmation, resetToken, redirectToPage} = values;
 
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
@@ -30,38 +32,52 @@ const Forget = () => {
         const submit = event =>{
             event.preventDefault();
             setValues({...values, loading:true})
-            if(email===""){
-                Swal.fire('Oops...', 'A valid email addres required!', 'error')
+            if(resetToken===""){
+                Swal.fire('Oops...', 'reset token is required!', 'error')
                 return setValues({...values, loading:false})
             }
-           
-            handleForget(); 
+            if(password===""){
+                Swal.fire('Oops...', 'password is required!', 'error')
+                return setValues({...values, loading:false})
+            }
+            if(password !== passwordConfirmation){
+                Swal.fire('Oops...', 'password must match each other!', 'error')
+                return setValues({...values, loading:false})
+            }
+
+            handleReset(); 
         }
-        const handleForget = async () =>{
-            let user = {email}
-            const data  = await forget(user);
-            console.log(data)
+        const handleReset = async () =>{
+            let user = {resetToken, password, passwordConfirmation}
+            const data  = await reset(user);
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})
             }
+
             let Toast = Swal.mixin({
                 toast: true,
+                timerProgressBar: true,
                 position: 'top-end',
                 showConfirmButton: false,
                 timer: 3000
             });
-            Toast.fire({
-                type: 'success',
-                title: 'request successful'
-            })
+
             Swal.fire(' :)', data.message, 'success')
+
+            await Toast.fire({
+                animation: true,
+                type: 'success',
+                title: 'password successfully reset'
+            })
             setValues({...values, loading:false, redirectToPage:true})
+       
+            console.log({data})
         }
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/admin/reset" />
+                return <Redirect to="/auth/admin/login" />
             }
         };
         return(
@@ -81,13 +97,20 @@ const Forget = () => {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
-                                <h3 className="mb-4">Forget Password | </h3>
+                                <h3 className="mb-4">Admin | Reset Password </h3>
                                 <div className="input-group mb-3">
-                                    <input type="email" className="form-control" name="email" onChange={handleChange("email")} value={email} placeholder="Email"/>
+                                    <input type="input" className="form-control"  onChange={handleChange("resetToken")} value={resetToken} placeholder="Reset Token"/>
                                 </div>
-                
+                            
+                                <div className="input-group mb-3">
+                                    <input type="password" className="form-control"  onChange={handleChange("password")} value={password} placeholder="Password"/>
+                                </div>
+                                <div className="input-group mb-4">
+                                    <input type="password" className="form-control" onChange={handleChange("passwordConfirmation")} value={passwordConfirmation} placeholder="password confirmation"/>
+                                </div>
+                    
                                 {
-                                    loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Request !</button>
+                                    loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Reset Password</button>
                                 }
                                 
                                 <p className="mb-2 text-muted">I know password? <NavLink to="/auth/admin/signin">Login</NavLink></p>
@@ -100,4 +123,4 @@ const Forget = () => {
     //}
 }
 
-export default Forget;
+export default Reset;

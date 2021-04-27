@@ -3,7 +3,7 @@ import React from 'react';
 const Home = React.lazy(()=>import('./screen/Auth/welcome/Home'))
 const AdminSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
 const AdminForget = React.lazy(() => import('./screen/Auth/admin/Forget'))
-const AdminReset = React.lazy(() => import('./screen/Auth/admin/SignIn'))
+const AdminReset = React.lazy(() => import('./screen/Auth/admin/Reset'))
 
 const DSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
 const DForget = React.lazy(() => import('./screen/Auth/admin/SignIn'))
