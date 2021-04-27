@@ -8,7 +8,9 @@ import Navigation from './Navigation';
 import NavBar from './NavBar';
 import Breadcrumb from './Breadcrumb';
 import Loader from "../Loader";
-import routes from "../../../routes";
+
+import routes from "../../../screen/school/routes";
+
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 

@@ -8,7 +8,9 @@ import Navigation from './Navigation';
 import NavBar from './NavBar';
 import Breadcrumb from './Breadcrumb';
 import Loader from "../Loader";
-import routes from "../../../routes";
+
+import routes from "../../../screen/district/routes";
+
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
@@ -43,6 +45,7 @@ class AdminLayout extends Component {
         document.addEventListener('MSFullscreenChange', this.fullScreenExitHandler);
 
         const menu = routes.map((route, index) => {
+            console.log({route})
             return (route.component) ? (
                 <Route
                     key={index}
@@ -71,6 +74,7 @@ class AdminLayout extends Component {
                                                 <Switch>
                                                     {menu}
                                                     <Redirect from="/" to={this.props.defaultPath} />
+                                                    {/*<Redirect from="/" to={this.props.defaultPath} />*/}
                                                 </Switch>
                                             </Suspense>
                                         </div>

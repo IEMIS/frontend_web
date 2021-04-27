@@ -36,10 +36,10 @@ const OtherDocs = React.lazy(() => import('./Demo/Other/Docs'));
 const OtherSamplePage = React.lazy(() => import('../../Demo/Other/SamplePage'));
 
 const routes = [
-    { path: '/admin', exact: true, name: 'admin', component: DashboardDefault },
-    { path: '/admin/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
-    { path: '/admin/signout', exact: true, name: 'admin-signout', component: AdminSignout },
-    { path: '/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
+    { path: '/district', exact: true, name: 'admin', component: DashboardDefault },
+    { path: '/district/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
+    { path: '/district/signout', exact: true, name: 'district-signout', component: AdminSignout },
+    { path: '/district/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
     /*
     { path: '/admin/button', exact: true, name: 'Basic Button', component: UIBasicButton },
     { path: '/admin/badges', exact: true, name: 'Basic Badges', component: UIBasicBadges },
