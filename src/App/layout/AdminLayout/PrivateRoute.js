@@ -24,15 +24,14 @@ export default PrivateRoute;
 */
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-//import { isAuthenticated } from "./index";
+import { isAuthenticated } from "./../../../screen/Auth/admin/api";
 
 const PrivateRoute = ({ render: Component, ...rest }) => (
     // props means components passed down to this pricate route component
     <Route
         {...rest}
         component={props =>
-            //isAuthenticated() 
-            false ? (
+            isAuthenticated() ? (
                 <Component {...props} />
             ) : (
                 <Redirect

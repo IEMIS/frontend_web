@@ -44,6 +44,11 @@ const SignIn = () => {
         const handleSigin = async () =>{
             let user = {email, password}
             const data  = await login(user);
+            if(!data){
+                Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
+                return setValues({...values, loading:false})
+            }
+
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})
