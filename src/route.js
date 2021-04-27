@@ -4,6 +4,7 @@ const Home = React.lazy(()=>import('./screen/Auth/welcome/Home'))
 const AdminSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
 const AdminForget = React.lazy(() => import('./screen/Auth/admin/Forget'))
 const AdminReset = React.lazy(() => import('./screen/Auth/admin/Reset'))
+const AdminSignOut = React.lazy(() => import('./screen/Auth/admin/SignOut'))
 
 const DSignIn = React.lazy(() => import('./screen/Auth/district/SignIn'))
 const DForget = React.lazy(() => import('./screen/Auth/district/Forget'))
@@ -18,6 +19,7 @@ const route = [
     { path: '/auth/admin/signin', exact: true, name: 'admin-signin', component: AdminSignIn },
     { path: '/auth/admin/forget', exact: true, name: 'admin-forget', component: AdminForget},
     { path: '/auth/admin/reset', exact: true, name: 'admin-reset', component: AdminReset },
+    { path: '/admin/signout', exact: true, name: 'admin-signout', component: AdminSignOut },
     { path: '/auth/district/signin', exact: true, name: 'd-signin', component: DSignIn },
     { path: '/auth/district/forget', exact: true, name: 'd-forget', component: DForget },
     { path: '/auth/district/reset', exact: true, name: 'd-reset', component: DReset},
