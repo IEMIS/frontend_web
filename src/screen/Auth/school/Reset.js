@@ -11,8 +11,6 @@ import {reset} from './api';
 //class SignIn extends React.Component {
 
 const Reset = () => {
-  
-
     //render () {
         const [values, setValues] = useState({
             loading:false,
