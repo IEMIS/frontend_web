@@ -11,6 +11,8 @@ import Loader from "../Loader";
 
 import routes from "../../../screen/school/routes";
 
+import PrivateRoute from './PrivateRoute'
+
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
@@ -46,7 +48,7 @@ class AdminLayout extends Component {
 
         const menu = routes.map((route, index) => {
             return (route.component) ? (
-                <Route
+                <PrivateRoute
                     key={index}
                     path={route.path}
                     exact={route.exact}
@@ -72,7 +74,7 @@ class AdminLayout extends Component {
                                             <Suspense fallback={<Loader/>}>
                                                 <Switch>
                                                     {menu}
-                                                    <Redirect from="/" to={this.props.defaultPath} />
+                                                    {/*<Redirect from="/" to={this.props.defaultPath} />*/}
                                                 </Switch>
                                             </Suspense>
                                         </div>

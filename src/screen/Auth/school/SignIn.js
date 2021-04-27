@@ -77,7 +77,7 @@ const SignIn = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/schools" />
+                return <Redirect to="/school" />
             }
         };
         return(
@@ -111,10 +111,10 @@ const SignIn = () => {
                                     </div>
                                 </div>
                                 {
-                                    loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
+                                    loading ? "Loading ... " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
                                 }
                                 
-                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/schools/forget">Reset</NavLink></p>
+                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/school/forget">Reset</NavLink></p>
                             </div>
                         </div>
                     </div>

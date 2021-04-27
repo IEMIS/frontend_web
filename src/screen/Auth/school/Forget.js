@@ -25,8 +25,6 @@ const Forget = () => {
             setValues({ ...values, error: false, [name]: event.target.value });
         };
 
-        
-
         const submit = event =>{
             event.preventDefault();
             setValues({...values, loading:true})
@@ -40,6 +38,10 @@ const Forget = () => {
         const handleForget = async () =>{
             let user = {email}
             const data  = await forget(user);
+            if(!data){
+                Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
+                return setValues({...values, loading:false})
+            }
             console.log(data)
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
@@ -61,7 +63,7 @@ const Forget = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/district/reset" />
+                return <Redirect to="/auth/school/reset" />
             }
         };
         return(
@@ -88,7 +90,7 @@ const Forget = () => {
                                 {
                                     loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Request !</button>
                                 }
-                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/schools/signin">Login</NavLink></p>
+                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/school/signin">Login</NavLink></p>
                             </div>
                         </div>
                     </div>

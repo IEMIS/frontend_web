@@ -22,12 +22,13 @@ const PrivateRoute = ({ component: Component, ...rest})=>{
 };
 export default PrivateRoute;
 */
+
+
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { isAuthenticated } from "./../../../screen/Auth/admin/api";
+import { isAuthenticated } from "./../../../screen/Auth/school/api";
 
 const PrivateRoute = ({ render: Component, ...rest }) => (
-    // props means components passed down to this pricate route component
     <Route
         {...rest}
         component={props =>
@@ -36,7 +37,7 @@ const PrivateRoute = ({ render: Component, ...rest }) => (
             ) : (
                 <Redirect
                     to={{
-                        pathname: "/auth/district/signin",
+                        pathname: "/auth/school/signin",
                         state: { from: props.location }
                     }}
                 />

@@ -49,6 +49,11 @@ const Reset = () => {
         const handleReset = async () =>{
             let user = {resetToken, password, passwordConfirmation}
             const data  = await reset(user);
+            if(!data){
+                Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
+                return setValues({...values, loading:false})
+            }
+            console.log(data)
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})
@@ -76,7 +81,7 @@ const Reset = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/district/login" />
+                return <Redirect to="/auth/district/signin" />
             }
         };
         return(

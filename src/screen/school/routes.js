@@ -8,7 +8,7 @@ window.$ = $;
 global.jQuery = $;
 
 const DashboardDefault = React.lazy(() => import('./Dashboard'));
-const AdminSignout = React.lazy(()=> import('../Auth/admin/SignOut'))
+const Signout = React.lazy(()=> import('../Auth/school/SignOut'))
 const Nvd3Chart = React.lazy(() => import('../../Demo/Charts/Nvd3Chart/index'));
 
 /*
@@ -34,12 +34,13 @@ const OtherDocs = React.lazy(() => import('./Demo/Other/Docs'));
 */
 
 const OtherSamplePage = React.lazy(() => import('../../Demo/Other/SamplePage'));
-
+const FormsElements = React.lazy(() => import('../../Demo/Forms/FormsElements'));
 const routes = [
     { path: '/school', exact: true, name: 'admin', component: DashboardDefault },
     { path: '/school/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
-    { path: '/school/signout', exact: true, name: 'admin-signout', component: AdminSignout },
+    { path: '/school/signout', exact: true, name: 'admin-signout', component: Signout },
     { path: '/school/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
+    { path: '/school/forms', exact: true, name: 'Sample Page', component: FormsElements },
     /*
     { path: '/admin/button', exact: true, name: 'Basic Button', component: UIBasicButton },
     { path: '/admin/badges', exact: true, name: 'Basic Badges', component: UIBasicBadges },

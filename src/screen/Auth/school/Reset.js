@@ -49,6 +49,11 @@ const Reset = () => {
         const handleReset = async () =>{
             let user = {resetToken, password, passwordConfirmation}
             const data  = await reset(user);
+            if(!data){
+                Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
+                return setValues({...values, loading:false})
+            }
+            
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})
@@ -76,7 +81,7 @@ const Reset = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/schools/login" />
+                return <Redirect to="/auth/school/login" />
             }
         };
         return(
@@ -112,7 +117,7 @@ const Reset = () => {
                                     loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Reset Password</button>
                                 }
                                 
-                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/schools/signin">Login</NavLink></p>
+                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/school/signin">Login</NavLink></p>
                             </div>
                         </div>
                     </div>

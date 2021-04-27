@@ -11,6 +11,8 @@ import Loader from "../Loader";
 
 import routes from "../../../screen/district/routes";
 
+import PrivateRoute from './PrivateRoute'
+
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
@@ -45,9 +47,8 @@ class AdminLayout extends Component {
         document.addEventListener('MSFullscreenChange', this.fullScreenExitHandler);
 
         const menu = routes.map((route, index) => {
-            console.log({route})
             return (route.component) ? (
-                <Route
+                <PrivateRoute
                     key={index}
                     path={route.path}
                     exact={route.exact}
@@ -73,7 +74,6 @@ class AdminLayout extends Component {
                                             <Suspense fallback={<Loader/>}>
                                                 <Switch>
                                                     {menu}
-                                                    <Redirect from="/" to={this.props.defaultPath} />
                                                     {/*<Redirect from="/" to={this.props.defaultPath} />*/}
                                                 </Switch>
                                             </Suspense>

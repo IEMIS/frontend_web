@@ -8,7 +8,7 @@ import Loader from './layout/Loader'
 import Aux from "../hoc/_Aux";
 import ScrollToTop from './layout/ScrollToTop';
 import routes from "../route";
-//import PrivateRoute from './layout/AdminLayout/PrivateRoute'
+
 
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),

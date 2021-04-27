@@ -8,7 +8,7 @@ window.$ = $;
 global.jQuery = $;
 
 const DashboardDefault = React.lazy(() => import('./Dashboard'));
-const AdminSignout = React.lazy(()=> import('../Auth/admin/SignOut'))
+const Signout = React.lazy(()=> import('../Auth/district/SignOut'))
 const Nvd3Chart = React.lazy(() => import('../../Demo/Charts/Nvd3Chart/index'));
 
 /*
@@ -38,7 +38,7 @@ const OtherSamplePage = React.lazy(() => import('../../Demo/Other/SamplePage'));
 const routes = [
     { path: '/district', exact: true, name: 'admin', component: DashboardDefault },
     { path: '/district/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
-    { path: '/district/signout', exact: true, name: 'district-signout', component: AdminSignout },
+    { path: '/district/signout', exact: true, name: 'district-signout', component: Signout },
     { path: '/district/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
     /*
     { path: '/admin/button', exact: true, name: 'Basic Button', component: UIBasicButton },

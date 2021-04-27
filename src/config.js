@@ -12,7 +12,7 @@ export default {
     navBackImage: false, // not available in lite version
     rtlLayout: false, // not available in lite version
     navFixedLayout: true,
-    headerFixedLayout: false, // not available in lite version
+    headerFixedLayout: true, // not available in lite version
     boxLayout: false,
     navDropdownIcon: 'style1', // style1, (style2, style3 are not available in lite version)
     navListIcon: 'style1', // style1, (style2, style3, style4, style5, style6 are not available in lite version)

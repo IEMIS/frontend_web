@@ -40,6 +40,11 @@ const Forget = () => {
         const handleForget = async () =>{
             let user = {email}
             const data  = await forget(user);
+            if(!data){
+                Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
+                return setValues({...values, loading:false})
+            }
+ 
             console.log(data)
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
