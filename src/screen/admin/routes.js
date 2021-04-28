@@ -11,49 +11,47 @@ const DashboardDefault = React.lazy(() => import('./Dashboard'));
 const AdminSignout = React.lazy(()=> import('../Auth/admin/SignOut'))
 const Nvd3Chart = React.lazy(() => import('../../Demo/Charts/Nvd3Chart/index'));
 
-/*
-const UIBasicButton = React.lazy(() => import('./Demo/UIElements/Basic/Button'));
-const UIBasicBadges = React.lazy(() => import('./Demo/UIElements/Basic/Badges'));
-const UIBasicBreadcrumbPagination = React.lazy(() => import('./Demo/UIElements/Basic/BreadcrumbPagination'));
 
-const UIBasicCollapse = React.lazy(() => import('./Demo/UIElements/Basic/Collapse'));
-const UIBasicTabsPills = React.lazy(() => import('./Demo/UIElements/Basic/TabsPills'));
-const UIBasicBasicTypography = React.lazy(() => import('./Demo/UIElements/Basic/Typography'));
+const UIBasicButton = React.lazy(() => import('../../Demo/UIElements/Basic/Button'));
+const UIBasicBadges = React.lazy(() => import('../../Demo/UIElements/Basic/Badges'));
+const UIBasicBreadcrumbPagination = React.lazy(() => import('../../Demo/UIElements/Basic/BreadcrumbPagination'));
 
-const FormsElements = React.lazy(() => import('./Demo/Forms/FormsElements'));
+const UIBasicCollapse = React.lazy(() => import('../../Demo/UIElements/Basic/Collapse'));
+const UIBasicTabsPills = React.lazy(() => import('../../Demo/UIElements/Basic/TabsPills'));
+const UIBasicBasicTypography = React.lazy(() => import('../../Demo/UIElements/Basic/Typography'));
 
-const BootstrapTable = React.lazy(() => import('./Demo/Tables/BootstrapTable'));
+const FormsElements = React.lazy(() => import('../../Demo/Forms/FormsElements'));
 
-const Nvd3Chart = React.lazy(() => import('./Demo/Charts/Nvd3Chart/index'));
+const BootstrapTable = React.lazy(() => import('../../Demo/Tables/BootstrapTable'));
 
-const GoogleMap = React.lazy(() => import('./Demo/Maps/GoogleMap/index'));
-
-const OtherSamplePage = React.lazy(() => import('./Demo/Other/SamplePage'));
-const OtherDocs = React.lazy(() => import('./Demo/Other/Docs'));
-
-*/
+const GoogleMap = React.lazy(() => import('../../Demo/Maps/GoogleMap/index'));
 
 const OtherSamplePage = React.lazy(() => import('../../Demo/Other/SamplePage'));
+const OtherDocs = React.lazy(() => import('../../Demo/Other/Docs'));
+
+
+
 
 const routes = [
     { path: '/admin', exact: true, name: 'admin', component: DashboardDefault },
     { path: '/admin/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
     { path: '/admin/signout', exact: true, name: 'admin-signout', component: AdminSignout },
     { path: '/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
-    /*
+    { path: '/admin/tables', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
+
     { path: '/admin/button', exact: true, name: 'Basic Button', component: UIBasicButton },
     { path: '/admin/badges', exact: true, name: 'Basic Badges', component: UIBasicBadges },
     { path: '/admin/breadcrumb-paging', exact: true, name: 'Basic Breadcrumb Pagination', component: UIBasicBreadcrumbPagination },
-    { path: '/basic/collapse', exact: true, name: 'Basic Collapse', component: UIBasicCollapse },
-    { path: '/basic/tabs-pills', exact: true, name: 'Basic Tabs & Pills', component: UIBasicTabsPills },
-    { path: '/basic/typography', exact: true, name: 'Basic Typography', component: UIBasicBasicTypography },
-    { path: '/forms/form-basic', exact: true, name: 'Forms Elements', component: FormsElements },
-    { path: '/tables/bootstrap', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
+    { path: '/admin/collapse', exact: true, name: 'Basic Collapse', component: UIBasicCollapse },
+    { path: '/admin/tabs-pills', exact: true, name: 'Basic Tabs & Pills', component: UIBasicTabsPills },
+    { path: '/admin/typography', exact: true, name: 'Basic Typography', component: UIBasicBasicTypography },
+    { path: '/admin/form-basic', exact: true, name: 'Forms Elements', component: FormsElements },
+  
     
-    { path: '/maps/google-map', exact: true, name: 'Google Map', component: GoogleMap },
-    { path: '/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
-    { path: '/docs', exact: true, name: 'Documentation', component: OtherDocs },
-    */
+    { path: '/admin/google-map', exact: true, name: 'Google Map', component: GoogleMap },
+    { path: '/admin/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
+    { path: '/admin/docs', exact: true, name: 'Documentation', component: OtherDocs },
+   
 ];
 
 export default routes;
