@@ -15,21 +15,21 @@ export default {
                 },
                 {
                     id: 'm-district',
-                    title: 'Manage District',
+                    title: 'District Data',
                     type: 'item',
-                    url: '/admin/district',
+                    url: '/admin/districts',
                     icon: 'feather icon-feather',
                 },
                 {
                     id: 'm-school',
-                    title: 'Manage School',
+                    title: 'Schools data',
                     type: 'item',
-                    url: '/admin/school',
+                    url: '/admin/schools',
                     icon: 'feather icon-book',
                 },
                 {
                     id: 'm-students',
-                    title: 'Manage Students',
+                    title: 'Students Data',
                     type: 'item',
                     url: '/admin/students',
                     icon: 'feather icon-users',
@@ -52,13 +52,13 @@ export default {
                             id: 'admin-Read',
                             title: 'Read ',
                             type: 'item',
-                            url: '/admin/user/read'
+                            url: '/admin/users/read'
                         },
                         {
                             id: 'admin-Create',
                             title: 'Create ',
                             type: 'item',
-                            url: '/admin/user/create'
+                            url: '/admin/users/create'
                         },
                     ]
                 },
@@ -66,19 +66,19 @@ export default {
                     id: 'district',
                     title: 'District ',
                     type: 'collapse',
-                    icon: 'feather icon-users',
+                    icon: 'feather icon-feather',
                     children: [
                         {
                             id: 'district-read',
                             title: 'Read',
                             type: 'item',
-                            url: '/admin/district/read'
+                            url: '/admin/districts/read'
                         },
                         {
                             id: 'district-create',
                             title: 'Create',
                             type: 'item',
-                            url: '/admin/district/create'
+                            url: '/admin/districts/create'
                         },
                     ]
                 },
@@ -92,13 +92,13 @@ export default {
                             id: 'school-read',
                             title: 'Read',
                             type: 'item',
-                            url: '/admin/school/read'
+                            url: '/admin/schools/read'
                         },
                         {
                             id: 'school-create',
                             title: 'Create',
                             type: 'item',
-                            url: '/admin/school/create'
+                            url: '/admin/schools/create'
                         },
                     ]
                 },
