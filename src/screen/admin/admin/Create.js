@@ -1,7 +1,13 @@
+
+
 import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 
 import Aux from "../../../hoc/_Aux";
+import Swal from 'sweetalert2'
+import {Redirect} from 'react-router-dom'
+import { create } from './api';
+
 
 export default function Create() {
 
@@ -15,27 +21,75 @@ export default function Create() {
         password2:"",
         level:"",
         loading:false,
+        redirectToPage:false,
     })
-    const {firstName, lastName, middleName, phone, email, password, password2, level} = values
+    const {firstName, lastName, middleName, phone, email, password, password2, level, loading, redirectToPage} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
-        //setValues({ ...values, error: false, [name]: event.target.value });
     }
 
     const submit = event =>{
-        event.preventDefault()
+        event.preventDefault();
+        setValues({...values, loading:true})
+        if(firstName===""){ 
+            setValues({...values, loading:false})
+            return Swal.fire('Oops...', 'Admin first Name is required', 'error');
+        }
+        //Please, kindly add validation to other filed just like firstName do similar to others
+
+        if(password !== password2) {
+            setValues({...values, loading:false})
+            return Swal.fire('Oops...', 'Password must match each other', 'error');
+        }
 
         handleCreate();
     }
 
-    const handleCreate = ()=>{
+    const handleCreate =async ()=>{
         const user = {firstName, lastName, middleName, phone, email, password, password2, level}
         console.log({user})
+        const data = await create(user);
+        
+        if(!data){
+            Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
+            return setValues({...values, loading:false})
+        }
+
+        if(data.error){
+            Swal.fire('Oops...', data.error, 'error')
+            return setValues({...values, loading:false})
+        }
+
+        if(data.message){
+            Swal.fire('Oops...', data.message, 'success')
+            setValues({...values, loading:false, redirectToPage:true})
+        }
+
+        let Toast = Swal.mixin({
+            toast: true,
+            timerProgressBar: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        return Toast.fire({
+            animation: true,
+            type: 'success',
+            title: 'Request is successfully'
+        })
     }
+
+    const redirectUser = () => {
+        if (redirectToPage){
+            return <Redirect to="/admin/users/create" />
+        }
+    };
 
     return (
         <Aux>
+            {redirectUser()}
             <Row>
                     <Col>
                         <Card>
@@ -64,10 +118,10 @@ export default function Create() {
                                                 <Form.Label>Password</Form.Label>
                                                 <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                                             </Form.Group>
-                                        
-                                            <Button variant="primary" onClick={submit}  >
-                                                Submit
-                                            </Button>
+
+                                            {
+                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
+                                            }
                                         </Form>
                                     </Col>
                                     <Col md={6}>

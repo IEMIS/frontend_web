@@ -39,6 +39,7 @@ const OtherDocs = React.lazy(() => import('../../Demo/Other/Docs'));
 const routes = [
     { path: '/admin', exact: true, name: 'admin', component: DashboardDefault },
     { path: '/admin/signout', exact: true, name: 'admin-signout', component: AdminSignout },
+    { path: '/admin/users/create', exact: true, name: 'admin-create', component: CreateAdmin },
    
 
 
@@ -55,7 +56,9 @@ const routes = [
     { path: '/admin/google-map', exact: true, name: 'Google Map', component: GoogleMap },
     { path: '/admin/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
     { path: '/admin/docs', exact: true, name: 'Documentation', component: OtherDocs },
-    { path: '/admin/users/create', exact: true, name: 'admin-create', component: CreateAdmin },
+
+
+    
    
 ];
 
