@@ -11,6 +11,7 @@ const DashboardDefault = React.lazy(() => import('./Dashboard'));
 const AdminSignout = React.lazy(()=> import('../Auth/admin/SignOut'));
 
 const CreateAdmin = React.lazy(()=>import('./admin/Create'))
+const ReadAdmin = React.lazy(()=>import('./admin/Read'))
 
 
 
@@ -40,6 +41,7 @@ const routes = [
     { path: '/admin', exact: true, name: 'admin', component: DashboardDefault },
     { path: '/admin/signout', exact: true, name: 'admin-signout', component: AdminSignout },
     { path: '/admin/users/create', exact: true, name: 'admin-create', component: CreateAdmin },
+    { path: '/admin/users/read', exact: true, name: 'admin-create', component: ReadAdmin},
    
 
 
