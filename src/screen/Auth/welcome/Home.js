@@ -39,7 +39,7 @@ export default function Home() {
                     <div className="row align-items-center">
                         <div className="col-lg-3">
                             <div className="logo">
-                            <a href="/"> iems</a>
+                            <a href="/"> IEMIS</a>
                             </div>
                         </div>
                         <div className="col-lg-9 text-right d-none d-lg-block">
