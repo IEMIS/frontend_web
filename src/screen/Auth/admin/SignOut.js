@@ -25,7 +25,7 @@ export default function SignOut() {
         Toast.fire({
             animation: true,
             type: 'success',
-            title: 'Signout is successfully'
+            title: 'Signout is successful'
         })
     }
 
