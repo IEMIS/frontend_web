@@ -32,7 +32,7 @@ const SignIn = () => {
             event.preventDefault();
             setValues({...values, loading:true})
             if(email===""){
-                Swal.fire('Oops...', 'A valid email addres required!', 'error')
+                Swal.fire('Oops...', 'A valid email address required!', 'error')
                 return setValues({...values, loading:false})
             }
             if(password===""){
@@ -65,7 +65,7 @@ const SignIn = () => {
             Toast.fire({
                 animation: true,
                 type: 'success',
-                title: 'Signed in successfully'
+                title: 'Signed in successful'
             })
        
             authenticate(data, ()=>{
