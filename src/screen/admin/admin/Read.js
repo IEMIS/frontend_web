@@ -8,15 +8,22 @@ import { Link } from 'react-router-dom';
 
 
 export default function Read() {
+    const [datas, setDatas] = React.useState([]);
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(false)
+    const [reload, setReload] = React.useState(false)
+
+    /*
     const [values, setValues] = React.useState({
         datas:[],
         loading: false,
         error:false,
         reload:false,
     })
+    */
 
-    const {datas,loading, error, reload } = values;
-
+    //const {datas,loading, error, reload } = values;
+    /*
     const bootrap = async () =>{
         setValues({...values, loading:true})
         const data = await reads();
@@ -46,6 +53,7 @@ export default function Read() {
             title: data.message
         })
     }
+    */
 
     const isLoading = () => {
         if (loading){
@@ -99,10 +107,9 @@ export default function Read() {
 
     const handleReload = event =>{
         event.preventDefault();
-        if(!reload){
-            return setValues({...values, error:false, reload:true})  
-        }
-        //return setValues({...values, error:false, reload:false})  
+        setError(false)
+        setLoading(true)
+        setReload(!reload) 
     }
 
     const ViewData = () =>{
@@ -175,12 +182,53 @@ export default function Read() {
         }
     }
 
-    React.useEffect(() => {
-        bootrap()
-        return () => {
-            //bootrap()
+    const boot = async () => {
+        //setValues({...values, loading:true})
+        setLoading(true)
+        const data = await reads();
+        if(!data){
+            Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
+            setLoading(false)
+            setError(true)
+            //return setValues({...values, loading:false, error:true})
+            return 
         }
-    },[error])
+        if(data.error){
+            Swal.fire('Oops...', data.error, 'error')
+            setLoading(false)
+            setError(true)
+            return
+            //return setValues({...values, loading:false, error:true})
+        }
+        if(data.message){
+            setLoading(false)
+            setError(false)
+            setDatas(data.data)
+            Swal.fire('Oops...', data.message, 'success')
+            //return
+            //setValues({...values, datas:data.data, loading:false, error:false})
+        }
+        let Toast = Swal.mixin({
+            toast: true,
+            timerProgressBar: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        return Toast.fire({
+            showClass: true,
+            type: 'success',
+            title: data.message
+        })
+    }
+
+    React.useEffect(() => {
+        boot()
+        return () => {
+            boot()
+        }
+    },[reload])
 
     return (
         <Aux>

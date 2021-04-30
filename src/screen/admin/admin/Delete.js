@@ -9,43 +9,20 @@ import { useParams, Redirect } from "react-router-dom";
 export default function Delete(props) {
 
     let { id } = useParams();
+    const [reload, setreload] = React.useState(false)
+    const [error, seterror] = React.useState(false)
+    const [redirectToPage, setRedirectToPage] = React.useState(false)
 
+    /*
     const [values, setValues] = React.useState({
         redirectToPage:false,
         reload:false,
         error:false
     })
-    const {redirectToPage, reload, error} = values;
+    */
+    //const {redirectToPage, reload, error} = values;
 
-    const bootstrap = async ()=>{
-        const data = await remove(id);
-        if(!data){
-            Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
-            return setValues({...values, loading:false, error:true})
-        }
-
-        if(data.error){
-            Swal.fire('Oops...', data.error, 'error')
-            return setValues({...values, loading:false, error:true})
-        }
-
-        if(data.message){
-            Swal.fire('Oops...', data.message, 'success')
-            return setValues({...values, redirectToPage:true, loading:false, error:false})
-        }
-        let Toast = Swal.mixin({
-            toast: true,
-            timerProgressBar: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-        return Toast.fire({
-            showClass: true,
-            type: 'success',
-            title: data.message
-        })
-    }
+ 
 
     const redirectUser = () => {
         if (redirectToPage){
@@ -79,16 +56,54 @@ export default function Delete(props) {
 
     const handleReload = event =>{
         event.preventDefault();
-        setValues({...values, error:false, reload:!reload})  
+        seterror(false)
+        setreload(!reload)
     }
+
+    
     React.useEffect(() => {
+        const bootstrap = async ()=>{
+            const data = await remove(id);
+            if(!data){
+                Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
+                seterror(true)
+                return
+                //return setValues({...values, loading:false, error:true})
+            }
+    
+            if(data.error){
+                Swal.fire('Oops...', data.error, 'error')
+                seterror(true)
+                return
+                //return setValues({...values, loading:false, error:true})
+            }
+    
+            if(data.message){
+                Swal.fire('Oops...', data.message, 'success')
+                setRedirectToPage(true)
+                //return setValues({...values, redirectToPage:true, loading:false, error:false})
+            }
+            let Toast = Swal.mixin({
+                toast: true,
+                timerProgressBar: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return Toast.fire({
+                showClass: true,
+                type: 'success',
+                title: data.message
+            })
+        }
         bootstrap()
         //effect
         return () => {
-            //bootstrap()
+            bootstrap()
             //cleanup
         }
-    },[])
+    },[reload, id])
+
     return (
         <Aux>
             {redirectUser()}

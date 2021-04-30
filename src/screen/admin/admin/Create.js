@@ -63,7 +63,7 @@ export default function Create() {
 
         if(data.message){
             Swal.fire('Oops...', data.message, 'success')
-            setValues({...values, loading:false, redirectToPage:true})
+           return setValues({...values, loading:false, redirectToPage:true})
         }
 
         let Toast = Swal.mixin({
