@@ -4,6 +4,7 @@ import {Row, Col, Card, Button, Table} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads} from './api';
+import { Link } from 'react-router-dom';
 
 
 export default function Read() {
@@ -16,7 +17,7 @@ export default function Read() {
 
     const {datas,loading, error, reload } = values;
 
-    const bootstrap = async () =>{
+    const bootrap = async () =>{
         setValues({...values, loading:true})
         const data = await reads();
         if(!data){
@@ -98,7 +99,10 @@ export default function Read() {
 
     const handleReload = event =>{
         event.preventDefault();
-        setValues({...values, reload:!reload})  
+        if(!reload){
+            return setValues({...values, error:false, reload:true})  
+        }
+        //return setValues({...values, error:false, reload:false})  
     }
 
     const ViewData = () =>{
@@ -127,17 +131,16 @@ export default function Read() {
                                         </thead>
                                         {
                                             datas.map((data, i)=>{
-                                                console.log(data)
                                                 return(
-                                                    <tbody>
+                                                    <tbody key={i}>
                                                         <tr key={i}>
                                                             <th scope="row">{data.firstName}</th>
                                                             <td>{data.lastName}</td>
                                                             <td>{data.email}</td>
                                                             <td>{data.phone}</td>
-                                                            <td>Edit</td>
-                                                            <td>Details</td>
-                                                            <td>Delete</td>
+                                                            <td ><Link to={`/admin/users/edit/${data._id}`}>Edit</Link></td>
+                                                            <td  variant="primary"><Link to={`/admin/users/read/${data._id}`}>Detail</Link></td>
+                                                            <td  variant="danger"><Link to={`/admin/users/delete/${data._id}`}>Delete</Link></td>
                                                         </tr>
                                                     </tbody>
 
@@ -173,11 +176,11 @@ export default function Read() {
     }
 
     React.useEffect(() => {
-        bootstrap()
+        bootrap()
         return () => {
-            bootstrap()
+            //bootrap()
         }
-    },[reload])
+    },[error])
 
     return (
         <Aux>

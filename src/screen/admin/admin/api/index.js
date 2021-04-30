@@ -12,11 +12,9 @@ export const create = async (user)=>{
                 accept:'application/json'
             },
         }).catch(err => {
-            console.log("request fail")
             console.log(err)
         });
         const data = response.json();
-        console.log(data)
         return data;
     }catch(e){console.log(e)}
 }
@@ -29,11 +27,9 @@ export const reads = async (user)=>{
                 accept:'application/json'
             },
         }).catch(err => {
-            console.log("request fail")
             console.log(err)
         });
         const data = response.json();
-        console.log(data)
         return data;
     }catch(e){console.log(e)}
 }
@@ -47,11 +43,9 @@ export const read = async (user)=>{
                 accept:'application/json'
             },
         }).catch(err => {
-            console.log("request fail")
             console.log(err)
         });
         const data = response.json();
-        console.log(data)
         return data;
     }catch(e){console.log(e)}
 }
@@ -65,11 +59,9 @@ export const edit = async (user)=>{
                 accept:'application/json'
             },
         }).catch(err => {
-            console.log("request fail")
             console.log(err)
         });
         const data = response.json();
-        console.log(data)
         return data;
     }catch(e){console.log(e)}
 }
@@ -83,11 +75,9 @@ export const remove = async (user)=>{
                 accept:'application/json'
             },
         }).catch(err => {
-            console.log("request fail")
             console.log(err)
         });
         const data = response.json();
-        console.log(data)
         return data;
     }catch(e){console.log(e)}
 }
