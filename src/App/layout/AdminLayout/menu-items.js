@@ -15,90 +15,110 @@ export default {
                 },
                 {
                     id: 'm-district',
-                    title: 'Manage District',
+                    title: 'District Data',
                     type: 'item',
-                    url: '/admin/district',
+                    url: '/admin/districts',
                     icon: 'feather icon-feather',
                 },
                 {
                     id: 'm-school',
-                    title: 'Manage School',
+                    title: 'Schools data',
                     type: 'item',
-                    url: '/admin/school',
-                    icon: 'feather book',
+                    url: '/admin/schools',
+                    icon: 'feather icon-book',
                 },
                 {
                     id: 'm-students',
-                    title: 'Manage Students',
+                    title: 'Students Data',
                     type: 'item',
                     url: '/admin/students',
-                    icon: 'feather icon-book-open',
+                    icon: 'feather icon-users',
                 }
             ],
         },
         {
             id: 'district-list',
-            title: 'Districts',
+            title: 'Data Management',
             type: 'group',
             icon: 'icon-ui',
             children: [
                 {
-                    id: 'basic',
-                    title: 'District A',
+                    id: 'admin-user',
+                    title: 'Admin',
                     type: 'collapse',
-                    icon: 'feather icon-box',
+                    icon: 'feather icon-user',
                     children: [
                         {
-                            id: 'button',
-                            title: 'School A',
+                            id: 'admin-Read',
+                            title: 'Read ',
                             type: 'item',
-                            url: '/admin/districta/schoola'
+                            url: '/admin/users/read'
                         },
                         {
-                            id: 'badges',
-                            title: 'School B',
+                            id: 'admin-Create',
+                            title: 'Create ',
                             type: 'item',
-                            url: '/admin/districta/schoolb'
+                            url: '/admin/users/create'
                         },
                     ]
                 },
                 {
-                    id: 'basic',
-                    title: 'District B',
+                    id: 'district',
+                    title: 'District ',
                     type: 'collapse',
-                    icon: 'feather icon-box',
+                    icon: 'feather icon-feather',
                     children: [
                         {
-                            id: 'button',
-                            title: 'School A',
+                            id: 'district-read',
+                            title: 'Read',
                             type: 'item',
-                            url: '/admin/districtb/schoola'
+                            url: '/admin/districts/read'
                         },
                         {
-                            id: 'badges',
-                            title: 'School B',
+                            id: 'district-create',
+                            title: 'Create',
                             type: 'item',
-                            url: '/admin/districtb/schoolb'
+                            url: '/admin/districts/create'
                         },
                     ]
                 },
                 {
-                    id: 'basic',
-                    title: 'District C',
+                    id: 'School',
+                    title: 'School',
                     type: 'collapse',
-                    icon: 'feather icon-box',
+                    icon: 'feather icon-book',
                     children: [
                         {
-                            id: 'button',
-                            title: 'Button',
+                            id: 'school-read',
+                            title: 'Read',
                             type: 'item',
-                            url: '/admin/districtc/schoolb'
+                            url: '/admin/schools/read'
                         },
                         {
-                            id: 'badges',
-                            title: 'Badges',
+                            id: 'school-create',
+                            title: 'Create',
                             type: 'item',
-                            url: '/admin/districtc/schoolb'
+                            url: '/admin/schools/create'
+                        },
+                    ]
+                },
+                {
+                    id: 'students',
+                    title: 'Students',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'students-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/admin/students/read'
+                        },
+                        {
+                            id: 'students-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/admin/students/create'
                         },
                     ]
                 }
