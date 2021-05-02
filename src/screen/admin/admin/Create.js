@@ -36,7 +36,22 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Admin first Name is required', 'error');
         }
-        //Please, kindly add validation to other filed just like firstName do similar to others
+        if(middleName===""){ 
+            setValues({...values, loading:false})
+            return Swal.fire('Oops...', 'Admin Middle Name is required', 'error');
+        }
+        if(lastName===""){ 
+            setValues({...values, loading:false})
+            return Swal.fire('Oops...', 'Admin Last Name is required', 'error');
+        }
+        if(email===""){ 
+            setValues({...values, loading:false})
+            return Swal.fire('Oops...', 'Email is required', 'error');
+        }
+        if(phone===""){ 
+            setValues({...values, loading:false})
+            return Swal.fire('Oops...', 'Phone Number is required', 'error');
+        }
 
         if(password !== password2) {
             setValues({...values, loading:false})
@@ -62,7 +77,7 @@ export default function Create() {
         }
 
         if(data.message){
-            Swal.fire('Oops...', data.message, 'success')
+            Swal.fire('saved...', data.message, 'success')
            return setValues({...values, loading:false, redirectToPage:true})
         }
 
@@ -77,7 +92,7 @@ export default function Create() {
         return Toast.fire({
             animation: true,
             type: 'success',
-            title: 'Request is successfully'
+            title: 'Request is successful'
         })
     }
 
