@@ -22,6 +22,7 @@ export const reads = async (user)=>{
     try{
         const response = await fetch(`${BASE_URL}/admin/district`,{
             method:'GET',
+            body:JSON.stringify(user),
             headers:{
                 'Content-Type':'application/json',
                 accept:'application/json'

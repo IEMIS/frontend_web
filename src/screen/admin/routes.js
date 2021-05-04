@@ -14,7 +14,9 @@ const CreateAdmin = React.lazy(()=>import('./admin/Create'))
 const ReadAdmin = React.lazy(()=>import('./admin/Read'))
 const DeleteAdmin = React.lazy(()=>import('./admin/Delete'))
 
-const CreateDistrict = React.lazy(()=>import('./district/Create'))
+const CreateDistrict = React.lazy(()=>import('././district/Create'))
+const ReadDistrict = React.lazy(()=>import('././district/View'))
+const DeleteDistrict = React.lazy(()=>import('././district/Delete'))
 //const ReadAdmin = React.lazy(()=>import('./admin/Read'))
 //const DeleteAdmin = React.lazy(()=>import('./admin/Delete'))
 
@@ -50,7 +52,14 @@ const routes = [
     { path: '/admin/users/read/:id', exact: true, name: 'admin-create', component: ReadAdmin},
     { path: '/admin/users/edit/:id', exact: true, name: 'admin-create', component: ReadAdmin},
     { path: '/admin/users/delete/:id', exact: true, name: 'admin-create', component: DeleteAdmin},
-    { path: '/admin/districts/create', exact: true, name: 'admin-create', component: CreateDistrict},
+
+    { path: '/admin/districts/create', exact: true, name: 'admin-dis-create', component: CreateDistrict},
+    { path: '/admin/districts/read', exact: true, name: 'admin-dis-create', component: ReadDistrict},
+    { path: '/admin/districts/read/:id', exact: true, name: 'admin-dis-create', component:ReadDistrict},
+    { path: '/admin/districts/edit/:id', exact: true, name: 'admin-dis-create', component: ReadDistrict},
+    { path: '/admin/districts/delete/:id', exact: true, name: 'admin-dis-create', component: DeleteDistrict},
+
+
 
     { path: '/admin/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
     { path: '/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },

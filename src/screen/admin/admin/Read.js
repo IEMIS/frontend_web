@@ -204,7 +204,7 @@ export default function Read() {
             setLoading(false)
             setError(false)
             setDatas(data.data)
-            Swal.fire('Oops...', data.message, 'success')
+            Swal.fire('Successful', data.message, 'success')
             //return
             //setValues({...values, datas:data.data, loading:false, error:false})
         }
