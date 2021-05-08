@@ -37,12 +37,12 @@ export default function Delete(props) {
                         <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h3">Error in Delete user .</Card.Title>
+                                <Card.Title as="h3">Error in Deleting user .</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>Admin data Failed to delete, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>Admin data failed to delete, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>

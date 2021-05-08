@@ -20,6 +20,13 @@ const DeleteDistrict = React.lazy(()=>import('././district/Delete'))
 //const ReadAdmin = React.lazy(()=>import('./admin/Read'))
 //const DeleteAdmin = React.lazy(()=>import('./admin/Delete'))
 
+const CreateSchool = React.lazy(()=>import('././school/Create'))
+const ReadSchool = React.lazy(()=>import('././school/Read'))
+const DeleteSchool = React.lazy(()=>import('././school/Delete'))
+
+//const ReadSchool = React.lazy(()=>import('././school/Read'))
+//const DeleteSchool = React.lazy(()=>import('././school/Delete'))
+
 
 
 
@@ -58,6 +65,12 @@ const routes = [
     { path: '/admin/districts/read/:id', exact: true, name: 'admin-dis-create', component:ReadDistrict},
     { path: '/admin/districts/edit/:id', exact: true, name: 'admin-dis-create', component: ReadDistrict},
     { path: '/admin/districts/delete/:id', exact: true, name: 'admin-dis-create', component: DeleteDistrict},
+
+    { path: '/admin/schools/create', exact: true, name: 'admin-sch-create', component: CreateSchool},
+    { path: '/admin/schools/read', exact: true, name: 'admin-sch-readall', component: ReadSchool},
+    { path: '/admin/schools/read/:id', exact: true, name: 'admin-sch-readone', component:ReadSchool},
+    { path: '/admin/schools/edit/:id', exact: true, name: 'admin-sch-update', component: ReadSchool},
+    { path: '/admin/schools/delete/:id', exact: true, name: 'admin-sch-delete', component: DeleteSchool},
 
 
 

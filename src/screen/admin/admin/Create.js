@@ -126,7 +126,7 @@ export default function Create() {
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Phone </Form.Label>
-                                                <Form.Control type="text" placeholder="Middle name" onChange={handleChange("phone")} value={phone} />
+                                                <Form.Control type="text" placeholder="phone" onChange={handleChange("phone")} value={phone} />
                                             </Form.Group>
 
                                             <Form.Group controlId="formBasicPassword">

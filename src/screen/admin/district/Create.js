@@ -15,12 +15,13 @@ export default function Create() {
         phone:"",
         address:"",
         email:"",
+        status:"",
         password:"",
         password2:"",
         loading:false,
         redirectToPage:false,
     })
-    const {code, names, phone, email, password, password2, address, loading, redirectToPage} = values
+    const {code, names, phone, email, password, password2, address, status, loading, redirectToPage} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -59,7 +60,7 @@ export default function Create() {
     }
 
     const handleCreate =async ()=>{
-        const user = {code, names, phone, email, password, password2, address}
+        const user = {code, names, phone, email, password, password2, address, status}
         console.log({user})
         const data = await create(user);
         
@@ -125,29 +126,32 @@ export default function Create() {
                                                 <Form.Label>Phone </Form.Label>
                                                 <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
                                             </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Address </Form.Label>
-                                                <Form.Control type="text" placeholder="district address" onChange={handleChange("address")} value={address} />
+                                            <Form.Group controlId="formBasicPassword">
+                                                <Form.Label>Password</Form.Label>
+                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                                             </Form.Group>
+                                            {
+                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
+                                            }
                                         </Form>
                                     </Col>
                                     <Col md={6}>
+                                    <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Address </Form.Label>
+                                                <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
+                                            </Form.Group>
+                                            <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Officer-in- charge</Form.Label>
+                                                <Form.Control type="text" placeholder="Education District ID" onChange={handleChange("status")} value={status} />
+                                            </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>email </Form.Label>
                                             <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                         </Form.Group>
                                         <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
-                                            </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
                                             <Form.Label>Password Confirmation</Form.Label>
                                             <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
                                         </Form.Group>
-                                        
-                                        {
-                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
-                                            }
                                     </Col>
                                 </Row>
                             </Card.Body>

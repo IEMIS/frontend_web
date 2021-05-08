@@ -37,12 +37,12 @@ export default function Delete(props) {
                         <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h3">Error in Delete District .</Card.Title>
+                                <Card.Title as="h3">Error in Deleting District .</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>District data Failed to delete, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>District data failed to delete, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
