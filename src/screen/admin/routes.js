@@ -16,19 +16,14 @@ const DeleteAdmin = React.lazy(()=>import('./admin/Delete'))
 const EditAdmin = React.lazy(()=>import('./admin/Edit'))
 const ReadOneAdmin = React.lazy(()=>import('./admin/One'))
 
-const CreateDistrict = React.lazy(()=>import('././district/Create'))
-const ReadDistrict = React.lazy(()=>import('././district/View'))
-const DeleteDistrict = React.lazy(()=>import('././district/Delete'))
-//const ReadAdmin = React.lazy(()=>import('./admin/Read'))
-//const DeleteAdmin = React.lazy(()=>import('./admin/Delete'))
+const CreateDistrict = React.lazy(()=>import('./district/Create'))
+const ReadDistrict = React.lazy(()=>import('./district/View'))
+const DeleteDistrict = React.lazy(()=>import('./district/Delete'))
 
-const CreateSchool = React.lazy(()=>import('././school/Create'))
-const ReadSchool = React.lazy(()=>import('././school/Read'))
-const DeleteSchool = React.lazy(()=>import('././school/Delete'))
 
-//const ReadSchool = React.lazy(()=>import('././school/Read'))
-//const DeleteSchool = React.lazy(()=>import('././school/Delete'))
-
+const CreateSchool = React.lazy(()=>import('./school/Create'))
+const ReadSchool = React.lazy(()=>import('./school/Read'))
+const DeleteSchool = React.lazy(()=>import('./school/Delete'))
 
 
 
