@@ -37,7 +37,7 @@ export default function Delete(props) {
                         <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h3">Error in Deleting user .</Card.Title>
+                                <Card.Title as="h5">Error in Deleting user .</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Row>
@@ -60,29 +60,20 @@ export default function Delete(props) {
         setreload(!reload)
     }
 
-    
-    React.useEffect(() => {
-        const bootstrap = async ()=>{
-            const data = await remove(id);
-            if(!data){
-                Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
-                seterror(true)
-                return
-                //return setValues({...values, loading:false, error:true})
-            }
-    
-            if(data.error){
-                Swal.fire('Oops...', data.error, 'error')
-                seterror(true)
-                return
-                //return setValues({...values, loading:false, error:true})
-            }
-    
-            if(data.message){
-                Swal.fire('Oops...', data.message, 'success')
-                setRedirectToPage(true)
-                //return setValues({...values, redirectToPage:true, loading:false, error:false})
-            }
+    const bootstrap = async ()=>{
+        const data = await remove(id);
+        if(!data){
+            Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
+            seterror(true)  
+        }
+
+        if(data.error){
+            Swal.fire('Oops...', data.error, 'error')
+            seterror(true)
+            //return
+        }
+
+        if(data.message){
             let Toast = Swal.mixin({
                 toast: true,
                 timerProgressBar: true,
@@ -90,18 +81,39 @@ export default function Delete(props) {
                 showConfirmButton: false,
                 timer: 3000
             });
-            return Toast.fire({
+            Toast.fire({
                 showClass: true,
                 type: 'success',
                 title: data.message
             })
-        }
-        bootstrap()
-        //effect
-        return () => {
+            setRedirectToPage(true)
+            return Swal.fire('Great', data.message, 'success');
+        }  
+    }
+
+    
+    React.useEffect(() => {
+        Swal.fire({
+            title: 'Do you sure to delete this user?',
+            allowOutsideClick:false,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Yes`,
+            denyButtonText: `No`,
+            customClass: {
+            cancelButton: 'order-1 right-gap',
+            confirmButton: 'order-2',
+            denyButton: 'order-3',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+            Swal.fire('Delete confirm', '', 'success');
             bootstrap()
-            //cleanup
-        }
+            } else if (result.isDenied) {
+            Swal.fire('Action canceled', '', 'info');
+            setRedirectToPage(true)
+            }
+        })
     },[reload, id])
 
     return (
