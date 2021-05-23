@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Edit() {
+export default function One() {
     return (
         <div>
-            <h1>Edit Admin Data</h1>
+            Read one data 
         </div>
     )
 }

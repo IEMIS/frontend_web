@@ -13,6 +13,8 @@ const AdminSignout = React.lazy(()=> import('../Auth/admin/SignOut'));
 const CreateAdmin = React.lazy(()=>import('./admin/Create'))
 const ReadAdmin = React.lazy(()=>import('./admin/Read'))
 const DeleteAdmin = React.lazy(()=>import('./admin/Delete'))
+const EditAdmin = React.lazy(()=>import('./admin/Edit'))
+const ReadOneAdmin = React.lazy(()=>import('./admin/One'))
 
 const CreateDistrict = React.lazy(()=>import('././district/Create'))
 const ReadDistrict = React.lazy(()=>import('././district/View'))
@@ -56,9 +58,10 @@ const routes = [
     { path: '/admin/signout', exact: true, name: 'admin-signout', component: AdminSignout },
     { path: '/admin/users/create', exact: true, name: 'admin-create', component: CreateAdmin },
     { path: '/admin/users/read', exact: true, name: 'admin-create', component: ReadAdmin},
-    { path: '/admin/users/read/:id', exact: true, name: 'admin-create', component: ReadAdmin},
-    { path: '/admin/users/edit/:id', exact: true, name: 'admin-create', component: ReadAdmin},
+    { path: '/admin/users/read/:id', exact: true, name: 'admin-create', component: ReadOneAdmin},
+    { path: '/admin/users/edit/:id', exact: true, name: 'admin-create', component: EditAdmin},
     { path: '/admin/users/delete/:id', exact: true, name: 'admin-create', component: DeleteAdmin},
+    
 
     { path: '/admin/districts/create', exact: true, name: 'admin-dis-create', component: CreateDistrict},
     { path: '/admin/districts/read', exact: true, name: 'admin-dis-create', component: ReadDistrict},
