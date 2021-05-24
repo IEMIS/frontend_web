@@ -2,15 +2,14 @@
 
 const BASE_URL = "https://iemis.herokuapp.com/api/v1"
 
-export const create = async (user, token)=>{
+export const create = async (user)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin`,{
+        const response = await fetch(`${BASE_URL}/admin/district`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
                 'Content-Type':'application/json',
-                accept:'application/json',
-                Authorization: `Bearer ${token}`
+                accept:'application/json'
             },
         }).catch(err => {
             console.log(err)
@@ -19,49 +18,14 @@ export const create = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
-export const reads = async (token)=>{
+export const reads = async (user)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin`,{
+        const response = await fetch(`${BASE_URL}/admin/school`,{
             method:'GET',
-            headers:{
-                'Content-Type':'application/json',
-                accept:'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        }).catch(err => {
-            console.log(err)
-        });
-        const data = response.json();
-        return data;
-    }catch(e){console.log(e)}
-}
-
-export const read = async (user, token)=>{
-    try{
-        const response = await fetch(`${BASE_URL}/admin/${user}`,{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json',
-                accept:'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        }).catch(err => {
-            console.log(err)
-        });
-        const data = response.json();
-        return data;
-    }catch(e){console.log(e)}
-}
-
-export const edit = async (id, user, token)=>{
-    try{
-        const response = await fetch(`${BASE_URL}/admin/${id}`,{
-            method:'PUT',
             body:JSON.stringify(user),
             headers:{
                 'Content-Type':'application/json',
-                accept:'application/json',
-                Authorization: `Bearer ${token}`
+                accept:'application/json'
             },
         }).catch(err => {
             console.log(err)
@@ -71,14 +35,45 @@ export const edit = async (id, user, token)=>{
     }catch(e){console.log(e)}
 }
 
-export const remove = async (user, token)=>{
+export const read = async (user)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/${user}`,{
+        const response = await fetch(`${BASE_URL}/admin/school/${user}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json'
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const edit = async (user)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/admin/school/${user}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json'
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const remove = async (user)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/admin/school/${user}`,{
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json',
-                accept:'application/json',
-                Authorization: `Bearer ${token}`
+                accept:'application/json'
             },
         }).catch(err => {
             console.log(err)
@@ -87,11 +82,3 @@ export const remove = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
-
-
-
-
-
-
-
-

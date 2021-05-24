@@ -13,7 +13,17 @@ const AdminSignout = React.lazy(()=> import('../Auth/admin/SignOut'));
 const CreateAdmin = React.lazy(()=>import('./admin/Create'))
 const ReadAdmin = React.lazy(()=>import('./admin/Read'))
 const DeleteAdmin = React.lazy(()=>import('./admin/Delete'))
+const EditAdmin = React.lazy(()=>import('./admin/Edit'))
+const ReadOneAdmin = React.lazy(()=>import('./admin/One'))
 
+const CreateDistrict = React.lazy(()=>import('./district/Create'))
+const ReadDistrict = React.lazy(()=>import('./district/View'))
+const DeleteDistrict = React.lazy(()=>import('./district/Delete'))
+
+
+const CreateSchool = React.lazy(()=>import('./school/Create'))
+const ReadSchool = React.lazy(()=>import('./school/Read'))
+const DeleteSchool = React.lazy(()=>import('./school/Delete'))
 
 
 
@@ -41,16 +51,30 @@ const OtherDocs = React.lazy(() => import('../../Demo/Other/Docs'));
 const routes = [
     { path: '/admin', exact: true, name: 'admin', component: DashboardDefault },
     { path: '/admin/signout', exact: true, name: 'admin-signout', component: AdminSignout },
-    { path: '/admin/users/create', exact: true, name: 'admin-create', component: CreateAdmin },
-    { path: '/admin/users/read', exact: true, name: 'admin-create', component: ReadAdmin},
-    { path: '/admin/users/read/:id', exact: true, name: 'admin-create', component: ReadAdmin},
-    { path: '/admin/users/edit/:id', exact: true, name: 'admin-create', component: ReadAdmin},
-    { path: '/admin/users/delete/:id', exact: true, name: 'admin-create', component: DeleteAdmin},
-   
+    { path: '/admin/users/create', exact: true, name: 'admin-ad-create', component: CreateAdmin },
+    { path: '/admin/users/read', exact: true, name: 'admin-ad-read', component: ReadAdmin},
+    { path: '/admin/users/read/:id', exact: true, name: 'admin-ad-read-one', component: ReadOneAdmin},
+    { path: '/admin/users/edit/:id', exact: true, name: 'admin-ad-edit', component: EditAdmin},
+    { path: '/admin/users/delete/:id', exact: true, name: 'admin-ad-delete', component: DeleteAdmin},
+
+
+    { path: '/admin/districts/create', exact: true, name: 'admin-dis-create', component: CreateDistrict},
+    { path: '/admin/districts/read', exact: true, name: 'admin-dis-read', component: ReadDistrict},
+    { path: '/admin/districts/read/:id', exact: true, name: 'admin-dis-read-one', component:ReadDistrict},
+    { path: '/admin/districts/edit/:id', exact: true, name: 'admin-dis-edit', component: ReadDistrict},
+    { path: '/admin/districts/delete/:id', exact: true, name: 'admin-dis-delete', component: DeleteDistrict},
+
+
+    { path: '/admin/schools/create', exact: true, name: 'admin-sch-create', component: CreateSchool},
+    { path: '/admin/schools/read', exact: true, name: 'admin-sch-read', component: ReadSchool},
+    { path: '/admin/schools/read/:id', exact: true, name: 'admin-sch-read-one', component:ReadSchool},
+    { path: '/admin/schools/edit/:id', exact: true, name: 'admin-sch-edit', component: ReadSchool},
+    { path: '/admin/schools/delete/:id', exact: true, name: 'admin-sch-delete', component: DeleteSchool},
+
 
 
     { path: '/admin/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
-    { path: '/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
+    { path: '/admin/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
     { path: '/admin/tables', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
     { path: '/admin/button', exact: true, name: 'Basic Button', component: UIBasicButton },
     { path: '/admin/badges', exact: true, name: 'Basic Badges', component: UIBasicBadges },
@@ -62,9 +86,6 @@ const routes = [
     { path: '/admin/google-map', exact: true, name: 'Google Map', component: GoogleMap },
     { path: '/admin/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
     { path: '/admin/docs', exact: true, name: 'Documentation', component: OtherDocs },
-
-
-    
    
 ];
 

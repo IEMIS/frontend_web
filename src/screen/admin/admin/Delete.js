@@ -3,7 +3,6 @@ import {Row, Col, Card, Button,} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {  remove} from './api';
-//import { Redirect,  useParams} from 'react-router-dom';
 import { useParams, Redirect } from "react-router-dom";
 
 export default function Delete(props) {
@@ -11,24 +10,40 @@ export default function Delete(props) {
     let { id } = useParams();
     const [reload, setreload] = React.useState(false)
     const [error, seterror] = React.useState(false)
+    const [loading, setloading] = React.useState(true)
     const [redirectToPage, setRedirectToPage] = React.useState(false)
-
-    /*
-    const [values, setValues] = React.useState({
-        redirectToPage:false,
-        reload:false,
-        error:false
-    })
-    */
-    //const {redirectToPage, reload, error} = values;
-
- 
 
     const redirectUser = () => {
         if (redirectToPage){
             return <Redirect to="/admin/users/read" />
         }
     };
+
+    const isLoading= () => {
+        if(loading){
+            return (
+                <Aux>
+                    <Row>
+                        <Col>
+                        <Card>
+                            <Card.Header>
+                                <Card.Title as="h5">Wait !!!.</Card.Title>
+                            </Card.Header>
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                        <h1>Requesting to Delete Admin </h1>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                        </Col>
+                    </Row>
+                </Aux>
+            )
+        }
+    };
+
     const isError = () => {
         if(error){
             return (
@@ -37,12 +52,12 @@ export default function Delete(props) {
                         <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h3">Error in Delete user .</Card.Title>
+                                <Card.Title as="h5">Error in Deleting user .</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>Admin data Failed to delete, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>Admin data failed to delete, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -57,57 +72,75 @@ export default function Delete(props) {
     const handleReload = event =>{
         event.preventDefault();
         seterror(false)
+        setloading(true)
         setreload(!reload)
     }
 
     
+
+    
     React.useEffect(() => {
         const bootstrap = async ()=>{
+            setloading(true)
             const data = await remove(id);
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
-                seterror(true)
-                return
-                //return setValues({...values, loading:false, error:true})
+                setloading(false)
+                return seterror(true)  
             }
     
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
-                seterror(true)
-                return
-                //return setValues({...values, loading:false, error:true})
+                setloading(false)
+                return seterror(true)
             }
     
             if(data.message){
-                Swal.fire('Oops...', data.message, 'success')
+                let Toast = Swal.mixin({
+                    toast: true,
+                    timerProgressBar: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                Toast.fire({
+                    showClass: true,
+                    type: 'success',
+                    title: data.message
+                })
+                setloading(false)
                 setRedirectToPage(true)
-                //return setValues({...values, redirectToPage:true, loading:false, error:false})
+                return Swal.fire('Great', data.message, 'success');
+            }  
+        }
+        Swal.fire({
+            title: 'Do you sure to delete this user?',
+            allowOutsideClick:false,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Yes`,
+            denyButtonText: `No`,
+            customClass: {
+            cancelButton: 'order-1 right-gap',
+            confirmButton: 'order-2',
+            denyButton: 'order-3',
             }
-            let Toast = Swal.mixin({
-                toast: true,
-                timerProgressBar: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-            return Toast.fire({
-                showClass: true,
-                type: 'success',
-                title: data.message
-            })
-        }
-        bootstrap()
-        //effect
-        return () => {
+        }).then((result) => {
+            if (result.isConfirmed) {
+            Swal.fire('Delete confirm', '', 'success');
             bootstrap()
-            //cleanup
-        }
+            } else if (result.isDenied) {
+            Swal.fire('Action canceled', '', 'info');
+            setRedirectToPage(true)
+            }
+        })
     },[reload, id])
 
     return (
         <Aux>
             {redirectUser()}
             {isError()}
+            {isLoading()}
         </Aux>
     )
 }
