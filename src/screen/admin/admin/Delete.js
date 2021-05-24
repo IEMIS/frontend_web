@@ -76,42 +76,43 @@ export default function Delete(props) {
         setreload(!reload)
     }
 
-    const bootstrap = async ()=>{
-        setloading(true)
-        const data = await remove(id);
-        if(!data){
-            Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
-            setloading(false)
-            return seterror(true)  
-        }
-
-        if(data.error){
-            Swal.fire('Oops...', data.error, 'error')
-            setloading(false)
-            return seterror(true)
-        }
-
-        if(data.message){
-            let Toast = Swal.mixin({
-                toast: true,
-                timerProgressBar: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-            Toast.fire({
-                showClass: true,
-                type: 'success',
-                title: data.message
-            })
-            setloading(false)
-            setRedirectToPage(true)
-            return Swal.fire('Great', data.message, 'success');
-        }  
-    }
+    
 
     
     React.useEffect(() => {
+        const bootstrap = async ()=>{
+            setloading(true)
+            const data = await remove(id);
+            if(!data){
+                Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
+                setloading(false)
+                return seterror(true)  
+            }
+    
+            if(data.error){
+                Swal.fire('Oops...', data.error, 'error')
+                setloading(false)
+                return seterror(true)
+            }
+    
+            if(data.message){
+                let Toast = Swal.mixin({
+                    toast: true,
+                    timerProgressBar: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                Toast.fire({
+                    showClass: true,
+                    type: 'success',
+                    title: data.message
+                })
+                setloading(false)
+                setRedirectToPage(true)
+                return Swal.fire('Great', data.message, 'success');
+            }  
+        }
         Swal.fire({
             title: 'Do you sure to delete this user?',
             allowOutsideClick:false,
