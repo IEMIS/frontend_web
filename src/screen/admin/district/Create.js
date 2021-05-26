@@ -171,7 +171,7 @@ export default function Create() {
                             </Card.Body>
                         </Card>
                     </Col>
-                </Row>
+            </Row>
         </Aux>
     )
 }
