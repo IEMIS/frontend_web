@@ -62,7 +62,7 @@ const routes = [
 
     { path: '/admin/districts/create', exact: true, name: 'admin-dis-create', component: CreateDistrict},
     { path: '/admin/districts/read', exact: true, name: 'admin-dis-read', component: ReadDistrict},
-    { path: '/admin/districts/read/:id', exact: true, name: 'admin-dis-read-one', component:ReadOneAdmin},
+    { path: '/admin/districts/read/:id', exact: true, name: 'admin-dis-read-one', component:ReadOneDistrict},
     { path: '/admin/districts/edit/:id', exact: true, name: 'admin-dis-edit', component: EditDistrict},
     { path: '/admin/districts/delete/:id', exact: true, name: 'admin-dis-delete', component: DeleteDistrict},
 
