@@ -15,11 +15,12 @@ export default function Create() {
         phone:"",
         address:"",
         email:"",
-        status:"",
+        status:true,
         password:"",
         password2:"",
         loading:false,
         redirectToPage:false,
+        
     })
     const {code, names, phone, email, password, password2, address, status, loading, redirectToPage} = values
 
@@ -66,7 +67,7 @@ export default function Create() {
     const handleCreate =async ()=>{
         const user = {code, names, phone, email, password, password2, address, status}
         const data = await create(user);
-        console.log(data);
+        console.log(data)
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
@@ -156,7 +157,7 @@ export default function Create() {
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Officer-in- charge</Form.Label>
-                                                <Form.Control type="text" placeholder="Education District ID" onChange={handleChange("status")} value={status} />
+                                                <Form.Control type="text" placeholder="Education District ID" />
                                             </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>email </Form.Label>

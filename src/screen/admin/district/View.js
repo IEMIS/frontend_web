@@ -14,6 +14,7 @@ export default function Read() {
     const [loading, setLoading] = React.useState(false)
     const [error, setError] = React.useState(false)
     const [reload, setReload] = React.useState(false)
+    
 
     const token = "12233";
 
@@ -75,8 +76,8 @@ export default function Read() {
     }
 
     let columun = [
-        "firstName",
-        "lastName",
+        "code",
+        "names",
         "email",
         "phone",
         "edit",
@@ -85,8 +86,8 @@ export default function Read() {
     ];
 
     let tableHead = [
-        "First Name",
-        "Last name",
+        "Distrct Code",
+        "District Name",
         "Email",
         "Phone",
         "Edit",
@@ -189,10 +190,9 @@ export default function Read() {
     }
 
     const boot = async () => {
-        //setValues({...values, loading:true})
         setLoading(true)
         const data = await reads(token);
-        console.log(data);
+        
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)
@@ -205,7 +205,7 @@ export default function Read() {
             setError(true)
             return
         }
-        if(data.mesage){
+        if(data.message){
             setLoading(false)
             setError(false)
             setDatas(data.data)
