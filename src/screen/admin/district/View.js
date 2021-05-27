@@ -121,7 +121,7 @@ export default function Read() {
     const DetailsComponent = (props) => {
         const { rowData} = props;
         return (
-            <td  variant="primary"><BtnDetail to={`/admin/districts/${rowData._id}`}> Details </BtnDetail></td>
+            <td  variant="primary"><BtnDetail to={`/admin/districts/read/${rowData._id}`}> Details </BtnDetail></td>
         );
     };
 
