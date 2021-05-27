@@ -18,6 +18,8 @@ const ReadOneAdmin = React.lazy(()=>import('./admin/One'))
 
 const CreateDistrict = React.lazy(()=>import('./district/Create'))
 const ReadDistrict = React.lazy(()=>import('./district/View'))
+const EditDistrict = React.lazy(()=>import('./district/Edit'))
+const ReadOneDistrict = React.lazy(()=>import('./district/One'))
 const DeleteDistrict = React.lazy(()=>import('./district/Delete'))
 
 
@@ -60,8 +62,8 @@ const routes = [
 
     { path: '/admin/districts/create', exact: true, name: 'admin-dis-create', component: CreateDistrict},
     { path: '/admin/districts/read', exact: true, name: 'admin-dis-read', component: ReadDistrict},
-    { path: '/admin/districts/read/:id', exact: true, name: 'admin-dis-read-one', component:ReadDistrict},
-    { path: '/admin/districts/edit/:id', exact: true, name: 'admin-dis-edit', component: ReadDistrict},
+    { path: '/admin/districts/read/:id', exact: true, name: 'admin-dis-read-one', component:ReadOneAdmin},
+    { path: '/admin/districts/edit/:id', exact: true, name: 'admin-dis-edit', component: EditDistrict},
     { path: '/admin/districts/delete/:id', exact: true, name: 'admin-dis-delete', component: DeleteDistrict},
 
 

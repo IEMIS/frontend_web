@@ -121,21 +121,21 @@ export default function Read() {
     const DetailsComponent = (props) => {
         const { rowData} = props;
         return (
-            <td  variant="primary"><BtnDetail to={`/admin/users/read/${rowData._id}`}> Details </BtnDetail></td>
+            <td  variant="primary"><BtnDetail to={`/admin/u/districts/${rowData._id}`}> Details </BtnDetail></td>
         );
     };
 
     const DeleteComponent = (props) => {
         const { rowData} = props;
         return (
-            <td variant="danger"><BtnDelete to={`/admin/users/delete/${rowData._id}`}>Delete</BtnDelete></td>
+            <td variant="danger"><BtnDelete to={`/admin/districts/delete/${rowData._id}`}>Delete</BtnDelete></td>
         );
     };
 
     const EditComponent = (props) => {
         const { rowData} = props;
         return (
-            <td ><BtnEdit to={`/admin/users/edit/${rowData._id}`}>Edit</BtnEdit></td>
+            <td ><BtnEdit to={`/admin/districts/edit/${rowData._id}`}>Edit</BtnEdit></td>
         );
     };
 
@@ -192,7 +192,7 @@ export default function Read() {
     const boot = async () => {
         setLoading(true)
         const data = await reads(token);
-        
+                
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)

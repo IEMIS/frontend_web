@@ -4,7 +4,7 @@ import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { useParams, Redirect } from "react-router-dom";
-import { create, read } from './api';
+import { edit, read } from './api';
 
 
 export default function Edit() {
@@ -23,9 +23,12 @@ export default function Edit() {
         loadingBtn:false,
         redirectToPage:false,
         error:false,
+        reload:false,
+        token:'00033'
         
     })
-    const {code, names, phone, email, password, password2, address, status, error, loading, loadingBtn, redirectToPage} = values
+
+    const {code, names, phone, email, password, password2, address, status, error, loading, loadingBtn, reload, redirectToPage, token} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -68,7 +71,7 @@ export default function Edit() {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>Admin data failed to read, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>failed to read district data, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -87,34 +90,34 @@ export default function Edit() {
 
     const submit = event =>{
         event.preventDefault();
-        setValues({...values, loading:true})
+        setValues({...values, loadingBtn:true})
         if(code===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District code is required', 'error');
         }
         if(names===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District name is required', 'error');
         }
         if(phone===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District Phone number is required', 'error');
         }
         if(address===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District address is required', 'error');
         }
         if(email===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District email is required', 'error');
         }
         if(password===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'Password can not be an empty value', 'error');
         }
 
         if(password !== password2) {
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'Password must match each other', 'error');
         }
 
@@ -123,19 +126,19 @@ export default function Edit() {
 
     const handleUpdate =async ()=>{
         const user = {code, names, phone, email, password, password2, address, status}
-        const data = await create(user);
-        console.log(data)
+        const data = await edit(id, user, token);
+        //console.log(data)
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
-            return setValues({...values, loading:false})
+            return setValues({...values, loadingBtn:false})
         }
         if(data.error){
             Swal.fire('Oops...', data.error, 'error')
-            return setValues({...values, loading:false})
+            return setValues({...values, loadingBtn:false})
         }
         if(data.message){
             Swal.fire('Saved...', data.message, 'success')
-            setValues({...values, loading:false, redirectToPage:true});
+            setValues({...values, loadingBtn:false, redirectToPage:true});
 
             let Toast = Swal.mixin({
             toast: true,
@@ -163,6 +166,7 @@ export default function Edit() {
         const bootstrap = async ()=>{
             setValues(v => ({...v, loading:true}))
             const data = await read(id);
+            //console.log({data, id})
             if (!ignore){
                 if(!data){
                     Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error');
@@ -176,11 +180,11 @@ export default function Edit() {
                 }
         
                 if(data.message){
-                    setValues(v => ({...v, loading:false, error:false, firstName:data.data.firstName, lastName:data.data.lastName, phone:data.data.phone, middleName:data.data.middleName, email:data.data.email, level:data.data.level}))
+                    const {code, names, email, phone,address } = data.data;
+                    setValues(v => ({...v, loading:false, error:false, code, phone,email,names, address }))
                     return Swal.fire('Great', data.message, 'success');
                 } 
             }
-         
         }
         bootstrap()
         return () => { ignore = true };
@@ -220,7 +224,7 @@ export default function Edit() {
                                                 <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                                             </Form.Group>
                                             {
-                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
+                                                loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
                                             }
                                         </Form>
                                     </Col>
