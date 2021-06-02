@@ -87,3 +87,22 @@ export const remove = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
+//get district 
+export const readsDistrict = async (token)=>{
+    try{
+        //district
+        const response = await fetch(`${BASE_URL}/district`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}

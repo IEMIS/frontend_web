@@ -1,10 +1,9 @@
 import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
-
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
-import { create } from './api';
+import { create, readsDistrict } from './api';
 
 
 export default function Create() {
@@ -29,8 +28,9 @@ export default function Create() {
         password2:"",
         loading:false,
         redirectToPage:false,
+        districtList:[]
     })
-    const {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage} = values
+    const {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -96,19 +96,23 @@ export default function Create() {
             return Swal.fire('Oops...', 'District email is required', 'error');
         }
 
+        if(password==="") {
+            setValues({...values, loading:false})
+            return Swal.fire('Oops...', 'Password must empty', 'error');
+        }
+
         if(password !== password2) {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Password must match each other', 'error');
         }
-
         handleCreate();
     }
 
     const handleCreate =async ()=>{
-        const user = {code, names, phone, email, password, password2, address}
-        console.log({user})
-        const data = await create(user);
-        
+        //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
+        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
+        const data = await create(school);
+        console.log(data)
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
@@ -121,22 +125,21 @@ export default function Create() {
 
         if(data.message){
             Swal.fire('Saved...', data.message, 'success')
-           return setValues({...values, loading:false, redirectToPage:true})
-        }
-
-        let Toast = Swal.mixin({
+           setValues({...values, loading:false, redirectToPage:true})
+           let Toast = Swal.mixin({
             toast: true,
             timerProgressBar: true,
             position: 'top-end',
             showConfirmButton: false,
             timer: 3000
-        });
+            });
 
-        return Toast.fire({
-            animation: true,
-            type: 'success',
-            title: 'Request is successful'
-        })
+            return Toast.fire({
+                animation: true,
+                type: 'success',
+                title: 'Request is successful'
+            })
+        }
     }
 
     const redirectUser = () => {
@@ -144,6 +147,15 @@ export default function Create() {
             return <Redirect to="/admin/schools/create" />
         }
     };
+
+    React.useEffect(() => {
+        const bootstrap = async () =>{
+            const dist = await readsDistrict();
+            let code = `SCH${`0012`}`;
+            setValues(v => ({...v, districtList:dist.data, code})); 
+        }
+        bootstrap()
+    }, [])
 
     return (
         <Aux>
@@ -160,7 +172,7 @@ export default function Create() {
                                         <Form>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>School Code</Form.Label>
-                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("code")} value={code} />
+                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("code")} value={code} disabled />
                                             </Form.Group>
 
                                             <Form.Group controlId="formBasicEmail">
@@ -171,18 +183,17 @@ export default function Create() {
                                             <Form.Label>District</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("district")} value={district}>
                                                 <option>Select district</option>
-                                                <option value="1">Ba/Tavua</option>
-                                                <option value="2">Cakaudrove</option>
-                                                <option value="3">Eastern</option>
-                                                <option value="4">Lautoka/Yasawa</option>
-                                                <option value="5">Macuata/Bua</option>
-                                                <option value="6">Nadroga-Nasova</option>
-                                                <option value="7">Nausori</option>
-                                                <option value="8">Ra</option>
-                                                <option value="9">Suva</option>
+                                               {
+                                                   districtList && districtList.length > 0 
+                                                   ?
+                                                   districtList.map((dist, id)=>{
+                                                       return(
+                                                        <option value={dist._id}>{dist.names}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch district</option>
+                                               }
                                             </Form.Control>
                                             </Form.Group>
-                                            
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Address </Form.Label>
                                                 <Form.Control type="text" placeholder="location, province e.g Veisaru Road, Savusavu" onChange={handleChange("address")} value={address} />
@@ -192,13 +203,13 @@ export default function Create() {
                                             <Form.Label>Locality</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("province")} value={province}>
                                                 <option>Select locality</option>
-                                                <option value="1">City Metropolian</option>
-                                                <option value="2">City Surburban</option>
-                                                <option value="3">Peri Urban</option>
-                                                <option value="4">Remote</option>
-                                                <option value="5">Rural</option>
-                                                <option value="6">Town</option>
-                                                <option value="7">Very Remote</option>
+                                                <option value="Metropolian">City Metropolian</option>
+                                                <option value="Surburban">City Surburban</option>
+                                                <option value="Urban">Peri Urban</option>
+                                                <option value="Remote">Remote</option>
+                                                <option value="Rural">Rural</option>
+                                                <option value="Town">Town</option>
+                                                <option value="Very-Remote">Very Remote</option>
                                             </Form.Control>
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
@@ -224,24 +235,24 @@ export default function Create() {
                                             <Form.Label>Education Level</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("eduLevel")} value={eduLevel}>
                                                 <option>Select Education Level</option>
-                                                <option value="1">ECCE</option>
-                                                <option value="2">Primary</option>
-                                                <option value="3">Secondary</option>
-                                                <option value="4">TVET</option>
+                                                <option value="ECCE">ECCE</option>
+                                                <option value="Primary">Primary</option>
+                                                <option value="Secondary">Secondary</option>
+                                                <option value="TVET">TVET</option>
                                             </Form.Control>
                                             </Form.Group>
                                     <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Estab. Year </Form.Label>
-                                                <Form.Control type="text" placeholder="year founded" onChange={handleChange("estabYear")} value={estabYear} />
+                                                <Form.Control type="date" placeholder="year founded" onChange={handleChange("estabYear")} value={estabYear} />
                                             </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Ownership</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("ownership")} value={ownership}>
                                                 <option>Select School Ownership</option>
-                                                <option value="1">Community</option>
-                                                <option value="2">Faith-Based</option>
-                                                <option value="3">Government</option>
-                                                <option value="4">Private</option>
+                                                <option value="Community">Community</option>
+                                                <option value="Faith-Based">Faith-Based</option>
+                                                <option value="Government">Government</option>
+                                                <option value="Private">Private</option>
                                                 
                                             </Form.Control>
                                     </Form.Group>
@@ -249,16 +260,16 @@ export default function Create() {
                                             <Form.Label>School Category</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("schoolCat")} value={schoolCat}>
                                                 <option>Select School Category</option>
-                                                <option value="1">Regular</option>
-                                                <option value="2">Special</option>
+                                                <option value="Regular">Regular</option>
+                                                <option value="Special">Special</option>
                                             </Form.Control>
                                      </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>School Type</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("schoolType")} value={schoolType}>
                                                 <option>Select School Type</option>
-                                                <option value="1">Boarding</option>
-                                                <option value="2">Day</option>
+                                                <option value="Boarding">Boarding</option>
+                                                <option value="Day">Day</option>
                                             </Form.Control>
                                      </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">

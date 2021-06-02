@@ -3,7 +3,6 @@ import {Row, Col, Card, Button,} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {  remove} from './api';
-//import { Redirect,  useParams} from 'react-router-dom';
 import { useParams, Redirect } from "react-router-dom";
 
 export default function Delete(props) {
@@ -12,17 +11,6 @@ export default function Delete(props) {
     const [reload, setreload] = React.useState(false)
     const [error, seterror] = React.useState(false)
     const [redirectToPage, setRedirectToPage] = React.useState(false)
-
-    /*
-    const [values, setValues] = React.useState({
-        redirectToPage:false,
-        reload:false,
-        error:false
-    })
-    */
-    //const {redirectToPage, reload, error} = values;
-
- 
 
     const redirectUser = () => {
         if (redirectToPage){
@@ -68,40 +56,32 @@ export default function Delete(props) {
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 seterror(true)
                 return
-                //return setValues({...values, loading:false, error:true})
             }
     
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 seterror(true)
                 return
-                //return setValues({...values, loading:false, error:true})
             }
     
             if(data.message){
                 Swal.fire('Successful', data.message, 'success')
-                setRedirectToPage(true)
-                //return setValues({...values, redirectToPage:true, loading:false, error:false})
+                setRedirectToPage(true);
+                let Toast = Swal.mixin({
+                    toast: true,
+                    timerProgressBar: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                return Toast.fire({
+                    showClass: true,
+                    type: 'success',
+                    title: data.message
+                })
             }
-            let Toast = Swal.mixin({
-                toast: true,
-                timerProgressBar: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-            return Toast.fire({
-                showClass: true,
-                type: 'success',
-                title: data.message
-            })
         }
-        bootstrap()
-        //effect
-        return () => {
-            bootstrap()
-            //cleanup
-        }
+        bootstrap();
     },[reload, id])
 
     return (

@@ -224,7 +224,7 @@ export default function Edit() {
                                                 <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                                             </Form.Group>
                                             {
-                                                loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
+                                                loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
                                             }
                                         </Form>
                                     </Col>
