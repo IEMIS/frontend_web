@@ -121,6 +121,46 @@ export default {
                             url: '/admin/students/create'
                         },
                     ]
+                },
+                {
+                    id: 'staff',
+                    title: 'Staff',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'staffs-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/admin/staffs/read'
+                        },
+                        {
+                            id: 'staffs-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/admin/staffs/create'
+                        },
+                    ]
+                },
+                {
+                    id: 'teachers',
+                    title: 'Teachers',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'teachers-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/admin/teachers/read'
+                        },
+                        {
+                            id: 'teachers-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/admin/teachers/create'
+                        },
+                    ]
                 }
             ]
         },
