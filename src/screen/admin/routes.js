@@ -35,6 +35,18 @@ const EditStudent = React.lazy(()=>import('./students/Edit'));
 const ReadOneStudent = React.lazy(()=>import('./students/One'))
 const DeleteStudent = React.lazy(()=>import('./students/Delete'))
 
+const CreateTeacher = React.lazy(()=>import('./teachers/Create'))
+const ReadTeacher= React.lazy(()=>import('./teachers/Read'))
+const EditTeacher = React.lazy(()=>import('./teachers/Edit'));
+const ReadOneTeacher = React.lazy(()=>import('./teachers/One'))
+const DeleteTeacher = React.lazy(()=>import('./teachers/Delete'))
+
+const CreateStaffs = React.lazy(()=>import('./staffs/Create'))
+const ReadStaffs= React.lazy(()=>import('./staffs/Read'))
+const EditStaffs = React.lazy(()=>import('./staffs/Edit'));
+const ReadOneStaffs = React.lazy(()=>import('./staffs/One'))
+const DeleteStaffs = React.lazy(()=>import('./staffs/Delete'))
+
 
 
 const Nvd3Chart = React.lazy(() => import('../../Demo/Charts/Nvd3Chart/index'));
@@ -86,6 +98,18 @@ const routes = [
     { path: '/admin/students/read/:id', exact: true, name: 'admin-sch-read-one', component:ReadOneStudent},
     { path: '/admin/students/edit/:id', exact: true, name: 'admin-sch-edit', component: EditStudent},
     { path: '/admin/students/delete/:id', exact: true, name: 'admin-sch-delete', component: DeleteStudent},
+
+    { path: '/admin/teachers/create', exact: true, name: 'admin-sch-create', component: CreateTeacher},
+    { path: '/admin/teachers/read', exact: true, name: 'admin-sch-read', component: ReadTeacher},
+    { path: '/admin/teachers/read/:id', exact: true, name: 'admin-sch-read-one', component:ReadOneTeacher},
+    { path: '/admin/teachers/edit/:id', exact: true, name: 'admin-sch-edit', component: EditTeacher},
+    { path: '/admin/teachers/delete/:id', exact: true, name: 'admin-sch-delete', component: DeleteTeacher},
+
+    { path: '/admin/staffs/create', exact: true, name: 'admin-sch-create', component: CreateStaffs},
+    { path: '/admin/staffs/read', exact: true, name: 'admin-sch-read', component: ReadStaffs},
+    { path: '/admin/staffs/read/:id', exact: true, name: 'admin-sch-read-one', component:ReadOneStaffs},
+    { path: '/admin/staffs/edit/:id', exact: true, name: 'admin-sch-edit', component: EditStaffs},
+    { path: '/admin/staffs/delete/:id', exact: true, name: 'admin-sch-delete', component: DeleteStaffs},
 
 
 

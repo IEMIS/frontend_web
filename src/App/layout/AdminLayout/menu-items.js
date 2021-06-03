@@ -161,6 +161,20 @@ export default {
                             url: '/admin/teachers/create'
                         },
                     ]
+                },
+                {
+                    id: 'extral',
+                    title: 'Extral Data',
+                    type: 'collapse',
+                    icon: 'feather icon-book',
+                    children: [
+                        {
+                            id: 'extral-read',
+                            title: 'Population',
+                            type: 'item',
+                            url: '/admin/extral/read'
+                        },
+                    ]
                 }
             ]
         },
