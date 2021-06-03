@@ -235,7 +235,7 @@ export default function Create() {
                                             <Form.Label>Education Level</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("eduLevel")} value={eduLevel}>
                                                 <option>Select Education Level</option>
-                                                <option value="ECCE">ECCE</option>
+                                                <option value="ECE">ECE</option>
                                                 <option value="Primary">Primary</option>
                                                 <option value="Secondary">Secondary</option>
                                                 <option value="TVET">TVET</option>
@@ -249,9 +249,8 @@ export default function Create() {
                                             <Form.Label>Ownership</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("ownership")} value={ownership}>
                                                 <option>Select School Ownership</option>
-                                                <option value="Community">Community</option>
-                                                <option value="Faith-Based">Faith-Based</option>
                                                 <option value="Government">Government</option>
+                                                <option value="Non-Government">Non-Government</option>
                                                 <option value="Private">Private</option>
                                                 
                                             </Form.Control>
@@ -268,8 +267,9 @@ export default function Create() {
                                             <Form.Label>School Type</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("schoolType")} value={schoolType}>
                                                 <option>Select School Type</option>
-                                                <option value="Boarding">Boarding</option>
                                                 <option value="Day">Day</option>
+                                                <option value="Boarding1">Registered Boarding</option>
+                                                <option value="Boarding2">Unregistered Boarding</option>
                                             </Form.Control>
                                      </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
