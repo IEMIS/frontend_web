@@ -164,20 +164,28 @@ export default function Create() {
                     <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h3">Add New School</Card.Title>
+                                <Card.Title as="h3">Add New Student</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Row>
                                     <Col md={6}>
                                         <Form>
                                             <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>School Code</Form.Label>
+                                                <Form.Label>Student Code</Form.Label>
                                                 <Form.Control type="text" placeholder="school code" onChange={handleChange("code")} value={code} disabled />
                                             </Form.Group>
 
                                             <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>School Name</Form.Label>
-                                                <Form.Control type="text" placeholder="school name" onChange={handleChange("names")} value={names} />
+                                                <Form.Label> First Name</Form.Label>
+                                                <Form.Control type="text" placeholder="First Name" onChange={handleChange("names")} value={names} />
+                                            </Form.Group>
+                                            <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Student Last Name</Form.Label>
+                                                <Form.Control type="text" placeholder="Last Name" onChange={handleChange("names")} value={names} />
+                                            </Form.Group>
+                                            <Form.Group controlId="formBasicEmail">
+                                                <Form.Label> Middle Name</Form.Label>
+                                                <Form.Control type="text" placeholder="Middle Name" onChange={handleChange("names")} value={names} />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>District</Form.Label>

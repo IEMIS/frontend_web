@@ -29,7 +29,7 @@ export default function Read() {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                    <h1>School List is loading </h1>
+                                    <h1>Students List is loading </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -54,7 +54,7 @@ export default function Read() {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>School data failed to Load, you can refresh <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>Students data failed to Load, you can refresh <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -84,9 +84,10 @@ export default function Read() {
     ];
 
     let tableHead = [
-        "School Code",
-        "School Name",
+        "Student Code",
+        "Student Names",
         "District",
+        "School",
         "Email",
         "Edit",
         "Details",
@@ -119,21 +120,21 @@ export default function Read() {
     const DetailsComponent = (props) => {
         const { rowData} = props;
         return (
-            <td  variant="primary"><BtnDetail to={`/admin/schools/read/${rowData._id}`}> Details </BtnDetail></td>
+            <td  variant="primary"><BtnDetail to={`/admin/students/read/${rowData._id}`}> Details </BtnDetail></td>
         );
     };
 
     const DeleteComponent = (props) => {
         const { rowData} = props;
         return (
-            <td variant="danger"><BtnDelete to={`/admin/schools/delete/${rowData._id}`}>Delete</BtnDelete></td>
+            <td variant="danger"><BtnDelete to={`/admin/students/delete/${rowData._id}`}>Delete</BtnDelete></td>
         );
     };
 
     const EditComponent = (props) => {
         const { rowData} = props;
         return (
-            <td ><BtnEdit to={`/admin/schools/edit/${rowData._id}`}>Edit</BtnEdit></td>
+            <td ><BtnEdit to={`/admin/students/edit/${rowData._id}`}>Edit</BtnEdit></td>
         );
     };
 
@@ -145,8 +146,8 @@ export default function Read() {
                         <Col>
                             <Card>
                                 <Card.Header>
-                                    <Card.Title as="h5">School List</Card.Title>
-                                    <span className="d-block m-t-5">manage  <code>the </code> school data here</span>
+                                    <Card.Title as="h5">StudentsList</Card.Title>
+                                    <span className="d-block m-t-5">manage  <code>the </code> Students data here</span>
                                 </Card.Header>
                                 <Card.Body>
                                     <SortableTbl
