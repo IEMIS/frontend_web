@@ -315,12 +315,9 @@ export default function Create() {
                                                 <option value="voc2">Voc YR2</option>   
                                             </Form.Control>
                                     </Form.Group>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Had ECE</Form.Label>
-                                            <Form.Control as="checkbox" onChange={handleChange("HadEce")} value={HadEce}>
-                                                <option value="Yes">Regular</option>
-                                                <option value="No">Special</option>
-                                            </Form.Control>
+                                    <Form.Group controlId="exampleForm.Checkbox">
+                            
+                                            <Form.Check as="checkbox" label="Had ECE" onChange={handleChange("HadEce")} value={HadEce}/>
                                      </Form.Group>
                                      <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Subject</Form.Label>
