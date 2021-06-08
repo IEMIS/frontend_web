@@ -3,34 +3,40 @@ import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
-import { create, readsDistrict } from './api';
+import { create, readsSchool } from './api';
 
 
 export default function Create() {
 
     const [values, setValues] = React.useState({
-        code:"",
-        district:"",
-        names:"",
-        address:"",
-        email:"",
-        fax:"",
-        mailBox:"",
-        phone:"",
+        studentCode:"",
+        school:"",
+        parent:"",
+        stream:"",
+        firstName:"",
+        middleName:"",
+        lastName:"",
+        religion:"",
+        gender:"",
+        dob:"",
+        country:"",
+        ethnicity:"",
+        disability:"",
+        yearAdmission:"",
+        presentClass:"",
+        HadEce:"",
+        subject:"",
+        status:"",
+        session:"",
         province:"",
-        eduLevel:"",
-        ownership:"",
-        estabYear:"",
-        schoolCat:"",
-        schoolType:"",
-        headID:"",
-        password:"",
-        password2:"",
         loading:false,
         redirectToPage:false,
-        districtList:[]
+        schoolList:[],
+        parentList:[],
+        subjectList:[],
+        sessionList:[]
     })
-    const {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
+    const {studentCode, school, parent, presentClass,stream, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading, redirectToPage, schoolList,parentList,subjectList,sessionList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -39,79 +45,66 @@ export default function Create() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
-        if(code===""){ 
+        if(studentCode===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School code is required', 'error');
+            return Swal.fire('Oops...', 'Student code is required', 'error');
         }
-        if(district===""){ 
+        if(school===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'District is required', 'error');
+            return Swal.fire('Oops...', 'School is required', 'error');
         }
-        if(names===""){ 
+        if(parent===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School Name is required', 'error');
+            return Swal.fire('Oops...', 'ParentID is required', 'error');
         }
-        if(schoolType===""){ 
+        if(presentClass===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School Type is required', 'error');
+            return Swal.fire('Oops...', 'Present Class is required', 'error');
         }
-        if(schoolCat===""){ 
+        if(stream===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School Category is required', 'error');
+            return Swal.fire('Oops...', 'Class Stream is required', 'error');
         }
-        if(estabYear===""){ 
+        if(firstName===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Establishment Year is required', 'error');
+            return Swal.fire('Oops...', 'First Name  is required', 'error');
         }
-        if(ownership===""){ 
+        if(lastName===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School ownership is required', 'error');
+            return Swal.fire('Oops...', 'Last Name is required', 'error');
         }
-        if(eduLevel===""){ 
+        if(gender===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Education Level is required', 'error');
+            return Swal.fire('Oops...', 'Gender is required', 'error');
         }
-        if(province===""){ 
+        if(dob===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School locality is required', 'error');
+            return Swal.fire('Oops...', 'Date of Birth is required', 'error');
         }
-        if(mailBox===""){ 
+        if(country===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School mailBox is required', 'error');
+            return Swal.fire('Oops...', 'Country is required', 'error');
         }
-        if(fax===""){ 
+        if(disability===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Fax is required', 'error');
+            return Swal.fire('Oops...', 'Disability is required', 'error');
         }
-        if(phone===""){ 
+        if(status===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Phone number is required', 'error');
+            return Swal.fire('Oops...', 'Studentship status is required', 'error');
         }
-        if(address===""){ 
+        if(session===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'District address is required', 'error');
-        }
-        if(email===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'District email is required', 'error');
+            return Swal.fire('Oops...', 'Academic session is required', 'error');
         }
 
-        if(password==="") {
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Password must empty', 'error');
-        }
-
-        if(password !== password2) {
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Password must match each other', 'error');
-        }
         handleCreate();
     }
 
     const handleCreate =async ()=>{
         //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
-        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
-        const data = await create(school);
+        const student = {studentCode, school, parent, presentClass, stream, firstName, middleName, lastName, gender, religion, dob, country, disability, yearAdmission, HadEce, subject, province}
+        const data = await create(student);
         console.log(data)
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -150,9 +143,10 @@ export default function Create() {
 
     React.useEffect(() => {
         const bootstrap = async () =>{
-            const dist = await readsDistrict();
-            let code = `SCH${`0012`}`;
-            setValues(v => ({...v, districtList:dist.data, code})); 
+            //const dist = await readsDistrict();
+            const scho = await readsSchool();
+            let studentCode = `SCH${`0012`}`;
+            setValues(v => ({...v, schoolList:scho.data, studentCode})); 
         }
         bootstrap()
     }, [])
@@ -172,126 +166,204 @@ export default function Create() {
                                         <Form>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Student Code</Form.Label>
-                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("code")} value={code} disabled />
-                                            </Form.Group>
-
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label> First Name</Form.Label>
-                                                <Form.Control type="text" placeholder="First Name" onChange={handleChange("names")} value={names} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Student Last Name</Form.Label>
-                                                <Form.Control type="text" placeholder="Last Name" onChange={handleChange("names")} value={names} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label> Middle Name</Form.Label>
-                                                <Form.Control type="text" placeholder="Middle Name" onChange={handleChange("names")} value={names} />
+                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("studentCode")} value={studentCode} disabled />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>District</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("district")} value={district}>
-                                                <option>Select district</option>
+                                            <Form.Label>School</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("school")} value={school}>
+                                                <option>Select school</option>
                                                {
-                                                   districtList && districtList.length > 0 
+                                                   schoolList && schoolList.length > 0 
                                                    ?
-                                                   districtList.map((dist, id)=>{
+                                                   schoolList.map((scho, id)=>{
                                                        return(
-                                                        <option value={dist._id}>{dist.names}</option>
+                                                        <option value={scho._id}>{scho.school}</option>
                                                        ) 
-                                                   }) : <option value="0">Fails to fetch district</option>
+                                                   }) : <option value="0">Fails to fetch school</option>
+                                               }
+                                            </Form.Control>
+                                            </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>parent</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("parent")} value={parent}>
+                                                <option>Select Parent</option>
+                                               {
+                                                   parentList && parentList.length > 0 
+                                                   ?
+                                                   schoolList.map((par, id)=>{
+                                                       return(
+                                                        <option value={par._id}>{par.school}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch Parent</option>
                                                }
                                             </Form.Control>
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Address </Form.Label>
-                                                <Form.Control type="text" placeholder="location, province e.g Veisaru Road, Savusavu" onChange={handleChange("address")} value={address} />
+                                                <Form.Label> First Name</Form.Label>
+                                                <Form.Control type="text" placeholder="First Name" onChange={handleChange("firstName")} value={firstName} />
                                             </Form.Group>
-                                           
+                                            <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Last Name</Form.Label>
+                                                <Form.Control type="text" placeholder="Surname" onChange={handleChange("lastName")} value={lastName} />
+                                            </Form.Group>
+                                            <Form.Group controlId="formBasicEmail">
+                                                <Form.Label> Middle Name</Form.Label>
+                                                <Form.Control type="text" placeholder="Middle Name" onChange={handleChange("middleName")} value={middleName} />
+                                            </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Locality</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("province")} value={province}>
-                                                <option>Select locality</option>
-                                                <option value="Metropolian">City Metropolian</option>
-                                                <option value="Surburban">City Surburban</option>
-                                                <option value="Urban">Peri Urban</option>
-                                                <option value="Remote">Remote</option>
-                                                <option value="Rural">Rural</option>
-                                                <option value="Town">Town</option>
-                                                <option value="Very-Remote">Very Remote</option>
+                                            <Form.Label>Religion</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("religion")} value={religion}>
+                                                <option>Select Religion</option>
+                                                <option value="Christainity">Christainity</option>
+                                                <option value="Hinduism">Hinduism</option>
+                                                <option value="Islam">Islam</option>
+                                                <option value="Tradition">Tradition</option>
                                             </Form.Control>
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Mailing Address </Form.Label>
-                                                <Form.Control type="text" placeholder="P.O BOX 123, Tavua" onChange={handleChange("mailBox")} value={mailBox} />
+                                                <Form.Label>Date of Birth </Form.Label>
+                                                <Form.Control type="date" placeholder="date of birth on certificate" onChange={handleChange("dob")} value={dob} />
                                             </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Phone </Form.Label>
-                                                <Form.Control type="text" placeholder="official school phone number" onChange={handleChange("phone")} value={phone} />
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Gender</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("gender")} value={gender}>
+                                                <option>Select Gender</option>
+                                                <option value="M">Male</option>
+                                                <option value="F">Female</option>
+                                            </Form.Control>
                                             </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Fax</Form.Label>
-                                                <Form.Control type="text" placeholder="school fax" onChange={handleChange("fax")} value={fax} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>School Head</Form.Label>
-                                                <Form.Control type="text" placeholder="staff ID" onChange={handleChange("headID")} value={headID} />
-                                            </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Province</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("province")} value={province}>
+                                                <option>Select Province</option>
+                                                <option value="Ba">Ba</option>
+                                                <option value="Bua">Bua</option>
+                                                <option value="Cakaudrove">Cakaudrove</option>
+                                                <option value="Kadavu">Kadavu</option>
+                                                <option value="Lau">Lau</option>
+                                                <option value="Laomaiviti">Laomaiviti</option>
+                                                <option value="Macuaa">Macuaa</option>
+                                                <option value="Nadroga">Nadroga-Navosa</option>
+                                                <option value="Naitasiri">Naitasiri</option>
+                                                <option value="Namosi">Namosi</option>
+                                                <option value="Ra">Ra</option>
+                                                <option value="Rewa">Rewa</option>
+                                                <option value="Serua">Serua</option>
+                                                <option value="Tailevu">Tailevu</option>
+                                            </Form.Control>
+                                     </Form.Group>
+                                            
                                         </Form>
                                     </Col>
                                     <Col md={6}>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Education Level</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("eduLevel")} value={eduLevel}>
-                                                <option>Select Education Level</option>
-                                                <option value="ECCE">ECCE</option>
-                                                <option value="Primary">Primary</option>
-                                                <option value="Secondary">Secondary</option>
-                                                <option value="TVET">TVET</option>
+                                            <Form.Label>Country</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("country")} value={country}>
+                                                <option>Select Country</option>
+                                                <option value="Fijian">Fijian Citizen</option>
+                                                <option value="International">International</option>
+                                                <option value="Regional">Regional</option>
+                                            </Form.Control>
+                                            </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Ethnicity</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("ethnicity")} value={ethnicity}>
+                                                <option>Select Ethnicity</option>
+                                                <option value="Indo-Fijian">Indo Fijian</option>
+                                                <option value="itaukei">Itaukei</option>
+                                                <option value="others">Others</option>
+                                            </Form.Control>
+                                            </Form.Group>
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Disability</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("disability")} value={disability}>
+                                                <option>Select Disability</option>
+                                                <option value="albinism">Albinism</option>
+                                                <option value="behaviour">Behavioural Disoder</option>
+                                                <option value="hearing">Hearing/Auditory Challenged</option>
+                                                <option value="intellect">Visually Challenged</option>
+                                                <option value="learning">Learning</option>
+                                                <option value="mobility">Mobility Restricted</option> 
+                                                <option value="speech">Speech</option>
+                                                <option value="visual">Visually Challenged</option>
+                                                <option value="none">None</option>
                                             </Form.Control>
                                             </Form.Group>
                                     <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Estab. Year </Form.Label>
-                                                <Form.Control type="date" placeholder="year founded" onChange={handleChange("estabYear")} value={estabYear} />
+                                                <Form.Label>Admission Year </Form.Label>
+                                                <Form.Control type="date" placeholder="Admission Year" onChange={handleChange("yearAdmission")} value={yearAdmission} />
                                             </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Ownership</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("ownership")} value={ownership}>
-                                                <option>Select School Ownership</option>
-                                                <option value="Community">Community</option>
-                                                <option value="Faith-Based">Faith-Based</option>
-                                                <option value="Government">Government</option>
-                                                <option value="Private">Private</option>
-                                                
+                                            <Form.Label>Present Class</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("presentClass")} value={presentClass}>
+                                                <option>Present Class</option>
+                                                <option value="Preprimary">Pre-Primary</option>
+                                                <option value="Y1">Year 1</option>
+                                                <option value="Y2">Year 2</option>
+                                                <option value="Y3">Year 3</option>
+                                                <option value="Y4">Year 4</option>
+                                                <option value="Y5">Year 5</option>
+                                                <option value="Y6">Year 6</option>
+                                                <option value="Y7">Year 7</option>
+                                                <option value="Y8">Year 8</option>
+                                                <option value="Y9">Year 9</option>
+                                                <option value="Y10">Year 10</option>
+                                                <option value="Y11">Year 11</option>
+                                                <option value="Y12">Year 12</option>
+                                                <option value="Y13">Year 13</option>
+                                                <option value="voc1">Voc YR1</option>
+                                                <option value="voc2">Voc YR2</option>   
                                             </Form.Control>
                                     </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>School Category</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("schoolCat")} value={schoolCat}>
-                                                <option>Select School Category</option>
-                                                <option value="Regular">Regular</option>
-                                                <option value="Special">Special</option>
+                                            <Form.Label>Had ECE</Form.Label>
+                                            <Form.Control as="checkbox" onChange={handleChange("HadEce")} value={HadEce}>
+                                                <option value="Yes">Regular</option>
+                                                <option value="No">Special</option>
                                             </Form.Control>
                                      </Form.Group>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>School Type</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("schoolType")} value={schoolType}>
-                                                <option>Select School Type</option>
-                                                <option value="Boarding">Boarding</option>
-                                                <option value="Day">Day</option>
+                                     <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Subject</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("subject")} value={subject}>
+                                                <option>Select subject</option>
+                                               {
+                                                   subjectList && subjectList.length > 0 
+                                                   ?
+                                                  subjectList.map((subj, id)=>{
+                                                       return(
+                                                        <option value={subj._id}>{subj.subject}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch subject</option>
+                                               }
                                             </Form.Control>
-                                     </Form.Group>
-                                        <Form.Group controlId="exampleForm.ControlInput1">
-                                            <Form.Label>email </Form.Label>
-                                            <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
-                                        </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                                             </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                            <Form.Label>Password Confirmation</Form.Label>
-                                            <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
-                                        </Form.Group>
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Studentship</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("status")} value={status}>
+                                                <option>Select student status</option>
+                                                <option value="promoter">Promoted</option>
+                                                <option value="dropout">Drop-out</option>
+                                                <option value="repeater">Repeater</option>
+                                                <option value="deceased">Deceased</option>
+                                                <option value="relocate">Overseas Relocation</option>
+                                                <option value="graduate">Graduated</option>
+                                            </Form.Control>
+                                     </Form.Group>
+                                     <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Session</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("session")} value={session}>
+                                                <option>Select Session</option>
+                                               {
+                                                   sessionList && sessionList.length > 0 
+                                                   ?
+                                                  sessionList.map((sess, id)=>{
+                                                       return(
+                                                        <option value={sess._id}>{sess.session}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch Session</option>
+                                               }
+                                            </Form.Control>
+                                            </Form.Group>
                                         
                                         {
                                                 loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
