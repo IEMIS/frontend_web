@@ -8,6 +8,8 @@ window.$ = $;
 global.jQuery = $;
 
 const DashboardDefault = React.lazy(() => import('./Dashboard'));
+const DistrictData = React.lazy(() => import('./DistrictData'));
+const SchoolData = React.lazy(() => import('./SchoolData'));
 const AdminSignout = React.lazy(()=> import('../Auth/admin/SignOut'));
 
 const CreateAdmin = React.lazy(()=>import('./admin/Create'))
@@ -79,14 +81,14 @@ const routes = [
     { path: '/admin/users/edit/:id', exact: true, name: 'admin-ad-edit', component: EditAdmin},
     { path: '/admin/users/delete/:id', exact: true, name: 'admin-ad-delete', component: DeleteAdmin},
 
-
+    { path: '/admin/districts', exact: true, name: 'admin-district', component: DistrictData },
     { path: '/admin/districts/create', exact: true, name: 'admin-dis-create', component: CreateDistrict},
     { path: '/admin/districts/read', exact: true, name: 'admin-dis-read', component: ReadDistrict},
     { path: '/admin/districts/read/:id', exact: true, name: 'admin-dis-read-one', component:ReadOneDistrict},
     { path: '/admin/districts/edit/:id', exact: true, name: 'admin-dis-edit', component: EditDistrict},
     { path: '/admin/districts/delete/:id', exact: true, name: 'admin-dis-delete', component: DeleteDistrict},
 
-
+    { path: '/admin/schools', exact: true, name: 'admin-school', component: SchoolData },
     { path: '/admin/schools/create', exact: true, name: 'admin-sch-create', component: CreateSchool},
     { path: '/admin/schools/read', exact: true, name: 'admin-sch-read', component: ReadSchool},
     { path: '/admin/schools/read/:id', exact: true, name: 'admin-sch-read-one', component:ReadOneSchool},
