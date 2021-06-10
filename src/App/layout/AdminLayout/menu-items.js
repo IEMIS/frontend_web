@@ -27,6 +27,7 @@ export default {
                     url: '/admin/schools',
                     icon: 'feather icon-book',
                 },
+                /*
                 {
                     id: 'm-students',
                     title: 'Students Data',
@@ -34,6 +35,7 @@ export default {
                     url: '/admin/students',
                     icon: 'feather icon-users',
                 }
+                */
             ],
         },
         {

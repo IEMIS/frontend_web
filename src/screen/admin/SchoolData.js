@@ -1,86 +1,10 @@
 import React from 'react';
-//import {Row, Col, Card, Tabs, Tab, Table} from 'react-bootstrap';
-import {Row, Col, Card, Table} from 'react-bootstrap';
+import {Row, Col, Card,Table} from 'react-bootstrap';
 import NVD3Chart from 'react-nvd3';
 
 import Aux from "../../hoc/_Aux";
-/*
-import DEMO from "../../store/constant";
-
-import avatar1 from '../../assets/images/user/avatar-1.jpg';
-import avatar2 from '../../assets/images/user/avatar-2.jpg';
-import avatar3 from '../../assets/images/user/avatar-3.jpg';
-*/
 import { Link } from 'react-router-dom';
 
-
-function generateNumber(min, max) {
-    return Math.floor(Math.random()*(max-min+1)+min)
-}
-
-function getDatum() {
-    let sin = [],
-        sin2 = [],
-        sin3 = [];
-
-    const len =  35 + (Math.random() * (70-35));
-    for (let i = 0; i < len; i++) {
-        sin.push({
-            'x': i,
-            'y': generateNumber(0, 60)
-        });
-        sin2.push({
-            'x': i,
-            'y': generateNumber(0, 100)
-        });
-        sin3.push({
-            'x': i,
-            'y': generateNumber(0, 30)
-        });
-    }
-    return [
-        {
-            values: sin,
-            key: 'Stream #0',
-            color: '#A389D4'
-        },
-        {
-            values: sin3,
-            key: 'Stream #1',
-            color: '#04a9f5'
-        },
-        {
-            values: sin2,
-            key: 'Stream #3',
-            color: '#1de9b6',
-            area: true
-        }
-    ];
-}
-/*
-const datum1 = [
-    {key: "One", y: 29, color: "#ff8a65"},
-    {key: "Two", y: 0, color: "#f4c22b"},
-    {key: "Three", y: 32, color: "#04a9f5"},
-    {key: "Four", y: 196, color: "#3ebfea"},
-    {key: "Five", y: 2, color: "#4F5467"},
-    {key: "Six", y: 98, color: "#1de9b6"},
-    {key: "Seven", y: 13, color: "#a389d4"},
-    {key: "Eight", y: 5, color: "#FE8A7D"}
-];
-
-const datum2 = [
-    {key: "One", y: 29, color: "#ff8a65"},
-    {key: "Two", y: 0, color: "#f4c22b"},
-    {key: "Three", y: 32, color: "#04a9f5"},
-    {key: "Four", y: 196, color: "#3ebfea"},
-    {key: "Five", y: 2, color: "#4F5467"},
-    {key: "Six", y: 98, color: "#1de9b6"},
-    {key: "Seven", y: 13, color: "#a389d4"},
-    {key: "Eight", y: 5, color: "#FE8A7D"}
-];
-
-*/
 
 const datum = [
     {
@@ -153,72 +77,8 @@ const datum = [
 
 
 
-class Dashboard extends React.Component {
+class SchoolData extends React.Component {
     render() {
-
-        const data = getDatum();
-        console.log(data)
-        /*
-        const tabContent = (
-            <Aux>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{width: '40px'}} src={avatar1} alt="activity-user"/></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline"> <a href={DEMO.BLANK_LINK}>Silje Larsen</a></h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-up f-22 m-r-10 text-c-green"/>3784</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{width: '40px'}} src={avatar2} alt="activity-user"/></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Julie Vad</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-up f-22 m-r-10 text-c-green"/>3544</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{width: '40px'}} src={avatar3} alt="activity-user"/></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Storm Hanse</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-down f-22 m-r-10 text-c-red"/>2739</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{width: '40px'}} src={avatar1} alt="activity-user"/></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Frida Thomse</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-down f-22 m-r-10 text-c-red"/>1032</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{width: '40px'}} src={avatar2} alt="activity-user"/></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Silje Larsen</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-up f-22 m-r-10 text-c-green"/>8750</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{width: '40px'}} src={avatar3} alt="activity-user"/></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Storm Hanse</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-down f-22 m-r-10 text-c-red"/>8750</span>
-                    </div>
-                </div>
-            </Aux>
-        );
-        */
-
 
         return (
             <Aux>
@@ -449,111 +309,49 @@ class Dashboard extends React.Component {
                                         </div>
                                     </div>
                                 </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row>
-                        
-                    </Row>
-                    {/*<Row>
-                        <Col md={6} xl={6}>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title as='h5'>Students Attendance Weekly Report</Card.Title>
-                                </Card.Header>
                                 <Card.Body>
-                                    <NVD3Chart id="chart" height={300} type="pieChart" datum={datum1} x="key" y="y"  />
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={6} xl={6} className='m-b-30'>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title as='h5'>Students Attendance Yearly Report</Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                    <NVD3Chart id="chart" height={300} type="pieChart" datum={datum2} x="key" y="y"  />
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md={6} xl={4}>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title as='h5'>Student % in a Class</Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                    <div className="row align-items-center justify-content-center m-b-20">
-                                        <div className="col-6">
-                                            <h2 className="f-w-300 d-flex align-items-center float-left m-0">4.7 <i className="fa fa-star f-10 m-l-10 text-c-yellow"/></h2>
+                                    <div className="row d-flex align-items-center">
+                                        <div className="col-auto">
+                                            <i className="feather icon-map-pin f-30 text-c-blue"/>
                                         </div>
-                                        <div className="col-6">
-                                            <h6 className="d-flex  align-items-center float-right m-0">0.4 <i className="fa fa-caret-up text-c-green f-22 m-l-10"/></h6>
+                                        <div className="col">
+                                            <h3 className="f-w-300">26</h3>
+                                            <span className="d-block text-uppercase">total locations</span>
                                         </div>
                                     </div>
-
-                                    <div className="row">
-                                        <div className="col-xl-12">
-                                            <h6 className="align-items-center float-left"><i className="fa fa-star f-10 m-r-10 text-c-yellow"/>5</h6>
-                                            <h6 className="align-items-center float-right">384</h6>
-                                            <div className="progress m-t-30 m-b-20" style={{height: '6px'}}>
-                                                <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '70%'}} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"/>
-                                            </div>
+                                </Card.Body>
+                                <Card.Body>
+                                    <div className="row d-flex align-items-center">
+                                        <div className="col-auto">
+                                            <i className="feather icon-map-pin f-30 text-c-blue"/>
                                         </div>
-
-                                        <div className="col-xl-12">
-                                            <h6 className="align-items-center float-left"><i className="fa fa-star f-10 m-r-10 text-c-yellow"/>4</h6>
-                                            <h6 className="align-items-center float-right">145</h6>
-                                            <div className="progress m-t-30  m-b-20" style={{height: '6px'}}>
-                                                <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '35%'}} aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"/>
-                                            </div>
+                                        <div className="col">
+                                            <h3 className="f-w-300">26</h3>
+                                            <span className="d-block text-uppercase">total locations</span>
                                         </div>
-
-                                        <div className="col-xl-12">
-                                            <h6 className="align-items-center float-left"><i className="fa fa-star f-10 m-r-10 text-c-yellow"/>3</h6>
-                                            <h6 className="align-items-center float-right">24</h6>
-                                            <div className="progress m-t-30  m-b-20" style={{height: '6px'}}>
-                                                <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '25%'}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"/>
-                                            </div>
+                                    </div>
+                                </Card.Body>
+                                <Card.Body>
+                                    <div className="row d-flex align-items-center">
+                                        <div className="col-auto">
+                                            <i className="feather icon-map-pin f-30 text-c-blue"/>
                                         </div>
-
-                                        <div className="col-xl-12">
-                                            <h6 className="align-items-center float-left"><i className="fa fa-star f-10 m-r-10 text-c-yellow"/>2</h6>
-                                            <h6 className="align-items-center float-right">1</h6>
-                                            <div className="progress m-t-30  m-b-20" style={{height: '6px'}}>
-                                                <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '10%'}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"/>
-                                            </div>
-                                        </div>
-                                        <div className="col-xl-12">
-                                            <h6 className="align-items-center float-left"><i className="fa fa-star f-10 m-r-10 text-c-yellow"/>1</h6>
-                                            <h6 className="align-items-center float-right">0</h6>
-                                            <div className="progress m-t-30  m-b-5" style={{height: '6px'}}>
-                                                <div className="progress-bar" role="progressbar" style={{width: '0%'}} aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"/>
-                                            </div>
+                                        <div className="col">
+                                            <h3 className="f-w-300">26</h3>
+                                            <span className="d-block text-uppercase">total locations</span>
                                         </div>
                                     </div>
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col md={6} xl={8} className='m-b-30'>
-                            <Tabs defaultActiveKey="today" id="uncontrolled-tab-example">
-                                <Tab eventKey="today" title="Staff Request ">
-                                    {tabContent}
-                                </Tab>
-                                <Tab eventKey="week" title="Parent Request">
-                                    {tabContent}
-                                </Tab>
-                                <Tab eventKey="all" title="All Request">
-                                    {tabContent}
-                                </Tab>
-                            </Tabs>
-                        </Col>
-                    </Row>                             */}
+                    </Row>
+                    <Row>
+                    </Row>
+
                {/* </Row>  */}
             </Aux>
         );
     }
 }
 
-export default Dashboard;
+export default SchoolData;
