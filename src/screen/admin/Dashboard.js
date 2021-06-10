@@ -321,7 +321,7 @@ class Dashboard extends React.Component {
                                 <Col md={6} xl={6}>
                                     <Card className='card-social'>
                                         <Card.Header>
-                                            <Card.Title as='h5'>Teachering Staff </Card.Title>
+                                            <Card.Title as='h5'>Teaching Staff </Card.Title>
                                         </Card.Header>
                                         <Card.Body className='border-bottom'>
                                         <Table responsive striped bordered hover>
@@ -364,7 +364,7 @@ class Dashboard extends React.Component {
                                 <Col md={6} xl={6}>
                                     <Card className='card-social'>
                                         <Card.Header>
-                                            <Card.Title as='h5'>None Teachering Staff </Card.Title>
+                                            <Card.Title as='h5'>Non-Teaching Staff </Card.Title>
                                         </Card.Header>
                                         <Card.Body className='border-bottom'>
                                         <Table responsive striped bordered hover>

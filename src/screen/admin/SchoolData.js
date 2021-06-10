@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Card,Table} from 'react-bootstrap';
+import {Row, Col, Card,Table, Form} from 'react-bootstrap';
 import NVD3Chart from 'react-nvd3';
 
 import Aux from "../../hoc/_Aux";
@@ -86,6 +86,67 @@ class SchoolData extends React.Component {
                     <Row>
                         <Col md={4} xl={4}>
                             <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        Seleect District
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                        <Form.Label>District</Form.Label>
+                                        <Form.Control as="select">
+                                                <option>Select district</option>
+                                                <option>Select district</option>
+                                                <option>Select district</option>
+                                               {
+                                                   /*
+                                                   districtList && districtList.length > 0 
+                                                   ?
+                                                   districtList.map((dist, id)=>{
+                                                       return(
+                                                        <option value={dist._id}>{dist.names}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch district</option>
+                                                   */
+                                               }
+                                        </Form.Control>
+                                    </Form.Group>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        Select School
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                        <Form.Label>Schools list</Form.Label>
+                                        <Form.Control as="select">
+                                                <option>Select School</option>
+                                
+                                               {
+                                                   /*
+                                                   districtList && districtList.length > 0 
+                                                   ?
+                                                   districtList.map((dist, id)=>{
+                                                       return(
+                                                        <option value={dist._id}>{dist.names}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch district</option>
+                                                   */
+                                               }
+                                        </Form.Control>
+                                    </Form.Group>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={5} xl={5}>
+                            <Card>
                                 <Card.Body>
                                     <Link to="/admin/students">
                                         <div className="row d-flex align-items-center">
@@ -110,57 +171,6 @@ class SchoolData extends React.Component {
                                         </div>
                                         <div className="progress m-t-30" style={{height: '7px'}}>
                                             <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '50%'}} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"/>
-                                        </div>
-                                    </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={6} xl={6}>
-                            <Card>
-                                <Card.Body>
-                                    <Link to="/admin/schools">
-                                        <div className="row d-flex align-items-center">
-                                            <div className="col-3">
-                                                <h6>Community </h6>
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="f-30 m-r-5"/> 1,600</h3>
-                                            </div>
-                                                <div className="col-3">
-                                                    <h6>Governemnt</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="f-30 m-r-5"/> 1,420</h3>
-                                                </div>
-                                                <div className="col-3">
-                                                    <h6>Faith Base</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 1,420</h3>
-                                                </div>
-                                                <div className="col-3">
-                                                    <h6>Privatet</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 1,420</h3>
-                                                </div>
-                                        </div>
-                                        <br/>
-                                        <div className="col-9">
-                                            <h6 className='mb-4'>Total number of Schools</h6>
-                                            <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 40</h3>
-                                        </div>
-                                        <div className="progress m-t-30" style={{height: '7px'}}>
-                                            <div className="progress-bar progress-c-theme2" role="progressbar" style={{width: '35%'}} aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"/>
-                                        </div>
-                                    </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={2} xl={2}>
-                            <Card>
-                                <Card.Body>
-                                    <Link to="/admin/districts">
-                                        <h6 className='mb-4'>Total Number of Districts</h6>
-                                        <div className="row d-flex align-items-center">
-                                            <div className="col-9">
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 20</h3>
-                                            </div>
-                                        </div>
-                                        <div className="progress m-t-30" style={{height: '7px'}}>
-                                            <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '70%'}} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"/>
                                         </div>
                                     </Link>
                                 </Card.Body>
@@ -295,50 +305,6 @@ class SchoolData extends React.Component {
                                         <div className="col">
                                             <h3 className="f-w-300">20</h3>
                                             <span className="d-block text-uppercase">Student transfer Request</span>
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                                <Card.Body>
-                                    <div className="row d-flex align-items-center">
-                                        <div className="col-auto">
-                                            <i className="feather icon-map-pin f-30 text-c-blue"/>
-                                        </div>
-                                        <div className="col">
-                                            <h3 className="f-w-300">26</h3>
-                                            <span className="d-block text-uppercase">total locations</span>
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                                <Card.Body>
-                                    <div className="row d-flex align-items-center">
-                                        <div className="col-auto">
-                                            <i className="feather icon-map-pin f-30 text-c-blue"/>
-                                        </div>
-                                        <div className="col">
-                                            <h3 className="f-w-300">26</h3>
-                                            <span className="d-block text-uppercase">total locations</span>
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                                <Card.Body>
-                                    <div className="row d-flex align-items-center">
-                                        <div className="col-auto">
-                                            <i className="feather icon-map-pin f-30 text-c-blue"/>
-                                        </div>
-                                        <div className="col">
-                                            <h3 className="f-w-300">26</h3>
-                                            <span className="d-block text-uppercase">total locations</span>
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                                <Card.Body>
-                                    <div className="row d-flex align-items-center">
-                                        <div className="col-auto">
-                                            <i className="feather icon-map-pin f-30 text-c-blue"/>
-                                        </div>
-                                        <div className="col">
-                                            <h3 className="f-w-300">26</h3>
-                                            <span className="d-block text-uppercase">total locations</span>
                                         </div>
                                     </div>
                                 </Card.Body>
