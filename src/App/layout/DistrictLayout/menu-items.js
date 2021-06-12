@@ -2,7 +2,7 @@ export default {
     items: [
         {
             id: 'navigation',
-            title: 'District Menu',
+            title: 'admin Menu',
             type: 'group',
             icon: 'icon-navigation',
             children: [
@@ -14,27 +14,124 @@ export default {
                     icon: 'feather icon-home',
                 },
                 {
-                    id: 'm-district',
-                    title: 'Manage District',
-                    type: 'item',
-                    url: '/district',
-                    icon: 'feather icon-feather',
-                },
-                {
                     id: 'm-school',
-                    title: 'Manage School',
+                    title: 'Schools data',
                     type: 'item',
-                    url: '/school',
-                    icon: 'feather book',
+                    url: '/district/schools',
+                    icon: 'feather icon-book',
                 },
+                /*
                 {
                     id: 'm-students',
-                    title: 'Manage Students',
+                    title: 'Students Data',
                     type: 'item',
-                    url: '/students',
-                    icon: 'feather icon-book-open',
+                    url: '/admin/students',
+                    icon: 'feather icon-users',
                 }
+                */
             ],
+        },
+        {
+            id: 'district-list',
+            title: 'Data Management',
+            type: 'group',
+            icon: 'icon-ui',
+            children: [
+                {
+                    id: 'School',
+                    title: 'School',
+                    type: 'collapse',
+                    icon: 'feather icon-book',
+                    children: [
+                        {
+                            id: 'school-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/district/schools/read'
+                        },
+                        {
+                            id: 'school-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/district/schools/create'
+                        },
+                    ]
+                },
+                {
+                    id: 'students',
+                    title: 'Students',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'students-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/district/students/read'
+                        },
+                        {
+                            id: 'students-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/district/students/create'
+                        },
+                    ]
+                },
+                {
+                    id: 'staff',
+                    title: 'Staff',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'staffs-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/district/staffs/read'
+                        },
+                        {
+                            id: 'staffs-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/district/staffs/create'
+                        },
+                    ]
+                },
+                {
+                    id: 'teachers',
+                    title: 'Teachers',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'teachers-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/district/teachers/read'
+                        },
+                        {
+                            id: 'teachers-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/district/teachers/create'
+                        },
+                    ]
+                },
+                {
+                    id: 'extral',
+                    title: 'Extral Data',
+                    type: 'collapse',
+                    icon: 'feather icon-book',
+                    children: [
+                        {
+                            id: 'extral-read',
+                            title: 'Population',
+                            type: 'item',
+                            url: '/district/extral/read'
+                        },
+                    ]
+                }
+            ]
         },
         {
             id: 'pages',
@@ -44,7 +141,7 @@ export default {
             children: [
                 {
                     id: 'disabled-menu',
-                    title: 'Dsitrict Signout',
+                    title: 'Districts Signout',
                     type: 'item',
                     url: '/district/signout',
                     classes: 'nav-item ',

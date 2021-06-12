@@ -24,6 +24,21 @@ const SchoolLayout = Loadable({
     loading: Loader
 });
 
+const TeacherLayout = Loadable({
+    loader: () => import('./layout/TeacherLayout'),
+    loading: Loader
+});
+
+const StudentLayout = Loadable({
+    loader: () => import('./layout/StudentLayout'),
+    loading: Loader
+});
+
+const ParentLayout = Loadable({
+    loader: () => import('./layout/ParentLayout'),
+    loading: Loader
+});
+
 
 class App extends Component {
     render() {
@@ -50,6 +65,9 @@ class App extends Component {
                             <Route path="/admin" component={AdminLayout} />
                             <Route path="/district" component={DistrictLayout} />
                             <Route path="/school" component={SchoolLayout} />
+                            <Route path="/teacher" component={TeacherLayout} />
+                            <Route path="/student" component={StudentLayout} />
+                            <Route path="/parent" component={ParentLayout} />
                         </Switch>
                     </Suspense>
                 </ScrollToTop>
