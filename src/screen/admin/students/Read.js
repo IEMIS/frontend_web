@@ -74,10 +74,11 @@ export default function Read() {
     }
 
     let columun = [
-        "code",
-        "names",
-        "district",
-        "email",
+        "studentCode",
+        "school",
+        "firstName",
+        "lastName",
+        "status",
         "edit",
         "detail",
         "delete",
@@ -85,10 +86,10 @@ export default function Read() {
 
     let tableHead = [
         "Student Code",
-        "Student Names",
-        "District",
-        "School",
-        "Email",
+        "School Name",
+        "First Name",
+        "Last Name",
+        "Studentship",
         "Edit",
         "Details",
         "Delete",

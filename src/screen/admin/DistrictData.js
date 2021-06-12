@@ -11,44 +11,142 @@ const datum = [
         key: "Male",
         color: "#FE8A7D",
         values: [
-          {
-            "label" : "Pre School" ,
-            "value" : 10,
-          } ,
-          {
-            "label" : "Year 1" ,
-            "value" : 20,
-          } ,
-          {
-            "label" : "Year 2" ,
-            "value" : 15
-          } ,
-          {
-            "label" : "Year 3" ,
-            "value" : 21
-          }
+            {
+                "label" : "ECE" ,
+                "value" : 17422
+              } ,
+              {
+                "label" : "YR1" ,
+                "value" : 15067
+              } ,
+              {
+                "label" : "YR2" ,
+                "value" : 10441
+              },
+              {
+                "label" : "YR3" ,
+                "value" : 10255
+              },
+              {
+                "label" : "YR4" ,
+                "value" : 10496
+              } ,
+              {
+                "label" : "YR5" ,
+                "value" : 10346
+              } ,
+              {
+                "label" : "YR6" ,
+                "value" : 9356
+              },
+              {
+                "label" : "YR7" ,
+                "value" : 9245
+              },
+              {
+                "label" : "YR8" ,
+                "value" : 8945
+              } ,
+              {
+                "label" : "YR9" ,
+                "value" : 8542
+              },
+              {
+                "label" : "YR10" ,
+                "value" : 7555
+              },
+              {
+                "label" : "YR11" ,
+                "value" : 6548
+              } ,
+              {
+                "label" : "YR12" ,
+                "value" : 5698
+              } ,
+              {
+                "label" : "YR13" ,
+                "value" : 3579
+              },
+              {
+                "label" : "Voc Y1 " ,
+                "value" : 512
+              },
+              {
+                "label" : "Voc Y2 " ,
+                "value" : 166
+              }
+        
         ]
       },
     {
     key: "Female",
     color: '#1de9b6',
     values: [
-      {
-        "label" : "Pre School" ,
-        "value" : 15
-      } ,
-      {
-        "label" : "Year 1" ,
-        "value" : 20
-      } ,
-      {
-        "label" : "Year 2" ,
-        "value" : 11
-      } ,
-      {
-        "label" : "Year 3" ,
-        "value" : 14
-      }
+        {
+            "label" : "ECE" ,
+            "value" : 8227
+          } ,
+          {
+            "label" : "YR1" ,
+            "value" : 9639
+          } ,
+          {
+            "label" : "YR2" ,
+            "value" : 9712
+          },
+          {
+            "label" : "YR3" ,
+            "value" : 9602
+          },
+          {
+            "label" : "YR4" ,
+            "value" : 9553
+          } ,
+          {
+            "label" : "YR5" ,
+            "value" : 9666
+          } ,
+          {
+            "label" : "YR6" ,
+            "value" : 8634
+          },
+          {
+            "label" : "YR7" ,
+            "value" : 8529
+          },
+          {
+            "label" : "YR8" ,
+            "value" : 8771
+          } ,
+          {
+            "label" : "YR9" ,
+            "value" : 8339
+          },
+          {
+            "label" : "YR10" ,
+            "value" : 7877
+          },
+          {
+            "label" : "YR11" ,
+            "value" : 7432
+          } ,
+          {
+            "label" : "YR12" ,
+            "value" : 7156
+          } ,
+          {
+            "label" : "YR13" ,
+            "value" : 4884
+          },
+          {
+            "label" : "Voc Y1 " ,
+            "value" : 307
+          },
+          {
+            "label" : "Voc Y2 " ,
+            "value" : 56
+          }
+    
     ]
   },
   {
@@ -56,20 +154,68 @@ const datum = [
     color: "#3ebfea",
     values: [
       {
-        "label" : "Pre School" ,
-        "value" : 50
+        "label" : "ECE" ,
+        "value" : 17422
       } ,
       {
-        "label" : "Year 1" ,
-        "value" : 100
+        "label" : "YR1" ,
+        "value" : 21430
       } ,
       {
-        "label" : "Year 2" ,
-        "value" : 59
+        "label" : "YR2" ,
+        "value" : 23456
       },
       {
-        "label" : "Year 3" ,
-        "value" : 69
+        "label" : "YR3" ,
+        "value" : 20672
+      },
+      {
+        "label" : "YR4" ,
+        "value" : 19956
+      } ,
+      {
+        "label" : "YR5" ,
+        "value" : 20345
+      } ,
+      {
+        "label" : "YR6" ,
+        "value" : 17527
+      },
+      {
+        "label" : "YR7" ,
+        "value" : 17832
+      },
+      {
+        "label" : "YR8" ,
+        "value" : 17122
+      } ,
+      {
+        "label" : "YR9" ,
+        "value" : 16632
+      },
+      {
+        "label" : "YR10" ,
+        "value" : 15232
+      },
+      {
+        "label" : "YR11" ,
+        "value" : 13323
+      } ,
+      {
+        "label" : "YR12" ,
+        "value" : 12345
+      } ,
+      {
+        "label" : "YR13" ,
+        "value" : 7432
+      },
+      {
+        "label" : "Voc Y1 " ,
+        "value" : 819
+      },
+      {
+        "label" : "Voc Y2 " ,
+        "value" : 222
       }
     ]
   }
@@ -88,7 +234,7 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        Seleect District
+                                        Select District
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
@@ -126,7 +272,7 @@ class DistrictData extends React.Component {
                                                 <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,600</h3>
                                             </div>
                                             <div className="col-6">
-                                                <h6>Male </h6>
+                                                <h6>Female </h6>
                                                 <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,420</h3>
                                             </div>
                                         {/* <div className="col-3 text-right">

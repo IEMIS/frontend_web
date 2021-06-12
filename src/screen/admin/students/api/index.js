@@ -126,7 +126,7 @@ export const readsSchool = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-//get parent
+//get subject
 export const readsSubject = async (token)=>{
     try{
         //subject

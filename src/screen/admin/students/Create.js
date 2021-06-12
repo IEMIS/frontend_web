@@ -296,7 +296,7 @@ export default function Create() {
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Present Class</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("presentClass")} value={presentClass}>
-                                                <option>Present Class</option>
+                                                <option>Select Present Class</option>
                                                 <option value="Preprimary">Pre-Primary</option>
                                                 <option value="Y1">Year 1</option>
                                                 <option value="Y2">Year 2</option>
@@ -315,10 +315,14 @@ export default function Create() {
                                                 <option value="voc2">Voc YR2</option>   
                                             </Form.Control>
                                     </Form.Group>
-                                    <Form.Group controlId="exampleForm.Checkbox">
-                            
-                                            <Form.Check as="checkbox" label="Had ECE" onChange={handleChange("HadEce")} value={HadEce}/>
-                                     </Form.Group>
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Had ECE</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("HadEce")} value={HadEce}>
+                                                <option>Select</option>
+                                                <option value="Yes">Yes </option>
+                                                <option value="No">No</option>
+                                    </Form.Control>
+                                    </Form.Group>
                                      <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Subject</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("subject")} value={subject}>

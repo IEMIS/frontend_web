@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Card,Table, Form} from 'react-bootstrap';
+import {Row, Col, Card,Form} from 'react-bootstrap';
 import NVD3Chart from 'react-nvd3';
 
 import Aux from "../../hoc/_Aux";
@@ -88,7 +88,7 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        Seleect District
+                                        Select District
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
@@ -155,7 +155,7 @@ class SchoolData extends React.Component {
                                                 <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,600</h3>
                                             </div>
                                             <div className="col-6">
-                                                <h6>Male </h6>
+                                                <h6>Female </h6>
                                                 <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,420</h3>
                                             </div>
                                         {/* <div className="col-3 text-right">
@@ -165,7 +165,7 @@ class SchoolData extends React.Component {
                                         <br />
                                         <div className="row d-flex align-items-center">
                                             <div className="col-9">
-                                                <h6 className='mb-4'>Total number of Students</h6>
+                                                <h6 className='mb-4'>Total Number of Students</h6>
                                                 <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 3,020</h3>
                                             </div>
                                         </div>
@@ -182,100 +182,71 @@ class SchoolData extends React.Component {
                             <Row>
                                 <Card className='Recent-Users'>
                                     <Card.Header>
-                                        <Card.Title as='h5'>Students per class Summary</Card.Title>
+                                        <Card.Title as='h5'>Students Per Class Summary</Card.Title>
                                     </Card.Header>
                                     <Card.Body className='px-0 py-2'>
                                         <NVD3Chart id="barChart" type="multiBarChart" datum={datum} x="label" y="value" height={380} showValues groupSpacing={0.5} />
                                     </Card.Body>
                                 </Card>
-                                <Col md={6} xl={6}>
-                                    <Card className='card-social'>
-                                        <Card.Header>
-                                            <Card.Title as='h5'>Teachering Staff </Card.Title>
-                                        </Card.Header>
-                                        <Card.Body className='border-bottom'>
-                                        <Table responsive striped bordered hover>
-                                            <thead>
-                                                <tr>
-                                                <th> </th>
-                                                <th>ECE</th>
-                                                <th>PRY</th>
-                                                <th>SEC</th>
-                                                <th>TVET</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                <td>Male</td>
-                                                <td>120</td>
-                                                <td>450</td>
-                                                <td>452</td>
-                                                <td>15</td>
-                                                </tr>
-                                                <tr>
-                                                <td>Female</td>
-                                                <td>158</td>
-                                                <td>782</td>
-                                                <td>651</td>
-                                                <td>80</td>
-                                                </tr>
-                                                <tr>
-                                                <td>Total</td>
-                                                <td>278</td>
-                                                <td>1232</td>
-                                                <td>1103</td>
-                                                <td>95</td>
-                                                </tr>
-                                            </tbody>
-                                            </Table>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                                <Col md={6} xl={6}>
-                                    <Card className='card-social'>
-                                        <Card.Header>
-                                            <Card.Title as='h5'>None Teachering Staff </Card.Title>
-                                        </Card.Header>
-                                        <Card.Body className='border-bottom'>
-                                        <Table responsive striped bordered hover>
-                                            <thead>
-                                                <tr>
-                                                <th> </th>
-                                                <th>ECE</th>
-                                                <th>PRY</th>
-                                                <th>SEC</th>
-                                                <th>TVET</th>
-                                                <th>Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                <td>Male</td>
-                                                <td>120</td>
-                                                <td>450</td>
-                                                <td>452</td>
-                                                <td>15</td>
-                                                <td>1037</td>
-                                                </tr>
-                                                <tr>
-                                                <td>Female</td>
-                                                <td>158</td>
-                                                <td>782</td>
-                                                <td>651</td>
-                                                <td>80</td>
-                                                <td>16040</td>
-                                                </tr>
-                                                <tr>
-                                                <td>Total</td>
-                                                <td>278</td>
-                                                <td>1232</td>
-                                                <td>1103</td>
-                                                <td>95</td>
-                                                <td>40398</td>
-                                                </tr>
-                                            </tbody>
-                                            </Table>
-                                        </Card.Body>
+                                <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Body>
+                                    <Link to="/admin/students">
+                                        <div className="row d-flex align-items-center">
+                                            <div className="col-6">
+                                                <h6>Male </h6>
+                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 121,420</h3>
+                                            </div>
+                                            <div className="col-6">
+                                                <h6>Female </h6>
+                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 118,354</h3>
+                                            </div>
+                                        {/* <div className="col-3 text-right">
+                                                <p className="m-b-0"> </p>
+                                            </div>*/}
+                                        </div>
+                                        <br />
+                                        <div className="row d-flex align-items-center">
+                                            <div className="col-9">
+                                                <h6 className='mb-4'>Total number of Students</h6>
+                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 239,774</h3>
+                                            </div>
+                                        </div>
+                                        <div className="progress m-t-30" style={{height: '7px'}}>
+                                            <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '50%'}} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"/>
+                                        </div>
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={6} xl={6}>
+                            <Card>
+                                <Card.Body>
+                                    <Link to="/admin/schools">
+                                        <div className="row d-flex align-items-center">
+                                                <div className="col-3">
+                                                    <h6>Governemnt</h6>
+                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="f-30 m-r-5"/> 300</h3>
+                                                </div>
+                                                <div className="col-3">
+                                                    <h6>Non-Government</h6>
+                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 1,384</h3>
+                                                </div>
+                                                <div className="col-3">
+                                                    <h6>Private</h6>
+                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 120</h3>
+                                                </div>
+                                        </div>
+                                        <br/>
+                                        <div className="col-9">
+                                            <h6 className='mb-4'>Total number of Schools</h6>
+                                            <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,784</h3>
+                                        </div>
+                                        <div className="progress m-t-30" style={{height: '7px'}}>
+                                            <div className="progress-bar progress-c-theme2" role="progressbar" style={{width: '35%'}} aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"/>
+                                        </div>
+                                    </Link>
+                                </Card.Body>
                                     </Card>
                                 </Col>
                             </Row>

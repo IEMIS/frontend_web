@@ -86,10 +86,6 @@ export default function Home() {
 while developed countries leverage on proprietary School Management Software (SMS) solutions such as Alma, Class365, Edsby, Eduflex, Edvance etc. in managing their education data, 
 these solutions are expensive and unsuitable for developing countries whose annual education budget still fall below international benchmark.
 Today, countries are without EMIS and those with EMIS are yet to advance from desktop solutions to a web platform for efficient coverage and handling of education data.</p>
-<p className="wow slideInLeft" data-wow-delay="0.4s">A survey conducted by Asian Development Bank (ADB) in 2018 revealed that no developing country EMIS in the Pacific appears to have progressed beyond the stages of collecting 
-demographic data and reporting on sector indicators (Pillay, Velasco-Rosenheim, & Thonden, 2018). This is even worse in Africa and many other developing countries, 
-where education data collection to analysis stage are still being handled manually resulting in overlapping of data, data gap, data integrity issue, delay in publishing annual 
-education digest report, ineffective use of education data in planning and decision making by relevant stakeholders (i.e Ministry of Education, Government, Schools, Parents and IDP etc) in education sector.</p>
                             <a href="fake" className="btn wow slideInLeft" data-wow-delay="0.6s">more....</a>
                             </div>
                         </div>
