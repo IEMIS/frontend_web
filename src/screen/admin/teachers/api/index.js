@@ -87,12 +87,11 @@ export const remove = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
-
-//get district 
-export const readsDistrict = async (token)=>{
+//get subject
+export const readsSubject = async (token)=>{
     try{
-        //district
-        const response = await fetch(`${BASE_URL}/district`,{
+        //subject
+        const response = await fetch(`${BASE_URL}/subject`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -107,6 +106,24 @@ export const readsDistrict = async (token)=>{
     }catch(e){console.log(e)}
 }
 
+//get school
+export const readsSchool = async (token)=>{
+    try{
+        //school
+        const response = await fetch(`${BASE_URL}/school`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
 
 
 

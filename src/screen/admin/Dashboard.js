@@ -23,19 +23,19 @@ function getDatum() {
         sin2 = [],
         sin3 = [];
 
-    const len =  35 + (Math.random() * (70-35));
+    const len =  35 + (Math.random() * (30-35000));
     for (let i = 0; i < len; i++) {
         sin.push({
             'x': i,
-            'y': generateNumber(0, 60)
+            'y': generateNumber(30, 30000)
         });
         sin2.push({
             'x': i,
-            'y': generateNumber(0, 100)
+            'y': generateNumber(35, 30000)
         });
         sin3.push({
             'x': i,
-            'y': generateNumber(0, 30)
+            'y': generateNumber(30, 30000)
         });
     }
     return [
@@ -87,44 +87,142 @@ const datum = [
         key: "Male",
         color: "#FE8A7D",
         values: [
-          {
-            "label" : "Pre School" ,
-            "value" : 10,
-          } ,
-          {
-            "label" : "Year 1" ,
-            "value" : 20,
-          } ,
-          {
-            "label" : "Year 2" ,
-            "value" : 15
-          } ,
-          {
-            "label" : "Year 3" ,
-            "value" : 21
-          }
+            {
+                "label" : "ECE" ,
+                "value" : 17422
+              } ,
+              {
+                "label" : "YR1" ,
+                "value" : 15067
+              } ,
+              {
+                "label" : "YR2" ,
+                "value" : 10441
+              },
+              {
+                "label" : "YR3" ,
+                "value" : 10255
+              },
+              {
+                "label" : "YR4" ,
+                "value" : 10496
+              } ,
+              {
+                "label" : "YR5" ,
+                "value" : 10346
+              } ,
+              {
+                "label" : "YR6" ,
+                "value" : 9356
+              },
+              {
+                "label" : "YR7" ,
+                "value" : 9245
+              },
+              {
+                "label" : "YR8" ,
+                "value" : 8945
+              } ,
+              {
+                "label" : "YR9" ,
+                "value" : 8542
+              },
+              {
+                "label" : "YR10" ,
+                "value" : 7555
+              },
+              {
+                "label" : "YR11" ,
+                "value" : 6548
+              } ,
+              {
+                "label" : "YR12" ,
+                "value" : 5698
+              } ,
+              {
+                "label" : "YR13" ,
+                "value" : 3579
+              },
+              {
+                "label" : "Voc Y1 " ,
+                "value" : 512
+              },
+              {
+                "label" : "Voc Y2 " ,
+                "value" : 166
+              }
+        
         ]
       },
     {
     key: "Female",
     color: '#1de9b6',
     values: [
-      {
-        "label" : "Pre School" ,
-        "value" : 15
-      } ,
-      {
-        "label" : "Year 1" ,
-        "value" : 20
-      } ,
-      {
-        "label" : "Year 2" ,
-        "value" : 11
-      } ,
-      {
-        "label" : "Year 3" ,
-        "value" : 14
-      }
+        {
+            "label" : "ECE" ,
+            "value" : 8227
+          } ,
+          {
+            "label" : "YR1" ,
+            "value" : 9639
+          } ,
+          {
+            "label" : "YR2" ,
+            "value" : 9712
+          },
+          {
+            "label" : "YR3" ,
+            "value" : 9602
+          },
+          {
+            "label" : "YR4" ,
+            "value" : 9553
+          } ,
+          {
+            "label" : "YR5" ,
+            "value" : 9666
+          } ,
+          {
+            "label" : "YR6" ,
+            "value" : 8634
+          },
+          {
+            "label" : "YR7" ,
+            "value" : 8529
+          },
+          {
+            "label" : "YR8" ,
+            "value" : 8771
+          } ,
+          {
+            "label" : "YR9" ,
+            "value" : 8339
+          },
+          {
+            "label" : "YR10" ,
+            "value" : 7877
+          },
+          {
+            "label" : "YR11" ,
+            "value" : 7432
+          } ,
+          {
+            "label" : "YR12" ,
+            "value" : 7156
+          } ,
+          {
+            "label" : "YR13" ,
+            "value" : 4884
+          },
+          {
+            "label" : "Voc Y1 " ,
+            "value" : 307
+          },
+          {
+            "label" : "Voc Y2 " ,
+            "value" : 56
+          }
+    
     ]
   },
   {
@@ -132,21 +230,70 @@ const datum = [
     color: "#3ebfea",
     values: [
       {
-        "label" : "Pre School" ,
-        "value" : 50
+        "label" : "ECE" ,
+        "value" : 17422
       } ,
       {
-        "label" : "Year 1" ,
-        "value" : 100
+        "label" : "YR1" ,
+        "value" : 21430
       } ,
       {
-        "label" : "Year 2" ,
-        "value" : 59
+        "label" : "YR2" ,
+        "value" : 23456
       },
       {
-        "label" : "Year 3" ,
-        "value" : 69
+        "label" : "YR3" ,
+        "value" : 20672
+      },
+      {
+        "label" : "YR4" ,
+        "value" : 19956
+      } ,
+      {
+        "label" : "YR5" ,
+        "value" : 20345
+      } ,
+      {
+        "label" : "YR6" ,
+        "value" : 17527
+      },
+      {
+        "label" : "YR7" ,
+        "value" : 17832
+      },
+      {
+        "label" : "YR8" ,
+        "value" : 17122
+      } ,
+      {
+        "label" : "YR9" ,
+        "value" : 16632
+      },
+      {
+        "label" : "YR10" ,
+        "value" : 15232
+      },
+      {
+        "label" : "YR11" ,
+        "value" : 13323
+      } ,
+      {
+        "label" : "YR12" ,
+        "value" : 12345
+      } ,
+      {
+        "label" : "YR13" ,
+        "value" : 7432
+      },
+      {
+        "label" : "Voc Y1 " ,
+        "value" : 819
+      },
+      {
+        "label" : "Voc Y2 " ,
+        "value" : 222
       }
+
     ]
   }
 ];
@@ -231,11 +378,11 @@ class Dashboard extends React.Component {
                                         <div className="row d-flex align-items-center">
                                             <div className="col-6">
                                                 <h6>Male </h6>
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,600</h3>
+                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 121,420</h3>
                                             </div>
                                             <div className="col-6">
-                                                <h6>Male </h6>
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,420</h3>
+                                                <h6>Female </h6>
+                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 118,354</h3>
                                             </div>
                                         {/* <div className="col-3 text-right">
                                                 <p className="m-b-0"> </p>
@@ -245,7 +392,7 @@ class Dashboard extends React.Component {
                                         <div className="row d-flex align-items-center">
                                             <div className="col-9">
                                                 <h6 className='mb-4'>Total number of Students</h6>
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 3,020</h3>
+                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 239,774</h3>
                                             </div>
                                         </div>
                                         <div className="progress m-t-30" style={{height: '7px'}}>
@@ -260,27 +407,23 @@ class Dashboard extends React.Component {
                                 <Card.Body>
                                     <Link to="/admin/schools">
                                         <div className="row d-flex align-items-center">
-                                            <div className="col-3">
-                                                <h6>Community </h6>
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="f-30 m-r-5"/> 1,600</h3>
-                                            </div>
                                                 <div className="col-3">
                                                     <h6>Governemnt</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="f-30 m-r-5"/> 1,420</h3>
+                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="f-30 m-r-5"/> 300</h3>
                                                 </div>
                                                 <div className="col-3">
-                                                    <h6>Faith Base</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 1,420</h3>
+                                                    <h6>Non-Government</h6>
+                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 1,384</h3>
                                                 </div>
                                                 <div className="col-3">
-                                                    <h6>Privatet</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 1,420</h3>
+                                                    <h6>Private</h6>
+                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 120</h3>
                                                 </div>
                                         </div>
                                         <br/>
                                         <div className="col-9">
                                             <h6 className='mb-4'>Total number of Schools</h6>
-                                            <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 40</h3>
+                                            <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,784</h3>
                                         </div>
                                         <div className="progress m-t-30" style={{height: '7px'}}>
                                             <div className="progress-bar progress-c-theme2" role="progressbar" style={{width: '35%'}} aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"/>
@@ -296,7 +439,7 @@ class Dashboard extends React.Component {
                                         <h6 className='mb-4'>Total Number of Districts</h6>
                                         <div className="row d-flex align-items-center">
                                             <div className="col-9">
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 20</h3>
+                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 9</h3>
                                             </div>
                                         </div>
                                         <div className="progress m-t-30" style={{height: '7px'}}>
@@ -312,7 +455,7 @@ class Dashboard extends React.Component {
                             <Row>
                                 <Card className='Recent-Users'>
                                     <Card.Header>
-                                        <Card.Title as='h5'>Students per class Summary</Card.Title>
+                                        <Card.Title as='h5'>Students Per Class Summary</Card.Title>
                                     </Card.Header>
                                     <Card.Body className='px-0 py-2'>
                                         <NVD3Chart id="barChart" type="multiBarChart" datum={datum} x="label" y="value" height={380} showValues groupSpacing={0.5} />
