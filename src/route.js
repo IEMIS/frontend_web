@@ -1,5 +1,6 @@
 import React from 'react';
 
+const Front = React.lazy(()=>import('./screen/Auth/welcome/Front'))
 const Home = React.lazy(()=>import('./screen/Auth/welcome/Home'))
 const AdminSignIn = React.lazy(() => import('./screen/Auth/admin/SignIn'))
 const AdminForget = React.lazy(() => import('./screen/Auth/admin/Forget'))
@@ -15,7 +16,7 @@ const SchoolForget = React.lazy(() => import('./screen/Auth/school/Forget'))
 const SchoolReset = React.lazy(() => import('./screen/Auth/school/Reset'))
 
 const route = [
-    { path: '/', exact: true, name: 'Home', component: Home },
+    { path: '/', exact: true, name: 'Home', component: Front },
     { path: '/auth/admin/signin', exact: true, name: 'admin-signin', component: AdminSignIn },
     { path: '/auth/admin/forget', exact: true, name: 'admin-forget', component: AdminForget},
     { path: '/auth/admin/reset', exact: true, name: 'admin-reset', component: AdminReset },
