@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 import config from '../../../../config';
-import navigation from '../menu-items';
+import navigation from '../menu-items.js';
 import DEMO from "../../../../store/constant";
 import Aux from "../../../../hoc/_Aux";
 
@@ -90,7 +90,7 @@ class Breadcrumb extends Component {
 
         }
 
-        document.title = title + ' | Datta Able Free React + Redux Admin Template';
+        document.title = title + ' | Districts';
 
         return (
             <Aux>
