@@ -18,6 +18,22 @@ const SchoolSignIn = React.lazy(() => import('./screen/Auth/school/SignIn'))
 const SchoolForget = React.lazy(() => import('./screen/Auth/school/Forget'))
 const SchoolReset = React.lazy(() => import('./screen/Auth/school/Reset'))
 
+const TeacherSignIn = React.lazy(() => import('./screen/Auth/teacher/SignIn'))
+const TeacherForget = React.lazy(() => import('./screen/Auth/teacher/Forget'))
+const TeacherReset = React.lazy(() => import('./screen/Auth/teacher/Reset'))
+
+const StaffSignIn = React.lazy(() => import('./screen/Auth/staff/SignIn'))
+const StaffForget = React.lazy(() => import('./screen/Auth/staff/Forget'))
+const StaffReset = React.lazy(() => import('./screen/Auth/staff/Reset'))
+
+const StudentSignIn = React.lazy(() => import('./screen/Auth/student/SignIn'))
+const StudentForget = React.lazy(() => import('./screen/Auth/student/Forget'))
+const StudentReset = React.lazy(() => import('./screen/Auth/student/Reset'))
+
+const ParentSignIn = React.lazy(() => import('./screen/Auth/parent/SignIn'))
+const ParentForget = React.lazy(() => import('./screen/Auth/parent/Forget'))
+const ParentReset = React.lazy(() => import('./screen/Auth/parent/Reset'))
+
 const route = [
     { path: '/', exact: true, name: 'front-page', component: Front },
     { path: '/home', exact: true, name: 'Home', component: Home},
@@ -37,25 +53,23 @@ const route = [
     { path: '/auth/school/forget', exact: true, name: 'school-forget', component: SchoolForget },
     { path: '/auth/school/reset', exact: true, name: 'school-reset', component: SchoolReset},
 
-    { path: '/auth/teacher/signin', exact: true, name: 'teacher-signin', component: SchoolSignIn },
-    { path: '/auth/teacher/forget', exact: true, name: 'teacher-forget', component: SchoolForget },
-    { path: '/auth/teacher/reset', exact: true, name: 'teacher-reset', component: SchoolReset},
+    { path: '/auth/teacher/signin', exact: true, name: 'teacher-signin', component: TeacherSignIn },
+    { path: '/auth/teacher/forget', exact: true, name: 'teacher-forget', component: TeacherForget },
+    { path: '/auth/teacher/reset', exact: true, name: 'teacher-reset', component: TeacherReset},
 
-    { path: '/auth/staff/signin', exact: true, name: 'staff-signin', component: SchoolSignIn },
-    { path: '/auth/staff/forget', exact: true, name: 'staff-forget', component: SchoolForget },
-    { path: '/auth/staff/reset', exact: true, name: 'staff-reset', component: SchoolReset},
+    { path: '/auth/staff/signin', exact: true, name: 'staff-signin', component: StaffSignIn },
+    { path: '/auth/staff/forget', exact: true, name: 'staff-forget', component: StaffForget },
+    { path: '/auth/staff/reset', exact: true, name: 'staff-reset', component: StaffReset},
 
     
 
-    { path: '/auth/student/signin', exact: true, name: 'student-signin', component: SchoolSignIn },
-    { path: '/auth/student/forget', exact: true, name: 'student-forget', component: SchoolForget },
-    { path: '/auth/student/reset', exact: true, name: 'student-reset', component: SchoolReset},
+    { path: '/auth/student/signin', exact: true, name: 'student-signin', component: StudentSignIn },
+    { path: '/auth/student/forget', exact: true, name: 'student-forget', component: StudentForget },
+    { path: '/auth/student/reset', exact: true, name: 'student-reset', component: StudentReset},
 
-    { path: '/auth/parent/signin', exact: true, name: 'parent-signin', component: SchoolSignIn },
-    { path: '/auth/parent/forget', exact: true, name: 'parent-forget', component: SchoolForget },
-    { path: '/auth/parent/reset', exact: true, name: 'parent-reset', component: SchoolReset},
-
-
+    { path: '/auth/parent/signin', exact: true, name: 'parent-signin', component: ParentSignIn },
+    { path: '/auth/parent/forget', exact: true, name: 'parent-forget', component: ParentForget },
+    { path: '/auth/parent/reset', exact: true, name: 'parent-reset', component: ParentReset},
 ];
 
 export default route;
