@@ -7,6 +7,7 @@ import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 import Swal from 'sweetalert2'
 
 import {reset} from './api';
+import Navigation from '../welcome/components/Navigation';
 
 //class SignIn extends React.Component {
 
@@ -87,7 +88,8 @@ const Reset = () => {
         return(
             <Aux>
                 {redirectUser()}
-                <Breadcrumb/>
+                <Breadcrumb />
+                <Navigation />
                 <div className="auth-wrapper">
                     <div className="auth-content">
                         <div className="auth-bg">
