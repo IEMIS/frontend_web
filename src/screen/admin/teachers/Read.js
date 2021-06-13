@@ -29,7 +29,7 @@ export default function Read() {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                    <h1>School List is loading </h1>
+                                    <h1>Teachers list is loading </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -49,12 +49,12 @@ export default function Read() {
                         <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h3">Error in Loading Data.</Card.Title>
+                                <Card.Title as="h3">Error in loading Data.</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>School data failed to Load, you can refresh <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>Teachers data failed to load, you can refresh <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -74,20 +74,25 @@ export default function Read() {
     }
 
     let columun = [
-        "code",
-        "names",
-        "district",
-        "email",
+        "teacherCode",
+        "school",
+        "firstName",
+        "lastName",
+        "subjectTaught",
+       // "serviceStatus",
+       "serviceStatus",
         "edit",
         "detail",
         "delete",
     ];
 
     let tableHead = [
-        "School Code",
+        "Teacher Code",
         "School Name",
-        "District",
-        "Email",
+        "First Name",
+        "Last Name",
+        "Teaching Subject",
+        "Staff Status",
         "Edit",
         "Details",
         "Delete",
@@ -119,21 +124,21 @@ export default function Read() {
     const DetailsComponent = (props) => {
         const { rowData} = props;
         return (
-            <td  variant="primary"><BtnDetail to={`/admin/schools/read/${rowData._id}`}> Details </BtnDetail></td>
+            <td  variant="primary"><BtnDetail to={`/admin/teachers/read/${rowData._id}`}> Details </BtnDetail></td>
         );
     };
 
     const DeleteComponent = (props) => {
         const { rowData} = props;
         return (
-            <td variant="danger"><BtnDelete to={`/admin/schools/delete/${rowData._id}`}>Delete</BtnDelete></td>
+            <td variant="danger"><BtnDelete to={`/admin/teachers/delete/${rowData._id}`}>Delete</BtnDelete></td>
         );
     };
 
     const EditComponent = (props) => {
         const { rowData} = props;
         return (
-            <td ><BtnEdit to={`/admin/schools/edit/${rowData._id}`}>Edit</BtnEdit></td>
+            <td ><BtnEdit to={`/admin/teachers/edit/${rowData._id}`}>Edit</BtnEdit></td>
         );
     };
 
@@ -146,7 +151,7 @@ export default function Read() {
                             <Card>
                                 <Card.Header>
                                     <Card.Title as="h5">School List</Card.Title>
-                                    <span className="d-block m-t-5">manage  <code>the </code> school data here</span>
+                                    <span className="d-block m-t-5">manage  <code>the </code> Teacher data here</span>
                                 </Card.Header>
                                 <Card.Body>
                                     <SortableTbl

@@ -9,28 +9,26 @@ import { create, readsDistrict } from './api';
 export default function Create() {
 
     const [values, setValues] = React.useState({
-        code:"",
+        staffCode:"",
         district:"",
-        names:"",
-        address:"",
+        firstName:"",
+        title:"",
         email:"",
-        fax:"",
-        mailBox:"",
+        lastName:"",
+        gender:"",
+        middleName:"",
         phone:"",
-        province:"",
-        eduLevel:"",
-        ownership:"",
-        estabYear:"",
-        schoolCat:"",
-        schoolType:"",
-        headID:"",
+        dob:"",
+        role:"",
+        nationality:"",
+        designation:"",
         password:"",
         password2:"",
         loading:false,
         redirectToPage:false,
         districtList:[]
     })
-    const {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
+    const {staffCode, firstName,district, phone, email, password, password2,role, lastName,middleName,title,gender,dob, nationality,designation,loading, redirectToPage, districtList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -39,61 +37,41 @@ export default function Create() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
-        if(code===""){ 
+        if(staffCode===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School code is required', 'error');
+            return Swal.fire('Oops...', 'Staff code is required', 'error');
         }
         if(district===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District is required', 'error');
         }
-        if(names===""){ 
+        if(firstName===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School Name is required', 'error');
+            return Swal.fire('Oops...', 'First Name is required', 'error');
         }
-        if(schoolType===""){ 
+        if(lastName===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School Type is required', 'error');
+            return Swal.fire('Oops...', 'Last Name is required', 'error');
         }
-        if(schoolCat===""){ 
+        if(gender===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School Category is required', 'error');
+            return Swal.fire('Oops...', 'Gender is required', 'error');
         }
-        if(estabYear===""){ 
+        if(dob===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Establishment Year is required', 'error');
+            return Swal.fire('Oops...', 'Date of Birth is required', 'error');
         }
-        if(ownership===""){ 
+        if(nationality===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'School ownership is required', 'error');
         }
-        if(eduLevel===""){ 
+        if(email===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Education Level is required', 'error');
-        }
-        if(province===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School locality is required', 'error');
-        }
-        if(mailBox===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School mailBox is required', 'error');
-        }
-        if(fax===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Fax is required', 'error');
+            return Swal.fire('Oops...', 'Email is required', 'error');
         }
         if(phone===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Phone number is required', 'error');
-        }
-        if(address===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'District address is required', 'error');
-        }
-        if(email===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'District email is required', 'error');
         }
 
         if(password==="") {
@@ -110,8 +88,8 @@ export default function Create() {
 
     const handleCreate =async ()=>{
         //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
-        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
-        const data = await create(school);
+        const staff = {staffCode, firstName, district, email, middleName, role, lastName, title, gender, dob, designation, password}
+        const data = await create(staff);
         console.log(data)
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -144,14 +122,14 @@ export default function Create() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/schools/create" />
+            return <Redirect to="/admin/staffs/create" />
         }
     };
 
     React.useEffect(() => {
         const bootstrap = async () =>{
             const dist = await readsDistrict();
-            let code = `SCH${`0012`}`;
+            let code = `MOE${`0012`}`;
             setValues(v => ({...v, districtList:dist.data, code})); 
         }
         bootstrap()
@@ -164,20 +142,15 @@ export default function Create() {
                     <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h3">Add New School</Card.Title>
+                                <Card.Title as="h3">Add New Staff</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Row>
                                     <Col md={6}>
                                         <Form>
                                             <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>School Code</Form.Label>
-                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("code")} value={code} disabled />
-                                            </Form.Group>
-
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>School Name</Form.Label>
-                                                <Form.Control type="text" placeholder="school name" onChange={handleChange("names")} value={names} />
+                                                <Form.Label>Staff Code</Form.Label>
+                                                <Form.Control type="text" placeholder="Staff code" onChange={handleChange("staffCode")} value={staffCode} disabled />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>District</Form.Label>
@@ -194,92 +167,77 @@ export default function Create() {
                                                }
                                             </Form.Control>
                                             </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Address </Form.Label>
-                                                <Form.Control type="text" placeholder="location, province e.g Veisaru Road, Savusavu" onChange={handleChange("address")} value={address} />
-                                            </Form.Group>
-                                           
-                                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Locality</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("province")} value={province}>
-                                                <option>Select locality</option>
-                                                <option value="Metropolian">City Metropolian</option>
-                                                <option value="Surburban">City Surburban</option>
-                                                <option value="Urban">Peri Urban</option>
-                                                <option value="Remote">Remote</option>
-                                                <option value="Rural">Rural</option>
-                                                <option value="Town">Town</option>
-                                                <option value="Very-Remote">Very Remote</option>
+                                          <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Title</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("title")} value={title}>
+                                                <option>Select</option>
+                                                <option value="Mr.">Mr.</option>
+                                                <option value="Mrs.">Mrs.</option>
+                                                <option value="Ms.">Ms.</option>
+                                                <option value="Miss.">Miss.</option>
+                                                <option value="Dr.">Dr.</option>
                                             </Form.Control>
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Mailing Address </Form.Label>
-                                                <Form.Control type="text" placeholder="P.O BOX 123, Tavua" onChange={handleChange("mailBox")} value={mailBox} />
+                                                <Form.Label>First Name</Form.Label>
+                                                <Form.Control type="text" placeholder="First Name" onChange={handleChange("firstName")} value={firstName} />
+                                            </Form.Group>
+                                            <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Middle Name</Form.Label>
+                                                <Form.Control type="text" placeholder="Middle Name" onChange={handleChange("middleName")} value={middleName} />
+                                            </Form.Group>
+                                            <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Last Name</Form.Label>
+                                                <Form.Control type="text" placeholder="Last Name" onChange={handleChange("lastName")} value={lastName} />
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Phone </Form.Label>
                                                 <Form.Control type="text" placeholder="official school phone number" onChange={handleChange("phone")} value={phone} />
                                             </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Fax</Form.Label>
-                                                <Form.Control type="text" placeholder="school fax" onChange={handleChange("fax")} value={fax} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>School Head</Form.Label>
-                                                <Form.Control type="text" placeholder="staff ID" onChange={handleChange("headID")} value={headID} />
+                                              <Form.Group controlId="formBasicPassword">
+                                                <Form.Label>Password</Form.Label>
+                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                                             </Form.Group>
                                         </Form>
                                     </Col>
                                     <Col md={6}>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Education Level</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("eduLevel")} value={eduLevel}>
-                                                <option>Select Education Level</option>
-                                                <option value="ECCE">ECCE</option>
-                                                <option value="Primary">Primary</option>
-                                                <option value="Secondary">Secondary</option>
-                                                <option value="TVET">TVET</option>
+                                     <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Date of Birth </Form.Label>
+                                                <Form.Control type="date" placeholder="dob" onChange={handleChange("dob")} value={dob} />
+                                            </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Gender</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("gender")} value={gender}>
+                                                <option>Select </option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
                                             </Form.Control>
                                             </Form.Group>
-                                    <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Estab. Year </Form.Label>
-                                                <Form.Control type="date" placeholder="year founded" onChange={handleChange("estabYear")} value={estabYear} />
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Nationality</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("nationality")} value={nationality}>
+                                                <option>Select </option>
+                                                <option value="Fijian">Male</option>
+                                                <option value="Regional">Female</option>
+                                                <option value="Foreigner">Foreigner</option>
+                                            </Form.Control>
                                             </Form.Group>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Ownership</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("ownership")} value={ownership}>
-                                                <option>Select School Ownership</option>
-                                                <option value="Community">Community</option>
-                                                <option value="Faith-Based">Faith-Based</option>
-                                                <option value="Government">Government</option>
-                                                <option value="Private">Private</option>
-                                                
+                                        <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Role</Form.Label>
+                                            <Form.Control as="select" onChange={handleChange("role")} value={role}>
+                                                <option>Select </option>
+                                                <option value="Read1">Read-Only</option>
+                                                <option value="Read2">Read-Write</option>
                                             </Form.Control>
-                                    </Form.Group>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>School Category</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("schoolCat")} value={schoolCat}>
-                                                <option>Select School Category</option>
-                                                <option value="Regular">Regular</option>
-                                                <option value="Special">Special</option>
-                                            </Form.Control>
-                                     </Form.Group>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>School Type</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("schoolType")} value={schoolType}>
-                                                <option>Select School Type</option>
-                                                <option value="Boarding">Boarding</option>
-                                                <option value="Day">Day</option>
-                                            </Form.Control>
-                                     </Form.Group>
+                                            </Form.Group>
+                                       <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Designation</Form.Label>
+                                                <Form.Control type="text" placeholder="Senior Education Officer" onChange={handleChange("designatioon")} value={designation} />
+                                            </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>email </Form.Label>
                                             <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                         </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
-                                            </Form.Group>
                                         <Form.Group controlId="formBasicPassword">
                                             <Form.Label>Password Confirmation</Form.Label>
                                             <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
