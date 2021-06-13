@@ -39,7 +39,7 @@ export default function SignOut() {
 
     const handleRedirect = ()=>{
         if(redirect){
-            return <Redirect to="/auth/admin/signin" />
+            return <Redirect to="/auth/teacher/signin" />
         }
     }
 
