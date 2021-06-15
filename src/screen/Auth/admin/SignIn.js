@@ -9,12 +9,7 @@ import Swal from 'sweetalert2'
 import {authenticate, login} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
-
 const SignIn = () => {
-  
-
-    //render () {
         const [values, setValues] = useState({
             loading:false,
             password:"",
@@ -26,8 +21,6 @@ const SignIn = () => {
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
         };
-
-        
 
         const submit = event =>{
             event.preventDefault();
@@ -49,11 +42,14 @@ const SignIn = () => {
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 return setValues({...values, loading:false})
             }
-
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})
             }
+
+            authenticate(data, ()=>{
+                setValues({...values, loading:false, redirectToPage:true})
+            })
 
             let Toast = Swal.mixin({
                 toast: true,
@@ -68,11 +64,7 @@ const SignIn = () => {
                 type: 'success',
                 title: 'Signed in successfully'
             })
-       
-            authenticate(data, ()=>{
-                setValues({...values, loading:false, redirectToPage:true})
-            })
-            
+
             console.log({data})
         }
 
@@ -81,6 +73,7 @@ const SignIn = () => {
                 return <Redirect to="/admin" />
             }
         };
+
         return(
             <Aux>
                 {redirectUser()}
@@ -99,7 +92,7 @@ const SignIn = () => {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
-                                <h3 className="mb-4">Admin Login | </h3>
+                                <h3 className="mb-4">Admin | Login  </h3>
                                 <div className="input-group mb-3">
                                     <input type="email" className="form-control" name="email" onChange={handleChange("email")} value={email} placeholder="Email"/>
                                 </div>
@@ -112,8 +105,11 @@ const SignIn = () => {
                                             <label htmlFor="checkbox-fill-a1" className="cr"> Save credentials</label>
                                     </div>
                                 </div>
+                                <button className="btn btn-primary shadow-2 mb-4" disabled={loading} onClick={!loading ? submit : null}>
+                                    {loading ? 'loading':'Login'}
+                                </button>
                                 {
-                                    loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
+                                    //loading ? <button className="btn btn-primary shadow-2 mb-4" disabled={loading}>loading</button> : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
                                 }
                                 
                                 <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/admin/forget">Reset</NavLink></p>
