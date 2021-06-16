@@ -11,12 +11,12 @@ export const signin = user => {
         },
         body: JSON.stringify(user)
     })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    .then(response=>{
+        return response.json()
+    })
+    .catch(err=>{
+        console.log(err)
+    })
 };
 
 
@@ -30,13 +30,13 @@ export const login = async (user)=>{
                 accept:'application/json'
             },
         }).catch(err => {
-            console.log("request fail")
             console.log(err)
         });
         const data = response.json();
-        console.log(data)
         return data;
-    }catch(e){console.log(e)}
+    }catch(e){
+        console.log(e)
+    }
 }
 
 export const authenticate = (data, next) => {
@@ -50,15 +50,16 @@ export const signout = next => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem('admin-Auth');
         next();
+        
         /*
         return fetch(`${BASE_URL}/signout`, {
             method: 'GET'
         })
-            .then(response => {
+        .then(response => {
                 console.log('signout', response);
-            })
-            .catch(err => console.log(err));
-            */
+        })
+        .catch(err => console.log(err));
+        */
     }
 };
 
