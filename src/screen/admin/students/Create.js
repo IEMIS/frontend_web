@@ -44,6 +44,8 @@ export default function Create() {
 
     const submit = event =>{
         event.preventDefault();
+        //const student = {studentCode, school, parent, presentClass, stream, firstName, middleName, lastName, gender, religion, dob, country, disability, yearAdmission, HadEce, subject, province}
+        //console.log(JSON.stringify(student))
         setValues({...values, loading:true})
         if(studentCode===""){ 
             setValues({...values, loading:false})
@@ -166,7 +168,7 @@ export default function Create() {
                                         <Form>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Student Code</Form.Label>
-                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("studentCode")} value={studentCode} disabled />
+                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("studentCode")} value={studentCode} />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>School</Form.Label>
