@@ -38,6 +38,7 @@ const SignIn = () => {
         const handleSigin = async () =>{
             let user = {email, password}
             const data  = await login(user);
+            console.log({data})
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 return setValues({...values, loading:false})
@@ -64,8 +65,6 @@ const SignIn = () => {
                 type: 'success',
                 title: 'Signed in successfully'
             })
-
-            console.log({data})
         }
 
         const redirectUser = () => {
