@@ -30,10 +30,13 @@
     "sweetalert2": "^10.16.6"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "startA": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run clean && npm run build && node server",
+    "clean": "npx rimraf build",
+    "start":"npm run clean && npm run build && node server"
   },
   "eslintConfig": {
     "extends": "react-app"
