@@ -34,7 +34,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run clean && npm run build && node server",
     "clean": "npx rimraf build",
     "start":"npm run clean && npm run build && node server"
   },
