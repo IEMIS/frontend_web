@@ -2,7 +2,7 @@ export default {
     items: [
         {
             id: 'navigation',
-            title: 'admin Menu',
+            title: 'Student Dashboard',
             type: 'group',
             icon: 'icon-navigation',
             children: [
@@ -10,83 +10,54 @@ export default {
                     id: 'dashboard',
                     title: 'Dashboard',
                     type: 'item',
-                    url: '/school',
+                    url: '/student',
                     icon: 'feather icon-home',
-                },
-                /*
-                {
-                    id: 'm-students',
-                    title: 'Students Data',
-                    type: 'item',
-                    url: '/admin/students',
-                    icon: 'feather icon-users',
                 }
-                */
             ],
         },
         {
-            id: 'district-list',
+            id: 'course-reg',
             title: 'Data Management',
             type: 'group',
             icon: 'icon-ui',
             children: [
                 {
-                    id: 'students',
-                    title: 'Students',
+                    id: 'Subject',
+                    title: 'Subjects',
                     type: 'collapse',
                     icon: 'feather icon-users',
                     children: [
                         {
-                            id: 'students-read',
-                            title: 'Read',
+                            id: 'students-subject',
+                            title: 'Subject',
                             type: 'item',
-                            url: '/school/students/read'
+                            url: '/student/subject/read'
                         },
                         {
                             id: 'students-create',
-                            title: 'Create',
+                            title: 'Register',
                             type: 'item',
-                            url: '/school/students/create'
+                            url: '/student/subject/create'
                         },
                     ]
                 },
                 {
-                    id: 'staff',
-                    title: 'Staff',
+                    id: 'Class',
+                    title: 'Class',
                     type: 'collapse',
                     icon: 'feather icon-users',
                     children: [
                         {
-                            id: 'staffs-read',
-                            title: 'Read',
+                            id: 'class-curent',
+                            title: 'Class',
                             type: 'item',
-                            url: '/school/staffs/read'
+                            url: '/student/class'
                         },
                         {
-                            id: 'staffs-create',
-                            title: 'Create',
+                            id: 'class',
+                            title: 'History',
                             type: 'item',
-                            url: '/school/staffs/create'
-                        },
-                    ]
-                },
-                {
-                    id: 'teachers',
-                    title: 'Teachers',
-                    type: 'collapse',
-                    icon: 'feather icon-users',
-                    children: [
-                        {
-                            id: 'teachers-read',
-                            title: 'Read',
-                            type: 'item',
-                            url: '/school/teachers/read'
-                        },
-                        {
-                            id: 'teachers-create',
-                            title: 'Create',
-                            type: 'item',
-                            url: '/school/teachers/create'
+                            url: '/student/class/history'
                         },
                     ]
                 },
@@ -98,9 +69,9 @@ export default {
                     children: [
                         {
                             id: 'extral-read',
-                            title: 'Population',
+                            title: 'Profile',
                             type: 'item',
-                            url: '/school/extral/read'
+                            url: '/student/profile'
                         },
                     ]
                 }
@@ -116,7 +87,7 @@ export default {
                     id: 'disabled-menu',
                     title: 'Districts Signout',
                     type: 'item',
-                    url: '/school/signout',
+                    url: '/student/auth/signout',
                     classes: 'nav-item ',
                     icon: 'feather icon-power'
                 }
