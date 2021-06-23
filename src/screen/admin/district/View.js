@@ -86,7 +86,7 @@ export default function Read() {
     ];
 
     let tableHead = [
-        "Distrct Code",
+        "District Code",
         "District Name",
         "Email",
         "Phone",
