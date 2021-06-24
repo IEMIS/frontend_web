@@ -1,12 +1,10 @@
 
-
 import React from 'react'
 import { Redirect } from 'react-router'
 import { signout } from './api'
 import Swal from 'sweetalert2'
 
 export default function SignOut() {
-
     const [redirect, setRedirect] = React.useState(false)
 
     const bootstrap = async () =>{
@@ -25,16 +23,12 @@ export default function SignOut() {
         Toast.fire({
             animation: true,
             type: 'success',
-            title: 'Signout is successful'
+            title: 'you are successfully logout'
         })
     }
 
     React.useEffect(() => {
-        //effect
         bootstrap()
-        return () => {
-            bootstrap()
-        }
     })
 
     const handleRedirect = ()=>{
