@@ -27,7 +27,6 @@ import { Route, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./../../../screen/Auth/admin/api";
 
 const PrivateRoute = ({ render: Component, ...rest }) => (
-    // props means components passed down to this pricate route component
     <Route
         {...rest}
         component={props =>
