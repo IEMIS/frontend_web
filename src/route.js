@@ -41,7 +41,7 @@ const route = [
     { path: '/feature', exact: true, name: 'Home', component: Feature},
     { path: '/auth/admin/signin', exact: true, name: 'admin-signin', component: AdminSignIn },
     { path: '/auth/admin/forget', exact: true, name: 'admin-forget', component: AdminForget},
-    { path: '/auth/admin/reset', exact: true, name: 'admin-reset', component: AdminReset },
+    { path: '/auth/admin/reset/:resetToken', exact: true, name: 'admin-reset', component: AdminReset },
 
     { path: '/admin/signout', exact: true, name: 'admin-signout', component: AdminSignOut },
 

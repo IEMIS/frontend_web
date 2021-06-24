@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink, Redirect} from 'react-router-dom';
+import {NavLink, Redirect, useParams} from 'react-router-dom';
 
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
@@ -9,32 +9,26 @@ import Swal from 'sweetalert2'
 import {reset} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
 
 const Reset = () => {
-  
-
-    //render () {
+    let { resetToken } = useParams();
         const [values, setValues] = useState({
             loading:false,
-            resetToken:"",
             password:"",
             passwordConfirmation:"",
             redirectToPage:false
         })
-        const {loading, password, passwordConfirmation, resetToken, redirectToPage} = values;
+        const {loading, password, passwordConfirmation, redirectToPage} = values;
 
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
         };
 
-        
-
         const submit = event =>{
             event.preventDefault();
             setValues({...values, loading:true})
             if(resetToken===""){
-                Swal.fire('Oops...', 'reset token is required!', 'error')
+                Swal.fire('Oops...', 'Invalid or link expired!', 'error')
                 return setValues({...values, loading:false})
             }
             if(password===""){
@@ -45,13 +39,12 @@ const Reset = () => {
                 Swal.fire('Oops...', 'password must match each other!', 'error')
                 return setValues({...values, loading:false})
             }
-
             handleReset(); 
         }
         const handleReset = async () =>{
             let user = {resetToken, password, passwordConfirmation}
             const data  = await reset(user);
-            console.log(data)
+          
             if(!data){
                 Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
                 return setValues({...values, loading:false})
@@ -78,8 +71,6 @@ const Reset = () => {
                 title: 'password successfully reset'
             })
             setValues({...values, loading:false, redirectToPage:true})
-       
-            //console.log({data})
         }
 
         const redirectUser = () => {
@@ -106,9 +97,10 @@ const Reset = () => {
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
                                 <h3 className="mb-4">Admin | Reset Password </h3>
-                                <div className="input-group mb-3">
+
+                                {/*<div className="input-group mb-3">
                                     <input type="input" className="form-control"  onChange={handleChange("resetToken")} value={resetToken} placeholder="Reset Token"/>
-                                </div>
+                                </div>*/}
                             
                                 <div className="input-group mb-3">
                                     <input type="password" className="form-control"  onChange={handleChange("password")} value={password} placeholder="Password"/>
@@ -128,7 +120,6 @@ const Reset = () => {
                 </div>
             </Aux>
         );
-    //}
 }
 
 export default Reset;

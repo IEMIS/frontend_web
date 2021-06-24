@@ -45,8 +45,7 @@ const Forget = () => {
                 Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
                 return setValues({...values, loading:false})
             }
- 
-            console.log(data)
+          
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})

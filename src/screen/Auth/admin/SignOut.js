@@ -30,7 +30,6 @@ export default function SignOut() {
     }
 
     React.useEffect(() => {
-        //effect
         bootstrap()
         return () => {
             bootstrap()
