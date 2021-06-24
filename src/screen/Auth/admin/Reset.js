@@ -75,7 +75,7 @@ const Reset = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/admin/login" />
+                return <Redirect to="/auth/admin/signin" />
             }
         };
         return(

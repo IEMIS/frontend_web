@@ -38,7 +38,7 @@ const SignIn = () => {
         const handleSigin = async () =>{
             let user = {email, password}
             const data  = await login(user);
-            console.log({data, user})
+            //console.log({data, user})
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 return setValues({...values, loading:false})
@@ -105,7 +105,7 @@ const SignIn = () => {
                                     </div>
                                 </div>
                                 <button className="btn btn-primary shadow-2 mb-4" disabled={loading} onClick={!loading ? submit : null}>
-                                    {loading ? 'loading':'Login'}
+                                    {loading ? 'loading..':'Login'}
                                 </button>
                                 {
                                     //loading ? <button className="btn btn-primary shadow-2 mb-4" disabled={loading}>loading</button> : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>

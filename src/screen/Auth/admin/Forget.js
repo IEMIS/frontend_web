@@ -9,25 +9,18 @@ import Swal from 'sweetalert2'
 import {forget} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
-
 const Forget = () => {
-  
+    const [values, setValues] = useState({
+        loading:false,
+        email:"",
+        redirectToPage:false
+    })
 
-    //render () {
-        const [values, setValues] = useState({
-            loading:false,
-            email:"",
-            redirectToPage:false
-        })
-        const {loading, email, redirectToPage} = values;
+    const {loading, email, redirectToPage} = values;
 
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
         };
-
-        
-
         const submit = event =>{
             event.preventDefault();
             setValues({...values, loading:true})
@@ -35,9 +28,9 @@ const Forget = () => {
                 Swal.fire('Oops...', 'A valid email address required!', 'error')
                 return setValues({...values, loading:false})
             }
-           
             handleForget(); 
         }
+
         const handleForget = async () =>{
             let user = {email}
             const data  = await forget(user);
@@ -58,7 +51,7 @@ const Forget = () => {
             });
             Toast.fire({
                 type: 'success',
-                title: 'request successful'
+                title: data.message
             })
             Swal.fire(' :)', data.message, 'success')
             setValues({...values, loading:false, redirectToPage:true})
@@ -66,7 +59,7 @@ const Forget = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/admin/reset" />
+                return <Redirect to="/auth/admin/signin" />
             }
         };
         return(
@@ -87,13 +80,13 @@ const Forget = () => {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
-                                <h3 className="mb-4">Forget Password | </h3>
+                                <h3 className="mb-4">Admin | Forget Password  </h3>
                                 <div className="input-group mb-3">
                                     <input type="email" className="form-control" name="email" onChange={handleChange("email")} value={email} placeholder="Email"/>
                                 </div>
                 
                                 {
-                                    loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Request !</button>
+                                    loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}> Request !</button>
                                 }
                                 
                                 <p className="mb-2 text-muted">I know password? <NavLink to="/auth/admin/signin">Login</NavLink></p>
