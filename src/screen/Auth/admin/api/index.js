@@ -3,7 +3,7 @@
 const BASE_URL = "https://iemis.herokuapp.com/api/v1"
 
 export const signin = user => {
-    return fetch(`${BASE_URL}/admin/signin`, {
+    return fetch(`${BASE_URL}/admin/auth/signin`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -22,7 +22,7 @@ export const signin = user => {
 
 export const login = async (user)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/signin`,{
+        const response = await fetch(`${BASE_URL}/admin/auth/signin`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -77,7 +77,7 @@ export const isAuthenticated = () => {
 
 export const forget = async (user) =>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/forgetPassword`,{
+        const response = await fetch(`${BASE_URL}/admin/auth/forgetPassword`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -93,7 +93,7 @@ export const forget = async (user) =>{
 
 export const reset = async (user) =>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/resetPassword`,{
+        const response = await fetch(`${BASE_URL}/admin/auth/resetPassword`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
