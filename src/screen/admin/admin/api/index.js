@@ -4,7 +4,7 @@ const BASE_URL = "https://iemis.herokuapp.com/api/v1"
 
 export const create = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin`,{
+        const response = await fetch(`${BASE_URL}/admin/admin`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -21,7 +21,7 @@ export const create = async (user, token)=>{
 }
 export const reads = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin`,{
+        const response = await fetch(`${BASE_URL}/admin/admin`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -38,7 +38,7 @@ export const reads = async (token)=>{
 
 export const read = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/${user}`,{
+        const response = await fetch(`${BASE_URL}/admin/admin/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -55,7 +55,7 @@ export const read = async (user, token)=>{
 
 export const edit = async (id, user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/${id}`,{
+        const response = await fetch(`${BASE_URL}/admin/admin/${id}`,{
             method:'PUT',
             body:JSON.stringify(user),
             headers:{
@@ -73,7 +73,7 @@ export const edit = async (id, user, token)=>{
 
 export const remove = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/${user}`,{
+        const response = await fetch(`${BASE_URL}/admin/admin${user}`,{
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json',
