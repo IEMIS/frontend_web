@@ -1,14 +1,13 @@
 import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
-
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create } from './api';
+import {isAuthenticated} from '../../Auth/admin/api'
 
 
 export default function Create() {
-
     const [values, setValues] = React.useState({
         code:"",
         names:"",
@@ -60,14 +59,13 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Password must match each other', 'error');
         }
-
         handleCreate();
     }
 
     const handleCreate =async ()=>{
         const user = {code, names, phone, email, password, password2, address, status}
-        const data = await create(user);
-        console.log(data)
+        const Auth = await isAuthenticated()
+        const data = await create(user, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
@@ -103,16 +101,10 @@ export default function Create() {
 
     React.useEffect(() => {
         const getDistrictCode = async () =>{
-            //call the endpoint for code 
             let dcode = 'DS001'
             setValues(v=>({...v, code:dcode}))
         }
         getDistrictCode();
-        /*
-        return () => {
-            //cleanup
-        }
-        */
     }, [])
 
     return (
