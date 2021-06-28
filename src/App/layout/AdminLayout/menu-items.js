@@ -165,6 +165,46 @@ export default {
                     ]
                 },
                 {
+                    id: 'Classes',
+                    title: 'Class',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'class-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/admin/class/read'
+                        },
+                        {
+                            id: 'class-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/admin/class/create'
+                        },
+                    ]
+                },
+                {
+                    id: 'session',
+                    title: 'Session',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'session-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/admin/session/read'
+                        },
+                        {
+                            id: 'session-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/admin/session/create'
+                        },
+                    ]
+                },
+                {
                     id: 'extral',
                     title: 'Extral Data',
                     type: 'collapse',
