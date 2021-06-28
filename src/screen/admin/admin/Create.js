@@ -5,6 +5,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create } from './api';
+import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Create() {
@@ -59,7 +60,9 @@ export default function Create() {
 
     const handleCreate =async ()=>{
         const user = {firstName, lastName, middleName, phone, email, password, password2, level}
-        const data = await create(user);
+        const Auth = isAuthenticated()
+        const data = await create(user, Auth.token);
+        console.log({data, user})
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})

@@ -84,8 +84,9 @@ export default function Delete(props) {
             console.log({err, data})
         })
         const bootstrap = async ()=>{
+            const Auth = await isAuthenticated();
             setloading(true)
-            const data = await remove(id);
+            const data = await remove(id, Auth.token);
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 setloading(false)

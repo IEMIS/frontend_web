@@ -7,6 +7,7 @@ import { reads} from './api';
 import { Link } from 'react-router-dom';
 import SortableTbl from "react-sort-search-table";
 import styled from "styled-components";
+import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Read() {
@@ -14,8 +15,6 @@ export default function Read() {
     const [loading, setLoading] = React.useState(false)
     const [error, setError] = React.useState(false)
     const [reload, setReload] = React.useState(false)
-
- 
     const isLoading = () => {
         if (loading){
             return (
@@ -40,7 +39,6 @@ export default function Read() {
             )
         }
     };
-
     const isError = () => {
         if(error){
             return (
@@ -191,7 +189,8 @@ export default function Read() {
     
     const boot = async () => {
         setLoading(true)
-        const data = await reads();
+        const Auth = await isAuthenticated()
+        const data = await reads(Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)

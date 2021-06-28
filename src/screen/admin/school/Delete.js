@@ -4,6 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {  remove} from './api';
 import { useParams, Redirect } from "react-router-dom";
+import { isAuthenticated } from '../../Auth/admin/api';
 
 export default function Delete(props) {
 
@@ -51,7 +52,8 @@ export default function Delete(props) {
     
     React.useEffect(() => {
         const bootstrap = async ()=>{
-            const data = await remove(id);
+            const Auth = await isAuthenticated()
+            const data = await remove(id, Auth.token);
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 seterror(true)

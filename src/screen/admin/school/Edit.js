@@ -3,7 +3,8 @@ import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { useParams, Redirect } from "react-router-dom";
-import { create, read, readsDistrict } from './api';
+import { read, readsDistrict, edit } from './api';
+import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Edit() {
@@ -31,7 +32,7 @@ export default function Edit() {
         redirectToPage:false,
         districtList:[]
     })
-    const {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
+    const {code, names,districtId, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -44,7 +45,7 @@ export default function Edit() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'School code is required', 'error');
         }
-        if(district===""){ 
+        if(districtId===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District is required', 'error');
         }
@@ -106,13 +107,13 @@ export default function Edit() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Password must match each other', 'error');
         }
-        handleCreate();
+        handleUpdate()
     }
 
-    const handleCreate =async ()=>{
-        //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
-        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
-        const data = await create(school);
+    const handleUpdate =async ()=>{
+        const school = {code, names, districtId, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
+        const Auth = await isAuthenticated()
+        const data = await edit(id, school,Auth.token);
         console.log(data)
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -145,18 +146,18 @@ export default function Edit() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/schools/create" />
+            return <Redirect to="/admin/schools/read" />
         }
     };
 
     React.useEffect(() => {
-        //const token = '9999e88e8';
         const bootstrap = async () =>{
-            const dist = await readsDistrict();
-            let code = `SCH${`0012`}`;
-            setValues(v => ({...v, districtList:dist.data, code}));
-            const da = await read(id);
-            console.log(da) 
+            const Auth = await isAuthenticated();
+            const dist = await readsDistrict(Auth.token);
+            const da = await read(id, Auth.token);
+            const {code, names, districtId, email, contact,eduLevel, ownership, estabYear, schoolCat, schoolType, headID} = da.data;
+            const [{phone, fax, mailBox, province, address}]= contact
+            setValues(v => ({...v, districtList:dist.data, code,names, districtId, email,eduLevel, ownership, estabYear, schoolCat, schoolType, headID,phone, fax, mailBox, province, address}));
         }
         bootstrap()
     }, [id])
@@ -185,12 +186,12 @@ export default function Edit() {
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>District</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("district")} value={district}>
+                                            <Form.Control as="select" onChange={handleChange("districtId")} value={districtId}>
                                                 <option>Select district</option>
                                                {
                                                    districtList && districtList.length > 0 
                                                    ?
-                                                   districtList.map((dist, id)=>{
+                                                   districtList.map((dist, idx)=>{
                                                        return(
                                                         <option value={dist._id}>{dist.names}</option>
                                                        ) 

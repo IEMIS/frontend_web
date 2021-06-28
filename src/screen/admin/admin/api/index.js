@@ -1,10 +1,11 @@
 //let  BASE_URL = "",
 
-const BASE_URL = "https://iemis.herokuapp.com/api/v1"
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
+const BASE_URL = "http://localhost:9000/api/v1/admin" //http://localhost:9000/api/v1/admin/admin
 
 export const create = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/admin`,{
+        const response = await fetch(`${BASE_URL}/admin`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -21,7 +22,7 @@ export const create = async (user, token)=>{
 }
 export const reads = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/admin`,{
+        const response = await fetch(`${BASE_URL}/admin`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -38,7 +39,7 @@ export const reads = async (token)=>{
 
 export const read = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/admin/${user}`,{
+        const response = await fetch(`${BASE_URL}/admin/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -55,7 +56,7 @@ export const read = async (user, token)=>{
 
 export const edit = async (id, user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/admin/${id}`,{
+        const response = await fetch(`${BASE_URL}/admin/${id}`,{
             method:'PUT',
             body:JSON.stringify(user),
             headers:{
@@ -73,7 +74,7 @@ export const edit = async (id, user, token)=>{
 
 export const remove = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/admin${user}`,{
+        const response = await fetch(`${BASE_URL}/admin${user}`,{
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json',

@@ -39,9 +39,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "clean": "npx rimraf build",
-    "startA":"npm run clean && npm run build && node server",
+    "startA": "npm run clean && npm run build && node server",
     "heroku-postbuild": "npm run clean && npm run build",
-    "startB":"node server"
+    "startB": "node server"
   },
   "eslintConfig": {
     "extends": "react-app"

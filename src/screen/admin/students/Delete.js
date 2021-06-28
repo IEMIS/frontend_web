@@ -4,9 +4,9 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {  remove} from './api';
 import { useParams, Redirect } from "react-router-dom";
+import { isAuthenticated } from '../../Auth/admin/api';
 
 export default function Delete(props) {
-
     let { id } = useParams();
     const [reload, setreload] = React.useState(false)
     const [error, seterror] = React.useState(false)
@@ -14,7 +14,7 @@ export default function Delete(props) {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/schools/read" />
+            return <Redirect to="/admin/students/read" />
         }
     };
     const isError = () => {
@@ -51,37 +51,45 @@ export default function Delete(props) {
     
     React.useEffect(() => {
         const bootstrap = async ()=>{
-            const data = await remove(id);
+            const Auth = await isAuthenticated()
+            const data = await remove(id, Auth.token);
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 seterror(true)
                 return
             }
-    
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 seterror(true)
                 return
             }
-    
             if(data.message){
-                Swal.fire('Successful', data.message, 'success')
                 setRedirectToPage(true);
-                let Toast = Swal.mixin({
-                    toast: true,
-                    timerProgressBar: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-                return Toast.fire({
-                    showClass: true,
-                    type: 'success',
-                    title: data.message
-                })
+                Swal.fire('Successful', data.message, 'success')
             }
         }
-        bootstrap();
+
+        Swal.fire({
+            title: 'Do you sure to delete this user?',
+            allowOutsideClick:false,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Yes`,
+            denyButtonText: `No`,
+            customClass: {
+                cancelButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+                denyButton: 'order-3',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+            Swal.fire('Delete confirm', '', 'success');
+            bootstrap()
+            } else if (result.isDenied) {
+            Swal.fire('Action canceled', '', 'info');
+            setRedirectToPage(true)
+            }
+        })
     },[reload, id])
 
     return (
