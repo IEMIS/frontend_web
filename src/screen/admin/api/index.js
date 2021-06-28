@@ -1,9 +1,10 @@
-const BASE_URL = "https://iemis.herokuapp.com/api/v1";
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1";
 //const BASE_URL = "localhost:9000/api/v1";
+const BASE_URL = "http://localhost:9000/api/v1/admin" 
 
 export const countByGender = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/student/data/count/gender`,{
+        const response = await fetch(`${BASE_URL}/student/data/count/gender`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -20,7 +21,7 @@ export const countByGender = async (token)=>{
 
 export const countByYear = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/student/data/count/yearadmission`,{
+        const response = await fetch(`${BASE_URL}/student/data/count/yearadmission`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -37,7 +38,7 @@ export const countByYear = async (token)=>{
 
 export const countByClass = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/student/data/count/class`,{
+        const response = await fetch(`${BASE_URL}/student/data/count/class`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -54,7 +55,7 @@ export const countByClass = async (token)=>{
 
 export const countByProvidence  = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/student/data/count/providence`,{
+        const response = await fetch(`${BASE_URL}/student/data/count/providence`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -71,7 +72,7 @@ export const countByProvidence  = async (token)=>{
 
 export const countDistrict = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/school/data/count/district`,{
+        const response = await fetch(`${BASE_URL}/school/data/count/district`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -88,7 +89,7 @@ export const countDistrict = async (token)=>{
 
 export const countEduLevel = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/school/data/count/edulevel`,{
+        const response = await fetch(`${BASE_URL}/school/data/count/edulevel`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -105,7 +106,7 @@ export const countEduLevel = async (token)=>{
 
 export const countOwnership = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/school/data/count/ownership`,{
+        const response = await fetch(`${BASE_URL}/school/data/count/ownership`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -122,7 +123,7 @@ export const countOwnership = async (token)=>{
 
 export const countType = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/school/data/count/type`,{
+        const response = await fetch(`${BASE_URL}/school/data/count/type`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -139,7 +140,7 @@ export const countType = async (token)=>{
 
 export const countCat = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/school/data/count/cat`,{
+        const response = await fetch(`${BASE_URL}/school/data/count/cat`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
