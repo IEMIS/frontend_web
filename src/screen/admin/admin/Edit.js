@@ -4,11 +4,10 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {read, edit } from './api';
 import { useParams, Redirect } from "react-router-dom";
+import { isAuthenticated } from '../../Auth/admin/api';
 
 export default function Edit() {
-
     let { id } = useParams();
-
     const [values, setValues] = React.useState({
         firstName:"",
         lastName:"",
@@ -25,14 +24,10 @@ export default function Edit() {
         loadingBtn:false,
         token:"",
     })
-
-    const {firstName, lastName, middleName, phone, email, password, password2, level, error, loading, reload, redirectToPage, loadingBtn, token} = values
-
+    const {firstName, lastName, middleName, phone, email, password, password2, level, error, loading, reload, redirectToPage, loadingBtn } = values
     const handleChange = name=>event=>{
-        setValues({...values, [name]:event.target.value})
-        //setSecret(s => ({ ...s, value: target.value }));
+        setValues({...values, [name]:event.target.value});
     }
-
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loadingBtn:true})
@@ -69,20 +64,17 @@ export default function Edit() {
 
     const handleUpdate =async ()=>{
         const user = {firstName, lastName, middleName, phone, email, password, password2, level}
-        const data = await edit(id,user,token);
-        console.log(data)
+        const Auth = isAuthenticated();
+        const data = await edit(id, user, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loadingBtn:false})
         }
-
         if(data.error){
             Swal.fire('Oops...', data.error, 'error')
             return setValues({...values, loadingBtn:false})
         }
-
         if(data.message){
-            
             let Toast = Swal.mixin({
                 toast: true,
                 timerProgressBar: true,
@@ -90,11 +82,10 @@ export default function Edit() {
                 showConfirmButton: false,
                 timer: 3000
             });
-    
             Toast.fire({
                 animation: true,
                 type: 'success',
-                title: 'Request is successful'
+                title: data.message
             })
            setValues({...values, loadingBtn:false, redirectToPage:true})
            return Swal.fire('saved...', data.message, 'success')
@@ -156,34 +147,30 @@ export default function Edit() {
             )
         }
     };
-
     const handleReload = event =>{
         event.preventDefault();
         setValues({...values, loading:false, error:false, reload:!reload})
     }
 
-    
-
     React.useEffect(() => {
-        let ignore = false;
+        //let ignore = false;
         const bootstrap = async ()=>{
+            const Auth = isAuthenticated();
             setValues(v => ({...v, loading:true}))
-            const data = await read(id);
-            if (!ignore){
+            const data = await read(id, Auth.token);
+            ///if (!ignore){
                 if(!data){
                     Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error');
                     setValues(v => ({...v, loading:false, error:true}))  
-                    //setSecret(s => ({...s, countSecrets: s.countSecrets + 1}));
                     return  
                 }
                 if(data.error){
                     Swal.fire('Oops...', data.error, 'error')
-                    //setValues({...values, loading:false, error:true})
                     setValues(v => ({...v, loading:false, error:true})) 
                     return 
                 }
-        
                 if(data.message){
+                    setValues(v => ({...v, loading:false, error:false, firstName:data.data.firstName, lastName:data.data.lastName, phone:data.data.phone, middleName:data.data.middleName, email:data.data.email, level:data.data.level}))
                     let Toast = Swal.mixin({
                         toast: true,
                         timerProgressBar: true,
@@ -191,19 +178,17 @@ export default function Edit() {
                         showConfirmButton: false,
                         timer: 3000
                     });
-                    Toast.fire({
+                    return Toast.fire({
                         showClass: true,
                         type: 'success',
                         title: data.message
                     })
-                    setValues(v => ({...v, loading:false, error:false, firstName:data.data.firstName, lastName:data.data.lastName, phone:data.data.phone, middleName:data.data.middleName, email:data.data.email, level:data.data.level}))
-                    return Swal.fire('Great', data.message, 'success');
                 } 
-            }
+            //}
          
         }
         bootstrap()
-        return () => { ignore = true };
+        //return () => { ignore = true };
     },[reload, id])
 
     return (
@@ -241,7 +226,7 @@ export default function Edit() {
                                                 </Form.Group>
 
                                                 {
-                                                    loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update Admin Data ..</Button>
+                                                    loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update Admin Data ..</Button>
                                                 }
                                             </Form>
                                         </Col>

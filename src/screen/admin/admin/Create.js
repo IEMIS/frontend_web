@@ -1,15 +1,14 @@
 
-
 import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create } from './api';
+import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Create() {
-
     const [values, setValues] = React.useState({
         firstName:"",
         lastName:"",
@@ -56,43 +55,39 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Password must match each other', 'error');
         }
-
         handleCreate();
     }
 
     const handleCreate =async ()=>{
         const user = {firstName, lastName, middleName, phone, email, password, password2, level}
-        console.log({user})
-        const data = await create(user);
-        
+        const Auth = isAuthenticated()
+        const data = await create(user, Auth.token);
+        console.log({data, user})
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.error){
             Swal.fire('Oops...', data.error, 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.message){
             Swal.fire('saved...', data.message, 'success')
-           return setValues({...values, loading:false, redirectToPage:true})
+           setValues({...values, loading:false, redirectToPage:true});
+           let Toast = Swal.mixin({
+                toast: true,
+                timerProgressBar: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            return Toast.fire({
+                animation: true,
+                type: 'success',
+                title: 'Request is successful'
+            })
         }
-
-        let Toast = Swal.mixin({
-            toast: true,
-            timerProgressBar: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-
-        return Toast.fire({
-            animation: true,
-            type: 'success',
-            title: 'Request is successful'
-        })
     }
 
     const redirectUser = () => {
@@ -134,7 +129,7 @@ export default function Create() {
                                             </Form.Group>
 
                                             {
-                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
+                                                loading ? <Button variant="outline-secondary" disabled >Loading ..</Button>: <Button variant="primary" onClick={submit}  >Create ..</Button>
                                             }
                                         </Form>
                                     </Col>

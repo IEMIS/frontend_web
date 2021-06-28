@@ -1,16 +1,16 @@
 import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
-
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create } from './api';
+import {isAuthenticated} from '../../Auth/admin/api'
+import { Link } from 'react-router-dom';
 
 
 export default function Create() {
-
     const [values, setValues] = React.useState({
-        code:"",
+        //code:"",
         names:"",
         phone:"",
         address:"",
@@ -22,7 +22,7 @@ export default function Create() {
         redirectToPage:false,
         
     })
-    const {code, names, phone, email, password, password2, address, status, loading, redirectToPage} = values
+    const { /*code,*/ names, phone, email, password, password2, address, status, loading, redirectToPage} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -31,10 +31,6 @@ export default function Create() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
-        if(code===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'District code is required', 'error');
-        }
         if(names===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District name is required', 'error');
@@ -60,14 +56,13 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Password must match each other', 'error');
         }
-
         handleCreate();
     }
 
     const handleCreate =async ()=>{
-        const user = {code, names, phone, email, password, password2, address, status}
-        const data = await create(user);
-        console.log(data)
+        const user = {names, phone, email, password, password2, address, status}
+        const Auth = await isAuthenticated()
+        const data = await create(user, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
@@ -101,23 +96,16 @@ export default function Create() {
         }
     };
 
-    React.useEffect(() => {
-        const getDistrictCode = async () =>{
-            //call the endpoint for code 
-            let dcode = 'DS001'
-            setValues(v=>({...v, code:dcode}))
-        }
-        getDistrictCode();
-        /*
-        return () => {
-            //cleanup
-        }
-        */
-    }, [])
-
     return (
         <Aux>
             {redirectUser()}
+            <Row>
+                <Col>
+                    <Card.Header>
+                        <Card.Title><Link to="/admin/districts/read" > Read Districts </Link></Card.Title>
+                    </Card.Header>
+                </Col>
+            </Row>
             <Row>
                     <Col>
                         <Card>
@@ -128,10 +116,10 @@ export default function Create() {
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            <Form.Group controlId="formBasicEmail">
+                                            {/*<Form.Group controlId="formBasicEmail">
                                                 <Form.Label>District Code</Form.Label>
                                                 <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} />
-                                            </Form.Group>
+                                            </Form.Group>*/}
 
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>District Name</Form.Label>
@@ -145,6 +133,10 @@ export default function Create() {
                                                 <Form.Label>Password</Form.Label>
                                                 <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                                             </Form.Group>
+                                            <Form.Group controlId="formBasicPassword">
+                                                <Form.Label>Password Confirmation</Form.Label>
+                                                <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
+                                            </Form.Group>
                                             {
                                                 loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
                                             }
@@ -155,18 +147,15 @@ export default function Create() {
                                                 <Form.Label>Address </Form.Label>
                                                 <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
                                             </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
+                                            {<Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Officer-in- charge</Form.Label>
                                                 <Form.Control type="text" placeholder="Education District ID" />
-                                            </Form.Group>
+                                            </Form.Group>}
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>email </Form.Label>
                                             <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                         </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                            <Form.Label>Password Confirmation</Form.Label>
-                                            <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
-                                        </Form.Group>
+                                        
                                     </Col>
                                 </Row>
                             </Card.Body>

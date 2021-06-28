@@ -4,13 +4,13 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create, readsSchool } from './api';
+import {isAuthenticated} from '../../Auth/admin/api'
 
 
 export default function Create() {
-
     const [values, setValues] = React.useState({
         studentCode:"",
-        school:"",
+        schoolId:"",
         parent:"",
         stream:"",
         firstName:"",
@@ -36,7 +36,7 @@ export default function Create() {
         subjectList:[],
         sessionList:[]
     })
-    const {studentCode, school, parent, presentClass,stream, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading, redirectToPage, schoolList,parentList,subjectList,sessionList} = values
+    const {studentCode, schoolId, parent, presentClass,stream, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading, redirectToPage, schoolList,parentList,subjectList,sessionList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -44,14 +44,12 @@ export default function Create() {
 
     const submit = event =>{
         event.preventDefault();
-        //const student = {studentCode, school, parent, presentClass, stream, firstName, middleName, lastName, gender, religion, dob, country, disability, yearAdmission, HadEce, subject, province}
-        //console.log(JSON.stringify(student))
         setValues({...values, loading:true})
         if(studentCode===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Student code is required', 'error');
         }
-        if(school===""){ 
+        if(schoolId===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'School is required', 'error');
         }
@@ -99,25 +97,21 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Academic session is required', 'error');
         }
-
         handleCreate();
     }
 
     const handleCreate =async ()=>{
-        //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
-        const student = {studentCode, school, parent, presentClass, stream, firstName, middleName, lastName, gender, religion, dob, country, disability, yearAdmission, HadEce, subject, province}
-        const data = await create(student);
-        console.log(data)
+        const Auth = await isAuthenticated();
+        const student = {studentCode, schoolId, parent, presentClass, stream, firstName, middleName, lastName, gender, religion, dob, country, disability, yearAdmission, HadEce, subject, province}
+        const data = await create(student, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.error){
             Swal.fire('Oops...', data.error, 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.message){
             Swal.fire('Saved...', data.message, 'success')
            setValues({...values, loading:false, redirectToPage:true})
@@ -145,8 +139,8 @@ export default function Create() {
 
     React.useEffect(() => {
         const bootstrap = async () =>{
-            //const dist = await readsDistrict();
-            const scho = await readsSchool();
+            const Auth = await isAuthenticated()
+            const scho = await readsSchool(Auth.token);
             let studentCode = `SCH${`0012`}`;
             setValues(v => ({...v, schoolList:scho.data, studentCode})); 
         }
@@ -166,20 +160,20 @@ export default function Create() {
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            <Form.Group controlId="formBasicEmail">
+                                            {/*<Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Student Code</Form.Label>
                                                 <Form.Control type="text" placeholder="school code" onChange={handleChange("studentCode")} value={studentCode} />
-                                            </Form.Group>
+                                            </Form.Group>*/}
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>School</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("school")} value={school}>
+                                            <Form.Control as="select" onChange={handleChange("schoolId")} value={schoolId}>
                                                 <option>Select school</option>
                                                {
                                                    schoolList && schoolList.length > 0 
                                                    ?
                                                    schoolList.map((scho, id)=>{
                                                        return(
-                                                        <option value={scho._id}>{scho.school}</option>
+                                                        <option value={scho._id}>{scho.names}</option>
                                                        ) 
                                                    }) : <option value="0">Fails to fetch school</option>
                                                }

@@ -7,6 +7,7 @@ import { reads } from './api';
 import { Link } from 'react-router-dom';
 import SortableTbl from "react-sort-search-table";
 import styled from "styled-components";
+import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Read() {
@@ -15,9 +16,6 @@ export default function Read() {
     const [error, setError] = React.useState(false)
     const [reload, setReload] = React.useState(false)
     
-
-    const token = "12233";
-
     const isLoading = () => {
         if (loading){
             return (
@@ -191,7 +189,8 @@ export default function Read() {
 
     const boot = async () => {
         setLoading(true)
-        const data = await reads(token);
+        const Auth = await isAuthenticated()
+        const data = await reads(Auth.token);
                 
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -209,23 +208,21 @@ export default function Read() {
             setLoading(false)
             setError(false)
             setDatas(data.data)
-            return Swal.fire('Successful....', data.message, 'success')
+            //return Swal.fire('Successful....', data.message, 'success')
+            let Toast = Swal.mixin({
+                toast: true,
+                timerProgressBar: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+    
+            return Toast.fire({
+                showClass: true,
+                type: 'success',
+                title: data.message
+            })
         }
-
-        let Toast = Swal.mixin({
-            toast: true,
-            timerProgressBar: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-
-        return Toast.fire({
-            showClass: true,
-            type: 'success',
-            title: data.message
-        })
-        
     }
 
     React.useEffect(() => {

@@ -1,6 +1,7 @@
 //let  BASE_URL = "",
 
-const BASE_URL = "https://iemis.herokuapp.com/api/v1"
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
+const BASE_URL = "http://localhost:9000/api/v1/admin" //http://localhost:9000/api/v1/admin/admin
 
 export const create = async (user, token)=>{
     try{
@@ -73,7 +74,7 @@ export const edit = async (id, user, token)=>{
 
 export const remove = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/admin/${user}`,{
+        const response = await fetch(`${BASE_URL}/admin${user}`,{
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json',

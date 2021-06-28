@@ -1,10 +1,11 @@
 import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
-
-import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
+
 import { edit, read } from './api';
+import Aux from "../../../hoc/_Aux";
+import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Edit() {
@@ -28,7 +29,7 @@ export default function Edit() {
         
     })
 
-    const {code, names, phone, email, password, password2, address, status, error, loading, loadingBtn, reload, redirectToPage, token} = values
+    const {code, names, phone, email, password, password2, address, status, error, loading, loadingBtn, reload, redirectToPage} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -126,8 +127,8 @@ export default function Edit() {
 
     const handleUpdate =async ()=>{
         const user = {code, names, phone, email, password, password2, address, status}
-        const data = await edit(id, user, token);
-        //console.log(data)
+        const Auth = isAuthenticated()
+        const data = await edit(id, user, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loadingBtn:false})
@@ -139,7 +140,6 @@ export default function Edit() {
         if(data.message){
             Swal.fire('Saved...', data.message, 'success')
             setValues({...values, loadingBtn:false, redirectToPage:true});
-
             let Toast = Swal.mixin({
             toast: true,
             timerProgressBar: true,
@@ -150,7 +150,7 @@ export default function Edit() {
             return Toast.fire({
                 animation: true,
                 type: 'success',
-                title: 'Request is successful'
+                title: data.message
             })
         }
     }
@@ -164,9 +164,9 @@ export default function Edit() {
     React.useEffect(() => {
         let ignore = false;
         const bootstrap = async ()=>{
+            const Auth = await isAuthenticated()
             setValues(v => ({...v, loading:true}))
-            const data = await read(id);
-            //console.log({data, id})
+            const data = await read(id,Auth.token);
             if (!ignore){
                 if(!data){
                     Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error');
@@ -196,61 +196,70 @@ export default function Edit() {
         {isError()}
         {
             loading ? isLoading() :
-            <Row>
+            <>
+                <Row>
                     <Col>
-                        <Card>
-                            <Card.Header>
-                                <Card.Title as="h3">Update the District</Card.Title>
-                            </Card.Header>
-                            <Card.Body>
-                                <Row>
-                                    <Col md={6}>
-                                        <Form>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>District Code</Form.Label>
-                                                <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} />
-                                            </Form.Group>
+                        <Card.Header>
+                            <Card.Title><Link to="/admin/districts/read" > Read Districts </Link></Card.Title>
+                        </Card.Header>
+                    </Col>
+                </Row>
+                <Row>
+                        <Col>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title as="h3">Update the District</Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Row>
+                                        <Col md={6}>
+                                            <Form>
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>District Code</Form.Label>
+                                                    <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} disabled />
+                                                </Form.Group>
 
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>District Name</Form.Label>
-                                                <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Phone </Form.Label>
-                                                <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>District Name</Form.Label>
+                                                    <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names} />
+                                                </Form.Group>
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>Phone </Form.Label>
+                                                    <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
+                                                </Form.Group>
+                                                <Form.Group controlId="formBasicPassword">
+                                                    <Form.Label>Password</Form.Label>
+                                                    <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
+                                                </Form.Group>
+                                                {
+                                                    loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
+                                                }
+                                            </Form>
+                                        </Col>
+                                        <Col md={6}>
+                                        <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>Address </Form.Label>
+                                                    <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
+                                                </Form.Group>
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>Officer-in- charge</Form.Label>
+                                                    <Form.Control type="text" placeholder="Education District ID" />
+                                                </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlInput1">
+                                                <Form.Label>email </Form.Label>
+                                                <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                             </Form.Group>
                                             <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
+                                                <Form.Label>Password Confirmation</Form.Label>
+                                                <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
                                             </Form.Group>
-                                            {
-                                                loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
-                                            }
-                                        </Form>
-                                    </Col>
-                                    <Col md={6}>
-                                    <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Address </Form.Label>
-                                                <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Officer-in- charge</Form.Label>
-                                                <Form.Control type="text" placeholder="Education District ID" />
-                                            </Form.Group>
-                                        <Form.Group controlId="exampleForm.ControlInput1">
-                                            <Form.Label>email </Form.Label>
-                                            <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
-                                        </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                            <Form.Label>Password Confirmation</Form.Label>
-                                            <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-            </Row>
+                                        </Col>
+                                    </Row>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                </Row>
+            </>
         } 
         </Aux>
         

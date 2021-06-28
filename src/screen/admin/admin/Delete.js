@@ -2,11 +2,11 @@ import React from 'react'
 import {Row, Col, Card, Button,} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
-import {  remove} from './api';
+import { remove } from './api';
 import { useParams, Redirect } from "react-router-dom";
+import { isAuthenticated } from '../../Auth/admin/api';
 
 export default function Delete(props) {
-
     let { id } = useParams();
     const [reload, setreload] = React.useState(false)
     const [error, seterror] = React.useState(false)
@@ -80,21 +80,23 @@ export default function Delete(props) {
 
     
     React.useEffect(() => {
+        isAuthenticated((err, data)=>{
+            console.log({err, data})
+        })
         const bootstrap = async ()=>{
+            const Auth = await isAuthenticated();
             setloading(true)
-            const data = await remove(id);
+            const data = await remove(id, Auth.token);
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 setloading(false)
                 return seterror(true)  
             }
-    
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 setloading(false)
                 return seterror(true)
             }
-    
             if(data.message){
                 let Toast = Swal.mixin({
                     toast: true,
@@ -113,6 +115,7 @@ export default function Delete(props) {
                 return Swal.fire('Great', data.message, 'success');
             }  
         }
+
         Swal.fire({
             title: 'Do you sure to delete this user?',
             allowOutsideClick:false,
@@ -121,9 +124,9 @@ export default function Delete(props) {
             confirmButtonText: `Yes`,
             denyButtonText: `No`,
             customClass: {
-            cancelButton: 'order-1 right-gap',
-            confirmButton: 'order-2',
-            denyButton: 'order-3',
+                cancelButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+                denyButton: 'order-3',
             }
         }).then((result) => {
             if (result.isConfirmed) {
