@@ -141,7 +141,7 @@ export default function Create() {
         const bootstrap = async () =>{
             const Auth = await isAuthenticated()
             const scho = await readsSchool(Auth.token);
-            let studentCode = `SCH${`0012`}`;
+            let studentCode = `SCH${`0017`}`;
             setValues(v => ({...v, schoolList:scho.data, studentCode})); 
         }
         bootstrap()

@@ -49,6 +49,18 @@ const EditStaffs = React.lazy(()=>import('./staffs/Edit'));
 const ReadOneStaffs = React.lazy(()=>import('./staffs/One'))
 const DeleteStaffs = React.lazy(()=>import('./staffs/Delete'))
 
+const CreateClass = React.lazy(()=>import('./classes/Create'))
+const ReadClass = React.lazy(()=>import('./classes/Read'))
+const EditClass = React.lazy(()=>import('./classes/Edit'));
+const ReadOneClass = React.lazy(()=>import('./classes/One'))
+const DeleteClass = React.lazy(()=>import('./classes/Delete'))
+
+const CreateSession = React.lazy(()=>import('./session/Create'))
+const ReadSession = React.lazy(()=>import('./session/Read'))
+const EditSession = React.lazy(()=>import('./session/Edit'));
+const ReadOneSession = React.lazy(()=>import('./session/One'))
+const DeleteSession = React.lazy(()=>import('./session/Delete'))
+
 
 
 const Nvd3Chart = React.lazy(() => import('../../Demo/Charts/Nvd3Chart/index'));
@@ -112,6 +124,18 @@ const routes = [
     { path: '/admin/staffs/read/:id', exact: true, name: 'admin-sch-read-one', component:ReadOneStaffs},
     { path: '/admin/staffs/edit/:id', exact: true, name: 'admin-sch-edit', component: EditStaffs},
     { path: '/admin/staffs/delete/:id', exact: true, name: 'admin-sch-delete', component: DeleteStaffs},
+
+    { path: '/admin/class/create', exact: true, name: 'admin-class-create', component: CreateClass},
+    { path: '/admin/class/read', exact: true, name: 'admin-class-read', component: ReadClass},
+    { path: '/admin/class/read/:id', exact: true, name: 'admin-class-read-one', component:ReadOneClass},
+    { path: '/admin/class/edit/:id', exact: true, name: 'admin-class-edit', component: EditClass},
+    { path: '/admin/class/delete/:id', exact: true, name: 'admin-class-delete', component: DeleteClass},
+
+    { path: '/admin/session/create', exact: true, name: 'admin-class-create', component: CreateSession},
+    { path: '/admin/session/read', exact: true, name: 'admin-class-read', component: ReadSession},
+    { path: '/admin/session/read/:id', exact: true, name: 'admin-class-read-one', component:ReadOneSession},
+    { path: '/admin/session/edit/:id', exact: true, name: 'admin-class-edit', component: EditSession},
+    { path: '/admin/session/delete/:id', exact: true, name: 'admin-class-delete', component: DeleteSession},
 
 
 

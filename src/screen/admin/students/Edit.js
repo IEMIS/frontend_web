@@ -147,7 +147,7 @@ export default function Edit() {
             setValues(v => ({...v, schoolList:scho.data, studentCode, schoolId, parent, presentClass, stream, firstName, middleName, lastName, gender, religion, dob, country, disability, yearAdmission, HadEce, subject, province})); 
         }
         bootstrap()
-    }, [])
+    }, [id])
 
     return (
         <Aux>
