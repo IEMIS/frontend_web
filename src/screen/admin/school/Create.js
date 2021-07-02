@@ -8,10 +8,9 @@ import {isAuthenticated} from '../../Auth/admin/api'
 
 
 export default function Create() {
-
     const [values, setValues] = React.useState({
         code:"",
-        districtId:"",
+        district:"",
         names:"",
         address:"",
         email:"",
@@ -31,7 +30,7 @@ export default function Create() {
         redirectToPage:false,
         districtList:[]
     })
-    const {code, names,districtId, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
+    const {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -44,7 +43,7 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'School code is required', 'error');
         }
-        if(districtId===""){ 
+        if(district===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District is required', 'error');
         }
@@ -110,10 +109,9 @@ export default function Create() {
     }
 
     const handleCreate =async ()=>{
-        const school = {code, names, districtId, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
+        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
         const Auth = await isAuthenticated()
         const data = await create(school, Auth.token);
-        //console.log({data, school})
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
@@ -156,6 +154,7 @@ export default function Create() {
         }
         bootstrap()
     }, [])
+    
 
     return (
         <Aux>
@@ -181,7 +180,7 @@ export default function Create() {
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>District</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("districtId")} value={districtId}>
+                                            <Form.Control as="select" onChange={handleChange("district")} value={district}>
                                                 <option>Select district</option>
                                                {
                                                    districtList && districtList.length > 0 
