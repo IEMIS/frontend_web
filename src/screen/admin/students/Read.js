@@ -73,7 +73,7 @@ export default function Read() {
 
     let columun = [
         "studentCode",
-        "school",
+        "school.names",
         "firstName",
         "lastName",
         "status",

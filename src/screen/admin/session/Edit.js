@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Col, Card, Form, Button, NavItem} from 'react-bootstrap';
+import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {read, edit } from './api';

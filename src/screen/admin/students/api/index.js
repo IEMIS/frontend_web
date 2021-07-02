@@ -108,6 +108,40 @@ export const readsSchool = async (token)=>{
     }catch(e){console.log(e)}
 }
 
+export const readsClass = async (token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/classes`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const readsSession = async (token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/session`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
 //get subject
 export const readsSubject = async (token)=>{
     try{
