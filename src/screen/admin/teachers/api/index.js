@@ -1,10 +1,11 @@
 //let  BASE_URL = "",
 
-const BASE_URL = "https://iemis.herokuapp.com/api/v1"
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1"
+const BASE_URL = "http://localhost:9000/api/v1/admin" 
 
 export const create = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/schools`,{
+        const response = await fetch(`${BASE_URL}/teachers`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -21,7 +22,7 @@ export const create = async (user, token)=>{
 }
 export const reads = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/schools`,{
+        const response = await fetch(`${BASE_URL}/teachers`,{
             method:'GET',
             body:JSON.stringify(user),
             headers:{
@@ -39,7 +40,7 @@ export const reads = async (user, token)=>{
 
 export const read = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/schools/${user}`,{
+        const response = await fetch(`${BASE_URL}/teachers/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -56,7 +57,7 @@ export const read = async (user, token)=>{
 
 export const edit = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/schools/${user}`,{
+        const response = await fetch(`${BASE_URL}/teachers/${user}`,{
             method:'PUT',
             headers:{
                 'Content-Type':'application/json',
@@ -73,7 +74,7 @@ export const edit = async (user, token)=>{
 
 export const remove = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/schools/${user}`,{
+        const response = await fetch(`${BASE_URL}/teachers/${user}`,{
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json',
@@ -109,7 +110,6 @@ export const readsSubject = async (token)=>{
 //get school
 export const readsSchool = async (token)=>{
     try{
-        //school
         const response = await fetch(`${BASE_URL}/school`,{
             method:'GET',
             headers:{

@@ -4,6 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create, readsSchool } from './api';
+import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Create() {
@@ -54,10 +55,12 @@ export default function Create() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
+        /*
         if(teacherCode===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Teacher code is required', 'error');
         }
+        
         if(school===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'School Name is required', 'error');
@@ -151,14 +154,15 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Password must match each other', 'error');
         }
+        */
         handleCreate();
     }
 
     const handleCreate =async ()=>{
+        const Auth = await isAuthenticated()
         //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
         const teacher = {teacherCode, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,subjectTaught, classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session, lastWorkshop, password}
-        const data = await create(teacher);
-        console.log(data)
+        const data = await create(teacher, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
@@ -190,15 +194,16 @@ export default function Create() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/schools/create" />
+            return <Redirect to="/admin/teachers/create" />
         }
     };
 
     React.useEffect(() => {
         const bootstrap = async () =>{
-            const scho = await readsSchool();
-            let teacherCode = `SCH${`0012`}`;
-            setValues(v => ({...v, districtList:scho.data, teacherCode})); 
+            const Auth = await isAuthenticated()
+            const scho = await readsSchool(Auth.token);
+            console.log({scho})
+            setValues(v => ({...v, schoolList:scho.data})); 
         }
         bootstrap()
     }, [])
@@ -252,7 +257,7 @@ export default function Create() {
                                                    ?
                                                    schoolList.map((scho, id)=>{
                                                        return(
-                                                        <option value={scho._id}>{school.names}</option>
+                                                        <option value={scho._id}>{scho.names}</option>
                                                        ) 
                                                    }) : <option value="0">Fails to fetch school</option>
                                                }

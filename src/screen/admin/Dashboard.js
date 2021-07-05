@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
-import {countByGender, countByClass, countOwnership,} from "./api"
+import {countStudentByGender, countStudentByClass, countSchoolByOwnership, countTeacherBySchool} from "./api"
 import Aux from "../../hoc/_Aux";
 /*
 import DEMO from "../../store/constant";
@@ -14,7 +14,7 @@ import avatar2 from '../../assets/images/user/avatar-2.jpg';
 import avatar3 from '../../assets/images/user/avatar-3.jpg';
 */
 
-/*
+
 const datum = [
     {
         key: "Male",
@@ -230,7 +230,7 @@ const datum = [
     ]
   }
 ];
-*/
+
 
 
 class Dashboard extends React.Component {
@@ -245,17 +245,17 @@ class Dashboard extends React.Component {
             countbytype: [],
             countbycat : [],
             countbyclass:[],
+            countTeachbySchool:[],
         }
     }
 
     async componentDidMount(){
       const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
-      //console.log({Auth});
-      const countbygen = await countByGender(Auth.token)
-      const countbyowner = await countOwnership(Auth.token)
-      const countbyclass = await countByClass(Auth.token)
-      //console.log({look:countbyowner, countbyclass})
-      this.setState({countbygender:countbygen.data, countbyownership:countbyowner.data, countbyclass:countbyclass.data})
+      const countbygen = await countStudentByGender(Auth.token)
+      const countbyowner = await countSchoolByOwnership(Auth.token)
+      const countbyclass = await countStudentByClass(Auth.token)
+      const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+      this.setState({countbygender:countbygen.data, countbyownership:countbyowner.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data})
         
     }
 
@@ -270,8 +270,8 @@ class Dashboard extends React.Component {
     
 
     render() {
-        const {countbygender, countbyclass,countbyownership,} = this.state;
-        console.log({countbygender, countbyownership, countbyclass})
+        const {countbygender, countbyclass,countbyownership,countTeachbySchool} = this.state;
+        ///console.log({countbygender, countbyownership, countbyclass, countTeachbySchool})
         return (
             <Aux>
                 {/*<Row>*/}
@@ -295,33 +295,7 @@ class Dashboard extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/students">
-                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={countbygender} x="_id" y="count"  />
-                                        {/*
-                                        <div className="row d-flex align-items-center">
-                                            <div className="col-6">
-                                                <h6>Male </h6>
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 121,420</h3>
-                                            </div>
-                                            <div className="col-6">
-                                                <h6>Female </h6>
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 118,354</h3>
-                                            </div>
-                                        {/* <div className="col-3 text-right">
-                                                <p className="m-b-0"> </p>
-                                            </div>*
-                                        </div>
-                                        <br />
-                                        <div className="row d-flex align-items-center">
-                                            <div className="col-9">
-                                                <h6 className='mb-4'>Total number of Students</h6>
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 239,774</h3>
-                                            </div>
-                                        </div>
-                                        <div className="progress m-t-30" style={{height: '7px'}}>
-                                            <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '50%'}} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"/>
-                                        </div>
-                                            */}
-                                    
+                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={countbygender} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -344,30 +318,6 @@ class Dashboard extends React.Component {
                                 <Card.Body>
                                     <Link to="/admin/schools">
                                         <NVD3Chart id="chart" height={200} type="pieChart" datum={countbyownership} x="_id" y="count"  />
-                                        {/*
-                                        <div className="row d-flex align-items-center">
-                                                <div className="col-3">
-                                                    <h6>Governemnt</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="f-30 m-r-5"/> 300</h3>
-                                                </div>
-                                                <div className="col-3">
-                                                    <h6>Non-Government</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 1,384</h3>
-                                                </div>
-                                                <div className="col-3">
-                                                    <h6>Private</h6>
-                                                    <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className=" f-30 m-r-5"/> 120</h3>
-                                                </div>
-                                        </div>
-                                        <br/>
-                                        <div className="col-9">
-                                            <h6 className='mb-4'>Total number of Schools</h6>
-                                            <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 1,784</h3>
-                                        </div>
-                                        <div className="progress m-t-30" style={{height: '7px'}}>
-                                            <div className="progress-bar progress-c-theme2" role="progressbar" style={{width: '35%'}} aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"/>
-                                        </div>
-                                        */}
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -407,99 +357,18 @@ class Dashboard extends React.Component {
                             </Card>
                         </Col>
                     </Row>
-                    <Row> 
-                        <Col md={6} xl={6}>
-                            <Card className='card-social'>
+                    <Row>
+                        <Col md={12} xl={12}>
+                            <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'>Teaching Staff </Card.Title>
+                                    <Card.Title as='h5'>The summary data of the Teachers</Card.Title>
                                 </Card.Header>
-                                <Card.Body className='border-bottom'>
-                                    <Table responsive striped bordered hover>
-                                                <thead>
-                                                    <tr>
-                                                    <th> </th>
-                                                    <th>ECE</th>
-                                                    <th>PRY</th>
-                                                    <th>SEC</th>
-                                                    <th>TVET</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                    <td>Male</td>
-                                                    <td>120</td>
-                                                    <td>450</td>
-                                                    <td>452</td>
-                                                    <td>15</td>
-                                                    </tr>
-                                                    <tr>
-                                                    <td>Female</td>
-                                                    <td>158</td>
-                                                    <td>782</td>
-                                                    <td>651</td>
-                                                    <td>80</td>
-                                                    </tr>
-                                                    <tr>
-                                                    <td>Total</td>
-                                                    <td>278</td>
-                                                    <td>1232</td>
-                                                    <td>1103</td>
-                                                    <td>95</td>
-                                                    </tr>
-                                                </tbody>
-                                                </Table>
-                                            </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={6} xl={6}>
-                            <Card className='card-social'>
-                                <Card.Header>
-                                <Card.Title as='h5'>Non-Teaching Staff </Card.Title>
-                                </Card.Header>
-                                <Card.Body className='border-bottom'>
-                                    <Table responsive striped bordered hover>
-                                            <thead>
-                                                <tr>
-                                                <th> </th>
-                                                <th>ECE</th>
-                                                <th>PRY</th>
-                                                <th>SEC</th>
-                                                <th>TVET</th>
-                                                <th>Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                <td>Male</td>
-                                                <td>120</td>
-                                                <td>450</td>
-                                                <td>452</td>
-                                                <td>15</td>
-                                                <td>1037</td>
-                                                </tr>
-                                                <tr>
-                                                <td>Female</td>
-                                                <td>158</td>
-                                                <td>782</td>
-                                                <td>651</td>
-                                                <td>80</td>
-                                                <td>16040</td>
-                                                </tr>
-                                                <tr>
-                                                <td>Total</td>
-                                                <td>278</td>
-                                                <td>1232</td>
-                                                <td>1103</td>
-                                                <td>95</td>
-                                                <td>40398</td>
-                                                </tr>
-                                            </tbody>
-                                            </Table>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
                     </Row>
-               {/* </Row>  */}
             </Aux>
         );
     }
