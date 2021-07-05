@@ -149,7 +149,7 @@ export default function Create() {
         const bootstrap = async () =>{
             const Auth = await isAuthenticated()
             const dist = await readsDistrict(Auth.token);
-            let code = `SCH${`0014`}`;
+            let code = `SCH${`0013`}`;
             setValues(v => ({...v, districtList:dist.data, code})); 
         }
         bootstrap()

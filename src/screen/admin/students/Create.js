@@ -318,6 +318,11 @@ export default class Create extends Component {
                                                        ) 
                                                    }) : <option value="0">Fails to fetch Class</option>
                                                }
+
+                                                {
+                                                /*
+                                                //create class from Admin Dashboard
+
                                                 <option value="Preprimary">Pre-Primary</option>
                                                 <option value="Y1">Year 1</option>
                                                 <option value="Y2">Year 2</option>
@@ -333,7 +338,8 @@ export default class Create extends Component {
                                                 <option value="Y12">Year 12</option>
                                                 <option value="Y13">Year 13</option>
                                                 <option value="voc1">Voc YR1</option>
-                                                <option value="voc2">Voc YR2</option>   
+                                                <option value="voc2">Voc YR2</option>*/
+                                                }   
                                             </Form.Control>
                                     </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
