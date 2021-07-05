@@ -2,7 +2,7 @@
 //const BASE_URL = "localhost:9000/api/v1";
 const BASE_URL = "http://localhost:9000/api/v1/admin" 
 
-export const countByGender = async (token)=>{
+export const countStudentByGender = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student/data/count/gender`,{
             method:'GET',
@@ -19,7 +19,7 @@ export const countByGender = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countByYear = async (token)=>{
+export const countStudentByYear = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student/data/count/yearadmission`,{
             method:'GET',
@@ -36,7 +36,7 @@ export const countByYear = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countByClass = async (token)=>{
+export const countStudentByClass = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student/data/count/class`,{
             method:'GET',
@@ -53,7 +53,7 @@ export const countByClass = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countByProvidence  = async (token)=>{
+export const countStudentByProvidence  = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student/data/count/providence`,{
             method:'GET',
@@ -70,7 +70,7 @@ export const countByProvidence  = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countDistrict = async (token)=>{
+export const countSchoolByDistrict = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/school/data/count/district`,{
             method:'GET',
@@ -87,7 +87,7 @@ export const countDistrict = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countEduLevel = async (token)=>{
+export const countSchoolByEduLevel = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/school/data/count/edulevel`,{
             method:'GET',
@@ -104,7 +104,7 @@ export const countEduLevel = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countOwnership = async (token)=>{
+export const countSchoolByOwnership = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/school/data/count/ownership`,{
             method:'GET',
@@ -121,7 +121,7 @@ export const countOwnership = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countType = async (token)=>{
+export const countSchoolByType = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/school/data/count/type`,{
             method:'GET',
@@ -138,7 +138,7 @@ export const countType = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countCat = async (token)=>{
+export const countSchoolByCat = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/school/data/count/cat`,{
             method:'GET',
@@ -154,4 +154,24 @@ export const countCat = async (token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
+/**Teacher summary endpoint  */
+export const countTeacherBySchool = async (token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/teachers/data/count/school`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+
 
