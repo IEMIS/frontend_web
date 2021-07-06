@@ -155,7 +155,7 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>All Student Data</h5>
+                                        <h5>Student by ethnicity</h5>
                                     </Card.Title>
                                     <Card.Title>
                                         Total students :  {
@@ -179,7 +179,7 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>School by Ownership</h5>
+                                        <h5>Student by province</h5>
                                     </Card.Title>
                                     <Card.Title>
                                         Total Schools :  {
@@ -201,7 +201,7 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by Religion</h5>
+                                        <h5>Student by year of Admission</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
@@ -212,6 +212,55 @@ class DistrictData extends React.Component {
                             </Card>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>Student by stream</h5>
+                                    </Card.Title>
+                                    <Card.Title>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Link to="/admin/students">
+                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={countbygender} x="_id" y="count"  />
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>Student by Status</h5>
+                                    </Card.Title>
+                                    <Card.Title>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Link to="/admin/schools">
+                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={countbyownership} x="_id" y="count"  />
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>Student by Country</h5>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                  <Link to="/admin/schools">
+                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={countbyownership} x="_id" y="count"  />
+                                  </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+
                     <Row>
                         <Col md={12} xl={12}>
                             <Card className='Recent-Users'>
