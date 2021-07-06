@@ -139,21 +139,13 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Total Number of Districts</h5>
+                                        <h5>Student by Religion</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/districts">
-                                        <h6 className='mb-4'>Total Number of Districts</h6>
-                                        <div className="row d-flex align-items-center">
-                                            <div className="col-9">
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 9</h3>
-                                            </div>
-                                        </div>
-                                        <div className="progress m-t-30" style={{height: '7px'}}>
-                                            <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '70%'}} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"/>
-                                        </div>
-                                    </Link>
+                                  <Link to="/admin/schools">
+                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={countbyownership} x="_id" y="count"  />
+                                  </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
