@@ -61,7 +61,7 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        Select District
+                                        Choose District
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
@@ -80,6 +80,37 @@ class DistrictData extends React.Component {
                                                         <option value={dist._id}>{dist.names}</option>
                                                        ) 
                                                    }) : <option value="0">Fails to fetch district</option>
+                                                   */
+                                               }
+                                        </Form.Control>
+                                    </Form.Group>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        Choose Session
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                        <Form.Label>Session</Form.Label>
+                                        <Form.Control as="select">
+                                            {/*Use current session as default */}
+                                                <option></option>
+                                                <option>2020 Academic Session</option>
+                                                <option>2019 Academic Session</option>
+                                               {
+                                                  /*
+                                                   sessionList && sessionList.length > 0 
+                                                   ?
+                                                   sessionList.map((sess, id)=>{
+                                                       return(
+                                                        <option value={sess._id}>{sess.names}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch session</option>
                                                    */
                                                }
                                         </Form.Control>
@@ -179,7 +210,7 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by province</h5>
+                                        <h5>Student by Province</h5>
                                     </Card.Title>
                                     <Card.Title>
                                         Total Schools :  {
@@ -206,6 +237,7 @@ class DistrictData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                   <Link to="/admin/schools">
+                                      {/* multiplebar chart is appropriate and should be disaggregate by gender */}
                                     <NVD3Chart id="chart" height={200} type="pieChart" datum={countbyownership} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
@@ -217,7 +249,7 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by stream</h5>
+                                        <h5>Student by disability</h5>
                                     </Card.Title>
                                     <Card.Title>
                                     </Card.Title>
