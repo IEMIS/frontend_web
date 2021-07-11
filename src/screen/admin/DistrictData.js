@@ -56,7 +56,7 @@ class DistrictData extends React.Component {
         ///console.log({countbygender, countbyownership, countbyclass, countTeachbySchool})
         return (
             <Aux>
-                                  <Row>
+                     <Row>
                         <Col md={4} xl={4}>
                             <Card>
                                 <Card.Header>
