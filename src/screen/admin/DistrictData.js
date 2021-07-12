@@ -99,7 +99,7 @@ class DistrictData extends React.Component {
                                         <Form.Label>Session</Form.Label>
                                         <Form.Control as="select">
                                             {/*Use current session as default */}
-                                                <option></option>
+                                                <option>select session </option>
                                                 <option>2020 Academic Session</option>
                                                 <option>2019 Academic Session</option>
                                                {
