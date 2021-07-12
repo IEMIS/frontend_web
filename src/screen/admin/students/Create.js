@@ -195,6 +195,11 @@ export default class Create extends Component {
                                                }
                                             </Form.Control>
                                             </Form.Group>
+                                             {/* ============Let tthis field auto fill based on school selected to ease indicator generation from student model============
+                                             <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Education Level</Form.Label>
+                                                <Form.Control type="text" placeholder="Level" onChange={handleChange("eduLevel")} value={edulevel} disabled/>
+                                            </Form.Group>*/}
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>parent</Form.Label>
                                             <Form.Control as="select" onChange={this.handleChange("parent")} value={parent}>

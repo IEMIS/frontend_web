@@ -223,10 +223,9 @@ export default function Create() {
                                                 <Form.Label>Fax</Form.Label>
                                                 <Form.Control type="text" placeholder="school fax" onChange={handleChange("fax")} value={fax} />
                                             </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>School Head</Form.Label>
-                                                <Form.Control type="text" placeholder="staff ID" onChange={handleChange("headID")} value={headID} />
-                                            </Form.Group>
+                                            {
+                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
+                                            }
                                         </Form>
                                     </Col>
                                     <Col md={6}>
@@ -283,10 +282,6 @@ export default function Create() {
                                             <Form.Label>Password Confirmation</Form.Label>
                                             <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
                                         </Form.Group>
-                                        
-                                        {
-                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
-                                            }
                                     </Col>
                                 </Row>
                             </Card.Body>
