@@ -83,7 +83,7 @@ export default function Read() {
     ];
 
     let tableHead = [
-        "Student Code",
+        "Student Level",
         "School Name",
         "First Name",
         "Last Name",
