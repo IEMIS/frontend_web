@@ -10,6 +10,7 @@ global.jQuery = $;
 const DashboardDefault = React.lazy(() => import('./Dashboard'));
 const DistrictData = React.lazy(() => import('./DistrictData'));
 const SchoolData = React.lazy(() => import('./SchoolData'));
+const IndicatorData = React.lazy(() => import('./IndicatorData'));
 const AdminSignout = React.lazy(()=> import('../Auth/admin/SignOut'));
 
 const CreateAdmin = React.lazy(()=>import('./admin/Create'))
@@ -136,6 +137,9 @@ const routes = [
     { path: '/admin/session/read/:id', exact: true, name: 'admin-class-read-one', component:ReadOneSession},
     { path: '/admin/session/edit/:id', exact: true, name: 'admin-class-edit', component: EditSession},
     { path: '/admin/session/delete/:id', exact: true, name: 'admin-class-delete', component: DeleteSession},
+
+
+    { path: '/admin/indicator', exact: true, name: 'admin-indicator', component: IndicatorData },
 
 
 
