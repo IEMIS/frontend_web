@@ -4,6 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create, readsDistrict } from './api';
+import {isAuthenticated} from '../../Auth/admin/api'
 
 
 export default function Create() {
@@ -89,7 +90,8 @@ export default function Create() {
     const handleCreate =async ()=>{
         //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
         const staff = {staffCode, firstName, district, email, middleName, role, lastName, title, gender, dob, designation, password}
-        const data = await create(staff);
+        const Auth = isAuthenticated()
+        const data = await create(staff, Auth.token);
         console.log(data)
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -128,7 +130,8 @@ export default function Create() {
 
     React.useEffect(() => {
         const bootstrap = async () =>{
-            const dist = await readsDistrict();
+            const Auth = await isAuthenticated()
+            const dist = await readsDistrict(Auth.token);
             let code = `MOE${`0012`}`;
             setValues(v => ({...v, districtList:dist.data, code})); 
         }
