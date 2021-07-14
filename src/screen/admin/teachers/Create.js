@@ -221,10 +221,10 @@ export default function Create() {
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            <Form.Group controlId="formBasicEmail">
+                                            {/*<Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Teacher Code</Form.Label>
                                                 <Form.Control type="text" placeholder="Teacher Code" onChange={handleChange("teacherCode")} value={teacherCode} disabled />
-                                            </Form.Group>
+                                            </Form.Group>*/}
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Title</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("title")} value={title}>

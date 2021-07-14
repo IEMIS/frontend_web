@@ -148,8 +148,8 @@ export default class Create extends Component {
 
     handleCreate =async ()=>{
         const Auth = await isAuthenticated();
-        const { school,district, parent, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, presentClass, status, session, province,ethnicity, loading} = this.state;
-        const student = { school, district, parent,presentClass, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading} 
+        const { school, district, parent, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, presentClass, status, session, province,ethnicity, loading} = this.state;
+        const student = { school,edulevel, district, parent,presentClass, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading} 
         const data = await create(student, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
