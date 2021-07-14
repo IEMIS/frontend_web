@@ -36,6 +36,15 @@ export default {
                     icon: 'feather icon-users',
                 }
                 */
+                
+                {
+                    id: 'm-indicator',
+                    title: 'Indicators Data',
+                    type: 'item',
+                    url: '/admin/indicator',
+                    icon: 'feather icon-book',
+                }
+                
             ],
         },
         {
@@ -205,16 +214,16 @@ export default {
                     ]
                 },
                 {
-                    id: 'extral',
-                    title: 'Extral Data',
+                    id: 'extra',
+                    title: 'Extra Data',
                     type: 'collapse',
                     icon: 'feather icon-book',
                     children: [
                         {
-                            id: 'extral-read',
+                            id: 'extra-read',
                             title: 'Population',
                             type: 'item',
-                            url: '/admin/extral/read'
+                            url: '/admin/extra/read'
                         },
                     ]
                 }

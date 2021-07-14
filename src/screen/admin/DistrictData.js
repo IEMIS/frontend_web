@@ -129,11 +129,9 @@ class DistrictData extends React.Component {
                                     <Card.Title>
                                         Total students :  {
                                        true ? countbygender.map((data, i)=>{
-                                        let total = 0.0;
-                                        let r = data.count * 100/100
-                                        total += r
-                                        console.log(r, total)
-                                        return null
+                                        let total = 0;
+                                        total += data.count
+                                        return total
                                     }):"data not available" }
                                     </Card.Title>
                                 </Card.Header>
