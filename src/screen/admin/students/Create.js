@@ -31,6 +31,9 @@ export default class Create extends Component {
             session:"",
             province:"",
             class:"",
+            edulevel:"",
+            age:"",
+            district:"",
             loading:false,
             redirectToPage:false,
             schoolList:[],
@@ -49,9 +52,35 @@ export default class Create extends Component {
         this.setState({schoolList:scho.data, sessionList:sessionL.data,  classList:classL.data});
     }
 
-    async componentDidUpdate(){
-
+    async componentDidUpdate(prevProps, prevState, snapshot){
+        const {school, schoolList, dob} = this.state;
+        if(prevState.school !== school){
+            schoolList.map((scho, id)=>{
+                if(scho._id===school){
+                    console.log(scho)
+                    this.setState({edulevel:scho.eduLevel, district:scho.fromDistrict[0]._id})
+                }
+                return
+            })
+        }
+        if(prevState.dob !== dob){
+            return this.getAge(dob); 
+        }
     }
+
+    getAge(dateString) {
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        //console.log({age})
+        return this.setState({age})
+    }
+    
+
 
     handleChange = name=>event=>{
         //this.setState({this.setState, [name]:event.target.value})
@@ -60,7 +89,7 @@ export default class Create extends Component {
 
     submit = event =>{
         event.preventDefault();
-        const { school, presentClass, firstName, lastName, gender,  dob,country, disability,  status, session } = this.state;
+        const { school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session } = this.state;
         this.setState({loading:true})
         if(school===""){ 
             this.setState({ loading:false})
@@ -119,10 +148,8 @@ export default class Create extends Component {
 
     handleCreate =async ()=>{
         const Auth = await isAuthenticated();
-        const { school, parent, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, presentClass, status, session, province,ethnicity, loading} = this.state;
-        //let {studentCode, school, parent, presentClass, stream, firstName, middleName, lastName, gender, religion, dob, country, disability, yearAdmission, HadEce, subject, province} = this.state;
-        //const student = {studentCode, school, parent, presentClass, stream, firstName, middleName, lastName, gender, religion, dob, country, disability, yearAdmission, HadEce, subject, province}
-        const student = { school, parent,presentClass, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading} 
+        const { school, district, parent, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, presentClass, status, session, province,ethnicity, loading} = this.state;
+        const student = { school,edulevel, district, parent,presentClass, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading} 
         const data = await create(student, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -161,8 +188,8 @@ export default class Create extends Component {
 
     render() {
         //const { school, parent,presentClass,classList, stream, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading, schoolList,parentList,subjectList,sessionList} = this.state;
-        const { school, parent,presentClass,classList, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading, schoolList,parentList,subjectList,sessionList} = this.state;
-        //console.log({sessionList, classList, schoolList})
+        const { school, parent,presentClass,classList, firstName, middleName, lastName,edulevel,age, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity,district, loading, schoolList,parentList,subjectList,sessionList} = this.state;
+        console.log({sessionList, classList, schoolList,edulevel,age, district})
         return (
             <Aux>
             {this.redirectUser()}
@@ -188,6 +215,7 @@ export default class Create extends Component {
                                                    schoolList && schoolList.length > 0 
                                                    ?
                                                    schoolList.map((scho, id)=>{
+                                                       //this.setState({edulevel:scho.edulevel, district:scho.district})
                                                        return(
                                                         <option value={scho._id}>{scho.names}</option>
                                                        ) 

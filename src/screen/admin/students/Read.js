@@ -72,8 +72,8 @@ export default function Read() {
     }
 
     let columun = [
-        "studentCode",
-        "school.names",
+        "edulevel",
+        "fromSchool[0].names",
         "firstName",
         "lastName",
         "status",
@@ -83,7 +83,7 @@ export default function Read() {
     ];
 
     let tableHead = [
-        "Student Code",
+        "School Level",
         "School Name",
         "First Name",
         "Last Name",
@@ -224,6 +224,7 @@ export default function Read() {
         }
     }
 
+    console.log({datas})
     React.useEffect(() => {
         boot()
     },[reload])

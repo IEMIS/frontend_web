@@ -169,10 +169,10 @@ export default function Create() {
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            <Form.Group controlId="formBasicEmail">
+                                            {/*<Form.Group controlId="formBasicEmail">
                                                 <Form.Label>School Code</Form.Label>
                                                 <Form.Control type="text" placeholder="school code" onChange={handleChange("code")} value={code} disabled />
-                                            </Form.Group>
+                                            </Form.Group>*/}
 
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>School Name</Form.Label>

@@ -16,6 +16,8 @@ export default function Read() {
     const [error, setError] = React.useState(false)
     const [reload, setReload] = React.useState(false)
 
+    console.log({datas})
+
  
     const isLoading = () => {
         if (loading){
@@ -77,7 +79,7 @@ export default function Read() {
     let columun = [
         "code",
         "names",
-        "district",
+        "fromDistrict[0].names",
         "email",
         "edit",
         "detail",
