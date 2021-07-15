@@ -57,10 +57,9 @@ export default class Create extends Component {
         if(prevState.school !== school){
             schoolList.map((scho, id)=>{
                 if(scho._id===school){
-                    console.log(scho)
                     this.setState({edulevel:scho.eduLevel, district:scho.fromDistrict[0]._id})
                 }
-                return
+                return true
             })
         }
         if(prevState.dob !== dob){
@@ -89,7 +88,7 @@ export default class Create extends Component {
 
     submit = event =>{
         event.preventDefault();
-        const { school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session } = this.state;
+        const { school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
         this.setState({loading:true})
         if(school===""){ 
             this.setState({ loading:false})
@@ -149,7 +148,7 @@ export default class Create extends Component {
     handleCreate =async ()=>{
         const Auth = await isAuthenticated();
         const { school, district, parent, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, presentClass, status, session, province,ethnicity, loading} = this.state;
-        const student = { school,edulevel, district, parent,presentClass, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading} 
+        const student = { school,edulevel, district, parent,presentClass, firstName, middleName, lastName, gender,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading} 
         const data = await create(student, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
