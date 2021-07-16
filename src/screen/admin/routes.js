@@ -62,6 +62,12 @@ const EditSession = React.lazy(()=>import('./session/Edit'));
 const ReadOneSession = React.lazy(()=>import('./session/One'))
 const DeleteSession = React.lazy(()=>import('./session/Delete'))
 
+const CreatePopulation = React.lazy(()=>import('./population/Create'))
+const ReadPopulation = React.lazy(()=>import('./population/Read'))
+const EditPopulation = React.lazy(()=>import('./population/Edit'));
+const ReadOnePopulation = React.lazy(()=>import('./population/One'))
+const DeletePopulation = React.lazy(()=>import('./population/Delete'))
+
 
 
 const Nvd3Chart = React.lazy(() => import('../../Demo/Charts/Nvd3Chart/index'));
@@ -137,6 +143,13 @@ const routes = [
     { path: '/admin/session/read/:id', exact: true, name: 'admin-class-read-one', component:ReadOneSession},
     { path: '/admin/session/edit/:id', exact: true, name: 'admin-class-edit', component: EditSession},
     { path: '/admin/session/delete/:id', exact: true, name: 'admin-class-delete', component: DeleteSession},
+
+    { path: '/admin/population/create', exact: true, name: 'admin-population-create', component: CreatePopulation},
+    { path: '/admin/population/read', exact: true, name: 'admin-population-read', component: ReadPopulation},
+    { path: '/admin/population/read/:id', exact: true, name: 'admin-population-read-one', component:ReadOnePopulation},
+    { path: '/admin/population/edit/:id', exact: true, name: 'admin-population-edit', component: EditPopulation},
+    { path: '/admin/population/delete/:id', exact: true, name: 'admin-population-delete', component: DeletePopulation},
+
 
 
     { path: '/admin/indicator', exact: true, name: 'admin-indicator', component: IndicatorData },
