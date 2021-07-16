@@ -216,6 +216,26 @@ export default {
                     ]
                 },
                 {
+                    id: 'population',
+                    title: 'Population',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'population-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/admin/population/read'
+                        },
+                        {
+                            id: 'population-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/admin/population/create'
+                        },
+                    ]
+                }
+               /* {
                     id: 'extra',
                     title: 'Extra Data',
                     type: 'collapse',
@@ -228,7 +248,7 @@ export default {
                             url: '/admin/extra/read'
                         },
                     ]
-                }
+                }*/
             ]
         },
         {
