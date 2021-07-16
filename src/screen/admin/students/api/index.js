@@ -21,6 +21,7 @@ export const create = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
 export const reads = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student`,{
@@ -86,6 +87,7 @@ export const remove = async (user, token)=>{
             console.log(err)
         });
         const data = response.json();
+        console.log({data})
         return data;
     }catch(e){console.log(e)}
 }
