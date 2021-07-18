@@ -92,12 +92,10 @@ export default function One() {
     };
 
     React.useEffect(() => {
-        let ignore = false;
         const bootstrap = async ()=>{
             const Auth = await isAuthenticated()
             setValues(v => ({...v, loading:true}))
-            const data = await read(id,Auth.token);
-            if (!ignore){
+            const data = await read(id, Auth.token);
                 if(!data){
                     Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error');
                     setValues(v => ({...v, loading:false, error:true}))  
@@ -114,10 +112,8 @@ export default function One() {
                     setValues(v => ({...v, loading:false, error:false, code, phone,email,names, address }))
                     return Swal.fire('Great', data.message, 'success');
                 } 
-            }
         }
         bootstrap()
-        return () => { ignore = true };
     },[reload, id])
 
     return (

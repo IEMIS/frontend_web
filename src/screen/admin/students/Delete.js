@@ -53,15 +53,16 @@ export default function Delete(props) {
         const bootstrap = async ()=>{
             const Auth = await isAuthenticated()
             const data = await remove(id, Auth.token);
+            console.log({data})
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
-                seterror(true)
-                return
+                return seterror(true)
+                
             }
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
-                seterror(true)
-                return
+                return seterror(true)
+                
             }
             if(data.message){
                 setRedirectToPage(true);

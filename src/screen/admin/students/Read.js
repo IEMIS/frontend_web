@@ -73,7 +73,7 @@ export default function Read() {
 
     let columun = [
         "edulevel",
-        "fromSchool[0].names",
+        `fromSchool[0].names`,
         "firstName",
         "lastName",
         "status",
@@ -167,7 +167,6 @@ export default function Read() {
                 </Aux>
             )        
         }else{
-            /*
             return (
                 <Aux>
                     <Row>
@@ -183,7 +182,6 @@ export default function Read() {
                     </Row>
                 </Aux>
             )
-            */
         }
     }
     
