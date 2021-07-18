@@ -203,34 +203,38 @@ export default function One() {
 
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Middle Name</Form.Label>
-                          <Form.Control type="text" value={middleName} />
+                          <Form.Control
+                            type="text"
+                            value={middleName}
+                            disabled
+                          />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Last Name </Form.Label>
-                          <Form.Control type="text" value={lastName} />
+                          <Form.Control type="text" value={lastName} disabled />
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
                           <Form.Label>Religion</Form.Label>
-                          <Form.Control type="text" value={religion} />
+                          <Form.Control type="text" value={religion} disabled />
                         </Form.Group>
                       </Form>
                     </Col>
                     <Col md={6}>
                       <Form.Group controlId="formBasicEmail">
                         <Form.Label>Education Level </Form.Label>
-                        <Form.Control type="text" value={edulevel} />
+                        <Form.Control type="text" value={edulevel} disabled />
                       </Form.Group>
                       <Form.Group controlId="formBasicEmail">
                         <Form.Label>Country</Form.Label>
-                        <Form.Control type="text" value={country} />
+                        <Form.Control type="text" value={country} disabled />
                       </Form.Group>
                       <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Ethnicity </Form.Label>
-                        <Form.Control type="text" value={ethnicity} />
+                        <Form.Control type="text" value={ethnicity} disabled />
                       </Form.Group>
                       <Form.Group controlId="formBasicPassword">
                         <Form.Label>District</Form.Label>
-                        <Form.Control type="text" value={district} />
+                        <Form.Control type="text" value={district} disabled />
                       </Form.Group>
                     </Col>
                   </Row>
