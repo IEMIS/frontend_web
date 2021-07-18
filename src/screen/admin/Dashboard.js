@@ -117,6 +117,50 @@ class Dashboard extends React.Component {
                         </Col>
                     </Row>
                     <Row>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>School by District</h5>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Link to="/admin/district">
+                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count"  />
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>School by Category</h5>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Link to="/admin/schools">
+                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByCat} x="_id" y="count"  />
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>School by Education Level</h5>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                  <Link to="/admin/schools">
+                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByEduLevel} x="_id" y="count"  />
+                                  </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row>
                         <Col md={12} xl={12}>
                             <Card className='Recent-Users'>
                                 <Card.Header>

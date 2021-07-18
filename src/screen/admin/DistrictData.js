@@ -49,7 +49,7 @@ class DistrictData extends React.Component {
     
 
     render() {
-        const {countbygender, countbyclass,countbyownership,countTeachbySchool,school,student, loading} = this.state;
+        const { countbyclass,countTeachbySchool,school,student, loading} = this.state;
         console.log({school, student, loading})
 
         if(loading){
@@ -211,6 +211,50 @@ class DistrictData extends React.Component {
                                   <Link to="/admin/schools">
                                       {/* multiplebar chart is appropriate and should be disaggregate by gender */}
                                     <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByYear} x="_id" y="count"  />
+                                  </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>School by District</h5>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Link to="/admin/district">
+                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count"  />
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>School by Category</h5>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Link to="/admin/schools">
+                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByCat} x="_id" y="count"  />
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>School by Education Level</h5>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                  <Link to="/admin/schools">
+                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByEduLevel} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
                             </Card>
