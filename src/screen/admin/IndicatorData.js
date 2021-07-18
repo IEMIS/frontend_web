@@ -51,11 +51,11 @@ class IndicatorData extends React.Component {
     
 
     render() {
-        const {countbygender, countbyclass,countbyownership,countTeachbySchool} = this.state;
-        ///console.log({countbygender, countbyownership, countbyclass, countTeachbySchool})
+        const {countbygender, countbyownership,countTeachbySchool} = this.state;
+        ///console.log({countbygender, countbyownership, countbyclass,countbyclass, countTeachbySchool})
         return (
             <Aux>
-                                  <Row>
+                    <Row>
                         <Col md={4} xl={4}>
                             <Card>
                                 <Card.Header>
