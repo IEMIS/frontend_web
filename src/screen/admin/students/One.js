@@ -1,172 +1,285 @@
-import React from 'react';
-import {Row, Col, Card, Button} from 'react-bootstrap';
+import React from "react";
+import { Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Link, useParams, Redirect } from "react-router-dom";
+import Swal from "sweetalert2";
+
+import { read } from "./api";
 import Aux from "../../../hoc/_Aux";
-import Swal from 'sweetalert2'
-import { read} from './api';
-import { useParams, Redirect } from "react-router-dom";
-import { isAuthenticated } from '../../Auth/admin/api';
+import { isAuthenticated } from "../../Auth/admin/api";
+import { data } from "jquery";
 
 export default function One() {
-    let { id } = useParams();
-    const [values, setValues] = React.useState({
-           studentCode:"",
-            school:"",
-            parent:"",
-            stream:"",
-            firstName:"",
-            middleName:"",
-            lastName:"",
-            religion:"",
-            gender:"",
-            dob:"",
-            country:"",
-            ethnicity:"",
-            disability:"",
-            yearAdmission:"",
-            presentClass:"",
-            HadEce:"",
-            subject:"",
-            status:"",
-            session:"",
-            province:"",
-            class:"",
-            edulevel:"",
-            age:"",
-            district:"",
-            loading:false,
-            loadingBtn:false,
-            error:false,
-            reload:false,
-            redirectToPage:false,
-            schoolList:[],
-            parentList:[],
-            subjectList:[],
-            sessionList:[],
-            classList:[],
-    })
-    const {school, parent, presentClass, firstName, lastName,middleName, gender,religion,ethnicity,yearAdmission,subject,province, dob,country, disability,eduLevel,age,  status, session,  error, loading, reload, redirectToPage} = values
+  let { id } = useParams();
 
-    const redirectUser = () => {
-        if (redirectToPage){
-            return <Redirect to="/admin/students/read" />
-        }
-    };
+  const [values, setValues] = React.useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    religion: "",
+    edulevel: "",
+    country: "",
+    ethnicity: "",
+    district: "",
+    loading: false,
+    loadingBtn: false,
+    redirectToPage: false,
+    error: false,
+    reload: false,
+    datas:'',
+  });
 
-    const isLoading= () => {
-        if(loading){
-            return (
-                <Aux>
-                    <Row>
-                        <Col>
-                        <Card>
-                            <Card.Header>
-                                <Card.Title as="h5">Wait !!!.</Card.Title>
-                            </Card.Header>
-                            <Card.Body>
-                                <Row>
-                                    <Col>
-                                        <h1>Requesting for Sttudent  data</h1>
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        </Card>
-                        </Col>
-                    </Row>
-                </Aux>
-            )
-        }
-    };
+  const {
+    firstName,
+    middleName,
+    lastName,
+    religion,
+    edulevel,
+    country,
+    ethnicity,
+    district,
+    error,
+    loading,
+    reload,
+    redirectToPage,
+    datas
+  } = values;
 
-    const isError = () => {
-        if(error){
-            return (
-                <Aux>
-                    <Row>
-                        <Col>
-                        <Card>
-                            <Card.Header>
-                                <Card.Title as="h5">Error in reading this student</Card.Title>
-                            </Card.Header>
-                            <Card.Body>
-                                <Row>
-                                    <Col>
-                                        <h1>Student data failed to read, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        </Card>
-                        </Col>
-                    </Row>
-                </Aux>
-            )
-        }
-    };
-
-    const handleReload = event =>{
-        event.preventDefault();
-        setValues({...values, loading:false, error:false, reload:!reload})
-    }
-
-    React.useEffect(() => {
-        const bootstrap = async ()=>{
-            const Auth = isAuthenticated();
-            setValues(v => ({...v, loading:true}))
-            const data = await read(id, Auth.token);
-            if(!data){
-                Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error');
-                setValues(v => ({...v, loading:false, error:true}))  
-                 return  
-            }
-            if(data.error){
-                Swal.fire('Oops...', data.error, 'error')
-                setValues(v => ({...v, loading:false, error:true})) 
-                return 
-            }
-            if(data.message){
-                setValues(v => ({...v, loading:false, error:false, firstName:data.data.firstName, lastName:data.data.lastName, phone:data.data.phone, middleName:data.data.middleName, email:data.data.email, level:data.data.level}))
-                let Toast = Swal.mixin({
-                    toast: true,
-                    timerProgressBar: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
-                });
-                return Toast.fire({
-                        showClass: true,
-                        type: 'success',
-                        title: data.message
-                })
-            }  
-        }
-        bootstrap()
-    },[reload, id])
-
-    const Back = async ()=>{
-        setValues({...values, redirectToPage:true })
-    }
-    return (
+  const isLoading = () => {
+    if (loading) {
+      return (
         <Aux>
-            {redirectUser()}
-            {isError()}
-            {isLoading()}
-            <Row>
-                <Col>
-                    <Card.Header>
-                        <Card.Title><Button variant="outline-primary" onClick={Back}>Back..</Button>  </Card.Title>
-                    </Card.Header>
-                </Col>
-            </Row>
-            <Row>
+          <Row>
+            <Col>
+              <Card>
+                <Card.Header>
+                  <Card.Title as="h5">Wait !!!.</Card.Title>
+                </Card.Header>
                 <Card.Body>
-                <Col>School Name : {school}</Col><Col>Parent : {parent}</Col><Col>Present Class : {presentClass}</Col> 
-                <Col>First Name : {firstName}</Col><Col>Middle Name : {middleName}</Col><Col>Last Name : {lastName}</Col>
-                <Col>Religion : {religion}</Col><Col>Gender {gender}</Col><Col>Date of Birth : {dob}</Col>
-                <Col>Ethnicity : {ethnicity}</Col><Col>Nationality : {country}</Col><Col>Disability : {disability}</Col>
-                <Col>Admission Year : {yearAdmission}</Col><Col>Subject : {subject}</Col><Col>Studentship : {status}</Col>
-                <Col>Age : {age}</Col><Col>Education Level : {eduLevel}</Col><Col>Province: {province}</Col>
-                <Col>Academic Session: {session}</Col>
+                  <Row>
+                    <Col>
+                      <h1>Requesting for Student data</h1>
+                    </Col>
+                  </Row>
                 </Card.Body>
-            </Row>
+              </Card>
+            </Col>
+          </Row>
         </Aux>
-    )
+      );
+    }
+  };
+  const isError = () => {
+    if (error) {
+      return (
+        <Aux>
+          <Row>
+            <Col>
+              <Card>
+                <Card.Header>
+                  <Card.Title as="h5">Error in reading this user .</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <h1>
+                        failed to read student data, Try again{" "}
+                        <Button variant="primary" onClick={handleReload}>
+                          Reload
+                        </Button>{" "}
+                      </h1>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Aux>
+      );
+    }
+  };
+
+  const handleReload = (event) => {
+    event.preventDefault();
+    setValues({ ...values, loading: false, error: false, reload: !reload });
+  };
+
+  const redirectUser = () => {
+    if (redirectToPage) {
+      return <Redirect to="/admin/students/read" />;
+    }
+  };
+
+  React.useEffect(() => {
+    const bootstrap = async () => {
+      const Auth = await isAuthenticated();
+      setValues((v) => ({ ...v, loading: true }));
+      const data = await read(id, Auth.token);
+        if (!data) {
+          Swal.fire(
+            "Oops...",
+            "internet server error, Please, check your network connection",
+            "error"
+          );
+          return setValues((v) => ({ ...v, loading: false, error: true }));
+        }
+        if (data.error) {
+          Swal.fire("Oops...", data.error, "error");
+          return setValues((v) => ({ ...v, loading: false, error: true }));
+        }
+
+        if (data.message) {
+          const {
+            firstName,
+            middleName,
+            lastName,
+            religion,
+            edulevel,
+            country,
+            ethnicity,
+            district,
+          } = data.data[0];
+          //const load = Object.assign({}, data.data)
+          //console.log(load)
+          setValues((v) => ({
+            ...v,
+            loading: false,
+            error: false,
+            firstName,
+            middleName,
+            lastName,
+            religion,
+            edulevel,
+            country,
+            ethnicity,
+            district,
+            datas:data.data
+          }));
+          //return Swal.fire("Great", data.message, "success");
+        }
+    };
+    bootstrap();
+  }, [reload, id]);
+
+  console.log(datas)
+
+  if(loading){
+    return isLoading()
+  }
+  const ViewData = () =>{
+    if(datas && datas.length > 0){
+      let dat = datas[0]
+      return(
+        <>
+          <Row>
+            <Col>
+              <Card.Header>
+                <Card.Title>
+                  <Link to="/admin/students/read"> Read Student  </Link>
+                </Card.Title>
+              </Card.Header>
+            </Col>
+          </Row>
+          <Row>
+              <Col>
+                <Card>
+                  <Card.Header>
+                    <Card.Title as="h3">Single Student Details</Card.Title>
+                  </Card.Header>
+                  <Card.Body>
+                    <Row>
+                      <Col md={6}>
+                        <Form>
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control
+                            type="text"
+                            value={dat.middleName}
+                            disabled
+                            />
+                          </Form.Group>
+
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Middle Name</Form.Label>
+                            <Form.Control
+                              type="text"
+                              value={dat.middleName}
+                              disabled
+                            />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Last Name </Form.Label>
+                            <Form.Control type="text" value={dat.lastName} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Religion</Form.Label>
+                            <Form.Control type="text" value={dat.religion} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Class</Form.Label>
+                            <Form.Control type="text" value={dat.fromClass[0].names} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>School</Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].names} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>School Owner</Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].ownership} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>School Type</Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].schoolType} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>School Category </Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].schoolCat} disabled />
+                          </Form.Group>
+                        </Form>
+                      </Col>
+                      <Col md={6}>
+                        <Form.Group controlId="formBasicEmail">
+                          <Form.Label>Education Level </Form.Label>
+                          <Form.Control type="text" value={dat.edulevel} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicEmail">
+                          <Form.Label>Country</Form.Label>
+                          <Form.Control type="text" value={dat.country} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                          <Form.Label>Ethnicity </Form.Label>
+                          <Form.Control type="text" value={dat.ethnicity} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                          <Form.Label>District</Form.Label>
+                          <Form.Control type="text" value={dat.fromDistrict[0].names} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>District Phone</Form.Label>
+                            <Form.Control type="text" value={dat.fromDistrict[0].phone} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>District Address</Form.Label>
+                            <Form.Control type="text" value={dat.fromDistrict[0].address} disabled />
+                        </Form.Group>
+                        
+                      </Col>
+                      <hr />
+                    </Row>
+                  </Card.Body>
+                </Card>
+              </Col>
+          </Row>
+        </>
+      )
+    }
+    return ''
+  }
+
+  return (
+    <Aux>
+      {redirectUser()}
+      {isError()}
+      {loading ? isLoading() : ViewData()}
+    </Aux>
+  );
 }
