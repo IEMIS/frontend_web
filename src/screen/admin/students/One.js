@@ -160,7 +160,7 @@ export default function One() {
     bootstrap();
   }, [reload, id]);
 
-  //console.log(datas)
+  console.log(datas)
 
   if(loading){
     return isLoading()
@@ -228,11 +228,11 @@ export default function One() {
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School Type</Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool[0].type} disabled />
+                            <Form.Control type="text" value={dat.fromSchool[0].schoolType} disabled />
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School Category </Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool[0].cat} disabled />
+                            <Form.Control type="text" value={dat.fromSchool[0].schoolCat} disabled />
                           </Form.Group>
                         </Form>
                       </Col>
@@ -255,8 +255,13 @@ export default function One() {
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>District Phone</Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool[0].phone} disabled />
-                          </Form.Group>
+                            <Form.Control type="text" value={dat.fromDistrict[0].phone} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>District Address</Form.Label>
+                            <Form.Control type="text" value={dat.fromDistrict[0].address} disabled />
+                        </Form.Group>
+                        
                       </Col>
                       <hr />
                     </Row>
