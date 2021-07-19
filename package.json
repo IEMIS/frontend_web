@@ -41,7 +41,7 @@
     "clean": "npx rimraf build",
     "dev-build": "npm run clean && npm run build && node server",
     "heroku-postbuild": "npm run clean && npm run build",
-    "start": "react-scripts start"
+    "start": "node server"
   },
   "eslintConfig": {
     "extends": "react-app"

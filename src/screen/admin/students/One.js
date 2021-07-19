@@ -41,10 +41,6 @@ export default function One() {
     redirectToPage,
   } = values;
 
-  const handleChange = (name) => (event) => {
-    setValues({ ...values, [name]: event.target.value });
-  };
-
   const isLoading = () => {
     if (loading) {
       return (
@@ -103,6 +99,7 @@ export default function One() {
     event.preventDefault();
     setValues({ ...values, loading: false, error: false, reload: !reload });
   };
+
   const redirectUser = () => {
     if (redirectToPage) {
       return <Redirect to="/admin/students/read" />;
@@ -110,12 +107,11 @@ export default function One() {
   };
 
   React.useEffect(() => {
-    let ignore = false;
     const bootstrap = async () => {
       const Auth = await isAuthenticated();
       setValues((v) => ({ ...v, loading: true }));
       const data = await read(id, Auth.token);
-      if (!ignore) {
+      console.log({data})
         if (!data) {
           Swal.fire(
             "Oops...",
@@ -157,12 +153,9 @@ export default function One() {
           }));
           return Swal.fire("Great", data.message, "success");
         }
-      }
+      
     };
     bootstrap();
-    return () => {
-      ignore = true;
-    };
   }, [reload, id]);
 
   return (
