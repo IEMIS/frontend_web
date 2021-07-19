@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { read } from "./api";
 import Aux from "../../../hoc/_Aux";
 import { isAuthenticated } from "../../Auth/admin/api";
+import { data } from "jquery";
 
 export default function One() {
   let { id } = useParams();
@@ -24,6 +25,7 @@ export default function One() {
     redirectToPage: false,
     error: false,
     reload: false,
+    datas:'',
   });
 
   const {
@@ -39,6 +41,7 @@ export default function One() {
     loading,
     reload,
     redirectToPage,
+    datas
   } = values;
 
   const isLoading = () => {
@@ -111,20 +114,17 @@ export default function One() {
       const Auth = await isAuthenticated();
       setValues((v) => ({ ...v, loading: true }));
       const data = await read(id, Auth.token);
-      console.log({data})
         if (!data) {
           Swal.fire(
             "Oops...",
             "internet server error, Please, check your network connection",
             "error"
           );
-          setValues((v) => ({ ...v, loading: false, error: true }));
-          return;
+          return setValues((v) => ({ ...v, loading: false, error: true }));
         }
         if (data.error) {
           Swal.fire("Oops...", data.error, "error");
-          setValues((v) => ({ ...v, loading: false, error: true }));
-          return;
+          return setValues((v) => ({ ...v, loading: false, error: true }));
         }
 
         if (data.message) {
@@ -137,7 +137,9 @@ export default function One() {
             country,
             ethnicity,
             district,
-          } = data.data;
+          } = data.data[0];
+          //const load = Object.assign({}, data.data)
+          //console.log(load)
           setValues((v) => ({
             ...v,
             loading: false,
@@ -150,93 +152,129 @@ export default function One() {
             country,
             ethnicity,
             district,
+            datas:data.data
           }));
-          return Swal.fire("Great", data.message, "success");
+          //return Swal.fire("Great", data.message, "success");
         }
-      
     };
     bootstrap();
   }, [reload, id]);
 
-  return (
-    <Aux>
-      {redirectUser()}
-      {isError()}
-      {loading ? (
-        isLoading()
-      ) : (
+  //console.log(datas)
+
+  if(loading){
+    return isLoading()
+  }
+  const ViewData = () =>{
+    if(datas && datas.length > 0){
+      let dat = datas[0]
+      return(
         <>
           <Row>
             <Col>
               <Card.Header>
                 <Card.Title>
-                  <Link to="/admin/students/read"> Read Student </Link>
+                  <Link to="/admin/students/read"> Read Student  </Link>
                 </Card.Title>
               </Card.Header>
             </Col>
           </Row>
           <Row>
-            <Col>
-              <Card>
-                <Card.Header>
-                  <Card.Title as="h3">Single Student Details</Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <Row>
-                    <Col md={6}>
-                      <Form>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Label>First Name</Form.Label>
-                          <Form.Control
+              <Col>
+                <Card>
+                  <Card.Header>
+                    <Card.Title as="h3">Single Student Details</Card.Title>
+                  </Card.Header>
+                  <Card.Body>
+                    <Row>
+                      <Col md={6}>
+                        <Form>
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control
                             type="text"
-                            value={firstName}
+                            value={dat.middleName}
                             disabled
-                          />
-                        </Form.Group>
+                            />
+                          </Form.Group>
 
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Middle Name</Form.Label>
+                            <Form.Control
+                              type="text"
+                              value={dat.middleName}
+                              disabled
+                            />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Last Name </Form.Label>
+                            <Form.Control type="text" value={dat.lastName} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Religion</Form.Label>
+                            <Form.Control type="text" value={dat.religion} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Class</Form.Label>
+                            <Form.Control type="text" value={dat.fromClass[0].names} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>School</Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].names} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>School Owner</Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].ownership} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>School Type</Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].type} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Label>School Category </Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].cat} disabled />
+                          </Form.Group>
+                        </Form>
+                      </Col>
+                      <Col md={6}>
                         <Form.Group controlId="formBasicEmail">
-                          <Form.Label>Middle Name</Form.Label>
-                          <Form.Control
-                            type="text"
-                            value={middleName}
-                            disabled
-                          />
+                          <Form.Label>Education Level </Form.Label>
+                          <Form.Control type="text" value={dat.edulevel} disabled />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
-                          <Form.Label>Last Name </Form.Label>
-                          <Form.Control type="text" value={lastName} disabled />
+                          <Form.Label>Country</Form.Label>
+                          <Form.Control type="text" value={dat.country} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                          <Form.Label>Ethnicity </Form.Label>
+                          <Form.Control type="text" value={dat.ethnicity} disabled />
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
-                          <Form.Label>Religion</Form.Label>
-                          <Form.Control type="text" value={religion} disabled />
+                          <Form.Label>District</Form.Label>
+                          <Form.Control type="text" value={dat.fromDistrict[0].names} disabled />
                         </Form.Group>
-                      </Form>
-                    </Col>
-                    <Col md={6}>
-                      <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Education Level </Form.Label>
-                        <Form.Control type="text" value={edulevel} disabled />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Country</Form.Label>
-                        <Form.Control type="text" value={country} disabled />
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Ethnicity </Form.Label>
-                        <Form.Control type="text" value={ethnicity} disabled />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicPassword">
-                        <Form.Label>District</Form.Label>
-                        <Form.Control type="text" value={district} disabled />
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-            </Col>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>District Phone</Form.Label>
+                            <Form.Control type="text" value={dat.fromSchool[0].phone} disabled />
+                          </Form.Group>
+                      </Col>
+                      <hr />
+                    </Row>
+                  </Card.Body>
+                </Card>
+              </Col>
           </Row>
         </>
-      )}
+      )
+    }
+    return ''
+  }
+
+  return (
+    <Aux>
+      {redirectUser()}
+      {isError()}
+      {loading ? isLoading() : ViewData()}
     </Aux>
   );
 }
