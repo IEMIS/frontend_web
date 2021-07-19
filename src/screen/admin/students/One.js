@@ -242,22 +242,34 @@ export default function One() {
                           <Form.Control type="text" value={dat.edulevel} disabled />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
-                          <Form.Label>Country</Form.Label>
+                          <Form.Label>Nationality</Form.Label>
                           <Form.Control type="text" value={dat.country} disabled />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>Ethnicity </Form.Label>
                           <Form.Control type="text" value={dat.ethnicity} disabled />
                         </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                          <Form.Label>Studentship </Form.Label>
+                          <Form.Control type="text" value={dat.status} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>District</Form.Label>
                           <Form.Control type="text" value={dat.fromDistrict[0].names} disabled />
                         </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                          <Form.Label>Date of Birth</Form.Label>
+                          <Form.Control type="text" value={dat.dob} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                          <Form.Label>Age</Form.Label>
+                          <Form.Control type="text" value={dat.age} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label>District Phone</Form.Label>
                             <Form.Control type="text" value={dat.fromDistrict[0].phone} disabled />
                         </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
+                        <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label>District Address</Form.Label>
                             <Form.Control type="text" value={dat.fromDistrict[0].address} disabled />
                         </Form.Group>
