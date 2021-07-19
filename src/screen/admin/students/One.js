@@ -44,7 +44,7 @@ export default function One() {
             sessionList:[],
             classList:[],
     })
-    const {school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session,  error, loading, reload, redirectToPage, loadingBtn} = values
+    const {school, parent, presentClass, firstName, lastName,middleName, gender,religion,ethnicity,yearAdmission,subject,province, dob,country, disability,eduLevel,age,  status, session,  error, loading, reload, redirectToPage} = values
 
     const redirectUser = () => {
         if (redirectToPage){
@@ -164,6 +164,7 @@ export default function One() {
                 <Col>Ethnicity : {ethnicity}</Col><Col>Nationality : {country}</Col><Col>Disability : {disability}</Col>
                 <Col>Admission Year : {yearAdmission}</Col><Col>Subject : {subject}</Col><Col>Studentship : {status}</Col>
                 <Col>Age : {age}</Col><Col>Education Level : {eduLevel}</Col><Col>Province: {province}</Col>
+                <Col>Academic Session: {session}</Col>
                 </Card.Body>
             </Row>
         </Aux>

@@ -2,8 +2,8 @@ import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
-import {Redirect, Link, useParams} from 'react-router-dom'
-import { read, edit, readsSchool } from './api';
+import {Redirect, useParams} from 'react-router-dom'
+import { read, edit, readsSchool,readsClass,readsSession,readsParent,readsSubject } from './api';
 import {isAuthenticated} from '../../Auth/admin/api'
 
 export default function Edit() {
@@ -43,18 +43,20 @@ export default function Edit() {
             subjectList:[],
             sessionList:[],
             classList:[],
+            token:''
     })
-    const {school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session,  error, loading, reload, redirectToPage, loadingBtn} = values
+    const {school, presentClass, firstName, lastName,middleName, gender,religion,yearAdmission,HadEce,subject,province,ethnicity,  dob,country, disability,eduLevel,age,  status, session, parent,district,schoolList,parentList, classList,subjectList, sessionList,error, loading, loadingBtn, reload, redirectToPage} = values
 
-    const handleChange = name=>event=>{s
+    const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
     }
+    
 
     const submit = event =>{
         event.preventDefault();
-        setValues({...values, loading:true})
+        setValues({...values, loadingBtn:true})
         if(school===""){ 
-            this.setState({ loading:false})
+            this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'School is required', 'error');
         }
         /*
@@ -64,7 +66,7 @@ export default function Edit() {
         }
         */
         if(presentClass===""){ 
-            this.setState({ loading:false})
+            this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'Present Class is required', 'error');
         }
         /*
@@ -74,43 +76,43 @@ export default function Edit() {
         }
         */
         if(firstName===""){ 
-            this.setState({loading:false})
+            this.setState({loadingBtn:false})
             return Swal.fire('Oops...', 'First Name  is required', 'error');
         }
         if(lastName===""){ 
-            this.setState({loading:false})
+            this.setState({loadingBtn:false})
             return Swal.fire('Oops...', 'Last Name is required', 'error');
         }
         if(gender===""){ 
-            this.setState({ loading:false})
+            this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'Gender is required', 'error');
         }
         if(dob===""){ 
-            this.setState({ loading:false})
+            this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'Date of Birth is required', 'error');
         }
         if(country===""){ 
-            this.setState({ loading:false})
+            this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'Country is required', 'error');
         }
         if(disability===""){ 
-            this.setState({ loading:false})
+            this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'Disability is required', 'error');
         }
         if(status===""){ 
-            this.setState({ loading:false})
+            this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'Studentship status is required', 'error');
         }
         if(session===""){ 
-            this.setState({ loading:false})
+            this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'Academic session is required', 'error');
         }
         handleUpdate();
     }
 
     const handleUpdate =async ()=>{
-        const Auth = await isAuthenticated();
-        const student = {school,edulevel, district, parent,presentClass, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity}
+        const student = {school,eduLevel, district, parent,presentClass, firstName, middleName, lastName, gender,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity}
+        const Auth = isAuthenticated();
         const data = await edit(id,student, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -144,37 +146,120 @@ export default function Edit() {
             return <Redirect to="/admin/students/read" />
         }
     };
+    const isLoading= () => {
+        if(loading){
+            return (
+                <Aux>
+                    <Row>
+                        <Col>
+                        <Card>
+                            <Card.Header>
+                                <Card.Title as="h5">Wait !!!.</Card.Title>
+                            </Card.Header>
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                        <h1>Requesting for student data</h1>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                        </Col>
+                    </Row>
+                </Aux>
+            )
+        }
+    };
+    const isError = () => {
+        if(error){
+            return (
+                <Aux>
+                    <Row>
+                        <Col>
+                        <Card>
+                            <Card.Header>
+                                <Card.Title as="h5">Error in reading this student .</Card.Title>
+                            </Card.Header>
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                        <h1>failed to read student data, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                        </Col>
+                    </Row>
+                </Aux>
+            )
+        }
+    };
+    const handleReload = event =>{
+        event.preventDefault();
+        setValues({...values, loading:false, error:false, reload:!reload})
+    }
 
     React.useEffect(() => {
+        //let ignore = false;
         const bootstrap = async () =>{
-            const Auth = await isAuthenticated()
+            const Auth = isAuthenticated();
+            setValues(v => ({...v, loading:true}))
             const scho = await readsSchool(Auth.token);
-            const stud = await read(id,Auth.token);
+            const cla = await readsClass(Auth.token);
+            const par = await readsParent(Auth.token);
+            const subj = await readsSubject(Auth.token);
+            const sess = await readsSession(Auth.token);
+
+            const data = await read(id,Auth.token);
+           // if (!ignore){
+            if(!data){
+                Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error');
+                setValues(v => ({...v, loading:false, error:true}))  
+                return  
+            }
+            if(data.error){
+                Swal.fire('Oops...', data.error, 'error')
+                setValues(v => ({...v, loading:false, error:true})) 
+                return 
+            }
+    
+            if(data.message){
+                //const {school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session } = data.data;
+                setValues(v => ({...v, loading:false, error:false, schoolList:scho.data,parentList:par.data,sessionList:sess.data,classList:cla.data,subjectList:subj.data, school:data.data.school, presentClass:data.data.presentClass, firstName:data.data.firstName, lastName:data.data.lastName, gender:data.data.gender,  dob:data.data.dob,country:data.data.country, disability:data.data.disability,eduLevel:data.data.eduLevel,age:data.data.age,  status:data.data.status, session:data.data.session }))
+                let Toast = Swal.mixin({
+                    toast: true,
+                    timerProgressBar: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                return Toast.fire({
+                    showClass: true,
+                    type: 'success',
+                    title: data.message
+                })
+            } 
             //console.log({stud})
-            const {school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session} = stud
-            setValues(v => ({...v, schoolList:scho.data, school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session})); 
-        }
-        bootstrap()
-    }, [id])
+           // const {school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session} = stud
+           // setValues(v => ({...v, schoolList:scho.data, school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session})); 
+    }
+    bootstrap()
+   // return () => { ignore = true };
+},[reload, id])
 
     return (
         <Aux>
         {redirectUser()}
-        <Row>
+        {isError()}
+        {loading ? isLoading() :
+                <Row>
                     <Col>
-                        <Card.Header>
-                            <Card.Title><Link to="/admin/students/read" > Read Students </Link></Card.Title>
-                        </Card.Header>
-                    </Col>
-        </Row>
-        <Row>
-                <Col>
-                    <Card>
-                        <Card.Header>
-                            <Card.Title as="h3">Update Student</Card.Title>
-                        </Card.Header>
-                        <Card.Body>
-                            <Row>
+                        <Card>
+                            <Card.Header>
+                                <Card.Title as="h3">Update the Student data</Card.Title>
+                            </Card.Header>
+                                <Card.Body>
+                                    <Row>
                                 <Col md={6}>
                                     <Form>
                                         {/*<Form.Group controlId="formBasicEmail">
@@ -375,11 +460,13 @@ export default function Edit() {
                                                 loadingBtn ? <Button variant="outline-secondary"  disable> wait.... </Button>:<Button variant = "primary" onClick={submit}  >Update Student ..</Button>
                                             }  
                                 </Col>
-                            </Row>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-    </Aux>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            }
+        </Aux>
     )
 }
+

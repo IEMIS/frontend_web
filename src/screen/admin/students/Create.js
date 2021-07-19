@@ -88,11 +88,8 @@ export default class Create extends Component {
 
     submit = event =>{
         event.preventDefault();
-<<<<<<< HEAD
-        const { school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,status, session } = this.state;
-=======
-        const { school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
->>>>>>> c8b650259dfd78b44df883dd68073236b73ddd06
+        //const { school, presentClass, firstName, lastName, gender,  dob,country, disability,eduLevel,age,status, session } = this.state;
+ const { school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
         this.setState({loading:true})
         if(school===""){ 
             this.setState({ loading:false})
