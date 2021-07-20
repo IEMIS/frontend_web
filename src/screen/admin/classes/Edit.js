@@ -185,7 +185,7 @@ export default function Edit() {
                                                 </Form.Group>
 
                                                 {
-                                                    loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update Admin Data ..</Button>
+                                                    loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update Class Data ..</Button>
                                                 }
                                             </Form>
                                         </Col>

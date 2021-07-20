@@ -88,7 +88,8 @@ export default class Create extends Component {
 
     submit = event =>{
         event.preventDefault();
-        const { school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
+        //const { school, presentClass, firstName, lastName, gender,  dob,country, disability,eduLevel,age,status, session } = this.state;
+ const { school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
         this.setState({loading:true})
         if(school===""){ 
             this.setState({ loading:false})
@@ -301,9 +302,9 @@ export default class Create extends Component {
                                     </Col>
                                     <Col md={6}>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Country</Form.Label>
+                                            <Form.Label>Nationality</Form.Label>
                                             <Form.Control as="select" onChange={this.handleChange("country")} value={country}>
-                                                <option>Select Country</option>
+                                                <option>Nationality</option>
                                                 <option value="Fijian">Fijian Citizen</option>
                                                 <option value="International">International</option>
                                                 <option value="Regional">Regional</option>
