@@ -193,7 +193,7 @@ export default function One() {
                             <Form.Label>First Name</Form.Label>
                             <Form.Control
                             type="text"
-                            value={dat.middleName}
+                            value={dat.firstName}
                             disabled
                             />
                           </Form.Group>
