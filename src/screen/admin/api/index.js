@@ -1,6 +1,8 @@
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin";
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin";
 //const BASE_URL = "localhost:9000/api/v1";
-//const BASE_URL = "http://localhost:9000/api/v1/admin" 
+const BASE_URL = "http://localhost:9000/api/v1/admin" 
+
+
 
 export const studentData = async (token)=>{
     try{
@@ -19,10 +21,80 @@ export const studentData = async (token)=>{
     }catch(e){console.log(e)}
 }
 
+export const studentDataByDistrict = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/student/data/student/district`,{
+            method:'POST',
+            body:JSON.stringify(user),
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const studentDataByDistrictBySession = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/student/data/student/district/session`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const districtL = async (token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/district`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
 export const schoolData = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/school/data/school`,{
             method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const schoolDataByDistrict = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/school/data/school/district`,{
+            method:'POST',
+            body:JSON.stringify(user),
             headers:{
                 'Content-Type':'application/json',
                 accept:'application/json',

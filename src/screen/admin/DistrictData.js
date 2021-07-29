@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
-import { countStudentByClass, countTeacherBySchool, studentData, schoolData} from "./api"
+import { countStudentByClass, countTeacherBySchool, studentData, schoolData, districtL, studentDataByDistrict, schoolDataByDistrict} from "./api"
 import Aux from "../../hoc/_Aux";
 
 class DistrictData extends React.Component {
@@ -23,6 +23,8 @@ class DistrictData extends React.Component {
             countTeachbySchool:[],
             school:'',
             student:'',
+            district:"",
+            districtList:[],
             loading:false,
         }
     }
@@ -34,11 +36,26 @@ class DistrictData extends React.Component {
         const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
         const studentDa = await studentData(Auth.token);
         const schoolDa = await schoolData(Auth.token);
-        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data}) 
+        const distirct = await districtL(Auth.token)
+        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data }) 
         this.setState({loading:false}) 
     }
 
-    async componentDidUpdate(){
+    async componentDidUpdate(prevProps, prevState, snapshot){
+        const {district} = this.state;
+        const user = {district};
+        if(prevState.district !== district){
+            this.setState({loading:true})
+            const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
+            const countbyclass = await countStudentByClass(Auth.token)
+            const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+            const studentDa = await studentDataByDistrict(user, Auth.token);
+            const schoolDa = await schoolDataByDistrict(user, Auth.token);
+            //console.log({schoolDa})
+            //const dist = await districtL(Auth.token); districtList:distirct.data
+            this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data,  }) 
+            this.setState({loading:false}) 
+        }
 
     }
 
@@ -46,12 +63,15 @@ class DistrictData extends React.Component {
 
     }
 
+    handleChange = name=>event=>{
+        this.setState({[name]:event.target.value})
+    }
+
     
 
     render() {
-        const { countbyclass,countTeachbySchool,school,student, loading} = this.state;
-        console.log({school, student, loading})
-
+        const { countbyclass,countTeachbySchool,school,student, districtList, district, loading} = this.state;
+        //console.log({district})
         if(loading){
             return <h1>Loading ....</h1>
         }
@@ -69,12 +89,10 @@ class DistrictData extends React.Component {
                                 <Card.Body>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                         <Form.Label>District</Form.Label>
-                                        <Form.Control as="select">
-                                                <option>Select district</option>
-                                                <option>Select district</option>
+                                        <Form.Control as="select" onChange={this.handleChange("district")} value={district} >
                                                 <option>Select district</option>
                                                {
-                                                  /*
+                                                  
                                                    districtList && districtList.length > 0 
                                                    ?
                                                    districtList.map((dist, id)=>{
@@ -82,7 +100,7 @@ class DistrictData extends React.Component {
                                                         <option value={dist._id}>{dist.names}</option>
                                                        ) 
                                                    }) : <option value="0">Fails to fetch district</option>
-                                                   */
+                                                  
                                                }
                                         </Form.Control>
                                     </Form.Group>
@@ -90,7 +108,7 @@ class DistrictData extends React.Component {
                             </Card>
                         </Col>
                         <Col md={4} xl={4}>
-                            <Card>
+                            {/*<Card>
                                 <Card.Header>
                                     <Card.Title>
                                         Choose Session
@@ -100,25 +118,24 @@ class DistrictData extends React.Component {
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                         <Form.Label>Session</Form.Label>
                                         <Form.Control as="select">
-                                            {/*Use current session as default */}
                                                 <option>select session </option>
                                                 <option>2020 Academic Session</option>
                                                 <option>2019 Academic Session</option>
                                                {
-                                                  /*
-                                                   sessionList && sessionList.length > 0 
-                                                   ?
-                                                   sessionList.map((sess, id)=>{
-                                                       return(
-                                                        <option value={sess._id}>{sess.names}</option>
-                                                       ) 
-                                                   }) : <option value="0">Fails to fetch session</option>
-                                                   */
+                                                
+                                                //    sessionList && sessionList.length > 0 
+                                                //    ?
+                                                //    sessionList.map((sess, id)=>{
+                                                //        return(
+                                                //         <option value={sess._id}>{sess.names}</option>
+                                                //        ) 
+                                                //    }) : <option value="0">Fails to fetch session</option>
+                                                 
                                                }
                                         </Form.Control>
                                     </Form.Group>
                                 </Card.Body>
-                            </Card>
+                            </Card>*/}
                         </Col>
                     </Row>
                     <Row>
