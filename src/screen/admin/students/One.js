@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import { read } from "./api";
 import Aux from "../../../hoc/_Aux";
 import { isAuthenticated } from "../../Auth/admin/api";
-import { data } from "jquery";
 
 export default function One() {
   let { id } = useParams();
@@ -29,14 +28,6 @@ export default function One() {
   });
 
   const {
-    firstName,
-    middleName,
-    lastName,
-    religion,
-    edulevel,
-    country,
-    ethnicity,
-    district,
     error,
     loading,
     reload,
@@ -160,7 +151,7 @@ export default function One() {
     bootstrap();
   }, [reload, id]);
 
-  console.log(datas)
+  console.log({datas})
 
   if(loading){
     return isLoading()
