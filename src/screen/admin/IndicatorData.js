@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
-import {countStudentByGender, countStudentByClass, countSchoolByOwnership, countTeacherBySchool} from "./api"
+//import {countStudentByGender, countStudentByClass, countSchoolByOwnership, countTeacherBySchool} from "./api"
 import Aux from "../../hoc/_Aux";
 /*
 import DEMO from "../../store/constant";
@@ -32,11 +32,11 @@ class IndicatorData extends React.Component {
 
     async componentDidMount(){
       const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
-      const countbygen = await countStudentByGender(Auth.token)
-      const countbyowner = await countSchoolByOwnership(Auth.token)
-      const countbyclass = await countStudentByClass(Auth.token)
-      const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
-      this.setState({countbygender:countbygen.data, countbyownership:countbyowner.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data})
+    //   const countbygen = await countStudentByGender(Auth.token)
+    //   const countbyowner = await countSchoolByOwnership(Auth.token)
+    //   const countbyclass = await countStudentByClass(Auth.token)
+    //   const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+    //   this.setState({countbygender:countbygen.data, countbyownership:countbyowner.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data})
         
     }
 
