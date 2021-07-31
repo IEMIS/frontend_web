@@ -163,16 +163,15 @@ class SchoolData extends React.Component {
                                         <h5>Teacher by Type</h5>
                                     </Card.Title>
                                     <Card.Title>
-// <<<<<<< dev
                                         Total Schools :  {school.countSchool }
-// =======
-//                                         Total Teachers :  {
-//                                      true ? countbyownership.map((data, i)=>{
-//                                         let total = 0;
-//                                         total += data.count
-//                                         return total
-//                                     }):"data not available" }
-// >>>>>>> master
+
+                              {/*        Total Teachers :  {
+                                    true ? countbyownership.map((data, i)=>{
+                                      let total = 0;
+                                      total += data.count
+                                      return total
+                                  }):"data not available" }
+                            */} 
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
