@@ -90,6 +90,41 @@ export const schoolData = async (token)=>{
     }catch(e){console.log(e)}
 }
 
+export const studentDataBySchool = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/student/data/student/school`,{
+            method:'POST',
+            body:JSON.stringify(user),
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const schoolDetails = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/school/${user}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
 export const schoolDataByDistrict = async (user, token)=>{
     try{
         const response = await fetch(`${BASE_URL}/school/data/school/district`,{
@@ -107,6 +142,26 @@ export const schoolDataByDistrict = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
+export const schoolByDistrict = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/school/data/district`,{
+            method:'POST',
+            body:JSON.stringify(user),
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+
 
 // export const countStudentByGender = async (token)=>{
 //     try{

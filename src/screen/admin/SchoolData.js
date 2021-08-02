@@ -5,58 +5,72 @@ import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
-import { countStudentByClass, countTeacherBySchool, studentData, schoolData, districtL, studentDataByDistrict, schoolDataByDistrict} from "./api"
+import { countStudentByClass, countTeacherBySchool, studentData, schoolData, districtL, studentDataByDistrict, schoolDataByDistrict, schoolByDistrict, studentDataBySchool, schoolDetails} from "./api"
 import Aux from "../../hoc/_Aux";
 
 class SchoolData extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            countbygender:[],
-            countbydistrict:[],
-            countbyschool : [],
-            countbyeduLevel :[],
-            countbyownership:[],
-            countbytype: [],
-            countbycat : [],
+            // countbygender:[],
+            // countbydistrict:[],
+            // countbyschool : [],
+            // countbyeduLevel :[],
+            // countbyownership:[],
+            // countbytype: [],
+            // countbycat : [],
             countbyclass:[],
             countTeachbySchool:[],
+            schools:{},
+            students:'',
             school:'',
             student:'',
             district:"",
             districtList:[],
+            schoolList:[],
             loading:false,
         }
     }
 
     async componentDidMount(){
+        // this.setState({loading:true})
+        // const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
+        // const countbyclass = await countStudentByClass(Auth.token)
+        // const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+        // const distirct = await districtL(Auth.token)
+        // const studentDa = await studentData(Auth.token);
+        // const schoolDa = await schoolData(Auth.token); 
+        // this.setState({countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data, students:studentDa.data,schools:schoolDa.data,  })
+        // this.setState({loading:false}) 
+
         this.setState({loading:true})
         const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
+        // const school = "60ef9ddf0bd7840036e5bd9f"
         const countbyclass = await countStudentByClass(Auth.token)
         const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
-        const studentDa = await studentData(Auth.token);
-        const schoolDa = await schoolData(Auth.token);
         const distirct = await districtL(Auth.token)
-        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data }) 
+        const studentDa = await studentData(Auth.token);
+        // const schoolDe = await schoolDetails(school, Auth.token)
+        this.setState({countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data, students:studentDa.data })
         this.setState({loading:false}) 
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot){
-        const {district} = this.state;
-        const user = {district};
+        const {district,school} = this.state;
+        const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
+        const user = {district,school};
         if(prevState.district !== district){
-            this.setState({loading:true})
-            const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
-            const countbyclass = await countStudentByClass(Auth.token)
-            const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
-            const studentDa = await studentDataByDistrict(user, Auth.token);
-            const schoolDa = await schoolDataByDistrict(user, Auth.token);
-            //console.log({schoolDa})
-            //const dist = await districtL(Auth.token); districtList:distirct.data
-            this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data,  }) 
-            this.setState({loading:false}) 
+            const scho = await schoolByDistrict(user, Auth.token)
+            this.setState({schoolList:scho.data})
         }
 
+        if(prevState.school !== school){
+            this.setState({loading:true})
+            const studentDa = await studentDataBySchool(user, Auth.token);
+            const schoolDe = await schoolDetails(school, Auth.token)
+            this.setState({students:studentDa.data, schools:schoolDe.data[0], }) 
+            this.setState({loading:false}) 
+        }
     }
 
     async UNSAFE_componentWillUnmount(){
@@ -67,11 +81,15 @@ class SchoolData extends React.Component {
         this.setState({[name]:event.target.value})
     }
 
+    isempty = (data) =>{
+        return Object.keys(data).length === 0 && data.constructor === Object
+    }
+
     
 
     render() {
-        const { countbyclass,countTeachbySchool,school,student, districtList, district, loading} = this.state;
-        //console.log({district})
+        const { countbyclass,countTeachbySchool,school,student,schools,students, districtList,schoolList, district, loading} = this.state;
+        console.log({district, school,student,schools,students,})
         if(loading){
             return <h1>Loading ....</h1>
         }
@@ -108,34 +126,30 @@ class SchoolData extends React.Component {
                             </Card>
                         </Col>
                         <Col md={4} xl={4}>
-                            {/*<Card>
+                            <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        Choose Session
+                                        Choose School
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
-                                        <Form.Label>Session</Form.Label>
-                                        <Form.Control as="select">
-                                                <option>select session </option>
-                                                <option>2020 Academic Session</option>
-                                                <option>2019 Academic Session</option>
-                                               {
-                                                
-                                                //    sessionList && sessionList.length > 0 
-                                                //    ?
-                                                //    sessionList.map((sess, id)=>{
-                                                //        return(
-                                                //         <option value={sess._id}>{sess.names}</option>
-                                                //        ) 
-                                                //    }) : <option value="0">Fails to fetch session</option>
-                                                 
-                                               }
+                                        <Form.Label>School</Form.Label>
+                                        <Form.Control as="select" onChange={this.handleChange("school")} value={school} >
+                                                <option>Select School</option>
+                                                {
+                                                   schoolList && schoolList.length > 0 
+                                                   ?
+                                                   schoolList.map((dist, id)=>{
+                                                       return(
+                                                        <option value={dist._id}>{dist.names}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch district</option>
+                                                }
                                         </Form.Control>
                                     </Form.Group>
                                 </Card.Body>
-                            </Card>*/}
+                            </Card>
                         </Col>
                     </Row>
                     <Row>
@@ -143,16 +157,32 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>All Student Data</h5>
-                                    </Card.Title>
-                                    <Card.Title>
-                                        Total students : {student.countStudent}
+                                        <h5>School Details </h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/students">
-                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByGender} x="_id" y="count"  />
-                                    </Link>
+                                    {
+                                        this.isempty(schools) ? "" : 
+                                        (
+                                            <>
+                                            School Name : {schools.names} <br />
+                                            School Level : {schools.eduLevel} <br />
+                                            School Type  : {schools.schoolType} <br />
+                                            School category : {schools.schoolCat} <br />
+                                            School ownership : {schools.ownership} <br />
+                                            <hr />
+                                            School Contact  <br />
+                                            Phone : {schools.contact[0].phone} <br />
+                                            Fax : {schools.contact[0].fax} <br />
+                                            Address : {schools.contact[0].address} <br />
+                                            Province : {schools.contact[0].province} <br />
+                                            <hr />
+                                            District Deatils <br />
+                                            Name: {schools.fromDistrict[0].names} <br />
+                                            Address : {schools.fromDistrict[0].address} <br />
+                                            </>
+                                        )
+                                    }
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -160,28 +190,20 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Teacher by Type</h5>
+                                        <h5>Student Data</h5>
                                     </Card.Title>
                                     <Card.Title>
-// <<<<<<< dev
-                                        Total Schools :  {school.countSchool }
-// =======
-//                                         Total Teachers :  {
-//                                      true ? countbyownership.map((data, i)=>{
-//                                         let total = 0;
-//                                         total += data.count
-//                                         return total
-//                                     }):"data not available" }
-// >>>>>>> master
+                                        Total students : {students.countStudent}
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/schools">
-                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByownership} x="_id" y="count"  />
+                                    <Link to="/admin/students">
+                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={students.countStudentByGender} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
+                        
                         <Col md={4} xl={4}>
                             <Card>
                                 <Card.Header>
@@ -191,7 +213,7 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                   <Link to="/admin/schools">
-                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByReligion} x="_id" y="count"  />
+                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={students.countStudentByReligion} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
                             </Card>
@@ -207,7 +229,7 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/students">
-                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByEthnicity} x="_id" y="count"  />
+                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={students.countStudentByEthnicity} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -221,7 +243,7 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByProvince} x="_id" y="count"  />
+                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={students.countStudentByProvince} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -236,13 +258,13 @@ class SchoolData extends React.Component {
                                 <Card.Body>
                                   <Link to="/admin/schools">
                                       {/* multiplebar chart is appropriate and should be disaggregate by gender */}
-                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByYear} x="_id" y="count"  />
+                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={students.countStudentByYear} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
                     </Row>
-                    <Row>
+                    {/* <Row>
                         <Col md={4} xl={4}>
                             <Card>
                                 <Card.Header>
@@ -252,7 +274,7 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/district">
-                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count"  />
+                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={schools.countSchoolByDistrict} x="names" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -261,12 +283,12 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>School by Category</h5>
+                                        <h5>School Category</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByCat} x="_id" y="count"  />
+                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={schools.countSchoolByCat} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -275,30 +297,30 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>School by Education Level</h5>
+                                        <h5>School Education Level</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                   <Link to="/admin/schools">
-                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByEduLevel} x="_id" y="count"  />
+                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={schools.countSchoolByEduLevel} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
-                    </Row>
+                    </Row> */}
                     <Row>
                         <Col md={4} xl={4}>
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by Session</h5>
+                                        <h5>Students by Session</h5>
                                     </Card.Title>
                                     <Card.Title>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/students">
-                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentBySession} x="name" y="count"  />
+                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={students.countStudentBySession} x="name" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -314,7 +336,7 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByStatus} x="_id" y="count"  />
+                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={students.countStudentByStatus} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -328,7 +350,7 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                   <Link to="/admin/schools">
-                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByCountry} x="_id" y="count"  />
+                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={students.countStudentByCountry} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
                             </Card>
