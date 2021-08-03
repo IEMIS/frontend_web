@@ -199,7 +199,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Age Specific Enrolment Ratio (%)</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.ageSpec} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
