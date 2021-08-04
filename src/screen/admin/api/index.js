@@ -265,4 +265,21 @@ export const countTeacherBySchool = async (token)=>{
 }
 
 
+export const studentIndicator = async (token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/student/data/indicators`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
 
