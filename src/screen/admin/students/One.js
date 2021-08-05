@@ -156,10 +156,14 @@ export default function One() {
   if(loading){
     return isLoading()
   }
+  const isEmpty = (empty) =>{
+    return Object.keys(empty).length === 0 && empty.constructor === Object
+  }
   const ViewData = () =>{
     if(datas && datas.length > 0){
-      let dat = datas[0]
-      return(
+      let dat = datas[0];
+      return isEmpty(dat) ? "" :
+      (
         <>
           <Row>
             <Col>
@@ -207,23 +211,23 @@ export default function One() {
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>Class</Form.Label>
-                            <Form.Control type="text" value={dat.fromClass[0].names} disabled />
+                            <Form.Control type="text" value={dat.fromClass.length > 0 ?  dat.fromClass[0].names : ""} disabled />
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School</Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool[0].names} disabled />
+                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].names : ""} disabled />
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School Owner</Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool[0].ownership} disabled />
+                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].ownership:""} disabled />
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School Type</Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool[0].schoolType} disabled />
+                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].schoolType : ""} disabled />
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School Category </Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool[0].schoolCat} disabled />
+                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].schoolCat: ""} disabled />
                           </Form.Group>
                         </Form>
                       </Col>
@@ -246,7 +250,7 @@ export default function One() {
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>District</Form.Label>
-                          <Form.Control type="text" value={dat.fromDistrict[0].names} disabled />
+                          <Form.Control type="text" value={dat.fromDistrict.length > 0 ?  dat.fromDistrict[0].names : ""} disabled />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>Date of Birth</Form.Label>
@@ -258,11 +262,11 @@ export default function One() {
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label>District Phone</Form.Label>
-                            <Form.Control type="text" value={dat.fromDistrict[0].phone} disabled />
+                            <Form.Control type="text" value={dat.fromDistrict.length > 0 ? dat.fromDistrict[0].phone : ""} disabled />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label>District Address</Form.Label>
-                            <Form.Control type="text" value={dat.fromDistrict[0].address} disabled />
+                            <Form.Control type="text" value={dat.fromDistrict.length > 0 ? dat.fromDistrict[0].address : " "} disabled />
                         </Form.Group>
                         
                       </Col>

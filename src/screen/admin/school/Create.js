@@ -30,7 +30,7 @@ export default function Create() {
         redirectToPage:false,
         districtList:[]
     })
-    const {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
+    const {names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -39,10 +39,10 @@ export default function Create() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
-        if(code===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School code is required', 'error');
-        }
+        // if(code===""){ 
+        //     setValues({...values, loading:false})
+        //     return Swal.fire('Oops...', 'School code is required', 'error');
+        // }
         if(district===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District is required', 'error');
@@ -109,7 +109,7 @@ export default function Create() {
     }
 
     const handleCreate =async ()=>{
-        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
+        const school = {names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
         const Auth = await isAuthenticated()
         const data = await create(school, Auth.token);
         if(!data){
@@ -149,8 +149,9 @@ export default function Create() {
         const bootstrap = async () =>{
             const Auth = await isAuthenticated()
             const dist = await readsDistrict(Auth.token);
-            let code = `SCH${`0013`}`;
-            setValues(v => ({...v, districtList:dist.data, code})); 
+            //let code = `SCH${`0013`}`;
+            //code
+            setValues(v => ({...v, districtList:dist.data})); 
         }
         bootstrap()
     }, [])

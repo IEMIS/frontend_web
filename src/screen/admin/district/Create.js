@@ -63,6 +63,7 @@ export default function Create() {
         const user = {names, phone, email, password, password2, address, status}
         const Auth = await isAuthenticated()
         const data = await create(user, Auth.token);
+        console.log({data})
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
@@ -72,9 +73,8 @@ export default function Create() {
             return setValues({...values, loading:false})
         }
         if(data.message){
-            Swal.fire('Saved...', data.message, 'success')
+            //Swal.fire('Saved...', data.message, 'success')
             setValues({...values, loading:false, redirectToPage:true});
-
             let Toast = Swal.mixin({
             toast: true,
             timerProgressBar: true,
@@ -85,7 +85,7 @@ export default function Create() {
             return Toast.fire({
                 animation: true,
                 type: 'success',
-                title: 'Request is successful'
+                title: data.message,
             })
         }
     }
@@ -155,7 +155,6 @@ export default function Create() {
                                             <Form.Label>email </Form.Label>
                                             <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                         </Form.Group>
-                                        
                                     </Col>
                                 </Row>
                             </Card.Body>

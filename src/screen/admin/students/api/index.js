@@ -1,4 +1,4 @@
-//let  BASE_URL = "",
+
 
 const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
 

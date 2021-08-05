@@ -18,8 +18,6 @@ export default function Edit() {
         address:"",
         email:"",
         status:true,
-        password:"",
-        password2:"",
         loading:false,
         loadingBtn:false,
         redirectToPage:false,
@@ -29,7 +27,7 @@ export default function Edit() {
         
     })
 
-    const {code, names, phone, email, password, password2, address, status, error, loading, loadingBtn, reload, redirectToPage} = values
+    const {code, names, phone, email, address, status, error, loading, loadingBtn, reload, redirectToPage} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -112,21 +110,11 @@ export default function Edit() {
             setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District email is required', 'error');
         }
-        if(password===""){ 
-            setValues({...values, loadingBtn:false})
-            return Swal.fire('Oops...', 'Password can not be an empty value', 'error');
-        }
-
-        if(password !== password2) {
-            setValues({...values, loadingBtn:false})
-            return Swal.fire('Oops...', 'Password must match each other', 'error');
-        }
-
         handleUpdate();
     }
 
     const handleUpdate =async ()=>{
-        const user = {code, names, phone, email, password, password2, address, status}
+        const user = {code, names, phone, email, address, status}
         const Auth = isAuthenticated()
         const data = await edit(id, user, Auth.token);
         if(!data){
@@ -182,7 +170,19 @@ export default function Edit() {
                 if(data.message){
                     const {code, names, email, phone,address } = data.data;
                     setValues(v => ({...v, loading:false, error:false, code, phone,email,names, address }))
-                    return Swal.fire('Great', data.message, 'success');
+                    let Toast = Swal.mixin({
+                        toast: true,
+                        timerProgressBar: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+            
+                    return Toast.fire({
+                        showClass: true,
+                        type: 'success',
+                        title: data.message
+                    })
                 } 
             }
         }
@@ -227,10 +227,6 @@ export default function Edit() {
                                                     <Form.Label>Phone </Form.Label>
                                                     <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
                                                 </Form.Group>
-                                                <Form.Group controlId="formBasicPassword">
-                                                    <Form.Label>Password</Form.Label>
-                                                    <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
-                                                </Form.Group>
                                                 {
                                                     loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
                                                 }
@@ -248,10 +244,6 @@ export default function Edit() {
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>email </Form.Label>
                                                 <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password Confirmation</Form.Label>
-                                                <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
                                             </Form.Group>
                                         </Col>
                                     </Row>
