@@ -75,21 +75,16 @@ export default class Create extends Component {
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
             age--;
         }
-        //console.log({age})
         return this.setState({age})
     }
     
-
-
     handleChange = name=>event=>{
-        //this.setState({this.setState, [name]:event.target.value})
         this.setState({[name]: event.target.value});
     }
 
     submit = event =>{
         event.preventDefault();
-        //const { school, presentClass, firstName, lastName, gender,  dob,country, disability,eduLevel,age,status, session } = this.state;
- const { school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
+        const { school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
         this.setState({loading:true})
         if(school===""){ 
             this.setState({ loading:false})

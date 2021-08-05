@@ -113,7 +113,8 @@ export default function Edit() {
     const handleUpdate =async ()=>{
         const student = {school,eduLevel, district, parent,presentClass, firstName, middleName, lastName, gender,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity}
         const Auth = isAuthenticated();
-        const data = await edit(id,student, Auth.token);
+        const data = await edit(id, student, Auth.token);
+        console.log({data})
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loadingBtn:false})
@@ -123,6 +124,7 @@ export default function Edit() {
             return setValues({...values, loadingBtn:false})
         }
         if(data.message){
+            setValues({...values, loadingBtn:false, loading:false, redirectToPage:true})
             let Toast = Swal.mixin({
                 toast: true,
                 timerProgressBar: true,
@@ -130,13 +132,11 @@ export default function Edit() {
                 showConfirmButton: false,
                 timer: 3000
             });
-            Toast.fire({
+            return  Toast.fire({
                 animation: true,
                 type: 'success',
                 title: data.message
             })
-           setValues({...values, loadingBtn:false, redirectToPage:true})
-           return Swal.fire('saved...', data.message, 'success')
         }
     }
 
@@ -196,8 +196,10 @@ export default function Edit() {
     };
     const handleReload = event =>{
         event.preventDefault();
-        setValues({...values, loading:false, error:false, reload:!reload})
+        setValues({...values, loading:false,loadingBtn:false,  error:false, reload:!reload})
     }
+
+   
 
     React.useEffect(() => {
         //let ignore = false;
@@ -206,11 +208,13 @@ export default function Edit() {
             setValues(v => ({...v, loading:true}))
             const scho = await readsSchool(Auth.token);
             const cla = await readsClass(Auth.token);
-            const par = await readsParent(Auth.token);
-            const subj = await readsSubject(Auth.token);
             const sess = await readsSession(Auth.token);
+            // const par = await readsParent(Auth.token);
+            // const subj = await readsSubject(Auth.token);
+            
 
             const data = await read(id,Auth.token);
+            //console.log({scho, cla})
            // if (!ignore){
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error');
@@ -224,8 +228,15 @@ export default function Edit() {
             }
     
             if(data.message){
-                //const {school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session } = data.data;
-                setValues(v => ({...v, loading:false, error:false, schoolList:scho.data,parentList:par.data,sessionList:sess.data,classList:cla.data,subjectList:subj.data, school:data.data.school, presentClass:data.data.presentClass, firstName:data.data.firstName, lastName:data.data.lastName, gender:data.data.gender,  dob:data.data.dob,country:data.data.country, disability:data.data.disability,eduLevel:data.data.eduLevel,age:data.data.age,  status:data.data.status, session:data.data.session }))
+                const {school, presentClass, firstName, lastName,middleName, gender,  dob,country, disability,edulevel,age,  status, session } = data.data[0];
+                //const {school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } 
+                //setValues(v => ({...v, loading:false, error:false, schoolList:scho.data,parentList:par.data,sessionList:sess.data,classList:cla.data,subjectList:subj.data, school:data.data.school, presentClass:data.data.presentClass, firstName:data.data.firstName, lastName:data.data.lastName, gender:data.data.gender,  dob:data.data.dob,country:data.data.country, disability:data.data.disability,eduLevel:data.data.eduLevel,age:data.data.age,  status:data.data.status, session:data.data.session }))
+                //parentList:par.data,subjectList:subj.data,
+                setValues(v => ({...v, loading:false, error:false, 
+                    schoolList:scho.data,classList:cla.data,sessionList:sess.data,
+                    school, presentClass, firstName, lastName,middleName, gender,  dob,country, disability,edulevel,age,  status, session
+                }))
+                setValues(v => ({...v, loading:false, error:false, }))
                 let Toast = Swal.mixin({
                     toast: true,
                     timerProgressBar: true,
@@ -244,7 +255,6 @@ export default function Edit() {
            // setValues(v => ({...v, schoolList:scho.data, school, presentClass, firstName, lastName, gender,  dob,country, disability,edulevel,age,  status, session})); 
     }
     bootstrap()
-   // return () => { ignore = true };
 },[reload, id])
 
     return (

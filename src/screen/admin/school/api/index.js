@@ -20,6 +20,7 @@ export const create = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
 export const reads = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/school`,{

@@ -96,6 +96,8 @@ export default function Delete(props) {
             }
     
             if(data.message){
+                setloading(false)
+                setRedirectToPage(true)
                 let Toast = Swal.mixin({
                     toast: true,
                     timerProgressBar: true,
@@ -108,9 +110,7 @@ export default function Delete(props) {
                     type: 'success',
                     title: data.message
                 })
-                setloading(false)
-                setRedirectToPage(true)
-                return Swal.fire('Great', data.message, 'success');
+                
             }  
         }
         Swal.fire({
@@ -127,10 +127,10 @@ export default function Delete(props) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-            Swal.fire('Delete confirm', '', 'success');
+            //Swal.fire('Delete confirm', '', 'success');
             bootstrap()
             } else if (result.isDenied) {
-            Swal.fire('Action canceled', '', 'info');
+            //Swal.fire('Action canceled', '', 'info');
             setRedirectToPage(true)
             }
         })
