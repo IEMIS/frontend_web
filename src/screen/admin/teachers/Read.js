@@ -75,25 +75,26 @@ export default function Read() {
     }
 
     let columun = [
-        "teacherCode",
-        "school",
         "firstName",
         "lastName",
-        "subjectTaught",
-       // "serviceStatus",
+        "contractYears",
        "serviceStatus",
+       "gender",
+       "Engagement",
+       "retirementyear",
         "edit",
         "detail",
         "delete",
     ];
 
     let tableHead = [
-        "Teacher Code",
-        "School Name",
         "First Name",
         "Last Name",
-        "Teaching Subject",
+        "contractYears",
         "Staff Status",
+        "Gender",
+        "Engagement",
+        "Retirement Year",
         "Edit",
         "Details",
         "Delete",
@@ -197,7 +198,7 @@ export default function Read() {
         setLoading(true)
         const Auth = await isAuthenticated()
         const data = await reads(Auth.token);
-        console.log({Auth, data})
+      
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)

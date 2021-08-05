@@ -10,6 +10,7 @@ export default function Delete(props) {
     let { id } = useParams();
     const [reload, setreload] = React.useState(false)
     const [error, seterror] = React.useState(false)
+    const [loading, setLoading] = React.useState(true)
     const [redirectToPage, setRedirectToPage] = React.useState(false)
 
     const redirectUser = () => {
@@ -47,24 +48,50 @@ export default function Delete(props) {
         seterror(false)
         setreload(!reload)
     }
+    const isLoading = () => {
+        if (loading){
+            return (
+                <Aux>
+                    <Row>
+                        <Col>
+                        <Card>
+                            <Card.Header>
+                                <Card.Title as="h3">Wait loading data ...</Card.Title>
+                            </Card.Header>
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                    <h1>Wait !!! </h1>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                        </Col>
+                    </Row>
+                </Aux>
+            )
+        }
+    };
 
     
     React.useEffect(() => {
         const bootstrap = async ()=>{
             const Auth = await isAuthenticated()
             const data = await remove(id, Auth.token);
-            console.log({data})
+            //console.log({data})
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
-                return seterror(true)
-                
+                setLoading(false)
+                return seterror(true)   
             }
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
+                setLoading(false)
                 return seterror(true)
                 
             }
             if(data.message){
+                setLoading(false)
                 setRedirectToPage(true);
                 Swal.fire('Successful', data.message, 'success')
             }
@@ -84,10 +111,10 @@ export default function Delete(props) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-            Swal.fire('Delete confirm', '', 'success');
+            //Swal.fire('Delete confirm', '', 'success');
             bootstrap()
             } else if (result.isDenied) {
-            Swal.fire('Action canceled', '', 'info');
+            //Swal.fire('Action canceled', '', 'info');
             setRedirectToPage(true)
             }
         })
@@ -97,6 +124,7 @@ export default function Delete(props) {
         <Aux>
             {redirectUser()}
             {isError()}
+            {isLoading()}
         </Aux>
     )
 }

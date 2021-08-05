@@ -202,7 +202,7 @@ export default function Create() {
         const bootstrap = async () =>{
             const Auth = await isAuthenticated()
             const scho = await readsSchool(Auth.token);
-            console.log({scho})
+            //console.log({scho})
             setValues(v => ({...v, schoolList:scho.data})); 
         }
         bootstrap()

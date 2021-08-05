@@ -211,19 +211,13 @@ export default function One() {
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="level">Level</label>
-              <input type="text" class="form-control" value={level} readOnly />
+              <input type="text" class="form-control" value={level===1 ? "Admin" : "Moderator"} readOnly />
             </div>
             <div class="form-group col-md-6">
               <label for="email">Email</label>
               <input type="text" class="form-control" value={email} readOnly />
             </div>
           </div>
-          {/* <Col>First Name : {firstName}</Col>
-          <Col>Middle Name : {middleName}</Col>
-          <Col>Last Name : {lastName}</Col>
-          <Col>Phone Number : {phone}</Col>
-          <Col>email : {email}</Col>
-          <Col>Level : {level}</Col> */}
         </Card.Body>
       </Row>
     </Aux>

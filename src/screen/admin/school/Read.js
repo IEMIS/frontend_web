@@ -16,8 +16,6 @@ export default function Read() {
     const [error, setError] = React.useState(false)
     const [reload, setReload] = React.useState(false)
 
-    console.log({datas})
-
  
     const isLoading = () => {
         if (loading){
@@ -77,20 +75,22 @@ export default function Read() {
     }
 
     let columun = [
-        "code",
         "names",
-        "fromDistrict[0].names",
-        "email",
+        "schoolType",
+        "eduLevel",
+        "schoolCat",
+        "ownership",
         "edit",
         "detail",
         "delete",
     ];
 
     let tableHead = [
-        "School Code",
         "School Name",
-        "District",
-        "Email",
+        "School Type",
+        "Edu Level",
+        "School Category",
+        "Ownership",
         "Edit",
         "Details",
         "Delete",
@@ -231,9 +231,8 @@ export default function Read() {
 
     return (
         <Aux>
-            {isLoading()}
             {isError()}
-            {ViewData()}
+            {loading ?  isLoading() :ViewData() }
         </Aux>
     )
 }

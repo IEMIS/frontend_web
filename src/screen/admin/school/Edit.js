@@ -26,13 +26,11 @@ export default function Edit() {
         schoolCat:"",
         schoolType:"",
         headID:"",
-        password:"",
-        password2:"",
         loading:false,
         redirectToPage:false,
         districtList:[]
     })
-    const {code, names,districtId, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
+    const {code, names, district, phone, email, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -41,11 +39,11 @@ export default function Edit() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
-        if(code===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School code is required', 'error');
-        }
-        if(districtId===""){ 
+        // if(code===""){ 
+        //     setValues({...values, loading:false})
+        //     return Swal.fire('Oops...', 'School code is required', 'error');
+        // }
+        if(district===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District is required', 'error');
         }
@@ -97,36 +95,23 @@ export default function Edit() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District email is required', 'error');
         }
-
-        if(password==="") {
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Password must empty', 'error');
-        }
-
-        if(password !== password2) {
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Password must match each other', 'error');
-        }
         handleUpdate()
     }
 
     const handleUpdate =async ()=>{
-        const school = {code, names, districtId, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
+        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID}
         const Auth = await isAuthenticated()
-        const data = await edit(id, school,Auth.token);
-        console.log(data)
+        const data = await edit(id, school, Auth.token);
+        console.log({data})
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.error){
             Swal.fire('Oops...', data.error, 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.message){
-            Swal.fire('Saved...', data.message, 'success')
            setValues({...values, loading:false, redirectToPage:true})
            let Toast = Swal.mixin({
             toast: true,
@@ -135,11 +120,10 @@ export default function Edit() {
             showConfirmButton: false,
             timer: 3000
             });
-
             return Toast.fire({
                 animation: true,
                 type: 'success',
-                title: 'Request is successful'
+                title: data.message
             })
         }
     }
@@ -155,9 +139,9 @@ export default function Edit() {
             const Auth = await isAuthenticated();
             const dist = await readsDistrict(Auth.token);
             const da = await read(id, Auth.token);
-            const {code, names, districtId, email, contact,eduLevel, ownership, estabYear, schoolCat, schoolType, headID} = da.data;
+            const {code, names, district, email, contact, eduLevel, ownership, estabYear, schoolCat, schoolType, headID} = da.data[0];
             const [{phone, fax, mailBox, province, address}]= contact
-            setValues(v => ({...v, districtList:dist.data, code,names, districtId, email,eduLevel, ownership, estabYear, schoolCat, schoolType, headID,phone, fax, mailBox, province, address}));
+            setValues(v => ({...v, districtList:dist.data, code,names, district, email,eduLevel, ownership, estabYear, schoolCat, schoolType, headID,phone, fax, mailBox, province, address}));
         }
         bootstrap()
     }, [id])
@@ -186,7 +170,7 @@ export default function Edit() {
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>District</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("districtId")} value={districtId}>
+                                            <Form.Control as="select" onChange={handleChange("districtId")} value={district}>
                                                 <option>Select district</option>
                                                {
                                                    districtList && districtList.length > 0 
@@ -222,10 +206,6 @@ export default function Edit() {
                                                 <Form.Control type="text" placeholder="P.O BOX 123, Tavua" onChange={handleChange("mailBox")} value={mailBox} />
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Phone </Form.Label>
-                                                <Form.Control type="text" placeholder="official school phone number" onChange={handleChange("phone")} value={phone} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Fax</Form.Label>
                                                 <Form.Control type="text" placeholder="school fax" onChange={handleChange("fax")} value={fax} />
                                             </Form.Group>
@@ -248,7 +228,7 @@ export default function Edit() {
                                             </Form.Group>
                                     <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Estab. Year </Form.Label>
-                                                <Form.Control type="date" placeholder="year founded" onChange={handleChange("estabYear")} value={estabYear} />
+                                                <Form.Control type="date" onChange={handleChange("estabYear")} value={estabYear} />
                                             </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Ownership</Form.Label>
@@ -281,24 +261,20 @@ export default function Edit() {
                                             <Form.Label>email </Form.Label>
                                             <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                         </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
-                                            </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                            <Form.Label>Password Confirmation</Form.Label>
-                                            <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
+                                        <Form.Group controlId="formBasicEmail">
+                                            <Form.Label>Phone </Form.Label>
+                                            <Form.Control type="text" placeholder="official school phone number" onChange={handleChange("phone")} value={phone} />
                                         </Form.Group>
-                                        
+                                    
                                         {
-                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Update ..</Button>
-                                            }
+                                            loading ? "loading ..." : <Button variant="primary" onClick={submit}  > Update ..</Button>
+                                        }
                                     </Col>
                                 </Row>
                             </Card.Body>
                         </Card>
                     </Col>
-                </Row>
+            </Row>
         </Aux>
     )
 }

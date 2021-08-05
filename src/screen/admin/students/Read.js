@@ -72,22 +72,26 @@ export default function Read() {
     }
 
     let columun = [
-        "edulevel",
-        `fromSchool[0].names`,
         "firstName",
         "lastName",
+        "edulevel",
+        "gender",
         "status",
+        "age",
+        "country",
         "edit",
         "detail",
         "delete",
     ];
 
     let tableHead = [
-        "School Level",
-        "School Name",
         "First Name",
         "Last Name",
+        "Student Level",
+        "Gender",
         "Studentship",
+        "Age",
+        "Country",
         "Edit",
         "Details",
         "Delete",
@@ -221,17 +225,14 @@ export default function Read() {
             })
         }
     }
-
-    console.log({datas})
     React.useEffect(() => {
         boot()
     },[reload])
 
     return (
         <Aux>
-            {isLoading()}
             {isError()}
-            {ViewData()}
+            { loading ? isLoading() : ViewData() }
         </Aux>
     )
 }

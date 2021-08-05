@@ -14,8 +14,6 @@ export default function Edit() {
         middleName:"",
         phone:"",
         email:"",
-        password:"",
-        password2:"",
         level:"",
         loading:false,
         redirectToPage:false,
@@ -24,7 +22,7 @@ export default function Edit() {
         loadingBtn:false,
         token:"",
     })
-    const {firstName, lastName, middleName, phone, email, password, password2, level, error, loading, reload, redirectToPage, loadingBtn } = values
+    const {firstName, lastName, middleName, phone, email, level, error, loading, reload, redirectToPage, loadingBtn } = values
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value});
     }
@@ -51,19 +49,11 @@ export default function Edit() {
             setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'Phone Number is required', 'error');
         }
-        if(password ==="") {
-            setValues({...values, loadingBtn:false})
-            return Swal.fire('Oops...', 'Password is required', 'error');
-        }
-        if(password !== password2) {
-            setValues({...values, loadingBtn:false})
-            return Swal.fire('Oops...', 'Password must match each other', 'error');
-        }
         handleUpdate();
     }
 
     const handleUpdate =async ()=>{
-        const user = {firstName, lastName, middleName, phone, email, password, password2, level}
+        const user = {firstName, lastName, middleName, phone, email, level}
         const Auth = isAuthenticated();
         const data = await edit(id, user, Auth.token);
         if(!data){
@@ -220,11 +210,6 @@ export default function Edit() {
                                                     <Form.Control type="text" placeholder="phone" onChange={handleChange("phone")} value={phone} />
                                                 </Form.Group>
 
-                                                <Form.Group controlId="formBasicPassword">
-                                                    <Form.Label>Password</Form.Label>
-                                                    <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
-                                                </Form.Group>
-
                                                 {
                                                     loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update Admin Data ..</Button>
                                                 }
@@ -246,10 +231,6 @@ export default function Edit() {
                                                     <option value="1">Admin</option>
                                                     <option value="2">Moderator</option>
                                                 </Form.Control>
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password Confirmation</Form.Label>
-                                                <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
                                             </Form.Group>
                                         </Col>
                                 </Row>

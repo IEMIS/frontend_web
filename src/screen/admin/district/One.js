@@ -17,8 +17,6 @@ export default function One() {
         address:"",
         email:"",
         status:true,
-        password:"",
-        password2:"",
         loading:false,
         loadingBtn:false,
         redirectToPage:false,
@@ -26,7 +24,7 @@ export default function One() {
         reload:false,   
     })
 
-    const {code, names, phone, email, password, password2, address, error, loading, reload, redirectToPage,} = values
+    const {code, names, phone, email, address, error, loading, reload, redirectToPage,} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -110,7 +108,18 @@ export default function One() {
                 if(data.message){
                     const {code, names, email, phone,address } = data.data;
                     setValues(v => ({...v, loading:false, error:false, code, phone,email,names, address }))
-                    return Swal.fire('Great', data.message, 'success');
+                    let Toast = Swal.mixin({
+                        toast: true,
+                        timerProgressBar: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                       });
+                        return Toast.fire({
+                            animation: true,
+                            type: 'success',
+                            title: data.message
+                        })
                 } 
         }
         bootstrap()
@@ -153,10 +162,6 @@ export default function One() {
                                                         <Form.Label>Phone </Form.Label>
                                                         <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
                                                     </Form.Group>
-                                                    <Form.Group controlId="formBasicPassword">
-                                                        <Form.Label>Password</Form.Label>
-                                                        <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
-                                                    </Form.Group>
                                                 </Form>
                                             </Col>
                                             <Col md={6}>
@@ -171,10 +176,6 @@ export default function One() {
                                                 <Form.Group controlId="exampleForm.ControlInput1">
                                                     <Form.Label>email </Form.Label>
                                                     <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
-                                                </Form.Group>
-                                                <Form.Group controlId="formBasicPassword">
-                                                    <Form.Label>Password Confirmation</Form.Label>
-                                                    <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
                                                 </Form.Group>
                                             </Col>
                                         </Row>
