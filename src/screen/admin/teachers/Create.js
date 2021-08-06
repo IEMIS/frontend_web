@@ -8,7 +8,6 @@ import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Create() {
-
     const [values, setValues] = React.useState({
         teacherCode:"",
         school:"",
@@ -55,11 +54,11 @@ export default function Create() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
-        /*
-        if(teacherCode===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Teacher code is required', 'error');
-        }
+        
+        // if(teacherCode===""){ 
+        //     setValues({...values, loading:false})
+        //     return Swal.fire('Oops...', 'Teacher code is required', 'error');
+        // }
         
         if(school===""){ 
             setValues({...values, loading:false})
@@ -101,14 +100,14 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Phone number is required', 'error');
         }
-        if(subjectTaught===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Subject taught is required', 'error');
-        }
-        if(classTaking===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Classes taken is required', 'error');
-        }
+        // if(subjectTaught===""){ 
+        //     setValues({...values, loading:false})
+        //     return Swal.fire('Oops...', 'Subject taught is required', 'error');
+        // }
+        // if(classTaking===""){ 
+        //     setValues({...values, loading:false})
+        //     return Swal.fire('Oops...', 'Classes taken is required', 'error');
+        // }
         if(subjectSpecialisation===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Subject Specialisation is required', 'error');
@@ -149,32 +148,27 @@ export default function Create() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Password must empty', 'error');
         }
-
         if(password !== password2) {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'Password must match each other', 'error');
         }
-        */
         handleCreate();
     }
 
     const handleCreate =async ()=>{
         const Auth = await isAuthenticated()
-        //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
-        const teacher = {teacherCode, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,subjectTaught, classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session, lastWorkshop, password}
+        const teacher = {teacherCode, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session, lastWorkshop, password, password2}
         const data = await create(teacher, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.error){
             Swal.fire('Oops...', data.error, 'error')
             return setValues({...values, loading:false})
         }
 
         if(data.message){
-            Swal.fire('Saved...', data.message, 'success')
            setValues({...values, loading:false, redirectToPage:true})
            let Toast = Swal.mixin({
             toast: true,
@@ -187,7 +181,7 @@ export default function Create() {
             return Toast.fire({
                 animation: true,
                 type: 'success',
-                title: 'Request is successful'
+                title: data.message
             })
         }
     }
@@ -202,7 +196,6 @@ export default function Create() {
         const bootstrap = async () =>{
             const Auth = await isAuthenticated()
             const scho = await readsSchool(Auth.token);
-            //console.log({scho})
             setValues(v => ({...v, schoolList:scho.data})); 
         }
         bootstrap()
@@ -257,7 +250,7 @@ export default function Create() {
                                                    ?
                                                    schoolList.map((scho, id)=>{
                                                        return(
-                                                        <option value={scho._id}>{scho.names}</option>
+                                                        <option key={id} value={scho._id}>{scho.names}</option>
                                                        ) 
                                                    }) : <option value="0">Fails to fetch school</option>
                                                }
@@ -362,12 +355,12 @@ export default function Create() {
                                                 <option value="sick">Sick-Leave</option>
                                                 <option value="disengaged">disengaged</option>
                                                 <option value="retired">retired</option>
-                                     <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Designation </Form.Label>
-                                                <Form.Control type="text" placeholder="Senior Master" onChange={handleChange("designation")} value={designation} />
-                                            </Form.Group>         
-                                            </Form.Control>
-                                    </Form.Group>
+                                             </Form.Control>  
+                                    </Form.Group> 
+                                    <Form.Group controlId="formBasicEmail">
+                                        <Form.Label>Designation </Form.Label>
+                                        <Form.Control type="text" placeholder="Senior Master" onChange={handleChange("designation")} value={designation} />
+                                    </Form.Group>         
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Administrative</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("Engagement")} value={Engagement}>
@@ -406,8 +399,8 @@ export default function Create() {
                                             <Form.Control type="date" placeholder="most recent" onChange={handleChange("lastWorskshop")} value={lastWorkshop}/>
                                         </Form.Group>
                                         {
-                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
-                                            }
+                                            loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
+                                        }
                                     </Col>
                                 </Row>
                             </Card.Body>
