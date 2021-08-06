@@ -91,7 +91,7 @@ export default function Read() {
         "Gender",
         "Studentship",
         "Age",
-        "Country",
+        "Nationality",
         "Edit",
         "Details",
         "Delete",
