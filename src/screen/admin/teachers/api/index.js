@@ -124,18 +124,3 @@ export const readsSchool = async (token)=>{
         return data;
     }catch(e){console.log(e)}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
