@@ -3,7 +3,7 @@ import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect, useParams} from 'react-router-dom'
-import { read, edit, readsSchool,readsClass,readsSession,readsParent,readsSubject } from './api';
+import { read, edit, readsSchool,readsClass,readsSession} from './api';
 import {isAuthenticated} from '../../Auth/admin/api'
 
 export default function Edit() {
