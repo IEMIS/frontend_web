@@ -72,6 +72,8 @@ export default function Read() {
     }
 
     let columun = [
+        "studentCode",
+        "code",
         "firstName",
         "lastName",
         "edulevel",
@@ -79,19 +81,23 @@ export default function Read() {
         "status",
         "age",
         "country",
+        "cohortA",
         "edit",
         "detail",
         "delete",
     ];
 
     let tableHead = [
+        "Birth Cert|Passport",
+        "School Code",
         "First Name",
         "Last Name",
         "Student Level",
         "Gender",
         "Studentship",
         "Age",
-        "Country",
+        "Nationality",
+        "Cohort",
         "Edit",
         "Details",
         "Delete",

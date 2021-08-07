@@ -336,5 +336,3 @@ export const studentIndicator = async (token)=>{
         return data;
     }catch(e){console.log(e)}
 }
-
-

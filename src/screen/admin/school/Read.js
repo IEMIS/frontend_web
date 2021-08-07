@@ -75,22 +75,26 @@ export default function Read() {
     }
 
     let columun = [
+        "code",
         "names",
         "schoolType",
         "eduLevel",
         "schoolCat",
         "ownership",
+        "estabYear",
         "edit",
         "detail",
         "delete",
     ];
 
     let tableHead = [
+        "School Code",
         "School Name",
         "School Type",
-        "Edu Level",
+        "Level",
         "School Category",
         "Ownership",
+        "Year Estab.",
         "Edit",
         "Details",
         "Delete",
