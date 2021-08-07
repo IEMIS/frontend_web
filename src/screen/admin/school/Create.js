@@ -109,7 +109,7 @@ export default function Create() {
     }
 
     const handleCreate =async ()=>{
-        const school = {names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
+        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
         const Auth = await isAuthenticated()
         const data = await create(school, Auth.token);
         if(!data){
