@@ -11,6 +11,8 @@ export default function One() {
   let { id } = useParams();
 
   const [values, setValues] = React.useState({
+    studentCode: "",
+    cohortA: "",
     firstName: "",
     middleName: "",
     lastName: "",
@@ -120,6 +122,8 @@ export default function One() {
 
         if (data.message) {
           const {
+            studentCode,
+            cohortA,
             firstName,
             middleName,
             lastName,
@@ -135,6 +139,8 @@ export default function One() {
             ...v,
             loading: false,
             error: false,
+            studentCode,
+            cohortA,
             firstName,
             middleName,
             lastName,
@@ -185,6 +191,10 @@ export default function One() {
                       <Col md={6}>
                         <Form>
                           <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Student Code </Form.Label>
+                            <Form.Control type="text" value={dat.studentCode} disabled />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicEmail">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control
                             type="text"
@@ -192,7 +202,6 @@ export default function One() {
                             disabled
                             />
                           </Form.Group>
-
                           <Form.Group controlId="formBasicEmail">
                             <Form.Label>Middle Name</Form.Label>
                             <Form.Control
@@ -260,6 +269,10 @@ export default function One() {
                           <Form.Label>Age</Form.Label>
                           <Form.Control type="text" value={dat.age} disabled />
                         </Form.Group>
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Cohort  </Form.Label>
+                            <Form.Control type="text" value={dat.cohortA} disabled />
+                          </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label>District Phone</Form.Label>
                             <Form.Control type="text" value={dat.fromDistrict.length > 0 ? dat.fromDistrict[0].phone : ""} disabled />
