@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/students">
-                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={student.countStudentByGender} x="_id" y="count"  />
+                                      <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByGender} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -88,7 +88,7 @@ class Dashboard extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByownership} x="_id" y="count"  />
+                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByownership} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -126,7 +126,7 @@ class Dashboard extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/district">
-                                      <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count"  />
+                                      <NVD3Chart id="barChartyx" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count" donut labelType='percent' />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -140,7 +140,7 @@ class Dashboard extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByCat} x="_id" y="count"  />
+                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByCat} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -154,7 +154,7 @@ class Dashboard extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                   <Link to="/admin/schools">
-                                    <NVD3Chart id="chart" height={200} type="pieChart" datum={school.countSchoolByEduLevel} x="_id" y="count"  />
+                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByEduLevel} x="_id" y="count" showValues groupSpacing={0.5}   />
                                   </Link>
                                 </Card.Body>
                             </Card>
