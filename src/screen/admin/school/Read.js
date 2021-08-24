@@ -7,6 +7,8 @@ import { reads} from './api';
 import { Link } from 'react-router-dom';
 import SortableTbl from "react-sort-search-table";
 import styled from "styled-components";
+import moment from 'moment'; 
+import Datatable from 'react-bs-datatable'; 
 import {isAuthenticated} from '../../Auth/admin/api'
 
 
@@ -140,7 +142,7 @@ export default function Read() {
         );
     };
 
-    const ViewData = () =>{
+    const ViewDataData = () =>{
         if(datas && datas.length > 0){
             return(
                 <Aux>
@@ -229,10 +231,62 @@ export default function Read() {
         boot()
     },[reload])
 
+    const ViewData = () =>{
+        return(
+          <Aux>
+            <h1>Manage District data</h1>
+            <hr />
+            {
+              datas.length > 0 ?  
+              <Datatable 
+                tableHeaders={header} 
+                tableBody={body(datas)} 
+                rowsPerPage={10}
+                rowsPerPageOption={[5, 10, 15, 20, 30, 40, 50, 100]}
+              />
+              : <h1>No Data </h1>
+            }
+          </Aux>
+        )
+      }
+      const header = [
+        { title: 'SN', prop: 'id', filterable: true, sortable: true, },
+        { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
+        { title: 'District', prop: 'district', filterable: true, sortable: true, },
+        { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
+        { title: 'category', prop: 'category', filterable: true, sortable: true },
+        { title: 'Type', prop: 'type', filterable: true, sortable: true },
+        { title: 'Ownership', prop: 'owner', filterable: true, sortable: true },
+        //{ title: 'Created On ', prop: 'date', filterable: true, sortable: true },
+        { title: 'Details', prop: 'edit', cell: row =><Link to={`/admin/schools/edit/${row.edit}`} > Edit</Link>},
+        { title: 'Details', prop: 'delete', cell: row =><Link to={`/admin/schools/delete/${row.delete}`} > Delete </Link>},
+        { title: 'Details', prop: 'detail', cell: row =><Link to={`/admin/schools/read/${row.detail}`} > Detail </Link>},
+      ];
+    
+      const body = (dat) => {
+        return dat.map((data, index)=>{
+            console.log(JSON.stringify({data}))
+          return{
+            id:index +1,
+            names:data.names,
+            district:data.fromDistrict[0].names,
+            eduLevel:data.eduLevel,
+            category:data.schoolCat,
+            type:data.schoolType,
+            owner:data.ownership,
+            //date :moment(data.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
+            edit:data._id,
+            delete:data._id,
+            detail:data._id,
+          }
+        })
+      };
+
     return (
         <Aux>
-            {isError()}
-            {loading ?  isLoading() :ViewData() }
+            {/* {isError()}
+            {loading ?  isLoading() :ViewData() } */}
+            {error ? isError() : loading ?  isLoading() :ViewData()}
         </Aux>
     )
 }

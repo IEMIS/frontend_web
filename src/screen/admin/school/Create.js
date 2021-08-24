@@ -2,7 +2,7 @@ import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import { create, readsDistrict } from './api';
 import {isAuthenticated} from '../../Auth/admin/api'
 
@@ -160,7 +160,148 @@ export default function Create() {
     return (
         <Aux>
             {redirectUser()}
-            <Row>
+            <div className="container">
+                <h1>Add new District</h1> 
+                <hr />
+                <h2> <Link to="/admin/schools/read" > Read Schools </Link></h2>
+                <hr />
+                <div className="row">
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">School Name </label>
+                            <input type="text" placeholder="school name" onChange={handleChange("names")} value={names} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">District </label>
+                            <select onChange={handleChange("district")} value={district} className="form-control">
+                                <option >Select district</option>
+                                {
+                                    districtList && districtList.length > 0 
+                                    ?
+                                    districtList.map((dist, id)=>{
+                                        return(
+                                            <option value={dist._id}>{dist.names}</option>
+                                        ) 
+                                    }) : <option value="0">wait | reload the page</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Address </label>
+                            <input type="text" placeholder="location, province e.g Veisaru Road, Savusavu" onChange={handleChange("address")} value={address}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Locality</label>
+                            <select onChange={handleChange("province")} value={province}  className="form-control">
+                                <option>Select locality</option>
+                                <option value="Metropolian">City Metropolian</option>
+                                <option value="Surburban">City Surburban</option>
+                                <option value="Urban">Peri Urban</option>
+                                <option value="Remote">Remote</option>
+                                <option value="Rural">Rural</option>
+                                <option value="Town">Town</option>
+                                <option value="Very-Remote">Very Remote</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">P.O Box </label>
+                            <input  type="text" placeholder="P.O BOX 123, Tavua" onChange={handleChange("mailBox")} value={mailBox} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Phone number  </label>
+                            <input type="text" placeholder="official school phone number" onChange={handleChange("phone")} value={phone}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Fax number </label>
+                            <input type="text" placeholder="school fax" onChange={handleChange("fax")} value={fax} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1"> Education Level </label>
+                            <select onChange={handleChange("eduLevel")} value={eduLevel}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <option>Select Education Level</option>
+                                <option value="ECE">ECE</option>
+                                <option value="Primary">Primary</option>
+                                <option value="Secondary">Secondary</option>
+                                <option value="TVET">TVET</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Year Created </label>
+                            <input type="date" placeholder="year founded" onChange={handleChange("estabYear")} value={estabYear} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1"> School Ownership</label>
+                            <select  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <option>Select School Ownership</option>
+                                <option value="Government">Government</option>
+                                <option value="Non-Government">Non-Government</option>
+                                <option value="Private">Private</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1"> School cayegory</label>
+                            <select onChange={handleChange("schoolCat")} value={schoolCat} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <option>Select School Category</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Special">Special</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">School Type </label>
+                            <select onChange={handleChange("schoolType")} value={schoolType} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> 
+                                <option>Select School Type</option>
+                                <option value="Day">Day</option>
+                                <option value="Boarding1">Registered Boarding</option>
+                                <option value="Boarding2">Unregistered Boarding</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Email </label>
+                            <input type="email" placeholder="email" onChange={handleChange("email")} value={email} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Password  </label>
+                            <input type="password" placeholder="Password" onChange={handleChange("password")} value={password} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Password Again </label>
+                            <input type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    {
+                        loading ? <button type="submit"  className="btn btn-primary offset-9" disabled >Loading ...</button> : <button type="submit"  className="btn btn-primary offset-9" onClick={submit}  >Create .. </button>
+                    }
+                </div>
+            </div>
+            {/* <Row>
                     <Col>
                         <Card>
                             <Card.Header>
@@ -170,10 +311,10 @@ export default function Create() {
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            {/*<Form.Group controlId="formBasicEmail">
-                                                <Form.Label>School Code</Form.Label>
-                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("code")} value={code} disabled />
-                                            </Form.Group>*/}
+                                            // <Form.Group controlId="formBasicEmail">
+                                            //     <Form.Label>School Code</Form.Label>
+                                            //     <Form.Control type="text" placeholder="school code" onChange={handleChange("code")} value={code} disabled />
+                                            // </Form.Group>
 
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>School Name</Form.Label>
@@ -288,7 +429,7 @@ export default function Create() {
                             </Card.Body>
                         </Card>
                     </Col>
-                </Row>
+                </Row> */}
         </Aux>
     )
 }

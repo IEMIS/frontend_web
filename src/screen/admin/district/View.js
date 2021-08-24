@@ -136,9 +136,9 @@ export default function Read() {
         { title: 'Phone Number', prop: 'phone', filterable: true, sortable: true },
         { title: 'Address', prop: 'level', filterable: true, sortable: true },
         //{ title: 'Created On ', prop: 'date', filterable: true, sortable: true },
-        { title: 'Details', prop: 'edit', cell: row =><Link to={`/admin/users/edit/${row.edit}`} > Edit</Link>},
-        { title: 'Details', prop: 'delete', cell: row =><Link to={`/admin/users/delete/${row.delete}`} > Delete </Link>},
-        { title: 'Details', prop: 'detail', cell: row =><Link to={`/admin/users/read/${row.detail}`} > Detail </Link>},
+        { title: 'Details', prop: 'edit', cell: row =><Link to={`/admin/districts/edit/${row.edit}`} > Edit</Link>},
+        { title: 'Details', prop: 'delete', cell: row =><Link to={`/admin/districts/delete/${row.delete}`} > Delete </Link>},
+        { title: 'Details', prop: 'detail', cell: row =><Link to={`/admin/districts/read/${row.detail}`} > Detail </Link>},
       ];
     
       const body = (dat) => {
