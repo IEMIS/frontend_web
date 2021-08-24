@@ -5,9 +5,6 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads} from './api';
 import { Link } from 'react-router-dom';
-import SortableTbl from "react-sort-search-table";
-import styled from "styled-components";
-import moment from 'moment'; 
 import Datatable from 'react-bs-datatable'; 
 import {isAuthenticated} from '../../Auth/admin/api'
 
@@ -76,120 +73,6 @@ export default function Read() {
         setReload(!reload) 
     }
 
-    let columun = [
-        "names",
-        "schoolType",
-        "eduLevel",
-        "schoolCat",
-        "ownership",
-        "edit",
-        "detail",
-        "delete",
-    ];
-
-    let tableHead = [
-        "School Name",
-        "School Type",
-        "Edu Level",
-        "School Category",
-        "Ownership",
-        "Edit",
-        "Details",
-        "Delete",
-    ];
-
-    const BtnEdit = styled(Link)`
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 3px;
-        background-color: #f0ad4e;
-        color: #fff;
-    `;
-    const BtnDetail = styled(Link)`
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 3px;
-        background-color: #3F4D67;
-        color: #fff;
-    `;
-
-    const BtnDelete = styled(Link)`
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 3px;
-        background-color: #d43f3a;
-        color: #fff;
-    `;
-
-    const DetailsComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td  variant="primary"><BtnDetail to={`/admin/schools/read/${rowData._id}`}> Details </BtnDetail></td>
-        );
-    };
-
-    const DeleteComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td variant="danger"><BtnDelete to={`/admin/schools/delete/${rowData._id}`}>Delete</BtnDelete></td>
-        );
-    };
-
-    const EditComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td ><BtnEdit to={`/admin/schools/edit/${rowData._id}`}>Edit</BtnEdit></td>
-        );
-    };
-
-    const ViewDataData = () =>{
-        if(datas && datas.length > 0){
-            return(
-                <Aux>
-                    <Row>
-                        <Col>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title as="h5">School List</Card.Title>
-                                    <span className="d-block m-t-5">manage  <code>the </code> school data here</span>
-                                </Card.Header>
-                                <Card.Body>
-                                    <SortableTbl
-                                        tblData={datas}
-                                        tHead={tableHead}
-                                        customTd={[
-                                            { custd: DetailsComponent, keyItem: "detail" },
-                                            { custd: EditComponent, keyItem: "edit" },
-                                            { custd: DeleteComponent, keyItem: "delete" },
-                                        ]}
-                                        dKey={columun}
-                                        search={true}
-                                    />
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Aux>
-            )        
-        }else{
-            return (
-                <Aux>
-                    <Row>
-                        <Col>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title as="h5">No record</Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Aux>
-            )
-        }
-    }
-    
     const boot = async () => {
         const Auth = await isAuthenticated()
         setLoading(true)

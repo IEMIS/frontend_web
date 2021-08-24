@@ -1,5 +1,4 @@
 import React from 'react'
-import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect, Link} from 'react-router-dom'

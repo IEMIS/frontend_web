@@ -5,7 +5,6 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads } from './api';
 import { Link } from 'react-router-dom';
-import moment from 'moment'; 
 import Datatable from 'react-bs-datatable'; 
 import { isAuthenticated } from '../../Auth/admin/api';
 
