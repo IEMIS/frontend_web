@@ -9,7 +9,7 @@ import {isAuthenticated} from '../../Auth/admin/api'
 export default function Edit() {
     let { id } = useParams();
     const [values, setValues] = React.useState({
-           studentCode:"",
+            studentCode:"",
             school:"",
             parent:"",
             stream:"",
@@ -30,8 +30,6 @@ export default function Edit() {
             session:"",
             province:"",
             class:"",
-            edulevel:"",
-            age:"",
             district:"",
             loading:false,
             loadingBtn:false,
@@ -45,7 +43,7 @@ export default function Edit() {
             classList:[],
             token:''
     })
-    const {school, presentClass, firstName, lastName,middleName, gender,religion,yearAdmission,HadEce,subject,province,ethnicity,  dob,country, disability,eduLevel,age,  status, session, parent,district,schoolList,parentList, classList,subjectList, sessionList,error, loading, loadingBtn, reload, redirectToPage} = values
+    const {studentCode, school, presentClass, firstName, lastName,middleName, gender,religion,yearAdmission,HadEce,subject,province,ethnicity,  dob,country, disability, status, session, parent,district,schoolList,parentList, classList,subjectList, sessionList,error, loading, loadingBtn, reload, redirectToPage} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -55,6 +53,12 @@ export default function Edit() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loadingBtn:true})
+
+        if(studentCode===""){ 
+            this.setState({ loadingBtn:false})
+            return Swal.fire('Oops...', 'Student code is required', 'error');
+        }
+
         if(school===""){ 
             this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'School is required', 'error');
@@ -111,7 +115,7 @@ export default function Edit() {
     }
 
     const handleUpdate =async ()=>{
-        const student = {school,eduLevel, district, parent,presentClass, firstName, middleName, lastName, gender,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity}
+        const student = {studentCode, school, district, parent,presentClass, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity}
         const Auth = isAuthenticated();
         const data = await edit(id, student, Auth.token);
         console.log({data})
@@ -228,13 +232,13 @@ export default function Edit() {
             }
     
             if(data.message){
-                const {school, presentClass, firstName, lastName,middleName, gender,  dob,country, disability,edulevel,age,  status, session } = data.data[0];
+                const {studentCode,school, presentClass, firstName, lastName,middleName, gender,  dob,country, disability,status, session } = data.data[0];
                 //const {school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } 
                 //setValues(v => ({...v, loading:false, error:false, schoolList:scho.data,parentList:par.data,sessionList:sess.data,classList:cla.data,subjectList:subj.data, school:data.data.school, presentClass:data.data.presentClass, firstName:data.data.firstName, lastName:data.data.lastName, gender:data.data.gender,  dob:data.data.dob,country:data.data.country, disability:data.data.disability,eduLevel:data.data.eduLevel,age:data.data.age,  status:data.data.status, session:data.data.session }))
                 //parentList:par.data,subjectList:subj.data,
                 setValues(v => ({...v, loading:false, error:false, 
                     schoolList:scho.data,classList:cla.data,sessionList:sess.data,
-                    school, presentClass, firstName, lastName,middleName, gender,  dob,country, disability,edulevel,age,  status, session
+                    school,studentCode, presentClass, firstName, lastName,middleName, gender,  dob,country, disability, status, session
                 }))
                 setValues(v => ({...v, loading:false, error:false, }))
                 let Toast = Swal.mixin({
@@ -272,10 +276,10 @@ export default function Edit() {
                                     <Row>
                                 <Col md={6}>
                                     <Form>
-                                        {/*<Form.Group controlId="formBasicEmail">
+                                        <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Student Code</Form.Label>
-                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("studentCode")} value={studentCode} />
-                                            </Form.Group>*/}
+                                                <Form.Control type="text" placeholder="Student Code" onChange={handleChange("studentCode")} value={studentCode} />
+                                            </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>School</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("school")} value={school}>

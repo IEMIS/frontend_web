@@ -173,6 +173,7 @@ class SchoolData extends React.Component {
                                             School Type  : {schools.schoolType} <br />
                                             School category : {schools.schoolCat} <br />
                                             School ownership : {schools.ownership} <br />
+                                            Established : {schools.estabYear} <br />
                                             <hr />
                                             School Contact  <br />
                                             Phone : {schools.contact[0].phone} <br />
@@ -180,7 +181,7 @@ class SchoolData extends React.Component {
                                             Address : {schools.contact[0].address} <br />
                                             Province : {schools.contact[0].province} <br />
                                             <hr />
-                                            District Deatils <br />
+                                            District Details <br />
                                             Name: {schools.fromDistrict[0].names} <br />
                                             Address : {schools.fromDistrict[0].address} <br />
                                             </>
@@ -348,7 +349,7 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by Country</h5>
+                                        <h5>Student by Nationality</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
@@ -368,6 +369,19 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                     <NVD3Chart donut labelType='percent' id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={12} xl={12}>
+                            <Card className='Recent-Users'>
+                                <Card.Header>
+                                    <Card.Title as='h5'>Students by Disability</Card.Title>
+                                </Card.Header>
+                                <Card.Body className='px-0 py-2'>
+                                {/*Please include disability here by male and female by class */}
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>

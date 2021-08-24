@@ -11,6 +11,7 @@ export default class Create extends Component {
         super(props);
         this.state ={
             studentCode:"",
+            cohortA:"",
             school:"",
             parent:"",
             stream:"",
@@ -77,6 +78,10 @@ export default class Create extends Component {
         }
         return this.setState({age})
     }
+
+/* ========================================================TO DO=============================
+implement cohort generation presentClass-yearAdmission e.g (Y1-2020) 
+*/
     
     handleChange = name=>event=>{
         this.setState({[name]: event.target.value});
@@ -84,8 +89,12 @@ export default class Create extends Component {
 
     submit = event =>{
         event.preventDefault();
-        const { school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
+        const { studentCode,school, presentClass, firstName, lastName, gender,  dob,country, disability, status, session } = this.state;
         this.setState({loading:true})
+        if(studentCode===""){ 
+            this.setState({ loading:false})
+            return Swal.fire('Oops...', 'Student Birth Certificate|Passport Number is required', 'error');
+        }
         if(school===""){ 
             this.setState({ loading:false})
             return Swal.fire('Oops...', 'School is required', 'error');
@@ -143,8 +152,8 @@ export default class Create extends Component {
 
     handleCreate =async ()=>{
         const Auth = await isAuthenticated();
-        const { school, district, parent, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, presentClass, status, session, province,ethnicity, loading} = this.state;
-        const student = { school,edulevel, district, parent,presentClass, firstName, middleName, lastName, gender,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading} 
+        const { studentCode, cohortA, school, district, parent, firstName, middleName, lastName, gender,edulevel,age, religion, dob,country, disability, yearAdmission, HadEce,subject, presentClass, status, session, province,ethnicity, loading} = this.state;
+        const student = { studentCode, cohortA, school,edulevel, district, parent,presentClass, firstName, middleName, lastName, gender,age, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading} 
         const data = await create(student, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -183,8 +192,8 @@ export default class Create extends Component {
 
     render() {
         //const { school, parent,presentClass,classList, stream, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading, schoolList,parentList,subjectList,sessionList} = this.state;
-        const { school, parent,presentClass,classList, firstName, middleName, lastName,edulevel,age, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity,district, loading, schoolList,parentList,subjectList,sessionList} = this.state;
-        console.log({sessionList, classList, schoolList,edulevel,age, district})
+        const { studentCode, cohortA, school, parent,presentClass,classList, firstName, middleName, lastName,edulevel,age, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity,district, loading, schoolList,parentList,subjectList,sessionList} = this.state;
+        console.log({sessionList, classList, schoolList,edulevel,age,cohortA, district})
         return (
             <Aux>
             {this.redirectUser()}
@@ -198,10 +207,10 @@ export default class Create extends Component {
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            {/*<Form.Group controlId="formBasicEmail">
+                                            <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Student Code</Form.Label>
-                                                <Form.Control type="text" placeholder="school code" onChange={handleChange("studentCode")} value={studentCode} />
-                                            </Form.Group>*/}
+                                                <Form.Control type="text" placeholder="Birth Cert or Passport Number" onChange={this.handleChange("studentCode")} value={studentCode} />
+                                            </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>School</Form.Label>
                                             <Form.Control as="select" onChange={this.handleChange("school")} value={school}>
@@ -397,7 +406,7 @@ export default class Create extends Component {
                                             <Form.Label>Studentship</Form.Label>
                                             <Form.Control as="select" onChange={this.handleChange("status")} value={status}>
                                                 <option>Select student status</option>
-                                                <option value="promoter">Promoted</option>
+                                                <option value="promotee">Promoted</option>
                                                 <option value="dropout">Drop-out</option>
                                                 <option value="repeater">Repeater</option>
                                                 <option value="deceased">Deceased</option>

@@ -72,7 +72,6 @@ export default function Read() {
         setLoading(true)
         setReload(!reload) 
     }
-
     const boot = async () => {
         const Auth = await isAuthenticated()
         setLoading(true)
@@ -167,8 +166,7 @@ export default function Read() {
 
     return (
         <Aux>
-            {/* {isError()}
-            {loading ?  isLoading() :ViewData() } */}
+          
             {error ? isError() : loading ?  isLoading() :ViewData()}
         </Aux>
     )
