@@ -80,7 +80,6 @@ export default function Create() {
     };
     const Auth = isAuthenticated();
     const data = await create(user, Auth.token);
-    console.log({ data, user });
     if (!data) {
       Swal.fire(
         "Oops...",

@@ -76,26 +76,7 @@ export default function Read() {
     setReload(!reload);
   };
 
-  const ViewData = () =>{
-    return(
-      <Aux>
-        <h1>Manage Admin data</h1>
-        <hr />
-        {
-          datas.length > 0 ?  
-          <Datatable 
-            tableHeaders={header} 
-            tableBody={body(datas)} 
-            //onRowClick={details}
-            //initialSort={{ prop: 'date', isAscending: true }}
-            rowsPerPage={10}
-            rowsPerPageOption={[5, 10, 15, 20, 30, 40, 50, 100]}
-          />
-          : <h1>No Data </h1>
-        }
-      </Aux>
-    )
-  }
+ 
 
   const boot = async () => {
     setLoading(true);
@@ -139,12 +120,32 @@ export default function Read() {
     }
   };
 
+  const ViewData = () =>{
+    return(
+      <Aux>
+        <h1>Manage Admin data</h1>
+        <hr />
+        {
+          datas.length > 0 ?  
+          <Datatable 
+            tableHeaders={header} 
+            tableBody={body(datas)} 
+            //onRowClick={details}
+            //initialSort={{ prop: 'date', isAscending: true }}
+            rowsPerPage={10}
+            rowsPerPageOption={[5, 10, 15, 20, 30, 40, 50, 100]}
+          />
+          : <h1>No Data </h1>
+        }
+      </Aux>
+    )
+  }
   const header = [
     { title: 'SN', prop: 'id', filterable: true, sortable: true, },
     { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
     { title: 'Email', prop: 'email', filterable: true, sortable: true, },
     { title: 'Phone Number', prop: 'phone', filterable: true, sortable: true },
-    { title: 'Claimed On ', prop: 'date', filterable: true, sortable: true },
+    { title: 'Created On ', prop: 'date', filterable: true, sortable: true },
     { title: 'Admin Level', prop: 'level', filterable: true, sortable: true },
     { title: 'Details', prop: 'edit', cell: row =><Link to={`/admin/users/edit/${row.edit}`} > Edit</Link>},
     { title: 'Details', prop: 'delete', cell: row =><Link to={`/admin/users/delete/${row.delete}`} > Delete </Link>},
