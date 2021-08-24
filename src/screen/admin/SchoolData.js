@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
-import { countStudentByClass, countTeacherBySchool, studentData, schoolData, districtL, studentDataByDistrict, schoolDataByDistrict, schoolByDistrict, studentDataBySchool, schoolDetails} from "./api"
+import { countStudentByClass, countTeacherBySchool, studentData, 
+    // schoolData, 
+    // studentDataByDistrict, schoolDataByDistrict,
+    districtL,  schoolByDistrict, studentDataBySchool, schoolDetails} from "./api"
 import Aux from "../../hoc/_Aux";
 
 class SchoolData extends React.Component {

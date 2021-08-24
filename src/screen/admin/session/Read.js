@@ -4,8 +4,8 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads} from './api';
 import { Link } from 'react-router-dom';
-import SortableTbl from "react-sort-search-table";
 import styled from "styled-components";
+import Datatable from 'react-bs-datatable'; 
 import { isAuthenticated } from '../../Auth/admin/api';
 
 export default function Read() {
@@ -71,20 +71,6 @@ export default function Read() {
         setReload(!reload) 
     }
 
-    let columun = [
-        "name",
-        "slung",
-        "edit",
-        "detail",
-        "delete",
-    ];
-    let tableHead = [
-        "Session",
-        "Session Decription",
-        "Edit",
-        "Details",
-        "Delete",
-    ];
     const BtnEdit = styled(Link)`
         padding: 10px 20px;
         cursor: pointer;
@@ -107,61 +93,6 @@ export default function Read() {
         background-color: #d43f3a;
         color: #fff;
     `;
-
-    const DetailsComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td  variant="primary"><BtnDetail to={`/admin/session/read/${rowData._id}`}> Details </BtnDetail></td>
-        );
-    };
-
-    const DeleteComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td variant="danger"><BtnDelete to={`/admin/session/delete/${rowData._id}`}>Delete</BtnDelete></td>
-        );
-    };
-
-    const EditComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td ><BtnEdit to={`/admin/session/edit/${rowData._id}`}>Edit</BtnEdit></td>
-        );
-    };
-
-    const ViewData = () =>{
-        if(datas && datas.length > 0){
-            return(
-                <Aux>
-                    <Row>
-                        <Col>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title as="h5">Session List</Card.Title>
-                                    <span className="d-block m-t-5">manage  <code>the </code> Session data here</span>
-                                </Card.Header>
-                                <Card.Body>
-                                    <SortableTbl
-                                        tblData={datas}
-                                        tHead={tableHead}
-                                        customTd={[
-                                            { custd: DetailsComponent, keyItem: "detail" },
-                                            { custd: EditComponent, keyItem: "edit" },
-                                            { custd: DeleteComponent, keyItem: "delete" },
-                                        ]}
-                                        dKey={columun}
-                                        search={true}
-                                    />
-                                
-                                </Card.Body>
-                                
-                            </Card>
-                        </Col>
-                    </Row>
-                </Aux>
-            )        
-        }
-    }
 
     const boot = async () => {
         setLoading(true)
@@ -205,12 +136,52 @@ export default function Read() {
         boot()
     },[reload])
 
+    const ViewData = () =>{
+        return(
+          <Aux>
+            <h1>Manage Teacherdata</h1>
+            <hr />
+            {
+              datas.length > 0 ?  
+              <Datatable 
+                tableHeaders={header} 
+                tableBody={body(datas)} 
+                rowsPerPage={10}
+                rowsPerPageOption={[5, 10, 15, 20, 30, 40, 50, 100]}
+              />
+              : <h1>No Data </h1>
+            }
+          </Aux>
+        )
+      }
+
+
+      const header = [
+        { title: 'SN', prop: 'id', filterable: true, sortable: true, },
+        { title: 'Session', prop: 'name', filterable: true, sortable: true, },
+        { title: 'Session Description', prop: 'slung', filterable: true, sortable: true, },
+        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/admin/session/edit/${row.edit}`} > Edit</BtnEdit>},
+        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/admin/session/delete/${row.delete}`} > Delete </BtnDelete>},
+        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/admin/session/read/${row.detail}`} > Detail </BtnDetail>},
+      ];
+    
+      const body = (dat) => {
+        return dat.map((data, index)=>{
+          return{
+            id:index +1,
+            name:data.name,
+            slung:data.slung,
+            edit:data._id,
+            delete:data._id,
+            detail:data._id,
+          }
+        })
+      };
+
 
     return (
         <Aux>
-            {isLoading()}
-            {isError()}
-            {ViewData()}
+            {error ? isError() : loading ?  isLoading() :ViewData()}
         </Aux>
     )
 }

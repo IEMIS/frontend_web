@@ -5,8 +5,8 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads} from './api';
 import { Link } from 'react-router-dom';
-import SortableTbl from "react-sort-search-table";
 import styled from "styled-components";
+import Datatable from 'react-bs-datatable'; 
 import { isAuthenticated } from '../../Auth/admin/api';
 
 
@@ -71,38 +71,6 @@ export default function Read() {
         setReload(!reload) 
     }
 
-    let columun = [
-        "studentCode",
-        "code",
-        "firstName",
-        "lastName",
-        "edulevel",
-        "gender",
-        "status",
-        "age",
-        "country",
-        "cohortA",
-        "edit",
-        "detail",
-        "delete",
-    ];
-
-    let tableHead = [
-        "Birth Cert|Passport",
-        "School Code",
-        "First Name",
-        "Last Name",
-        "Student Level",
-        "Gender",
-        "Studentship",
-        "Age",
-        "Nationality",
-        "Cohort",
-        "Edit",
-        "Details",
-        "Delete",
-    ];
-
     const BtnEdit = styled(Link)`
         padding: 10px 20px;
         cursor: pointer;
@@ -126,75 +94,6 @@ export default function Read() {
         color: #fff;
     `;
 
-    const DetailsComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td  variant="primary"><BtnDetail to={`/admin/students/read/${rowData._id}`}> Details </BtnDetail></td>
-        );
-    };
-
-    const DeleteComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td variant="danger"><BtnDelete to={`/admin/students/delete/${rowData._id}`}>Delete</BtnDelete></td>
-        );
-    };
-
-    const EditComponent = (props) => {
-        const { rowData} = props;
-        return (
-            <td ><BtnEdit to={`/admin/students/edit/${rowData._id}`}>Edit</BtnEdit></td>
-        );
-    };
-
-    const ViewData = () =>{
-        if(datas && datas.length > 0){
-            return(
-                <Aux>
-                    <Row>
-                        <Col>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title as="h5">StudentsList</Card.Title>
-                                    <span className="d-block m-t-5">manage  <code>the </code> Students data here</span>
-                                </Card.Header>
-                                <Card.Body>
-                                    <SortableTbl
-                                        tblData={datas}
-                                        tHead={tableHead}
-                                        customTd={[
-                                            { custd: DetailsComponent, keyItem: "detail" },
-                                            { custd: EditComponent, keyItem: "edit" },
-                                            { custd: DeleteComponent, keyItem: "delete" },
-                                        ]}
-                                        dKey={columun}
-                                        search={true}
-                                    />
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Aux>
-            )        
-        }else{
-            return (
-                <Aux>
-                    <Row>
-                        <Col>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title as="h5">No record</Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Aux>
-            )
-        }
-    }
-    
     const boot = async () => {
         setLoading(true)
         const Auth = await isAuthenticated()
@@ -235,10 +134,63 @@ export default function Read() {
         boot()
     },[reload])
 
+    const ViewData = () =>{
+        return(
+          <Aux>
+            <h1>Manage Students data</h1>
+            <hr />
+            {
+              datas.length > 0 ?  
+              <Datatable 
+                tableHeaders={header} 
+                tableBody={body(datas)} 
+                rowsPerPage={10}
+                rowsPerPageOption={[5, 10, 15, 20, 30, 40, 50, 100]}
+              />
+              : <h1>No Data </h1>
+            }
+          </Aux>
+        )
+      }
+
+      const header = [
+        { title: 'SN', prop: 'id', filterable: true, sortable: true, },
+        { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
+        { title: 'Gender', prop: 'gender', filterable: true, sortable: true, },
+        { title: 'Age', prop: 'age', filterable: true, sortable: true, },
+        { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
+        { title: 'School', prop: 'school', filterable: true, sortable: true, },
+        { title: 'Status', prop: 'status', filterable: true, sortable: true },
+        //{ title: 'Admission Year', prop: 'date', filterable: true, sortable: true },
+        { title: 'Class', prop: 'class', filterable: true, sortable: true },
+        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/admin/students/edit/${row.edit}`} > Edit</BtnEdit>},
+        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/admin/students/delete/${row.delete}`} > Delete </BtnDelete>},
+        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/admin/students/read/${row.detail}`} > Detail </BtnDetail>},
+      ];
+    
+      const body = (dat) => {
+        return dat.map((data, index)=>{
+          return{
+            id:index +1,
+            names:`${data.firstName} ${data.lastName}`,
+            gender:data.gender,
+            age:data.age,
+            eduLevel:data.edulevel,
+            school:data.fromSchool[0].names,
+            status:data.status,
+            //date :moment(data.yearAdmission,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
+            class:data.fromClass[0].names,
+            edit:data._id,
+            delete:data._id,
+            detail:data._id,
+          }
+        })
+      };
+
+
     return (
         <Aux>
-            {isError()}
-            { loading ? isLoading() : ViewData() }
+            {error ? isError() : loading ?  isLoading() :ViewData()}
         </Aux>
     )
 }

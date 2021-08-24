@@ -4,8 +4,8 @@ import Aux from "../../../hoc/_Aux";
 import Swal from "sweetalert2";
 import { reads } from "./api";
 import { Link } from "react-router-dom";
-import SortableTbl from "react-sort-search-table";
-import styled from "styled-components";
+import moment from 'moment'; 
+import Datatable from 'react-bs-datatable'; 
 import { isAuthenticated } from "../../Auth/admin/api";
 
 export default function Read() {
@@ -76,107 +76,7 @@ export default function Read() {
     setReload(!reload);
   };
 
-  let columun = [
-    "firstName",
-    "lastName",
-    "email",
-    "phone",
-    "edit",
-    "detail",
-    "delete",
-  ];
-  let tableHead = [
-    "First Name",
-    "Last name",
-    "Email",
-    "Phone",
-    "Edit",
-    "Details",
-    "Delete",
-  ];
-  const BtnEdit = styled(Link)`
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    background-color: #f0ad4e;
-    color: #fff;
-  `;
-  const BtnDetail = styled(Link)`
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    background-color: #3f4d67;
-    color: #fff;
-  `;
-
-  const BtnDelete = styled(Link)`
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    background-color: #d43f3a;
-    color: #fff;
-  `;
-
-  const DetailsComponent = (props) => {
-    const { rowData } = props;
-    return (
-      <td variant="primary">
-        <BtnDetail to={`/admin/users/read/${rowData._id}`}> Details </BtnDetail>
-      </td>
-    );
-  };
-
-  const DeleteComponent = (props) => {
-    const { rowData } = props;
-    return (
-      <td variant="danger">
-        <BtnDelete to={`/admin/users/delete/${rowData._id}`}>Delete</BtnDelete>
-      </td>
-    );
-  };
-
-  const EditComponent = (props) => {
-    const { rowData } = props;
-    return (
-      <td>
-        <BtnEdit to={`/admin/users/edit/${rowData._id}`}>Edit</BtnEdit>
-      </td>
-    );
-  };
-
-  const ViewData = () => {
-    if (datas && datas.length > 0) {
-      return (
-        <Aux>
-          <Row>
-            <Col>
-              <Card>
-                <Card.Header>
-                  <Card.Title as="h5">Admin users</Card.Title>
-                  <span className="d-block m-t-5">
-                    manage <code>the </code> Admin data here
-                  </span>
-                </Card.Header>
-                <Card.Body>
-                  <SortableTbl
-                    tblData={datas}
-                    tHead={tableHead}
-                    customTd={[
-                      { custd: DetailsComponent, keyItem: "detail" },
-                      { custd: EditComponent, keyItem: "edit" },
-                      { custd: DeleteComponent, keyItem: "delete" },
-                    ]}
-                    dKey={columun}
-                    search={true}
-                  />
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Aux>
-      );
-    }
-  };
+ 
 
   const boot = async () => {
     setLoading(true);
@@ -220,15 +120,61 @@ export default function Read() {
     }
   };
 
+  const ViewData = () =>{
+    return(
+      <Aux>
+        <h1>Manage Admin data</h1>
+        <hr />
+        {
+          datas.length > 0 ?  
+          <Datatable 
+            tableHeaders={header} 
+            tableBody={body(datas)} 
+            //onRowClick={details}
+            //initialSort={{ prop: 'date', isAscending: true }}
+            rowsPerPage={10}
+            rowsPerPageOption={[5, 10, 15, 20, 30, 40, 50, 100]}
+          />
+          : <h1>No Data </h1>
+        }
+      </Aux>
+    )
+  }
+  const header = [
+    { title: 'SN', prop: 'id', filterable: true, sortable: true, },
+    { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
+    { title: 'Email', prop: 'email', filterable: true, sortable: true, },
+    { title: 'Phone Number', prop: 'phone', filterable: true, sortable: true },
+    { title: 'Created On ', prop: 'date', filterable: true, sortable: true },
+    { title: 'Admin Level', prop: 'level', filterable: true, sortable: true },
+    { title: 'Details', prop: 'edit', cell: row =><Link to={`/admin/users/edit/${row.edit}`} > Edit</Link>},
+    { title: 'Details', prop: 'delete', cell: row =><Link to={`/admin/users/delete/${row.delete}`} > Delete </Link>},
+    { title: 'Details', prop: 'detail', cell: row =><Link to={`/admin/users/read/${row.detail}`} > Detail </Link>},
+  ];
+
+  const body = (dat) => {
+    return dat.map((data, index)=>{
+      return{
+        id:index +1,
+        names:`${data.firstName} ${data.lastName}`,
+        email:data.email,
+        phone:data.phone,
+        date :moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
+        level:data.level ==="2" ? "Supervisor" :"Admin",
+        edit:data._id,
+        delete:data._id,
+        detail:data._id,
+      }
+    })
+  };
+
   React.useEffect(() => {
     boot();
   }, [reload]);
 
   return (
     <Aux>
-      {isLoading()}
-      {isError()}
-      {ViewData()}
+      {error ? isError() : loading ?  isLoading() :ViewData()}
     </Aux>
   );
 }

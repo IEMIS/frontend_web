@@ -1,5 +1,4 @@
 import React from 'react'
-import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
@@ -99,68 +98,51 @@ export default function Create() {
     return (
         <Aux>
             {redirectUser()}
-            <Row>
-                <Col>
-                    <Card.Header>
-                        <Card.Title><Link to="/admin/districts/read" > Read Districts </Link></Card.Title>
-                    </Card.Header>
-                </Col>
-            </Row>
-            <Row>
-                    <Col>
-                        <Card>
-                            <Card.Header>
-                                <Card.Title as="h3">Add New District</Card.Title>
-                            </Card.Header>
-                            <Card.Body>
-                                <Row>
-                                    <Col md={6}>
-                                        <Form>
-                                            {/*<Form.Group controlId="formBasicEmail">
-                                                <Form.Label>District Code</Form.Label>
-                                                <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} />
-                                            </Form.Group>*/}
-
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>District Name</Form.Label>
-                                                <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Phone </Form.Label>
-                                                <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password Confirmation</Form.Label>
-                                                <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
-                                            </Form.Group>
-                                            {
-                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
-                                            }
-                                        </Form>
-                                    </Col>
-                                    <Col md={6}>
-                                    <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Address </Form.Label>
-                                                <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
-                                            </Form.Group>
-                                            {<Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Officer-in- charge</Form.Label>
-                                                <Form.Control type="text" placeholder="Education District ID" />
-                                            </Form.Group>}
-                                        <Form.Group controlId="exampleForm.ControlInput1">
-                                            <Form.Label>email </Form.Label>
-                                            <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-            </Row>
+            <div className="container">
+                <h1>Add new District</h1> 
+                <hr />
+                <h2> <Link to="/admin/districts/read" > Read Districts </Link></h2>
+                <hr />
+                <div className="row"> 
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">District Name </label>
+                            <input  type="text" placeholder="district name" onChange={handleChange("names")} value={names} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Phone Number </label>
+                            <input  type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Email Address</label>
+                            <input  type="email" placeholder="email" onChange={handleChange("email")} value={email} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Address </label>
+                            <input  type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Password </label>
+                            <input type="password" placeholder="Password" onChange={handleChange("password")} value={password} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Passwodr Again </label>
+                            <input  type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    {loading ? <button type="submit"  className="btn btn-primary offset-9" disabled >Loading ...</button> : <button className="btn btn-primary offset-9" variant="primary" onClick={submit} > Create ..</button>}
+                </div>
+            </div>
         </Aux>
     )
 }
