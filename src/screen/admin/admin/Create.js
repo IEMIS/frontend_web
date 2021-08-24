@@ -1,5 +1,5 @@
+
 import React from "react";
-import { Row, Col, Card, Form, Button } from "react-bootstrap";
 import Aux from "../../../hoc/_Aux";
 import Swal from "sweetalert2";
 import { Redirect } from "react-router-dom";
@@ -121,112 +121,68 @@ export default function Create() {
   return (
     <Aux>
       {redirectUser()}
-      <Row>
-        <Col>
-          <Card>
-            <Card.Header>
-              <Card.Title as="h3">Add New Admin user</Card.Title>
-            </Card.Header>
-            <Card.Body>
-              <Row>
-                <Col md={6}>
-                  <Form>
-                    <Form.Group controlId="formBasicEmail">
-                      <Form.Label>First name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="First name"
-                        onChange={handleChange("firstName")}
-                        value={firstName}
-                      />
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicEmail">
-                      <Form.Label>Middle Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Middle name"
-                        onChange={handleChange("middleName")}
-                        value={middleName}
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="formBasicEmail">
-                      <Form.Label>Phone </Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="phone"
-                        onChange={handleChange("phone")}
-                        value={phone}
-                      />
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicPassword">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        placeholder="Password"
-                        onChange={handleChange("password")}
-                        value={password}
-                      />
-                    </Form.Group>
-
-                    {loading ? (
-                      <Button variant="outline-secondary" disabled>
-                        Loading ..
-                      </Button>
-                    ) : (
-                      <Button variant="primary" onClick={submit}>
-                        Create ..
-                      </Button>
-                    )}
-                  </Form>
-                </Col>
-                <Col md={6}>
-                  <Form.Group controlId="exampleForm.ControlInput1">
-                    <Form.Label>Last name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Last name"
-                      onChange={handleChange("lastName")}
-                      value={lastName}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="exampleForm.ControlInput1">
-                    <Form.Label>email </Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="email"
-                      onChange={handleChange("email")}
-                      value={email}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Admin Role </Form.Label>
-                    <Form.Control
-                      as="select"
-                      onChange={handleChange("level")}
-                      value={level}
-                    >
-                      <option>Select Role</option>
-                      <option value="1">Admin</option>
-                      <option value="2">Moderator</option>
-                    </Form.Control>
-                  </Form.Group>
-                  <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password Confirmation</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Password Confirmation"
-                      onChange={handleChange("password2")}
-                      value={password2}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+      <div className="row">
+        <div className="container">
+          <h1>Add new Admin user</h1>
+          <hr />
+          <div className="row">
+            <div className="col-4">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">First Name </label>
+                  <input  type="text"placeholder="First Name" onChange={handleChange("firstName")}value={firstName} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Last Name</label>
+                  <input  type="text"placeholder="Last Name" onChange={handleChange("lastName")} value={lastName} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                  
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Middle Name</label>
+                  <input  type="text" placeholder="Middle name" onChange={handleChange("middleName")} value={middleName} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Phone Number </label>
+                  <input type="text"placeholder="phone Number" onChange={handleChange("phone")} value={phone} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Admin Email Address</label>
+                  <input  type="email" placeholder="email" onChange={handleChange("email")} value={email} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Admin Role</label>
+                  <select onChange={handleChange("level")} value={level} className="form-control">
+                    <option>Select Role</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Moderator</option> 
+                  </select>
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Password</label>
+                  <input type="password" placeholder="Password" onChange={handleChange("password")} value={password} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Password Again </label>
+                  <input type="password" placeholder="Password" onChange={handleChange("password2")} value={password2} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              </div>
+            </div>
+            {loading ? <button type="submit"  className="btn btn-primary offset-9" disabled >Loading ...</button> : <button type="submit" onClick={submit}  className="btn btn-primary offset-9">Submit</button>}
+            </div>
+        </div>
+      </div>
     </Aux>
   );
 }
