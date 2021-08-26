@@ -3,7 +3,8 @@ import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { useParams, Redirect } from "react-router-dom";
-import { create, read, readsDistrict } from './api';
+import { read, readsDistrict, edit } from './api';
+import { isAuthenticated } from '../../Auth/admin/api';
 
 
 export default function Edit() {
@@ -25,13 +26,11 @@ export default function Edit() {
         schoolCat:"",
         schoolType:"",
         headID:"",
-        password:"",
-        password2:"",
         loading:false,
         redirectToPage:false,
         districtList:[]
     })
-    const {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
+    const {code, names, district, phone, email, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -40,10 +39,10 @@ export default function Edit() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
-        if(code===""){ 
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'School code is required', 'error');
-        }
+        // if(code===""){ 
+        //     setValues({...values, loading:false})
+        //     return Swal.fire('Oops...', 'School code is required', 'error');
+        // }
         if(district===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District is required', 'error');
@@ -96,36 +95,23 @@ export default function Edit() {
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District email is required', 'error');
         }
-
-        if(password==="") {
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Password must empty', 'error');
-        }
-
-        if(password !== password2) {
-            setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'Password must match each other', 'error');
-        }
-        handleCreate();
+        handleUpdate()
     }
 
-    const handleCreate =async ()=>{
-        //const user = {code, names,district, phone, email, password, password2, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList}
-        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
-        const data = await create(school);
-        console.log(data)
+    const handleUpdate =async ()=>{
+        const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID}
+        const Auth = await isAuthenticated()
+        const data = await edit(id, school, Auth.token);
+        console.log({data})
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.error){
             Swal.fire('Oops...', data.error, 'error')
             return setValues({...values, loading:false})
         }
-
         if(data.message){
-            Swal.fire('Saved...', data.message, 'success')
            setValues({...values, loading:false, redirectToPage:true})
            let Toast = Swal.mixin({
             toast: true,
@@ -134,29 +120,28 @@ export default function Edit() {
             showConfirmButton: false,
             timer: 3000
             });
-
             return Toast.fire({
                 animation: true,
                 type: 'success',
-                title: 'Request is successful'
+                title: data.message
             })
         }
     }
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/schools/create" />
+            return <Redirect to="/district/schools/read" />
         }
     };
 
     React.useEffect(() => {
-        //const token = '9999e88e8';
         const bootstrap = async () =>{
-            const dist = await readsDistrict();
-            let code = `SCH${`0012`}`;
-            setValues(v => ({...v, districtList:dist.data, code}));
-            const da = await read(id);
-            console.log(da) 
+            const Auth = await isAuthenticated();
+            const dist = await readsDistrict(Auth.token);
+            const da = await read(id, Auth.token);
+            const {code, names, district, email, contact, eduLevel, ownership, estabYear, schoolCat, schoolType, headID} = da.data[0];
+            const [{phone, fax, mailBox, province, address}]= contact
+            setValues(v => ({...v, districtList:dist.data, code,names, district, email,eduLevel, ownership, estabYear, schoolCat, schoolType, headID,phone, fax, mailBox, province, address}));
         }
         bootstrap()
     }, [id])
@@ -183,21 +168,6 @@ export default function Edit() {
                                                 <Form.Label>School Name</Form.Label>
                                                 <Form.Control type="text" placeholder="school name" onChange={handleChange("names")} value={names} />
                                             </Form.Group>
-                                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>District</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("district")} value={district}>
-                                                <option>Select district</option>
-                                               {
-                                                   districtList && districtList.length > 0 
-                                                   ?
-                                                   districtList.map((dist, id)=>{
-                                                       return(
-                                                        <option value={dist._id}>{dist.names}</option>
-                                                       ) 
-                                                   }) : <option value="0">Fails to fetch district</option>
-                                               }
-                                            </Form.Control>
-                                            </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Address </Form.Label>
                                                 <Form.Control type="text" placeholder="location, province e.g Veisaru Road, Savusavu" onChange={handleChange("address")} value={address} />
@@ -219,10 +189,6 @@ export default function Edit() {
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Mailing Address </Form.Label>
                                                 <Form.Control type="text" placeholder="P.O BOX 123, Tavua" onChange={handleChange("mailBox")} value={mailBox} />
-                                            </Form.Group>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Phone </Form.Label>
-                                                <Form.Control type="text" placeholder="official school phone number" onChange={handleChange("phone")} value={phone} />
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Fax</Form.Label>
@@ -247,7 +213,7 @@ export default function Edit() {
                                             </Form.Group>
                                     <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Estab. Year </Form.Label>
-                                                <Form.Control type="date" placeholder="year founded" onChange={handleChange("estabYear")} value={estabYear} />
+                                                <Form.Control type="date" onChange={handleChange("estabYear")} value={estabYear} />
                                             </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Ownership</Form.Label>
@@ -280,24 +246,20 @@ export default function Edit() {
                                             <Form.Label>email </Form.Label>
                                             <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                         </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
-                                            </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
-                                            <Form.Label>Password Confirmation</Form.Label>
-                                            <Form.Control type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} />
+                                        <Form.Group controlId="formBasicEmail">
+                                            <Form.Label>Phone </Form.Label>
+                                            <Form.Control type="text" placeholder="official school phone number" onChange={handleChange("phone")} value={phone} />
                                         </Form.Group>
-                                        
+                                    
                                         {
-                                                loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Update ..</Button>
-                                            }
+                                            loading ? "loading ..." : <Button variant="primary" onClick={submit}  > Update ..</Button>
+                                        }
                                     </Col>
                                 </Row>
                             </Card.Body>
                         </Card>
                     </Col>
-                </Row>
+            </Row>
         </Aux>
     )
 }

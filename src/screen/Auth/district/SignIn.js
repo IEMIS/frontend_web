@@ -45,6 +45,7 @@ const SignIn = () => {
         const handleSigin = async () =>{
             let user = {email, password}
             const data  = await login(user);
+            console.log({data})
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
                 return setValues({...values, loading:false})
@@ -78,7 +79,7 @@ const SignIn = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/district" />
+                return <Redirect to="/district/districts" />
             }
         };
         return(
