@@ -74,7 +74,7 @@ export default function One() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/schools/read" />
+            return <Redirect to="/district/schools/read" />
         }
     };
  
@@ -125,7 +125,7 @@ export default function One() {
                     <Row>
                         <Col>
                             <Card.Header>
-                                <Card.Title><Link to="/admin/schools/read"> Read School </Link></Card.Title>
+                                <Card.Title><Link to="/district/schools/read"> Read School </Link></Card.Title>
                             </Card.Header>
                         </Col>
                     </Row>

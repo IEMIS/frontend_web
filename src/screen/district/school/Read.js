@@ -134,15 +134,15 @@ export default function Read() {
       const header = [
         { title: 'SN', prop: 'id', filterable: true, sortable: true, },
         { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
-        { title: 'District', prop: 'district', filterable: true, sortable: true, },
+        //{ title: 'District', prop: 'district', filterable: true, sortable: true, },
         { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
         { title: 'category', prop: 'category', filterable: true, sortable: true },
         { title: 'Type', prop: 'type', filterable: true, sortable: true },
         { title: 'Ownership', prop: 'owner', filterable: true, sortable: true },
         //{ title: 'Created On ', prop: 'date', filterable: true, sortable: true },
-        { title: 'Details', prop: 'edit', cell: row =><Link to={`/admin/schools/edit/${row.edit}`} > Edit</Link>},
-        { title: 'Details', prop: 'delete', cell: row =><Link to={`/admin/schools/delete/${row.delete}`} > Delete </Link>},
-        { title: 'Details', prop: 'detail', cell: row =><Link to={`/admin/schools/read/${row.detail}`} > Detail </Link>},
+        { title: 'Details', prop: 'edit', cell: row =><Link to={`/district/schools/edit/${row.edit}`} > Edit</Link>},
+        { title: 'Details', prop: 'delete', cell: row =><Link to={`/district/schools/delete/${row.delete}`} > Delete </Link>},
+        { title: 'Details', prop: 'detail', cell: row =><Link to={`/district/schools/read/${row.detail}`} > Detail </Link>},
       ];
     
       const body = (dat) => {
@@ -151,7 +151,7 @@ export default function Read() {
           return{
             id:index +1,
             names:data.names,
-            district:data.fromDistrict[0].names,
+           /// district:data.fromDistrict[0].names,
             eduLevel:data.eduLevel,
             category:data.schoolCat,
             type:data.schoolType,

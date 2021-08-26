@@ -130,7 +130,7 @@ export default function Edit() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/schools/read" />
+            return <Redirect to="/district/schools/read" />
         }
     };
 
@@ -167,21 +167,6 @@ export default function Edit() {
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>School Name</Form.Label>
                                                 <Form.Control type="text" placeholder="school name" onChange={handleChange("names")} value={names} />
-                                            </Form.Group>
-                                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>District</Form.Label>
-                                            <Form.Control as="select" onChange={handleChange("districtId")} value={district}>
-                                                <option>Select district</option>
-                                               {
-                                                   districtList && districtList.length > 0 
-                                                   ?
-                                                   districtList.map((dist, idx)=>{
-                                                       return(
-                                                        <option value={dist._id}>{dist.names}</option>
-                                                       ) 
-                                                   }) : <option value="0">Fails to fetch district</option>
-                                               }
-                                            </Form.Control>
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Address </Form.Label>
