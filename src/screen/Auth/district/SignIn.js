@@ -79,7 +79,7 @@ const SignIn = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/district" />
+                return <Redirect to="/district/districts" />
             }
         };
         return(

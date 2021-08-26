@@ -104,34 +104,6 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        Choose District
-                                    </Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                        <Form.Label>District</Form.Label>
-                                        <Form.Control as="select" onChange={this.handleChange("district")} value={district} >
-                                                <option>Select district</option>
-                                               {
-                                                  
-                                                   districtList && districtList.length > 0 
-                                                   ?
-                                                   districtList.map((dist, id)=>{
-                                                       return(
-                                                        <option value={dist._id}>{dist.names}</option>
-                                                       ) 
-                                                   }) : <option value="0">Fails to fetch district</option>
-                                                  
-                                               }
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} xl={4}>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title>
                                         Choose School
                                     </Card.Title>
                                 </Card.Header>

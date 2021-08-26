@@ -10,7 +10,7 @@ export default {
                     id: 'dashboard',
                     title: 'Dashboard',
                     type: 'item',
-                    url: '/district',
+                    url: '/district/districts',
                     icon: 'feather icon-home',
                 },
                 {
@@ -20,15 +20,13 @@ export default {
                     url: '/district/schools',
                     icon: 'feather icon-book',
                 },
-                /*
                 {
-                    id: 'm-students',
-                    title: 'Students Data',
+                    id: 'dashbo-indicator',
+                    title: 'Indicators ',
                     type: 'item',
-                    url: '/admin/students',
-                    icon: 'feather icon-users',
-                }
-                */
+                    url: '/district/indicator',
+                    icon: 'feather icon-home',
+                },
             ],
         },
         {

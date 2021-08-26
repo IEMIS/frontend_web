@@ -78,66 +78,6 @@ class DistrictData extends React.Component {
         
         return (
             <Aux>
-                     <Row>
-                        <Col md={4} xl={4}>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title>
-                                        Choose District
-                                    </Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                        <Form.Label>District</Form.Label>
-                                        <Form.Control as="select" onChange={this.handleChange("district")} value={district} >
-                                                <option>Select district</option>
-                                               {
-                                                  
-                                                   districtList && districtList.length > 0 
-                                                   ?
-                                                   districtList.map((dist, id)=>{
-                                                       return(
-                                                        <option value={dist._id}>{dist.names}</option>
-                                                       ) 
-                                                   }) : <option value="0">Fails to fetch district</option>
-                                                  
-                                               }
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} xl={4}>
-                            {/*<Card>
-                                <Card.Header>
-                                    <Card.Title>
-                                        Choose Session
-                                    </Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                        <Form.Label>Session</Form.Label>
-                                        <Form.Control as="select">
-                                                <option>select session </option>
-                                                <option>2020 Academic Session</option>
-                                                <option>2019 Academic Session</option>
-                                               {
-                                                
-                                                //    sessionList && sessionList.length > 0 
-                                                //    ?
-                                                //    sessionList.map((sess, id)=>{
-                                                //        return(
-                                                //         <option value={sess._id}>{sess.names}</option>
-                                                //        ) 
-                                                //    }) : <option value="0">Fails to fetch session</option>
-                                                 
-                                               }
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Card.Body>
-                            </Card>*/}
-                        </Col>
-                    </Row>
                     <Row>
                         <Col md={4} xl={4}>
                             <Card>
