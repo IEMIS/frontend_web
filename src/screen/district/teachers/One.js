@@ -21,7 +21,7 @@ export default function One() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/teachers/create" />
+            return <Redirect to="/district/teachers/create" />
         }
     };
 

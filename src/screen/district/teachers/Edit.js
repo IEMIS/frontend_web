@@ -185,7 +185,7 @@ export default function Edit() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/teachers/read" />
+            return <Redirect to="/district/teachers/read" />
         }
     };
 

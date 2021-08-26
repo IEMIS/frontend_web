@@ -185,7 +185,7 @@ implement cohort generation presentClass-yearAdmission e.g (Y1-2020)
     redirectUser = () => {
         let {redirectToPage} = this.state;
         if (redirectToPage){
-            return <Redirect to="/admin/students/create" />
+            return <Redirect to="/district/students/create" />
         }
     };
 

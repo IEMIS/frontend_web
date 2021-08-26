@@ -16,7 +16,7 @@ export default function Delete(props) {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/teachers/read" />
+            return <Redirect to="/district/teachers/read" />
         }
     };
     const isError = () => {

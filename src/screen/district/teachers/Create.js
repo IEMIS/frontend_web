@@ -188,7 +188,7 @@ export default function Create() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/teachers/create" />
+            return <Redirect to="/district/teachers/create" />
         }
     };
 

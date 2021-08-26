@@ -145,7 +145,7 @@ export default function Read() {
     const ViewData = () =>{
         return(
           <Aux>
-            <h1>Manage Teacherdata</h1>
+            <h1>Manage Teacher data</h1>
             <hr />
             {
               datas.length > 0 ?  
@@ -171,9 +171,9 @@ export default function Read() {
         //{ title: 'Status', prop: 'status', filterable: true, sortable: true },
         //{ title: 'Admission Year', prop: 'date', filterable: true, sortable: true },
         //{ title: 'Class', prop: 'class', filterable: true, sortable: true },
-        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/admin/students/edit/${row.edit}`} > Edit</BtnEdit>},
-        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/admin/students/delete/${row.delete}`} > Delete </BtnDelete>},
-        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/admin/students/read/${row.detail}`} > Detail </BtnDetail>},
+        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/district/students/edit/${row.edit}`} > Edit</BtnEdit>},
+        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/district/students/delete/${row.delete}`} > Delete </BtnDelete>},
+        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/district/students/read/${row.detail}`} > Detail </BtnDetail>},
       ];
     
       const body = (dat) => {

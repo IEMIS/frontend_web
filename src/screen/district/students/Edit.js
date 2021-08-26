@@ -147,7 +147,7 @@ export default function Edit() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/students/read" />
+            return <Redirect to="/district/students/read" />
         }
     };
     const isLoading= () => {
