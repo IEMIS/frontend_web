@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink, Redirect} from 'react-router-dom';
+import {NavLink, Redirect, useParams} from 'react-router-dom';
 
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
@@ -12,9 +12,7 @@ import Navigation from '../welcome/components/Navigation';
 //class SignIn extends React.Component {
 
 const Reset = () => {
-  
-
-    //render () {
+    const {resetToken} = useParams()
         const [values, setValues] = useState({
             loading:false,
             resetToken:"",
@@ -22,7 +20,7 @@ const Reset = () => {
             passwordConfirmation:"",
             redirectToPage:false
         })
-        const {loading, password, passwordConfirmation, resetToken, redirectToPage} = values;
+        const {loading, password, passwordConfirmation, redirectToPage} = values;
 
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
@@ -54,7 +52,7 @@ const Reset = () => {
                 Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
                 return setValues({...values, loading:false})
             }
-            console.log(data)
+            // console.log(data)
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})
@@ -77,7 +75,7 @@ const Reset = () => {
             })
             setValues({...values, loading:false, redirectToPage:true})
        
-            console.log({data})
+            // console.log({data})
         }
 
         const redirectUser = () => {
@@ -104,10 +102,10 @@ const Reset = () => {
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
                                 <h3 className="mb-4">district | Reset Password </h3>
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <input type="input" className="form-control"  onChange={handleChange("resetToken")} value={resetToken} placeholder="Reset Token"/>
                                 </div>
-                            
+                             */}
                                 <div className="input-group mb-3">
                                     <input type="password" className="form-control"  onChange={handleChange("password")} value={password} placeholder="Password"/>
                                 </div>
