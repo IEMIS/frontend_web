@@ -47,29 +47,29 @@ const route = [
 
     { path: '/auth/district/signin', exact: true, name: 'd-signin', component: DSignIn },
     { path: '/auth/district/forget', exact: true, name: 'd-forget', component: DForget },
-    { path: '/auth/district/reset', exact: true, name: 'd-reset', component: DReset},
+    { path: '/auth/district/reset/:resetToken', exact: true, name: 'd-reset', component: DReset},
 
     { path: '/auth/school/signin', exact: true, name: 'school-signin', component: SchoolSignIn },
     { path: '/auth/school/forget', exact: true, name: 'school-forget', component: SchoolForget },
-    { path: '/auth/school/reset', exact: true, name: 'school-reset', component: SchoolReset},
+    { path: '/auth/school/reset/:resetToken', exact: true, name: 'school-reset', component: SchoolReset},
 
     { path: '/auth/teacher/signin', exact: true, name: 'teacher-signin', component: TeacherSignIn },
     { path: '/auth/teacher/forget', exact: true, name: 'teacher-forget', component: TeacherForget },
-    { path: '/auth/teacher/reset', exact: true, name: 'teacher-reset', component: TeacherReset},
+    { path: '/auth/teacher/reset/:resetToken', exact: true, name: 'teacher-reset', component: TeacherReset},
 
     { path: '/auth/staff/signin', exact: true, name: 'staff-signin', component: StaffSignIn },
     { path: '/auth/staff/forget', exact: true, name: 'staff-forget', component: StaffForget },
-    { path: '/auth/staff/reset', exact: true, name: 'staff-reset', component: StaffReset},
+    { path: '/auth/staff/reset/:resetToken', exact: true, name: 'staff-reset', component: StaffReset},
 
     
 
     { path: '/auth/student/signin', exact: true, name: 'student-signin', component: StudentSignIn },
     { path: '/auth/student/forget', exact: true, name: 'student-forget', component: StudentForget },
-    { path: '/auth/student/reset', exact: true, name: 'student-reset', component: StudentReset},
+    { path: '/auth/student/reset/:resetToken', exact: true, name: 'student-reset', component: StudentReset},
 
     { path: '/auth/parent/signin', exact: true, name: 'parent-signin', component: ParentSignIn },
     { path: '/auth/parent/forget', exact: true, name: 'parent-forget', component: ParentForget },
-    { path: '/auth/parent/reset', exact: true, name: 'parent-reset', component: ParentReset},
+    { path: '/auth/parent/reset/:resetToken', exact: true, name: 'parent-reset', component: ParentReset},
 ];
 
 export default route;

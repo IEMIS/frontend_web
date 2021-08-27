@@ -49,15 +49,6 @@ export const signout = next => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem('schools-Auth');
         next();
-        /*
-        return fetch(`${BASE_URL}/signout`, {
-            method: 'GET'
-        })
-            .then(response => {
-                console.log('signout', response);
-            })
-            .catch(err => console.log(err));
-            */
     }
 };
 

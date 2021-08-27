@@ -9,12 +9,10 @@ import Swal from 'sweetalert2'
 import {authenticate, login} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
+
 
 const SignIn = () => {
-  
-
-    //render () {
+    
         const [values, setValues] = useState({
             loading:false,
             password:"",
