@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink, Redirect} from 'react-router-dom';
+import {NavLink, Redirect, useParams} from 'react-router-dom';
 
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
@@ -9,18 +9,18 @@ import Swal from 'sweetalert2'
 import {reset} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
+
 
 const Reset = () => {
-    //render () {
+   const {resetToken} = useParams()
+   
         const [values, setValues] = useState({
             loading:false,
-            resetToken:"",
             password:"",
             passwordConfirmation:"",
             redirectToPage:false
         })
-        const {loading, password, passwordConfirmation, resetToken, redirectToPage} = values;
+        const {loading, password, passwordConfirmation, redirectToPage} = values;
 
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
@@ -29,10 +29,6 @@ const Reset = () => {
         const submit = event =>{
             event.preventDefault();
             setValues({...values, loading:true})
-            if(resetToken===""){
-                Swal.fire('Oops...', 'reset token is required!', 'error')
-                return setValues({...values, loading:false})
-            }
             if(password===""){
                 Swal.fire('Oops...', 'password is required!', 'error')
                 return setValues({...values, loading:false})
@@ -74,13 +70,11 @@ const Reset = () => {
                 title: 'password successfully reset'
             })
             setValues({...values, loading:false, redirectToPage:true})
-       
-            console.log({data})
         }
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/school/login" />
+                return <Redirect to="/auth/school/signin" />
             }
         };
         return(
@@ -102,10 +96,9 @@ const Reset = () => {
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
                                 <h3 className="mb-4">schools | Reset Password </h3>
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <input type="input" className="form-control"  onChange={handleChange("resetToken")} value={resetToken} placeholder="Reset Token"/>
-                                </div>
-                            
+                                </div> */}
                                 <div className="input-group mb-3">
                                     <input type="password" className="form-control"  onChange={handleChange("password")} value={password} placeholder="Password"/>
                                 </div>

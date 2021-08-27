@@ -9,12 +9,8 @@ import Swal from 'sweetalert2'
 import {forget} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
 
 const Forget = () => {
-  
-
-    //render () {
         const [values, setValues] = useState({
             loading:false,
             email:"",
@@ -43,7 +39,7 @@ const Forget = () => {
                 Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
                 return setValues({...values, loading:false})
             }
-            console.log(data)
+          
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})
@@ -64,7 +60,7 @@ const Forget = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/school/reset" />
+                return <Redirect to="/auth/school/signin" />
             }
         };
         return(
