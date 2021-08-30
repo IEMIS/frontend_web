@@ -2,7 +2,7 @@ export default {
     items: [
         {
             id: 'navigation',
-            title: 'admin Menu',
+            title: 'School Menu',
             type: 'group',
             icon: 'icon-navigation',
             children: [
@@ -13,19 +13,10 @@ export default {
                     url: '/school',
                     icon: 'feather icon-home',
                 },
-                /*
-                {
-                    id: 'm-students',
-                    title: 'Students Data',
-                    type: 'item',
-                    url: '/admin/students',
-                    icon: 'feather icon-users',
-                }
-                */
             ],
         },
         {
-            id: 'district-list',
+            id: 'data-list',
             title: 'Data Management',
             type: 'group',
             icon: 'icon-ui',
@@ -51,25 +42,25 @@ export default {
                     ]
                 },
                 {
-                    id: 'staff',
-                    title: 'Staff',
+                    id: 'subjects',
+                    title: 'Subjects',
                     type: 'collapse',
                     icon: 'feather icon-users',
                     children: [
                         {
-                            id: 'staffs-read',
+                            id: 'subjects-read',
                             title: 'Read',
                             type: 'item',
-                            url: '/school/staffs/read'
+                            url: '/school/subjects/read'
                         },
                         {
-                            id: 'staffs-create',
+                            id: 'subjects-create',
                             title: 'Create',
                             type: 'item',
-                            url: '/school/staffs/create'
+                            url: '/school/subjects/create'
                         },
                     ]
-                },
+                }, 
                 {
                     id: 'teachers',
                     title: 'Teachers',
@@ -90,6 +81,66 @@ export default {
                         },
                     ]
                 },
+                {
+                    id: 'Class',
+                    title: 'Class',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'class-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/school/class/read'
+                        },
+                        {
+                            id: 'class-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/school/class/create'
+                        },
+                    ]
+                }, 
+                {
+                    id: 'Exam',
+                    title: 'Exam Record',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'exam-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/school/exam/read'
+                        },
+                        {
+                            id: 'exam-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/school/exam/create'
+                        },
+                    ]
+                }, 
+                {
+                    id: 'Attendance',
+                    title: 'Attendance Record',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'attendance-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/school/attendance/read'
+                        },
+                        {
+                            id: 'attendance-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/school/attendance/create'
+                        },
+                    ]
+                }, 
                 {
                     id: 'extral',
                     title: 'Extral Data',
