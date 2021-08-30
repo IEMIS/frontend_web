@@ -9,7 +9,7 @@ import NavBar from './NavBar';
 import Breadcrumb from './Breadcrumb';
 import Loader from "../Loader";
 
-import routes from "../../../screen/school/routes";
+import routes from "../../../screen/teacher/routes";
 
 import PrivateRoute from './PrivateRoute'
 
