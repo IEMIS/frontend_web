@@ -9,12 +9,9 @@ import Swal from 'sweetalert2'
 import {forget} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
 
 const Forget = () => {
-  
 
-    //render () {
         const [values, setValues] = useState({
             loading:false,
             email:"",

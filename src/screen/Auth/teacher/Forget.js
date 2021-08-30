@@ -9,12 +9,9 @@ import Swal from 'sweetalert2'
 import {forget} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
+
 
 const Forget = () => {
-  
-
-    //render () {
         const [values, setValues] = useState({
             loading:false,
             email:"",
@@ -64,7 +61,7 @@ const Forget = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/school/reset" />
+                return <Redirect to="/auth/teacher/signin" />
             }
         };
         return(
@@ -92,7 +89,7 @@ const Forget = () => {
                                 {
                                     loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Request !</button>
                                 }
-                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/school/signin">Login</NavLink></p>
+                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/teacher/signin">Login</NavLink></p>
                             </div>
                         </div>
                     </div>

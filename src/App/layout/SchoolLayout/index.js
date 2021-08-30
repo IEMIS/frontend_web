@@ -18,7 +18,7 @@ import * as actionTypes from "../../../store/actions";
 
 import './app.scss';
 
-class AdminLayout extends Component {
+class SchoolLayout extends Component {
 
     fullScreenExitHandler = () => {
         if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
@@ -106,4 +106,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (windowSize(AdminLayout));
+export default connect(mapStateToProps, mapDispatchToProps) (windowSize(SchoolLayout));

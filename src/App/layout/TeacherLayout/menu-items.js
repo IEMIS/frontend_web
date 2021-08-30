@@ -2,7 +2,7 @@ export default {
     items: [
         {
             id: 'navigation',
-            title: 'admin Menu',
+            title: 'School Menu',
             type: 'group',
             icon: 'icon-navigation',
             children: [
@@ -10,22 +10,13 @@ export default {
                     id: 'dashboard',
                     title: 'Dashboard',
                     type: 'item',
-                    url: '/school',
+                    url: '/teacher',
                     icon: 'feather icon-home',
                 },
-                /*
-                {
-                    id: 'm-students',
-                    title: 'Students Data',
-                    type: 'item',
-                    url: '/admin/students',
-                    icon: 'feather icon-users',
-                }
-                */
             ],
         },
         {
-            id: 'district-list',
+            id: 'data-list',
             title: 'Data Management',
             type: 'group',
             icon: 'icon-ui',
@@ -40,56 +31,96 @@ export default {
                             id: 'students-read',
                             title: 'Read',
                             type: 'item',
-                            url: '/school/students/read'
+                            url: '/teacher/students/read'
                         },
                         {
                             id: 'students-create',
                             title: 'Create',
                             type: 'item',
-                            url: '/school/students/create'
+                            url: '/teacher/students/create'
                         },
                     ]
                 },
                 {
-                    id: 'staff',
-                    title: 'Staff',
+                    id: 'subjects',
+                    title: 'Subjects',
                     type: 'collapse',
                     icon: 'feather icon-users',
                     children: [
                         {
-                            id: 'staffs-read',
+                            id: 'subjects-read',
                             title: 'Read',
                             type: 'item',
-                            url: '/school/staffs/read'
+                            url: '/teacher/subjects/read'
                         },
                         {
-                            id: 'staffs-create',
+                            id: 'subjects-create',
                             title: 'Create',
                             type: 'item',
-                            url: '/school/staffs/create'
+                            url: '/teacher/subjects/create'
                         },
                     ]
-                },
+                }, 
                 {
-                    id: 'teachers',
-                    title: 'Teachers',
+                    id: 'Class',
+                    title: 'Class',
                     type: 'collapse',
                     icon: 'feather icon-users',
                     children: [
                         {
-                            id: 'teachers-read',
+                            id: 'class-read',
                             title: 'Read',
                             type: 'item',
-                            url: '/school/teachers/read'
+                            url: '/teacher/class/read'
                         },
                         {
-                            id: 'teachers-create',
+                            id: 'class-create',
                             title: 'Create',
                             type: 'item',
-                            url: '/school/teachers/create'
+                            url: '/teacher/class/create'
                         },
                     ]
-                },
+                }, 
+                {
+                    id: 'Exam',
+                    title: 'Exam Record',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'exam-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/teacher/exam/read'
+                        },
+                        {
+                            id: 'exam-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/teacher/exam/create'
+                        },
+                    ]
+                }, 
+                {
+                    id: 'Attendance',
+                    title: 'Attendance Record',
+                    type: 'collapse',
+                    icon: 'feather icon-users',
+                    children: [
+                        {
+                            id: 'attendance-read',
+                            title: 'Read',
+                            type: 'item',
+                            url: '/teacher/attendance/read'
+                        },
+                        {
+                            id: 'attendance-create',
+                            title: 'Create',
+                            type: 'item',
+                            url: '/teacher/attendance/create'
+                        },
+                    ]
+                }, 
                 {
                     id: 'extral',
                     title: 'Extral Data',
@@ -100,7 +131,7 @@ export default {
                             id: 'extral-read',
                             title: 'Population',
                             type: 'item',
-                            url: '/school/extral/read'
+                            url: '/teacher/extral/read'
                         },
                     ]
                 }
@@ -116,7 +147,7 @@ export default {
                     id: 'disabled-menu',
                     title: 'Districts Signout',
                     type: 'item',
-                    url: '/school/signout',
+                    url: '/teacher/signout',
                     classes: 'nav-item ',
                     icon: 'feather icon-power'
                 }
