@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
@@ -9,31 +9,27 @@ import Swal from 'sweetalert2'
 import {authenticate, login} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
 
 const SignIn = () => {
   
-
-    //render () {
         const [values, setValues] = useState({
             loading:false,
             password:"",
-            email:"",
+            studentCode:"",
             redirectToPage:false
         })
-        const {loading, password, email, redirectToPage} = values;
+        const {loading, studentCode, password, redirectToPage} = values;
 
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
         };
 
         
-
         const submit = event =>{
             event.preventDefault();
             setValues({...values, loading:true})
-            if(email===""){
-                Swal.fire('Oops...', 'A valid email address required!', 'error')
+            if(studentCode===""){
+                Swal.fire('Oops...', 'A valid student Code required!', 'error')
                 return setValues({...values, loading:false})
             }
             if(password===""){
@@ -43,7 +39,7 @@ const SignIn = () => {
             handleSigin(); 
         }
         const handleSigin = async () =>{
-            let user = {email, password}
+            let user = {studentCode, password}
             const data  = await login(user);
             if(!data){
                 Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -73,12 +69,12 @@ const SignIn = () => {
                 setValues({...values, loading:false, redirectToPage:true})
             })
             
-            console.log({data})
+           // console.log({data})
         }
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/school" />
+                return <Redirect to="/student" />
             }
         };
         return(
@@ -101,7 +97,7 @@ const SignIn = () => {
                                 </div>
                                 <h3 className="mb-4">Student Login  </h3>
                                 <div className="input-group mb-3">
-                                    <input type="email" className="form-control" name="email" onChange={handleChange("email")} value={email} placeholder="Email"/>
+                                    <input type="email" className="form-control" name="studentCode" onChange={handleChange("studentCode")} value={studentCode} placeholder="Student code"/>
                                 </div>
                                 <div className="input-group mb-4">
                                     <input type="password" className="form-control" placeholder="password" name="password"  onChange={handleChange("password")} value={password} />
@@ -116,7 +112,7 @@ const SignIn = () => {
                                     loading ? "Loading ... " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
                                 }
                                 
-                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/school/forget">Reset</NavLink></p>
+                                {/* <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/school/forget">Reset</NavLink></p> */}
                             </div>
                         </div>
                     </div>

@@ -145,7 +145,7 @@ export default {
             children: [
                 {
                     id: 'disabled-menu',
-                    title: 'Districts Signout',
+                    title: 'Teacher Signout',
                     type: 'item',
                     url: '/teacher/signout',
                     classes: 'nav-item ',

@@ -9,7 +9,7 @@ global.jQuery = $;
 
 const Dashboard= React.lazy(() => import('./Dashboard'));
 const SchoolData = React.lazy(() => import('./SchoolData'));
-const DistrictSignout = React.lazy(()=> import('../Auth/district/SignOut'));
+const DistrictSignout = React.lazy(()=> import('../Auth/teacher/SignOut'));
 
 
 const CreateDistrict = React.lazy(()=>import('./district/Create'))
@@ -44,38 +44,38 @@ const ReadOneStaffs = React.lazy(()=>import('./staffs/One'))
 const DeleteStaffs = React.lazy(()=>import('./staffs/Delete'))
 
 const routes = [
-    { path: '/district', exact: true, name: 'districts', component: Dashboard },
-    { path: '/district/signout', exact: true, name: 'districts-signout', component: DistrictSignout},
-    { path: '/district/districts/create', exact: true, name: 'districts-create', component: CreateDistrict},
-    { path: '/district/districts/read', exact: true, name: 'districts-read', component: ReadDistrict},
-    { path: '/district/districts/read/:id', exact: true, name: 'districts-read-one', component:ReadOneDistrict},
-    { path: '/district/districts/edit/:id', exact: true, name: 'districts-edit', component: EditDistrict},
-    { path: '/district/districts/delete/:id', exact: true, name: 'districts-delete', component: DeleteDistrict},
+    { path: '/teacher', exact: true, name: 'districts', component: Dashboard },
+    { path: '/teacher/signout', exact: true, name: 'districts-signout', component: DistrictSignout},
+    { path: '/teacher/districts/create', exact: true, name: 'districts-create', component: CreateDistrict},
+    { path: '/teacher/districts/read', exact: true, name: 'districts-read', component: ReadDistrict},
+    { path: '/teacher/districts/read/:id', exact: true, name: 'districts-read-one', component:ReadOneDistrict},
+    { path: '/teacher/districts/edit/:id', exact: true, name: 'districts-edit', component: EditDistrict},
+    { path: '/teacher/districts/delete/:id', exact: true, name: 'districts-delete', component: DeleteDistrict},
 
-    { path: '/district/schools', exact: true, name: 'districts-school', component: SchoolData },
-    { path: '/district/schools/create', exact: true, name: 'districts-sch-create', component: CreateSchool},
-    { path: '/district/schools/read', exact: true, name: 'districts-sch-read', component: ReadSchool},
-    { path: '/district/schools/read/:id', exact: true, name: 'districts-sch-read-one', component:ReadOneSchool},
-    { path: '/district/schools/edit/:id', exact: true, name: 'districts-sch-edit', component: EditSchool},
-    { path: '/district/schools/delete/:id', exact: true, name: 'districts-sch-delete', component: DeleteSchool},
+    { path: '/teacher/schools', exact: true, name: 'districts-school', component: SchoolData },
+    { path: '/teacher/schools/create', exact: true, name: 'districts-sch-create', component: CreateSchool},
+    { path: '/teacher/schools/read', exact: true, name: 'districts-sch-read', component: ReadSchool},
+    { path: '/teacher/schools/read/:id', exact: true, name: 'districts-sch-read-one', component:ReadOneSchool},
+    { path: '/teacher/schools/edit/:id', exact: true, name: 'districts-sch-edit', component: EditSchool},
+    { path: '/teacher/schools/delete/:id', exact: true, name: 'districts-sch-delete', component: DeleteSchool},
 
-    { path: '/district/students/create', exact: true, name: 'districts-sch-create', component: CreateStudent},
-    { path: '/district/students/read', exact: true, name: 'districts-sch-read', component: ReadStudent},
-    { path: '/district/students/read/:id', exact: true, name: 'districts-sch-read-one', component:ReadOneStudent},
-    { path: '/district/students/edit/:id', exact: true, name: 'districts-sch-edit', component: EditStudent},
-    { path: '/district/students/delete/:id', exact: true, name: 'districts-sch-delete', component: DeleteStudent},
+    { path: '/teacher/students/create', exact: true, name: 'districts-sch-create', component: CreateStudent},
+    { path: '/teacher/students/read', exact: true, name: 'districts-sch-read', component: ReadStudent},
+    { path: '/teacher/students/read/:id', exact: true, name: 'districts-sch-read-one', component:ReadOneStudent},
+    { path: '/teacher/students/edit/:id', exact: true, name: 'districts-sch-edit', component: EditStudent},
+    { path: '/teacher/students/delete/:id', exact: true, name: 'districts-sch-delete', component: DeleteStudent},
 
-    { path: '/district/teachers/create', exact: true, name: 'districts-sch-create', component: CreateTeacher},
-    { path: '/district/teachers/read', exact: true, name: 'districts-sch-read', component: ReadTeacher},
-    { path: '/district/teachers/read/:id', exact: true, name: 'districts-sch-read-one', component:ReadOneTeacher},
-    { path: '/district/teachers/edit/:id', exact: true, name: 'districts-sch-edit', component: EditTeacher},
-    { path: '/district/teachers/delete/:id', exact: true, name: 'districts-sch-delete', component: DeleteTeacher},
+    { path: '/teacher/teachers/create', exact: true, name: 'districts-sch-create', component: CreateTeacher},
+    { path: '/teacher/teachers/read', exact: true, name: 'districts-sch-read', component: ReadTeacher},
+    { path: '/teacher/teachers/read/:id', exact: true, name: 'districts-sch-read-one', component:ReadOneTeacher},
+    { path: '/teacher/teachers/edit/:id', exact: true, name: 'districts-sch-edit', component: EditTeacher},
+    { path: '/teacher/teachers/delete/:id', exact: true, name: 'districts-sch-delete', component: DeleteTeacher},
 
-    { path: '/district/staffs/create', exact: true, name: 'districts-sch-create', component: CreateStaffs},
-    { path: '/district/staffs/read', exact: true, name: 'districts-sch-read', component: ReadStaffs},
-    { path: '/district/staffs/read/:id', exact: true, name: 'districts-sch-read-one', component:ReadOneStaffs},
-    { path: '/district/staffs/edit/:id', exact: true, name: 'districts-sch-edit', component: EditStaffs},
-    { path: '/district/staffs/delete/:id', exact: true, name: 'districts-sch-delete', component: DeleteStaffs},
+    { path: '/teacher/staffs/create', exact: true, name: 'districts-sch-create', component: CreateStaffs},
+    { path: '/teacher/staffs/read', exact: true, name: 'districts-sch-read', component: ReadStaffs},
+    { path: '/teacher/staffs/read/:id', exact: true, name: 'districts-sch-read-one', component:ReadOneStaffs},
+    { path: '/teacher/staffs/edit/:id', exact: true, name: 'districts-sch-edit', component: EditStaffs},
+    { path: '/teacher/staffs/delete/:id', exact: true, name: 'districts-sch-delete', component: DeleteStaffs},
 ];
 
 export default routes;
