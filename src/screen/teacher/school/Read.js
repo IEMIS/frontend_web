@@ -5,9 +5,8 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads} from './api';
 import { Link } from 'react-router-dom';
-import styled from "styled-components";
 import Datatable from 'react-bs-datatable'; 
-import { isAuthenticated } from '../../Auth/admin/api';
+import {isAuthenticated} from '../../Auth/admin/api'
 
 
 export default function Read() {
@@ -15,6 +14,8 @@ export default function Read() {
     const [loading, setLoading] = React.useState(false)
     const [error, setError] = React.useState(false)
     const [reload, setReload] = React.useState(false)
+
+ 
     const isLoading = () => {
         if (loading){
             return (
@@ -28,7 +29,7 @@ export default function Read() {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                    <h1>Students List is loading </h1>
+                                    <h1>School List is loading </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -39,6 +40,7 @@ export default function Read() {
             )
         }
     };
+
     const isError = () => {
         if(error){
             return (
@@ -52,7 +54,7 @@ export default function Read() {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>Students data failed to Load, you can refresh <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>School data failed to Load, you can refresh <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -70,33 +72,9 @@ export default function Read() {
         setLoading(true)
         setReload(!reload) 
     }
-
-    const BtnEdit = styled(Link)`
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 3px;
-        background-color: #f0ad4e;
-        color: #fff;
-    `;
-    const BtnDetail = styled(Link)`
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 3px;
-        background-color: #3F4D67;
-        color: #fff;
-    `;
-
-    const BtnDelete = styled(Link)`
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 3px;
-        background-color: #d43f3a;
-        color: #fff;
-    `;
-
     const boot = async () => {
-        setLoading(true)
         const Auth = await isAuthenticated()
+        setLoading(true)
         const data = await reads(Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -130,6 +108,7 @@ export default function Read() {
             })
         }
     }
+
     React.useEffect(() => {
         boot()
     },[reload])
@@ -137,7 +116,7 @@ export default function Read() {
     const ViewData = () =>{
         return(
           <Aux>
-            <h1>Manage Students data</h1>
+            <h1>Manage District data</h1>
             <hr />
             {
               datas.length > 0 ?  
@@ -152,35 +131,32 @@ export default function Read() {
           </Aux>
         )
       }
-
       const header = [
         { title: 'SN', prop: 'id', filterable: true, sortable: true, },
         { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
-        { title: 'Gender', prop: 'gender', filterable: true, sortable: true, },
-        { title: 'Age', prop: 'age', filterable: true, sortable: true, },
+        //{ title: 'District', prop: 'district', filterable: true, sortable: true, },
         { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
-        { title: 'School', prop: 'school', filterable: true, sortable: true, },
-        { title: 'Status', prop: 'status', filterable: true, sortable: true },
-        //{ title: 'Admission Year', prop: 'date', filterable: true, sortable: true },
-        { title: 'Class', prop: 'class', filterable: true, sortable: true },
-        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/admin/students/edit/${row.edit}`} > Edit</BtnEdit>},
-        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/admin/students/delete/${row.delete}`} > Delete </BtnDelete>},
-        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/admin/students/read/${row.detail}`} > Detail </BtnDetail>},
+        { title: 'category', prop: 'category', filterable: true, sortable: true },
+        { title: 'Type', prop: 'type', filterable: true, sortable: true },
+        { title: 'Ownership', prop: 'owner', filterable: true, sortable: true },
+        //{ title: 'Created On ', prop: 'date', filterable: true, sortable: true },
+        { title: 'Details', prop: 'edit', cell: row =><Link to={`/district/schools/edit/${row.edit}`} > Edit</Link>},
+        { title: 'Details', prop: 'delete', cell: row =><Link to={`/district/schools/delete/${row.delete}`} > Delete </Link>},
+        { title: 'Details', prop: 'detail', cell: row =><Link to={`/district/schools/read/${row.detail}`} > Detail </Link>},
       ];
     
       const body = (dat) => {
         return dat.map((data, index)=>{
-            //console.log(JSON.stringify({data}))
+            console.log(JSON.stringify({data}))
           return{
             id:index +1,
-            names:`${data.firstName} ${data.lastName}`,
-            gender:data.gender,
-            age:data.age,
-            eduLevel:data.edulevel,
-            school:data.fromSchool[0].names,
-            status:data.status,
-            //date :moment(data.yearAdmission,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
-            class:data.fromClass[0].names,
+            names:data.names,
+           /// district:data.fromDistrict[0].names,
+            eduLevel:data.eduLevel,
+            category:data.schoolCat,
+            type:data.schoolType,
+            owner:data.ownership,
+            //date :moment(data.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
             edit:data._id,
             delete:data._id,
             detail:data._id,
@@ -188,9 +164,9 @@ export default function Read() {
         })
       };
 
-
     return (
         <Aux>
+          
             {error ? isError() : loading ?  isLoading() :ViewData()}
         </Aux>
     )
