@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink, Redirect} from 'react-router-dom';
+import {NavLink, Redirect, useParams} from 'react-router-dom';
 
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
@@ -12,7 +12,7 @@ import Navigation from '../welcome/components/Navigation';
 //class SignIn extends React.Component {
 
 const Reset = () => {
-    //render () {
+    const {resetToken} = useParams()
         const [values, setValues] = useState({
             loading:false,
             resetToken:"",
@@ -20,7 +20,7 @@ const Reset = () => {
             passwordConfirmation:"",
             redirectToPage:false
         })
-        const {loading, password, passwordConfirmation, resetToken, redirectToPage} = values;
+        const {loading, password, passwordConfirmation, redirectToPage} = values;
 
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
@@ -52,7 +52,7 @@ const Reset = () => {
                 Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
                 return setValues({...values, loading:false})
             }
-            
+            // console.log(data)
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
                 return setValues({...values, loading:false})
@@ -75,18 +75,18 @@ const Reset = () => {
             })
             setValues({...values, loading:false, redirectToPage:true})
        
-            console.log({data})
+            // console.log({data})
         }
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/school/login" />
+                return <Redirect to="/auth/district/signin" />
             }
         };
         return(
             <Aux>
                 {redirectUser()}
-                <Breadcrumb/>
+                <Breadcrumb />
                 <Navigation />
                 <div className="auth-wrapper">
                     <div className="auth-content">
@@ -101,11 +101,11 @@ const Reset = () => {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
-                                <h3 className="mb-4">Staff | Reset Password </h3>
-                                <div className="input-group mb-3">
+                                <h3 className="mb-4">district | Reset Password </h3>
+                                {/* <div className="input-group mb-3">
                                     <input type="input" className="form-control"  onChange={handleChange("resetToken")} value={resetToken} placeholder="Reset Token"/>
                                 </div>
-                            
+                             */}
                                 <div className="input-group mb-3">
                                     <input type="password" className="form-control"  onChange={handleChange("password")} value={password} placeholder="Password"/>
                                 </div>
@@ -117,7 +117,7 @@ const Reset = () => {
                                     loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Reset Password</button>
                                 }
                                 
-                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/school/signin">Login</NavLink></p>
+                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/district/signin">Login</NavLink></p>
                             </div>
                         </div>
                     </div>
