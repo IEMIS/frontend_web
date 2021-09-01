@@ -85,7 +85,7 @@ const Forget = () => {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
-                                <h3 className="mb-4">district | Forget Password  </h3>
+                                <h3 className="mb-4">Staff| Forget Password  </h3>
                                 <div className="input-group mb-3">
                                     <input type="email" className="form-control" name="email" onChange={handleChange("email")} value={email} placeholder="Email"/>
                                 </div>

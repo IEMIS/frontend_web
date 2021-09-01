@@ -80,7 +80,7 @@ const Reset = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/district/signin" />
+                return <Redirect to="/auth/staff/signin" />
             }
         };
         return(
@@ -117,7 +117,7 @@ const Reset = () => {
                                     loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Reset Password</button>
                                 }
                                 
-                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/district/signin">Login</NavLink></p>
+                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/staff/signin">Login</NavLink></p>
                             </div>
                         </div>
                     </div>

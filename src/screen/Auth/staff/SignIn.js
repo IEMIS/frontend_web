@@ -9,12 +9,10 @@ import Swal from 'sweetalert2'
 import {authenticate, login} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
+
 
 const SignIn = () => {
-  
 
-    //render () {
         const [values, setValues] = useState({
             loading:false,
             password:"",
@@ -79,7 +77,7 @@ const SignIn = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/district/districts" />
+                return <Redirect to="/staff/staffs" />
             }
         };
         return(
@@ -100,7 +98,7 @@ const SignIn = () => {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
-                                <h3 className="mb-4">district Login  </h3>
+                                <h3 className="mb-4">StaffLogin  </h3>
                                 <div className="input-group mb-3">
                                     <input type="email" className="form-control" name="email" onChange={handleChange("email")} value={email} placeholder="Email"/>
                                 </div>
@@ -117,7 +115,7 @@ const SignIn = () => {
                                     loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
                                 }
                                 
-                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/district/forget">Reset</NavLink></p>
+                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/staff/forget">Reset</NavLink></p>
                             </div>
                         </div>
                     </div>
