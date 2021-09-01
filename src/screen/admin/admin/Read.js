@@ -160,7 +160,7 @@ export default function Read() {
         email:data.email,
         phone:data.phone,
         date :moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
-        level:data.level ==="2" ? "Supervisor" :"Admin",
+        level:data.level ==="2" ? "Moderator" :"Admin",
         edit:data._id,
         delete:data._id,
         detail:data._id,

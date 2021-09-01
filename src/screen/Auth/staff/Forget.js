@@ -9,12 +9,9 @@ import Swal from 'sweetalert2'
 import {forget} from './api';
 import Navigation from '../welcome/components/Navigation';
 
-//class SignIn extends React.Component {
 
 const Forget = () => {
   
-
-    //render () {
         const [values, setValues] = useState({
             loading:false,
             email:"",
@@ -25,6 +22,8 @@ const Forget = () => {
         const handleChange = name => event => {
             setValues({ ...values, error: false, [name]: event.target.value });
         };
+
+        
 
         const submit = event =>{
             event.preventDefault();
@@ -43,6 +42,7 @@ const Forget = () => {
                 Swal.fire('Oops...', 'Internal server error, Please, check your internet connection', 'error')
                 return setValues({...values, loading:false})
             }
+            console.log(data)
             console.log(data)
             if(data.error){
                 Swal.fire('Oops...', data.error, 'error')
@@ -64,14 +64,14 @@ const Forget = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/school/reset" />
+                return <Redirect to="/auth/staff/signin" />
             }
         };
         return(
             <Aux>
                 {redirectUser()}
                 <Breadcrumb/>
-                <Navigation />
+                <Navigation  />
                 <div className="auth-wrapper">
                     <div className="auth-content">
                         <div className="auth-bg">
@@ -85,14 +85,14 @@ const Forget = () => {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
-                                <h3 className="mb-4">Staff | Forget Password  </h3>
+                                <h3 className="mb-4">Staff| Forget Password  </h3>
                                 <div className="input-group mb-3">
                                     <input type="email" className="form-control" name="email" onChange={handleChange("email")} value={email} placeholder="Email"/>
                                 </div>
                                 {
                                     loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Request !</button>
                                 }
-                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/school/signin">Login</NavLink></p>
+                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/staff/signin">Login</NavLink></p>
                             </div>
                         </div>
                     </div>
