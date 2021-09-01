@@ -69,7 +69,7 @@ class App extends Component {
                             {menu}
                             <Route path="/admin" component={AdminLayout} />
                             <Route path="/district" component={DistrictLayout} />
-                            <Route path="/staff" component={DistrictLayout} />
+                            <Route path="/staff" component={StaffLayout} />
                             <Route path="/school" component={SchoolLayout} />
                             <Route path="/teacher" component={TeacherLayout} />
                             <Route path="/student" component={StudentLayout} />

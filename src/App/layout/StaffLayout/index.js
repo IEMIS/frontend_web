@@ -47,6 +47,7 @@ class AdminLayout extends Component {
         document.addEventListener('MSFullscreenChange', this.fullScreenExitHandler);
 
         const menu = routes.map((route, index) => {
+            console.log(JSON.stringify({route}))
             return (route.component) ? (
                 <PrivateRoute
                     key={index}
