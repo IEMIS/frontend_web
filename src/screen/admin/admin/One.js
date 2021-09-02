@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Card, Button } from "react-bootstrap";
 import Aux from "../../../hoc/_Aux";
 import Swal from "sweetalert2";
+import moment from 'moment'; 
 import { read } from "./api";
 import { useParams, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../../Auth/admin/api";
@@ -17,6 +18,7 @@ export default function One() {
     password: "",
     password2: "",
     level: "",
+    designation: "",
     loading: false,
     redirectToPage: false,
     error: false,
@@ -29,7 +31,10 @@ export default function One() {
     middleName,
     phone,
     email,
+    designation,
     level,
+    created_at,
+    updated_at,
     error,
     loading,
     reload,
@@ -131,7 +136,10 @@ export default function One() {
           phone: data.data.phone,
           middleName: data.data.middleName,
           email: data.data.email,
+          designation: data.data.designation,
           level: data.data.level,
+          created_at: data.data.created_at,
+          updated_at: data.data.updated_at, 
         }));
         let Toast = Swal.mixin({
           toast: true,
@@ -216,6 +224,22 @@ export default function One() {
             <div class="form-group col-md-6">
               <label for="email">Email</label>
               <input type="text" class="form-control" value={email} readOnly />
+            </div>
+            </div>
+            <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="email">Designation</label>
+              <input type="text" class="form-control" value={designation} readOnly />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="level">Creation Time</label>
+              <input type="text" class="form-control" value={moment(created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
+            </div>
+            </div>
+            <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="email">Last Update</label>
+              <input type="text" class="form-control" value={moment(updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
             </div>
           </div>
         </Card.Body>

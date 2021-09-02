@@ -5,6 +5,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads} from './api';
 import { Link } from 'react-router-dom';
+import moment from 'moment'; 
 import Datatable from 'react-bs-datatable'; 
 import {isAuthenticated} from '../../Auth/admin/api'
 
@@ -116,7 +117,7 @@ export default function Read() {
     const ViewData = () =>{
         return(
           <Aux>
-            <h1>Manage District data</h1>
+            <h1>Manage Schools data</h1>
             <hr />
             {
               datas.length > 0 ?  
@@ -134,12 +135,12 @@ export default function Read() {
       const header = [
         { title: 'SN', prop: 'id', filterable: true, sortable: true, },
         { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
-        { title: 'District', prop: 'district', filterable: true, sortable: true, },
         { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
+        { title: 'District', prop: 'district', filterable: true, sortable: true, },
         { title: 'category', prop: 'category', filterable: true, sortable: true },
         { title: 'Type', prop: 'type', filterable: true, sortable: true },
         { title: 'Ownership', prop: 'owner', filterable: true, sortable: true },
-        //{ title: 'Created On ', prop: 'date', filterable: true, sortable: true },
+        { title: 'Created', prop: 'date', filterable: true, sortable: true },
         { title: 'Details', prop: 'edit', cell: row =><Link to={`/admin/schools/edit/${row.edit}`} > Edit</Link>},
         { title: 'Details', prop: 'delete', cell: row =><Link to={`/admin/schools/delete/${row.delete}`} > Delete </Link>},
         { title: 'Details', prop: 'detail', cell: row =><Link to={`/admin/schools/read/${row.detail}`} > Detail </Link>},
@@ -156,7 +157,7 @@ export default function Read() {
             category:data.schoolCat,
             type:data.schoolType,
             owner:data.ownership,
-            //date :moment(data.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
+            date :moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
             edit:data._id,
             delete:data._id,
             detail:data._id,

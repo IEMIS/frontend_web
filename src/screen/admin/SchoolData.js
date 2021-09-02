@@ -2,6 +2,7 @@
 import React from 'react';
 import {Row, Col, Card,Form} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import moment from 'moment'; 
 import NVD3Chart from 'react-nvd3';
 
 
@@ -173,7 +174,7 @@ class SchoolData extends React.Component {
                                             School Type  : {schools.schoolType} <br />
                                             School category : {schools.schoolCat} <br />
                                             School ownership : {schools.ownership} <br />
-                                            Established : {schools.estabYear} <br />
+                                            Established : {moment(schools.estabYear,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')}<br />
                                             <hr />
                                             School Contact  <br />
                                             Phone : {schools.contact[0].phone} <br />

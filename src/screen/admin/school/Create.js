@@ -241,14 +241,14 @@ export default function Create() {
                     </div>
                     <div className="col-4">
                         <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Year Created </label>
+                            <label htmlFor="exampleInputEmail1">Year Estab. </label>
                             <input type="date" placeholder="year founded" onChange={handleChange("estabYear")} value={estabYear} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                         </div>
                     </div>
                     <div className="col-4">
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1"> School Ownership</label>
-                            <select  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <select onChange={handleChange("ownership")} value={ownership}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                 <option>Select School Ownership</option>
                                 <option value="Government">Government</option>
                                 <option value="Non-Government">Non-Government</option>
@@ -293,6 +293,12 @@ export default function Create() {
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">Password Again </label>
                             <input type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">School Code</label>
+                            <input type="text" placeholder="school code" onChange={handleChange("code")} value={code} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                         </div>
                     </div>
                     {
