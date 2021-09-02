@@ -14,6 +14,7 @@ export default function Edit() {
         middleName:"",
         phone:"",
         email:"",
+        designation:"",
         level:"",
         loading:false,
         redirectToPage:false,
@@ -22,7 +23,7 @@ export default function Edit() {
         loadingBtn:false,
         token:"",
     })
-    const {firstName, lastName, middleName, phone, email, level, error, loading, reload, redirectToPage, loadingBtn } = values
+    const {firstName, designation, lastName, middleName, phone, email, level, error, loading, reload, redirectToPage, loadingBtn } = values
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value});
     }
@@ -32,10 +33,6 @@ export default function Edit() {
         if(firstName===""){ 
             setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'Admin first Name is required', 'error');
-        }
-        if(middleName===""){ 
-            setValues({...values, loadingBtn:false})
-            return Swal.fire('Oops...', 'Admin Middle Name is required', 'error');
         }
         if(lastName===""){ 
             setValues({...values, loadingBtn:false})
@@ -53,7 +50,7 @@ export default function Edit() {
     }
 
     const handleUpdate =async ()=>{
-        const user = {firstName, lastName, middleName, phone, email, level}
+        const user = {firstName, lastName, designation, middleName, phone, email, level}
         const Auth = isAuthenticated();
         const data = await edit(id, user, Auth.token);
         if(!data){
@@ -200,7 +197,6 @@ export default function Edit() {
                                                     <Form.Label>First name</Form.Label>
                                                     <Form.Control type="text" placeholder="First name" onChange={handleChange("firstName")} value={firstName} />
                                                 </Form.Group>
-
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>Middle Name</Form.Label>
                                                     <Form.Control type="text" placeholder="Middle name" onChange={handleChange("middleName")} value={middleName} />
@@ -209,10 +205,10 @@ export default function Edit() {
                                                     <Form.Label>Phone </Form.Label>
                                                     <Form.Control type="text" placeholder="phone" onChange={handleChange("phone")} value={phone} />
                                                 </Form.Group>
-
-                                                {
-                                                    loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update Admin Data ..</Button>
-                                                }
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>Designation </Form.Label>
+                                                    <Form.Control type="text" placeholder="Director of Teacher Education" onChange={handleChange("designation")} value={designation} />
+                                                </Form.Group>  
                                             </Form>
                                         </Col>
                                         <Col md={6}>
@@ -232,6 +228,9 @@ export default function Edit() {
                                                     <option value="2">Moderator</option>
                                                 </Form.Control>
                                             </Form.Group>
+                                            {
+                                                    loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update Admin Data ..</Button>
+                                                }
                                         </Col>
                                 </Row>
                             </Card.Body>

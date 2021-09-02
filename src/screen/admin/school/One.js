@@ -3,6 +3,7 @@ import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { useParams, Redirect, Link } from "react-router-dom";
+import moment from 'moment'; 
 import { read} from './api';
 import { isAuthenticated } from '../../Auth/admin/api';
 
@@ -125,7 +126,7 @@ export default function One() {
                     <Row>
                         <Col>
                             <Card.Header>
-                                <Card.Title><Link to="/admin/schools/read"> Read School </Link></Card.Title>
+                                <Card.Title><Link to="/admin/schools/read"> Read School (Go Back) </Link></Card.Title>
                             </Card.Header>
                         </Col>
                     </Row>
@@ -177,16 +178,16 @@ export default function One() {
                                                         <Form.Label>School Head</Form.Label>
                                                         <Form.Control type="text" placeholder="staff ID"  value={load.headID} />
                                                     </Form.Group>
-                                                </Form>
-                                            </Col>
-                                            <Col md={6}>
-                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                                    <Form.Group controlId="exampleForm.ControlSelect1">
                                                 <Form.Label>Education Level</Form.Label>
                                                 <Form.Control type="text" value={load.eduLevel} />
                                             </Form.Group>
+                                                </Form>
+                                            </Col>
+                                            <Col md={6}>
                                             <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>Estab. Year </Form.Label>
-                                                        <Form.Control type="text"  value={load.estabYear} />
+                                                        <Form.Control type="text"  value={moment(load.estabYear,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} />
                                                     </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                     <Form.Label>Ownership</Form.Label>
@@ -195,12 +196,10 @@ export default function One() {
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                     <Form.Label>School Category</Form.Label>
                                                     <Form.Control type="text" value={load.schoolCat} />
-        
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                     <Form.Label>School Type</Form.Label>
                                                     <Form.Control type="text"  value={load.schoolType}>
-                                                        
                                                     </Form.Control>
                                             </Form.Group>
                                                 <Form.Group controlId="exampleForm.ControlInput1">
@@ -210,6 +209,14 @@ export default function One() {
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>Phone </Form.Label>
                                                     <Form.Control type="text" placeholder="official school phone number"  value={load.contact[0].phone} />
+                                                </Form.Group>
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>Creation time</Form.Label>
+                                                    <Form.Control type="text" placeholder="created on"  value={moment(load.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} />
+                                                </Form.Group>
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>Last Update</Form.Label>
+                                                    <Form.Control type="text" placeholder="Last update"  value={moment(load.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} />
                                                 </Form.Group>
                                             </Col>
                                         </Row>

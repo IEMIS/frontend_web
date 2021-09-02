@@ -39,10 +39,10 @@ export default function Edit() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loading:true})
-        // if(code===""){ 
-        //     setValues({...values, loading:false})
-        //     return Swal.fire('Oops...', 'School code is required', 'error');
-        // }
+         if(code===""){ 
+             setValues({...values, loading:false})
+             return Swal.fire('Oops...', 'School code is required', 'error');
+         }
         if(district===""){ 
             setValues({...values, loading:false})
             return Swal.fire('Oops...', 'District is required', 'error');
