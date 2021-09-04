@@ -4,6 +4,7 @@ import {Row, Col, Card, Button } from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads } from './api';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import Datatable from 'react-bs-datatable'; 
 import { isAuthenticated } from '../../Auth/admin/api';
@@ -134,7 +135,9 @@ export default function Read() {
         { title: 'Email', prop: 'email', filterable: true, sortable: true, },
         { title: 'Phone Number', prop: 'phone', filterable: true, sortable: true },
         { title: 'Address', prop: 'level', filterable: true, sortable: true },
-        //{ title: 'Created On ', prop: 'date', filterable: true, sortable: true },
+        { title: 'Status', prop: 'status', filterable: true, sortable: true },
+        { title: 'District Head', prop: 'staffs', filterable: true, sortable: true },
+        { title: 'Last Update ', prop: 'date', filterable: true, sortable: true },
         { title: 'Details', prop: 'edit', cell: row =><Link to={`/admin/districts/edit/${row.edit}`} > Edit</Link>},
         { title: 'Details', prop: 'delete', cell: row =><Link to={`/admin/districts/delete/${row.delete}`} > Delete </Link>},
         { title: 'Details', prop: 'detail', cell: row =><Link to={`/admin/districts/read/${row.detail}`} > Detail </Link>},
@@ -148,7 +151,9 @@ export default function Read() {
             email:data.email,
             phone:data.phone,
             level:data.address,
-            //date :moment(data.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
+            staffs:data.staffs,
+            status:data.status,
+            date :moment(data.updateAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
             edit:data._id,
             delete:data._id,
             detail:data._id,

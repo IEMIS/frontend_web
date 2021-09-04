@@ -213,7 +213,7 @@ export default function Edit() {
                                             </Form.Group>
                                     <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Estab. Year </Form.Label>
-                                                <Form.Control type="date" onChange={handleChange("estabYear")} value={estabYear} />
+                                                <Form.Control type="date" onChange={handleChange("estabYear")} value={estabYear} disabled/>
                                             </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Ownership</Form.Label>
@@ -244,7 +244,7 @@ export default function Edit() {
                                      </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>email </Form.Label>
-                                            <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
+                                            <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email} disabled/>
                                         </Form.Group>
                                         <Form.Group controlId="formBasicEmail">
                                             <Form.Label>Phone </Form.Label>

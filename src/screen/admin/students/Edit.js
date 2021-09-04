@@ -453,6 +453,7 @@ export default function Edit() {
                                                 <option value="deceased">Deceased</option>
                                                 <option value="relocate">Overseas Relocation</option>
                                                 <option value="graduate">Graduated</option>
+                                                <option value="admission">New Learner</option>
                                             </Form.Control>
                                      </Form.Group>
                                      <Form.Group controlId="exampleForm.ControlSelect1">

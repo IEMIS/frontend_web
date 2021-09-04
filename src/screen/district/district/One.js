@@ -156,18 +156,18 @@ export default function One() {
 
                                                     <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>District Name</Form.Label>
-                                                        <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names} />
+                                                        <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names} disabled/>
                                                     </Form.Group>
                                                     <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>Phone </Form.Label>
-                                                        <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
+                                                        <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} disabled/>
                                                     </Form.Group>
                                                 </Form>
                                             </Col>
                                             <Col md={6}>
                                             <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>Address </Form.Label>
-                                                        <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
+                                                        <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} disabled/>
                                                     </Form.Group>
                                                     <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>Officer-in- charge</Form.Label>
@@ -175,7 +175,7 @@ export default function One() {
                                                     </Form.Group>
                                                 <Form.Group controlId="exampleForm.ControlInput1">
                                                     <Form.Label>email </Form.Label>
-                                                    <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
+                                                    <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}disabled/>
                                                 </Form.Group>
                                             </Col>
                                         </Row>

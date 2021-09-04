@@ -16,7 +16,8 @@ export default function One() {
         phone:"",
         address:"",
         email:"",
-        status:true,
+        status:"",
+        staffs:"",
         loading:false,
         loadingBtn:false,
         redirectToPage:false,
@@ -24,7 +25,7 @@ export default function One() {
         reload:false,   
     })
 
-    const {code, names, phone, email, address, error, loading, reload, redirectToPage,} = values
+    const {code, names,staffs, status, phone, email, address, error, loading, reload, redirectToPage,} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -151,32 +152,37 @@ export default function One() {
                                                 <Form>
                                                     <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>District Code</Form.Label>
-                                                        <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} disabled />
+                                                        <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} readOnly />
                                                     </Form.Group>
 
                                                     <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>District Name</Form.Label>
-                                                        <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names} />
+                                                        <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names}readOnly />
                                                     </Form.Group>
                                                     <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>Phone </Form.Label>
-                                                        <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
+                                                        <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone}readOnly />
+                                                    </Form.Group>
+                                                    <Form.Group controlId="formBasicEmail">
+                                                        <Form.Label>Address </Form.Label>
+                                                        <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address}readOnly />
                                                     </Form.Group>
                                                 </Form>
                                             </Col>
                                             <Col md={6}>
-                                            <Form.Group controlId="formBasicEmail">
-                                                        <Form.Label>Address </Form.Label>
-                                                        <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
-                                                    </Form.Group>
-                                                    <Form.Group controlId="formBasicEmail">
-                                                        <Form.Label>Officer-in- charge</Form.Label>
-                                                        <Form.Control type="text" placeholder="Education District ID" />
-                                                    </Form.Group>
                                                 <Form.Group controlId="exampleForm.ControlInput1">
                                                     <Form.Label>email </Form.Label>
-                                                    <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
+                                                    <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}readOnly/>
                                                 </Form.Group>
+                                                {/**only district officer can update this status */}
+                                                <Form.Group controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Status </Form.Label>
+                                                    <Form.Control type="email" placeholder="School Census Status" onChange={handleChange("status")} value={status}readOnly/>
+                                                </Form.Group>
+                                                <Form.Group controlId="formBasicEmail">
+                                                        <Form.Label>Officer-in- charge</Form.Label>
+                                                        <Form.Control type="text" placeholder="Education District officer" onChange={handleChange("staffs")} value={staffs} readOnly/>
+                                                    </Form.Group>
                                             </Col>
                                         </Row>
                                     </Card.Body>
