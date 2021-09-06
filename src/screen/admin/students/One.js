@@ -192,7 +192,7 @@ export default function One() {
                         <Form>
                           <Form.Group controlId="formBasicEmail">
                             <Form.Label>Student Code </Form.Label>
-                            <Form.Control type="text" value={dat.studentCode} disabled />
+                            <Form.Control type="text" value={dat.studentCode} readOnly />
                           </Form.Group>
                           <Form.Group controlId="formBasicEmail">
                             <Form.Label>First Name</Form.Label>
@@ -212,86 +212,86 @@ export default function One() {
                           </Form.Group>
                           <Form.Group controlId="formBasicEmail">
                             <Form.Label>Last Name </Form.Label>
-                            <Form.Control type="text" value={dat.lastName} disabled />
+                            <Form.Control type="text" value={dat.lastName} readOnly />
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>Religion</Form.Label>
-                            <Form.Control type="text" value={dat.religion} disabled />
+                            <Form.Control type="text" value={dat.religion} readOnly />
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>Class</Form.Label>
-                            <Form.Control type="text" value={dat.fromClass.length > 0 ?  dat.fromClass[0].names : ""} disabled />
+                            <Form.Control type="text" value={dat.fromClass.length > 0 ?  dat.fromClass[0].names : ""} readOnly />
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School</Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].names : ""} disabled />
+                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].names : ""} readOnly/>
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School Owner</Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].ownership:""} disabled />
+                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].ownership:""} readOnly/>
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School Type</Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].schoolType : ""} disabled />
+                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].schoolType : ""} readOnly/>
                           </Form.Group>
                           <Form.Group controlId="formBasicPassword">
                             <Form.Label>School Category </Form.Label>
-                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].schoolCat: ""} disabled />
+                            <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].schoolCat: ""} readOnly />
                           </Form.Group>
                           <Form.Group controlId="formBasicEmail">
                           <Form.Label>Education Level </Form.Label>
-                          <Form.Control type="text" value={dat.edulevel} disabled />
+                          <Form.Control type="text" value={dat.edulevel} readOnly />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Nationality</Form.Label>
-                          <Form.Control type="text" value={dat.country} disabled />
+                          <Form.Control type="text" value={dat.country} readOnly />
                         </Form.Group>
                         </Form>
                       </Col>
                       <Col md={6}>
                       <Form.Group controlId="formBasicEmail">
                           <Form.Label>Nationality</Form.Label>
-                          <Form.Control type="text" value={dat.country} disabled />
+                          <Form.Control type="text" value={dat.country} readOnly />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>Ethnicity </Form.Label>
-                          <Form.Control type="text" value={dat.ethnicity} disabled />
+                          <Form.Control type="text" value={dat.ethnicity} readOnly/>
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>Studentship </Form.Label>
-                          <Form.Control type="text" value={dat.status} disabled />
+                          <Form.Control type="text" value={dat.status} readOnly/>
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>District</Form.Label>
-                          <Form.Control type="text" value={dat.fromDistrict.length > 0 ?  dat.fromDistrict[0].names : ""} disabled />
+                          <Form.Control type="text" value={dat.fromDistrict.length > 0 ?  dat.fromDistrict[0].names : ""} readOnly/>
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>Date of Birth</Form.Label>
-                          <Form.Control type="text" value={moment(dat.dob,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} disabled />
+                          <Form.Control type="text" value={moment(dat.dob,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} readOnly />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>Age</Form.Label>
-                          <Form.Control type="text" value={dat.age} disabled />
+                          <Form.Control type="text" value={dat.age} readOnly />
                         </Form.Group>
                           <Form.Group controlId="formBasicEmail">
                             <Form.Label>Cohort  </Form.Label>
-                            <Form.Control type="text" value={dat.cohortA} disabled />
+                            <Form.Control type="text" value={dat.cohortA} readOnly />
                           </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label>District Phone</Form.Label>
-                            <Form.Control type="text" value={dat.fromDistrict.length > 0 ? dat.fromDistrict[0].phone : ""} disabled />
+                            <Form.Control type="text" value={dat.fromDistrict.length > 0 ? dat.fromDistrict[0].phone : ""} readOnly />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label>District Address</Form.Label>
-                            <Form.Control type="text" value={dat.fromDistrict.length > 0 ? dat.fromDistrict[0].address : " "} disabled />
+                            <Form.Control type="text" value={dat.fromDistrict.length > 0 ? dat.fromDistrict[0].address : " "} readOnly />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Creation Time </Form.Label>
-                          <Form.Control type="text" value={moment(dat.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} disabled />
+                          <Form.Control type="text" value={moment(dat.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Last Update</Form.Label>
-                          <Form.Control type="text" value={moment(dat.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} disabled />
+                          <Form.Control type="text" value={moment(dat.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
                         </Form.Group>
                       </Col>
                       <hr />

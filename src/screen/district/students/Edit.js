@@ -278,7 +278,7 @@ export default function Edit() {
                                     <Form>
                                         <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Student Code</Form.Label>
-                                                <Form.Control type="text" placeholder="Student Code" onChange={handleChange("studentCode")} value={studentCode} />
+                                                <Form.Control type="text" placeholder="Student Code" onChange={handleChange("studentCode")} value={studentCode} readOnly/>
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>School</Form.Label>
@@ -317,7 +317,7 @@ export default function Edit() {
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Last Name</Form.Label>
-                                                <Form.Control type="text" placeholder="Surname" onChange={handleChange("lastName")} value={lastName} />
+                                                <Form.Control type="text" placeholder="Surname" onChange={handleChange("lastName")} value={lastName} readOnly/>
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label> Middle Name</Form.Label>
@@ -335,7 +335,7 @@ export default function Edit() {
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Date of Birth </Form.Label>
-                                                <Form.Control type="date" placeholder="date of birth on certificate" onChange={handleChange("dob")} value={dob} />
+                                                <Form.Control type="date" placeholder="date of birth on certificate" onChange={handleChange("dob")} value={dob} readOnly />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Gender</Form.Label>
@@ -453,6 +453,7 @@ export default function Edit() {
                                                 <option value="deceased">Deceased</option>
                                                 <option value="relocate">Overseas Relocation</option>
                                                 <option value="graduate">Graduated</option>
+                                                <option value="admission">New Learner</option>
                                             </Form.Control>
                                      </Form.Group>
                                      <Form.Group controlId="exampleForm.ControlSelect1">

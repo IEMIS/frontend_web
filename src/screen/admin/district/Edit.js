@@ -17,7 +17,8 @@ export default function Edit() {
         phone:"",
         address:"",
         email:"",
-        status:true,
+        staffs:"",
+        status:"",
         loading:false,
         loadingBtn:false,
         redirectToPage:false,
@@ -27,7 +28,7 @@ export default function Edit() {
         
     })
 
-    const {code, names, phone, email, address, status, error, loading, loadingBtn, reload, redirectToPage} = values
+    const {code, names, phone, email,staffs, address, status, error, loading, loadingBtn, reload, redirectToPage} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -114,7 +115,7 @@ export default function Edit() {
     }
 
     const handleUpdate =async ()=>{
-        const user = {code, names, phone, email, address, status}
+        const user = {code, names, staffs, phone, email, address, status}
         const Auth = isAuthenticated()
         const data = await edit(id, user, Auth.token);
         if(!data){
@@ -200,7 +201,7 @@ export default function Edit() {
                 <Row>
                     <Col>
                         <Card.Header>
-                            <Card.Title><Link to="/admin/districts/read" > Read Districts </Link></Card.Title>
+                            <Card.Title><Link to="/admin/districts/read" > Read Districts (Go Back) </Link></Card.Title>
                         </Card.Header>
                     </Col>
                 </Row>
@@ -216,7 +217,7 @@ export default function Edit() {
                                             <Form>
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>District Code</Form.Label>
-                                                    <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} disabled />
+                                                    <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} readOnly />
                                                 </Form.Group>
 
                                                 <Form.Group controlId="formBasicEmail">
@@ -227,24 +228,29 @@ export default function Edit() {
                                                     <Form.Label>Phone </Form.Label>
                                                     <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
                                                 </Form.Group>
-                                                {
-                                                    loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
-                                                }
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Label>Address </Form.Label>
+                                                    <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
+                                                </Form.Group>
                                             </Form>
                                         </Col>
                                         <Col md={6}>
                                         <Form.Group controlId="formBasicEmail">
-                                                    <Form.Label>Address </Form.Label>
-                                                    <Form.Control type="text" placeholder="building/house name, city" onChange={handleChange("address")} value={address} />
+                                                    <Form.Label>Status </Form.Label>
+                                                    <Form.Control type="text" placeholder="School Census Status" onChange={handleChange("status")} value={status} />
+                                                    {/*===only admin can select staff list here and it should be done with edit section===== */}
                                                 </Form.Group>
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>Officer-in- charge</Form.Label>
-                                                    <Form.Control type="text" placeholder="Education District ID" />
+                                                    <Form.Control type="text" placeholder="Education District officer" onChange={handleChange("staffs")} value={staffs} />
                                                 </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>email </Form.Label>
                                                 <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                             </Form.Group>
+                                            {
+                                                    loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
+                                                }
                                         </Col>
                                     </Row>
                                 </Card.Body>

@@ -12,12 +12,12 @@ export default function Edit() {
     let { id } = useParams();
 
     const [values, setValues] = React.useState({
-        code:"",
+        status:"",
         names:"",
         phone:"",
         address:"",
         email:"",
-        status:true,
+        //status:true,
         loading:false,
         loadingBtn:false,
         redirectToPage:false,
@@ -27,7 +27,7 @@ export default function Edit() {
         
     })
 
-    const {code, names, phone, email, address, status, error, loading, loadingBtn, reload, redirectToPage} = values
+    const {names, phone, email, address, status, error, loading, loadingBtn, reload, redirectToPage} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -90,9 +90,9 @@ export default function Edit() {
     const submit = event =>{
         event.preventDefault();
         setValues({...values, loadingBtn:true})
-        if(code===""){ 
+        if(status===""){ 
             setValues({...values, loadingBtn:false})
-            return Swal.fire('Oops...', 'District code is required', 'error');
+            return Swal.fire('Oops...', 'Your status is required', 'error');
         }
         if(names===""){ 
             setValues({...values, loadingBtn:false})
@@ -114,7 +114,7 @@ export default function Edit() {
     }
 
     const handleUpdate =async ()=>{
-        const user = {code, names, phone, email, address, status}
+        const user = {names, phone, email, address, status}
         const Auth = isAuthenticated()
         const data = await edit(id, user, Auth.token);
         if(!data){
@@ -168,7 +168,7 @@ export default function Edit() {
                 }
         
                 if(data.message){
-                    const {code, names, email, phone,address } = data.data;
+                    const {status, names, email, phone,address } = data.data;
                     setValues(v => ({...v, loading:false, error:false, code, phone,email,names, address }))
                     let Toast = Swal.mixin({
                         toast: true,
@@ -214,22 +214,25 @@ export default function Edit() {
                                     <Row>
                                         <Col md={6}>
                                             <Form>
-                                                <Form.Group controlId="formBasicEmail">
-                                                    <Form.Label>District Code</Form.Label>
-                                                    <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} disabled />
-                                                </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>School Census Status</Form.Label>
+                                            <Form.Control as="select" onChange={this.handleChange("status")} value={status}>
+                                                <option>Select</option>
+                                                <option value="Completed">Complete</option>
+                                                <option value="Inprogress">Inprogress</option>
+                                                <option value="Incomplete">Incomplete</option>
+                                                <option value="Old">Old data</option>
+                                            </Form.Control>
+                                     </Form.Group>
 
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>District Name</Form.Label>
-                                                    <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names} />
+                                                    <Form.Control type="text" placeholder="district name" onChange={handleChange("names")} value={names} readOnly/>
                                                 </Form.Group>
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>Phone </Form.Label>
                                                     <Form.Control type="text" placeholder="district phone" onChange={handleChange("phone")} value={phone} />
                                                 </Form.Group>
-                                                {
-                                                    loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
-                                                }
                                             </Form>
                                         </Col>
                                         <Col md={6}>
@@ -245,6 +248,9 @@ export default function Edit() {
                                                 <Form.Label>email </Form.Label>
                                                 <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                             </Form.Group>
+                                            {
+                                                    loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
+                                                }
                                         </Col>
                                     </Row>
                                 </Card.Body>

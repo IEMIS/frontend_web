@@ -5,6 +5,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { reads} from './api';
 import { Link } from 'react-router-dom';
+import moment from 'moment'; 
 import styled from "styled-components";
 import Datatable from 'react-bs-datatable'; 
 import { isAuthenticated } from '../../Auth/admin/api';
@@ -161,6 +162,8 @@ export default function Read() {
         { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
         { title: 'School', prop: 'school', filterable: true, sortable: true, },
         { title: 'Status', prop: 'status', filterable: true, sortable: true },
+        { title: 'Created', prop: 'date', filterable: true, sortable: true },
+        { title: 'Last Update', prop: 'date', filterable: true, sortable: true },
         //{ title: 'Admission Year', prop: 'date', filterable: true, sortable: true },
         { title: 'Class', prop: 'class', filterable: true, sortable: true },
         { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/district/students/edit/${row.edit}`} > Edit</BtnEdit>},
@@ -178,8 +181,9 @@ export default function Read() {
             eduLevel:data.edulevel,
             school:data.fromSchool[0].names,
             status:data.status,
-            //date :moment(data.yearAdmission,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
-            class:data.fromClass[0].names,
+            date:moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
+            date:moment(data.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
+            class:data.fromClass[0].classCode,
             edit:data._id,
             delete:data._id,
             detail:data._id,

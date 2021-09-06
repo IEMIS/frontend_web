@@ -14,7 +14,7 @@ export default function Create() {
         phone:"",
         address:"",
         email:"",
-        status:true,
+        status:"",
         password:"",
         password2:"",
         loading:false,
@@ -59,7 +59,7 @@ export default function Create() {
     }
 
     const handleCreate =async ()=>{
-        const user = {names, phone, email, password, password2, address, status}
+        const user = {names, phone, email, password,password2, address, status}
         const Auth = await isAuthenticated()
         const data = await create(user, Auth.token);
         console.log({data})
