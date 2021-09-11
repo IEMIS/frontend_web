@@ -40,9 +40,9 @@ class NavRight extends Component {
                                         <div className="media">
                                             <img className="img-radius" src={Avatar1} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p><strong>John Doe</strong><span className="n-time text-muted"><i
-                                                    className="icon feather icon-clock m-r-10"/>30 min</span></p>
-                                                <p>New ticket Added</p>
+                                                <p><strong>Lawal Badru</strong><span className="n-time text-muted"><i
+                                                    className="icon feather icon-clock m-r-10"/>21 min</span></p>
+                                                <p>currently login</p>
                                             </div>
                                         </div>
                                     </li>
@@ -53,9 +53,9 @@ class NavRight extends Component {
                                         <div className="media">
                                             <img className="img-radius" src={Avatar2} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p><strong>Joseph William</strong><span className="n-time text-muted"><i
+                                                <p><strong>Hon. Minister</strong><span className="n-time text-muted"><i
                                                     className="icon feather icon-clock m-r-10"/>30 min</span></p>
-                                                <p>Prchace New Theme and make payment</p>
+                                                <p>COVID-19 Instruction Guideline Available</p>
                                             </div>
                                         </div>
                                     </li>
@@ -63,9 +63,9 @@ class NavRight extends Component {
                                         <div className="media">
                                             <img className="img-radius" src={Avatar3} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p><strong>Sara Soudein</strong><span className="n-time text-muted"><i
-                                                    className="icon feather icon-clock m-r-10"/>30 min</span></p>
-                                                <p>currently login</p>
+                                                <p><strong>Dr. Vani </strong><span className="n-time text-muted"><i
+                                                    className="icon feather icon-clock m-r-10"/>43 min</span></p>
+                                                <p>School Inspection Report</p>
                                             </div>
                                         </div>
                                     </li>
