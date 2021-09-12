@@ -136,7 +136,7 @@ export default function Create() {
                     </div>
                     <div className="col-4">
                         <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Passwodr Again </label>
+                            <label htmlFor="exampleInputEmail1">Password Again </label>
                             <input  type="password" placeholder="Password Confirmation" onChange={handleChange("password2")} value={password2}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                         </div>
                     </div>

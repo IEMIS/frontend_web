@@ -2,7 +2,7 @@ export default [
         {
             id: 1,
             photo: 'avatar-1.jpg',
-            name: 'Josephin Doe',
+            name: 'Lawal Badru',
             new: 3,
             status: 1,
             time: 'typing'
@@ -10,7 +10,7 @@ export default [
         {
             id: 2,
             photo: 'avatar-2.jpg',
-            name: 'Lary Doe',
+            name: 'Hon. Minister',
             new: 1,
             status: 1,
             time: 'online'
@@ -18,7 +18,7 @@ export default [
         {
             id: 3,
             photo: 'avatar-3.jpg',
-            name: 'Alice',
+            name: 'Suva Edu District',
             status: 1,
             time: 'online'
         },
