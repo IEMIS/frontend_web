@@ -45,9 +45,6 @@
     "heroku-postbuild": "npm run clean && npm run build",
     "start": "node server"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": [
     ">0.2%",
     "not dead",
