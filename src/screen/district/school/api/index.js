@@ -1,7 +1,7 @@
 //let  BASE_URL = "",
 
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
-//const BASE_URL = "http://localhost:9000/api/v1/admin" 
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/district"
+const BASE_URL = "http://localhost:9000/api/v1/district" 
 
 export const create = async (user, token)=>{
     try{
@@ -21,9 +21,9 @@ export const create = async (user, token)=>{
     }catch(e){console.log(e)}
 }
 
-export const reads = async (token)=>{
+export const reads = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/school`,{
+        const response = await fetch(`${BASE_URL}/schools/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
