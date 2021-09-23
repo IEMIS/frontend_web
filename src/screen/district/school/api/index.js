@@ -1,7 +1,6 @@
-//let  BASE_URL = "",
 
-//const BASE_URL = "https://iemis.herokuapp.com/api/v1/district"
-const BASE_URL = "http://localhost:9000/api/v1/district" 
+const BASE_URL = "https://iemis.herokuapp.com/api/v1/district"
+//const BASE_URL = "http://localhost:9000/api/v1/district" 
 
 export const create = async (user, token)=>{
     try{

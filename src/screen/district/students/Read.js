@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment'; 
 import styled from "styled-components";
 import Datatable from 'react-bs-datatable'; 
-import { isAuthenticated } from '../../Auth/admin/api';
+import { isAuthenticated } from '../../Auth/district/api';
 
 
 export default function Read() {
@@ -98,7 +98,7 @@ export default function Read() {
     const boot = async () => {
         setLoading(true)
         const Auth = await isAuthenticated()
-        const data = await reads(Auth.token);
+        const data = await reads(Auth.district._id ,Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)
