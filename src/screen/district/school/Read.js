@@ -7,7 +7,7 @@ import { reads} from './api';
 import { Link } from 'react-router-dom';
 import moment from 'moment'; 
 import Datatable from 'react-bs-datatable'; 
-import {isAuthenticated} from '../../Auth/admin/api'
+import {isAuthenticated} from '../../Auth/district/api'
 
 
 export default function Read() {
@@ -75,8 +75,10 @@ export default function Read() {
     }
     const boot = async () => {
         const Auth = await isAuthenticated()
+        // const district = Auth.district._id
+        // console.log({Auth})
         setLoading(true)
-        const data = await reads(Auth.token);
+        const data = await reads(Auth.district._id, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)
@@ -140,8 +142,8 @@ export default function Read() {
         { title: 'category', prop: 'category', filterable: true, sortable: true },
         { title: 'Type', prop: 'type', filterable: true, sortable: true },
         { title: 'Ownership', prop: 'owner', filterable: true, sortable: true },
-        { title: 'Created On ', prop: 'date', filterable: true, sortable: true },
-        { title: 'Last Update', prop: 'date', filterable: true, sortable: true, },
+        { title: 'Created On ', prop: 'dateCreated', filterable: true, sortable: true },
+        { title: 'Last Update', prop: 'dateUpdated', filterable: true, sortable: true, },
         { title: 'Details', prop: 'edit', cell: row =><Link to={`/district/schools/edit/${row.edit}`} > Edit</Link>},
         { title: 'Details', prop: 'delete', cell: row =><Link to={`/district/schools/delete/${row.delete}`} > Delete </Link>},
         { title: 'Details', prop: 'detail', cell: row =><Link to={`/district/schools/read/${row.detail}`} > Detail </Link>},
@@ -149,7 +151,7 @@ export default function Read() {
     
       const body = (dat) => {
         return dat.map((data, index)=>{
-            console.log(JSON.stringify({data}))
+            // console.log(JSON.stringify({data}))
           return{
             id:index +1,
             names:data.names,
@@ -158,8 +160,8 @@ export default function Read() {
             category:data.schoolCat,
             type:data.schoolType,
             owner:data.ownership,
-            date :moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
-            date :moment(data.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
+            dateCreated :moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
+            dateUpdated :moment(data.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
             edit:data._id,
             delete:data._id,
             detail:data._id,

@@ -4,7 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create, readsClass, readsSchool, readsSession } from './api';
-import {isAuthenticated} from '../../Auth/admin/api'
+import {isAuthenticated} from '../../Auth/district/api'
 
 export default class Create extends Component {
     constructor(props){
@@ -47,9 +47,10 @@ export default class Create extends Component {
 
     async componentDidMount(){
         const Auth = await isAuthenticated()
-        const scho = await readsSchool(Auth.token);
+        const scho = await readsSchool(Auth.district._id,Auth.token);
         const sessionL = await readsSession(Auth.token);
         const classL = await readsClass(Auth.token);
+        console.log({scho, sessionL, classL})
         this.setState({schoolList:scho.data, sessionList:sessionL.data,  classList:classL.data});
     }
 

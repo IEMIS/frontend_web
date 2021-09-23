@@ -2,7 +2,7 @@ import React from 'react'
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect, Link} from 'react-router-dom'
-import { create, readsDistrict } from './api';
+import { create} from './api';
 import {isAuthenticated} from '../../Auth/district/api'
 
 
@@ -41,10 +41,6 @@ export default function Create() {
         // if(code===""){ 
         //    setValues({...values, loading:false})
         //   return Swal.fire('Oops...', 'School code is required', 'error');
-        // }
-        // if(district===""){ 
-        //     setValues({...values, loading:false})
-        //     return Swal.fire('Oops...', 'District is required', 'error');
         // }
         if(names===""){ 
             setValues({...values, loading:false})
@@ -109,6 +105,7 @@ export default function Create() {
 
     const handleCreate =async ()=>{
         const school = {code, names, district, email, contact:[{phone, fax, mailBox, province, address}],eduLevel, ownership, estabYear, schoolCat, schoolType, headID, password}
+        // console.log({school})
         const Auth = await isAuthenticated()
         const data = await create(school, Auth.token);
         if(!data){
@@ -147,10 +144,10 @@ export default function Create() {
     React.useEffect(() => {
         const bootstrap = async () =>{
             const Auth = await isAuthenticated()
-            const dist = await readsDistrict(Auth.token);
+            //const dist = await readsDistrict(Auth.token);
             //let code = `SCH${`0013`}`;
             //code
-            setValues(v => ({...v, districtList:dist.data})); 
+            setValues(v => ({...v, district:Auth.district._id })); 
         }
         bootstrap()
     }, [])
@@ -231,7 +228,7 @@ export default function Create() {
                     <div className="col-4">
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1"> School Ownership</label>
-                            <select  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <select  className="form-control" onChange={handleChange("ownership")} value={ownership} id="exampleInputEmail1" aria-describedby="emailHelp">
                                 <option>Select School Ownership</option>
                                 <option value="Government">Government</option>
                                 <option value="Non-Government">Non-Government</option>

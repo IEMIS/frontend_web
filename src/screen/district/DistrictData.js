@@ -1,12 +1,13 @@
 
 import React from 'react';
-import {Row, Col, Card,Form} from 'react-bootstrap';
+import {Row, Col, Card} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
 import { countStudentByClass, countTeacherBySchool, studentData, schoolData, districtL, studentDataByDistrict, schoolDataByDistrict} from "./api"
 import Aux from "../../hoc/_Aux";
+import { isAuthenticated } from '../Auth/district/api';
 
 class DistrictData extends React.Component {
     constructor(props){
@@ -23,39 +24,40 @@ class DistrictData extends React.Component {
             countTeachbySchool:[],
             school:'',
             student:'',
-            district:"",
-            districtList:[],
+            // district:"",
+            // districtList:[],
             loading:false,
         }
     }
 
     async componentDidMount(){
         this.setState({loading:true})
-        const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
-        const countbyclass = await countStudentByClass(Auth.token)
-        const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
-        const studentDa = await studentData(Auth.token);
-        const schoolDa = await schoolData(Auth.token);
-        const distirct = await districtL(Auth.token)
-        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data }) 
+        const Auth = await isAuthenticated()
+        const countbyclass = await countStudentByClass(Auth.district._id,Auth.token)
+        // const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+        const studentDa = await studentData(Auth.district._id, Auth.token);
+        const schoolDa = await schoolData(Auth.district._id,Auth.token);
+        // const distirct = await districtL(Auth.token)
+        // this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data }) 
+        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data }) 
         this.setState({loading:false}) 
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot){
-        const {district} = this.state;
-        const user = {district};
-        if(prevState.district !== district){
-            this.setState({loading:true})
-            const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
-            const countbyclass = await countStudentByClass(Auth.token)
-            const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
-            const studentDa = await studentDataByDistrict(user, Auth.token);
-            const schoolDa = await schoolDataByDistrict(user, Auth.token);
-            //console.log({schoolDa})
-            //const dist = await districtL(Auth.token); districtList:distirct.data
-            this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data,  }) 
-            this.setState({loading:false}) 
-        }
+        // const {district} = this.state;
+        // const user = {district};
+        // if(prevState.district !== district){
+        //     this.setState({loading:true})
+        //     // const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
+        //     // const countbyclass = await countStudentByClass(Auth.token)
+        //     // const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+        //     // const studentDa = await studentDataByDistrict(user, Auth.token);
+        //     // const schoolDa = await schoolDataByDistrict(user, Auth.token);
+        //     // //console.log({schoolDa})
+        //     // //const dist = await districtL(Auth.token); districtList:distirct.data
+        //     // this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data,  }) 
+        //     this.setState({loading:false}) 
+        // }
 
     }
 
@@ -70,8 +72,8 @@ class DistrictData extends React.Component {
     
 
     render() {
-        const { countbyclass,countTeachbySchool,school,student, districtList, district, loading} = this.state;
-        //console.log({district})
+        // const { countbyclass,countTeachbySchool,school,student, loading} = this.state;
+        const { countbyclass,countTeachbySchool,school,student, loading} = this.state;
         if(loading){
             return <h1>Loading ....</h1>
         }
@@ -286,7 +288,7 @@ class DistrictData extends React.Component {
                                     <Card.Title as='h5'>Teachers summary data by Education Level </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} />
+                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
                                 </Card.Body>
                             </Card>
                         </Col>
