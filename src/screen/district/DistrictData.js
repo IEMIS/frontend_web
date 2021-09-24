@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
-import { countStudentByClass, countTeacherBySchool, studentData, schoolData, districtL, studentDataByDistrict, schoolDataByDistrict} from "./api"
+import { countStudentByClass, countTeacherBySchool, studentData, schoolData } from "./api"
 import Aux from "../../hoc/_Aux";
 import { isAuthenticated } from '../Auth/district/api';
 
