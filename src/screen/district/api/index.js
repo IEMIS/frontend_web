@@ -168,9 +168,10 @@ export const schoolByDistrict = async (user, token)=>{
 
 
 /**Teacher summary endpoint  */
-export const countTeacherBySchool = async (token)=>{
+export const countTeacherBySchool = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/teachers/data/count/school`,{
+                                                // teacher/data/school/
+        const response = await fetch(`${BASE_URL}/teachers/data/school/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',

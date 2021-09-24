@@ -34,12 +34,12 @@ class DistrictData extends React.Component {
         this.setState({loading:true})
         const Auth = await isAuthenticated()
         const countbyclass = await countStudentByClass(Auth.district._id,Auth.token)
-        // const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+        const countTeachbySchoolResp = await countTeacherBySchool(Auth.district._id,Auth.token)
         const studentDa = await studentData(Auth.district._id, Auth.token);
         const schoolDa = await schoolData(Auth.district._id,Auth.token);
         // const distirct = await districtL(Auth.token)
         // this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data }) 
-        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data }) 
+        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data,countTeachbySchool:countTeachbySchoolResp.data }) 
         this.setState({loading:false}) 
     }
 
