@@ -72,7 +72,6 @@ class DistrictData extends React.Component {
     
 
     render() {
-        // const { countbyclass,countTeachbySchool,school,student, loading} = this.state;
         const { countbyclass,countTeachbySchool,school,student, loading} = this.state;
         console.log({countbyclass,school, student, countTeachbySchool })
         if(loading){
