@@ -39,7 +39,7 @@ class DistrictData extends React.Component {
         const schoolDa = await schoolData(Auth.district._id,Auth.token);
         // const distirct = await districtL(Auth.token)
         // this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data }) 
-        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data,countTeachbySchool:countTeachbySchoolResp.data }) 
+        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, }) 
         this.setState({loading:false}) 
     }
 
@@ -276,7 +276,7 @@ class DistrictData extends React.Component {
                                     <Card.Title as='h5'>Students Enrolment by Class Summary</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
+                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} /> */}
                                 </Card.Body>
                             </Card>
                         </Col>
