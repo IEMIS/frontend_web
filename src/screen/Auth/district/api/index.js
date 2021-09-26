@@ -1,9 +1,10 @@
 //let  BASE_URL = "",
 
-const BASE_URL = "https://iemis.herokuapp.com/api/v1"
+const BASE_URL = "https://iemis.herokuapp.com/api/v1/district"
 
+// /district/auth/signin
 export const signin = user => {
-    return fetch(`${BASE_URL}/district/signin`, {
+    return fetch(`${BASE_URL}/auth/signin`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -22,7 +23,7 @@ export const signin = user => {
 
 export const login = async (user)=>{
     try{
-        const response = await fetch(`${BASE_URL}/district/signin`,{
+        const response = await fetch(`${BASE_URL}/auth/signin`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -76,7 +77,7 @@ export const isAuthenticated = () => {
 
 export const forget = async (user) =>{
     try{
-        const response = await fetch(`${BASE_URL}/district/forgetPassword`,{
+        const response = await fetch(`${BASE_URL}/auth/forgetPassword`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -92,7 +93,7 @@ export const forget = async (user) =>{
 
 export const reset = async (user) =>{
     try{
-        const response = await fetch(`${BASE_URL}/district/resetPassword`,{
+        const response = await fetch(`${BASE_URL}/auth/resetPassword`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
