@@ -88,12 +88,12 @@ export default function Create() {
                                         <Form>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Class Code</Form.Label>
-                                                <Form.Control type="text" placeholder="First name" onChange={handleChange("classCode")} value={classCode} />
+                                                <Form.Control type="text" placeholder="class code" onChange={handleChange("classCode")} value={classCode} />
                                             </Form.Group>
 
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Class Name</Form.Label>
-                                                <Form.Control type="text" placeholder="Middle name" onChange={handleChange("names")} value={names} />
+                                                <Form.Control type="text" placeholder="name the class" onChange={handleChange("names")} value={names} />
                                             </Form.Group>
                                             {
                                                 loading ? <Button variant="outline-secondary" disabled >Loading ..</Button>: <Button variant="primary" onClick={submit}  >Create ..</Button>
