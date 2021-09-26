@@ -4,7 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect, useParams} from 'react-router-dom'
 import { readsSchool, read, edit } from './api';
-import { isAuthenticated } from '../../Auth/admin/api';
+import { isAuthenticated } from '../../Auth/district/api';
 
 export default function Edit() {
     let { id } = useParams();

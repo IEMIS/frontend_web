@@ -20,9 +20,9 @@ export const create = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
-export const reads = async (token)=>{
+export const reads = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/teachers`,{
+        const response = await fetch(`${BASE_URL}/teachers/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -39,7 +39,7 @@ export const reads = async (token)=>{
 
 export const read = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/teachers/${user}`,{
+        const response = await fetch(`${BASE_URL}/teacher/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -56,7 +56,7 @@ export const read = async (user, token)=>{
 
 export const edit = async (id, user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/teachers/${id}`,{
+        const response = await fetch(`${BASE_URL}/teacher/${id}`,{
             method:'PUT',
             body:JSON.stringify(user),
             headers:{
@@ -74,7 +74,7 @@ export const edit = async (id, user, token)=>{
 
 export const remove = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/teachers/${user}`,{
+        const response = await fetch(`${BASE_URL}/teacher/${user}`,{
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json',
