@@ -42,7 +42,7 @@ export default function Front() {
                 </Row>
                 <Row>
                     <Col></Col>
-                    <Col>All copy reserved @IEMIS 2021</Col>
+                    <Col>All rights reserved @IEMIS 2021</Col>
                     <Col></Col>
                 </Row>
             </Container>
