@@ -1,25 +1,25 @@
 import React from 'react';
-
-import {Row, Container, Col,} from 'react-bootstrap';
-
+import {Row, Container, Col, Card,} from 'react-bootstrap';
+import './styles/app.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import Aux from '../../../hoc/_Aux';
 import Navigation from './components/Navigation';
-
+import Footer from './components/Footer';
+import Slide from './components/Slide'
 
 export default function Feature() {
     return (
         <Aux>
             <Navigation />
             <Container>
+            <Slide />
                 <Row>
-                    <Col></Col>
-                    <Col>All rights reserved @IEMIS 2021</Col>
-                    <Col></Col>
+                    
                 </Row>
             </Container>
+            <Footer />
         </Aux>
     )
 }
