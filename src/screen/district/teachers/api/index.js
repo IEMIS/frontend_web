@@ -1,11 +1,12 @@
 //let  BASE_URL = "",
 
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
-//const BASE_URL = "http://localhost:9000/api/v1/admin" 
+// const BASE_URL = "https://iemis.herokuapp.com/api/v1/district"
+
+const BASE_URL = "http://localhost:9000/api/v1/district" 
 
 export const create = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/teachers`,{
+        const response = await fetch(`${BASE_URL}/teacher`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -88,6 +89,25 @@ export const remove = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
+//read schools in the district
+export const readsSchool = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/schools/${user}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
 //get subject
 export const readsSubject = async (token)=>{
     try{
@@ -107,20 +127,3 @@ export const readsSubject = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-//get school
-export const readsSchool = async (token)=>{
-    try{
-        const response = await fetch(`${BASE_URL}/school`,{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json',
-                accept:'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        }).catch(err => {
-            console.log(err)
-        });
-        const data = response.json();
-        return data;
-    }catch(e){console.log(e)}
-}

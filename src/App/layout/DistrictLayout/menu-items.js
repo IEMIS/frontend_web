@@ -75,26 +75,26 @@ export default {
                         },
                     ]
                 },
-                {
-                    id: 'staff',
-                    title: 'Staff',
-                    type: 'collapse',
-                    icon: 'feather icon-users',
-                    children: [
-                        {
-                            id: 'staffs-read',
-                            title: 'Read',
-                            type: 'item',
-                            url: '/district/staffs/read'
-                        },
-                        {
-                            id: 'staffs-create',
-                            title: 'Create',
-                            type: 'item',
-                            url: '/district/staffs/create'
-                        },
-                    ]
-                },
+                // {
+                //     id: 'staff',
+                //     title: 'Staff',
+                //     type: 'collapse',
+                //     icon: 'feather icon-users',
+                //     children: [
+                //         {
+                //             id: 'staffs-read',
+                //             title: 'Read',
+                //             type: 'item',
+                //             url: '/district/staffs/read'
+                //         },
+                //         {
+                //             id: 'staffs-create',
+                //             title: 'Create',
+                //             type: 'item',
+                //             url: '/district/staffs/create'
+                //         },
+                //     ]
+                // },
                 {
                     id: 'teachers',
                     title: 'Teachers',

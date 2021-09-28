@@ -4,7 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create, readsSchool } from './api';
-import { isAuthenticated } from '../../Auth/admin/api';
+import { isAuthenticated } from '../../Auth/district/api';
 
 
 export default function Create() {
@@ -157,7 +157,8 @@ export default function Create() {
 
     const handleCreate =async ()=>{
         const Auth = await isAuthenticated()
-        const teacher = {teacherCode, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session, lastWorkshop, password, password2}
+        const teacher = {teacherCode, district:Auth.district._id, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session, lastWorkshop, password, password2}
+        console.log({teacher})
         const data = await create(teacher, Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
@@ -177,7 +178,6 @@ export default function Create() {
             showConfirmButton: false,
             timer: 3000
             });
-
             return Toast.fire({
                 animation: true,
                 type: 'success',
@@ -195,7 +195,8 @@ export default function Create() {
     React.useEffect(() => {
         const bootstrap = async () =>{
             const Auth = await isAuthenticated()
-            const scho = await readsSchool(Auth.token);
+            const scho = await readsSchool(Auth.district._id, Auth.token);
+            // console.log({scho})
             setValues(v => ({...v, schoolList:scho.data})); 
         }
         bootstrap()
