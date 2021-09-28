@@ -37,9 +37,11 @@ class DistrictData extends React.Component {
         const countTeachbySchoolResp = await countTeacherBySchool(Auth.district._id,Auth.token)
         const studentDa = await studentData(Auth.district._id, Auth.token);
         const schoolDa = await schoolData(Auth.district._id,Auth.token);
+
+        // console.log({studentDa, schoolDa, countbyclass, countTeachbySchoolResp})
         // const distirct = await districtL(Auth.token)
         // this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, districtList:distirct.data }) 
-        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, }) 
+        this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data,countTeachbySchool:countTeachbySchoolResp.data, }) 
         this.setState({loading:false}) 
     }
 
@@ -73,7 +75,7 @@ class DistrictData extends React.Component {
 
     render() {
         const { countbyclass,countTeachbySchool,school,student, loading} = this.state;
-        console.log({countbyclass,school, student, countTeachbySchool })
+        // console.log({countbyclass,school, student, countTeachbySchool })
         if(loading){
             return <h1>Loading ....</h1>
         }
@@ -92,7 +94,7 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/students">
+                                    <Link to="/">
                                       <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={student.countStudentByGender} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
@@ -109,8 +111,8 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/schools">
-                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByownership} x="_id" y="count"  />
+                                    <Link to="/">
+                                        {/* <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByownership} x="_id" y="count"  /> */}
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -123,7 +125,7 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                  <Link to="/admin/schools">
+                                  <Link to="/">
                                     <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByReligion} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
@@ -139,7 +141,7 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/students">
+                                    <Link to="/">
                                       <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByEthnicity} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
@@ -153,7 +155,7 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/schools">
+                                    <Link to="/">
                                         <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByProvince} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
@@ -185,8 +187,8 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/district">
-                                      <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count"  />
+                                    <Link to="/">
+                                      {/* <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count"  /> */}
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -199,8 +201,8 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/schools">
-                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByCat} x="_id" y="count"  />
+                                    <Link to="/">
+                                        {/* <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByCat} x="_id" y="count"  /> */}
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -213,8 +215,8 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                  <Link to="/admin/schools">
-                                    <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={school.countSchoolByEduLevel} x="_id" y="count"  />
+                                  <Link to="/s">
+                                    {/* <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={school.countSchoolByEduLevel} x="_id" y="count"  /> */}
                                   </Link>
                                 </Card.Body>
                             </Card>
@@ -231,7 +233,7 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/students">
+                                    <Link to="/">
                                       <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentBySession} x="name" y="count"  />
                                     </Link>
                                 </Card.Body>
@@ -247,7 +249,7 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/schools">
+                                    <Link to="/">
                                         <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={student.countStudentByStatus} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
@@ -261,7 +263,7 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                  <Link to="/admin/schools">
+                                  <Link to="/">
                                     <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByCountry} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
@@ -276,7 +278,7 @@ class DistrictData extends React.Component {
                                     <Card.Title as='h5'>Students Enrolment by Class Summary</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} /> */}
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -288,7 +290,7 @@ class DistrictData extends React.Component {
                                     <Card.Title as='h5'>Teachers summary data by Education Level </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
