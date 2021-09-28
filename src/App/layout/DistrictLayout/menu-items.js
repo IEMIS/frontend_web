@@ -10,7 +10,7 @@ export default {
                     id: 'dashboard',
                     title: 'Dashboard',
                     type: 'item',
-                    url: '/district/districts',
+                    url: '/district',
                     icon: 'feather icon-home',
                 },
                 {

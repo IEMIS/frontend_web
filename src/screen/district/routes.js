@@ -38,7 +38,7 @@ const ReadOneStaffs = React.lazy(()=>import('./staffs/One'))
 const DeleteStaffs = React.lazy(()=>import('./staffs/Delete'))
 
 const routes = [
-    { path: '/district/districts', exact: true, name: 'admin-district', component: DistrictData },
+    { path: '/district', exact: true, name: 'admin-district', component: DistrictData },
     { path: '/district/indicator', exact: true, name: 'admin-indicator', component: IndicatorData },
     { path: '/district/schools', exact: true, name: 'admin-school', component: SchoolData },
     
