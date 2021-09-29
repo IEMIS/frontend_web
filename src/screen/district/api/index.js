@@ -1,6 +1,6 @@
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/district";
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/district";
 
-//const BASE_URL = "http://localhost:9000/api/v1/district" 
+const BASE_URL = "http://localhost:9000/api/v1/district" 
 
 
 
@@ -40,7 +40,8 @@ export const countStudentByClass = async (user, token)=>{
 
 export const schoolData = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/student/data/school/${user}`,{
+        // /district/school/data/student/:district
+        const response = await fetch(`${BASE_URL}/school/data/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
