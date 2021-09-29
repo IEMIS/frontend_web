@@ -62,111 +62,169 @@ export default function Front() {
                             </Tab>
                         </Tabs>
                         <div>
-                            <Table responsive="sm">
+                            <Table responsive="lg">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Pre-School</th>
-                                    <th>Primary</th>
-                                    <th>Secondary</th>
-                                    <th>TVET</th>
+                                    <th>Level</th>
+                                    <th>MoEHA</th>
+                                    <th>IEMIS</th>
+                                    <th>Variation</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
+                                    <td>Pre-School</td>
+                                    <td>17,912</td>
+                                    <td>17,469</td>
+                                    <td>443</td>
                                 </tr>
                                 <tr>
-                                    <td>2</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
+                                    <td>Primary</td>
+                                    <td>154,206</td>
+                                    <td>153,757</td>
+                                    <td>449</td>
                                 </tr>
                                 <tr>
-                                    <td>3</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
+                                    <td>Secondary</td>
+                                    <td>67,547</td>
+                                    <td>67,610</td>
+                                    <td>-63 </td>
+                                </tr>
+                                <tr>
+                                    <td>Vocational</td>
+                                    <td>806</td>
+                                    <td>1041</td>
+                                    <td>-235 </td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>240,471</td>
+                                    <td>239,877</td>
+                                    <td>594 </td>
                                 </tr>
                                 </tbody>
                             </Table>
-                            <Table responsive="sm">
+                            <Table responsive="xl">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Pre-School</th>
-                                    <th>Primary</th>
-                                    <th>Secondary</th>
-                                    <th>TVET</th>
+                                    <th>Level</th>
+                                    <th>MoEHA</th>
+                                    <th>IEMIS</th>
+                                    <th>Variation</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                </tr>
-                                <tr>
+                                    <td>Pre-School</td>
+                                    <td>874</td>
+                                    <td>871</td>
                                     <td>3</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <td>Primary</td>
+                                    <td>736</td>
+                                    <td>739</td>
+                                    <td>-3</td>
+                                </tr>
+                                <tr>
+                                    <td>Secondary</td>
+                                    <td>172</td>
+                                    <td>175</td>
+                                    <td>-3 </td>
+                                </tr>
+                                <tr>
+                                    <td>Vocational</td>
+                                    <td>N/A</td>
+                                    <td>2</td>
+                                    <td>-2 </td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>1,782</td>
+                                    <td>1,787</td>
+                                    <td>-5 </td>
                                 </tr>
                                 </tbody>
-                            </Table> <Table responsive="sm">
+                            </Table> <Table responsive="xl">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Pre-School</th>
-                                    <th>Primary</th>
-                                    <th>Secondary</th>
-                                    <th>TVET</th>
+                                    <th>District</th>
+                                    <th>Government</th>
+                                    <th>Non-Govterment</th>
+                                    <th>Private</th>
+                                    <th>Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                </tr>
-                                <tr>
+                                    <td>Ba-Tavua</td>
+                                    <td>21</td>
+                                    <td>118</td>
                                     <td>2</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
+                                    <td>141</td>
                                 </tr>
                                 <tr>
-                                    <td>3</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
+                                    <td>Cakaudrove</td>
+                                    <td>18</td>
+                                    <td>132</td>
+                                    <td>2</td>
+                                    <td>152</td>
                                 </tr>
                                 <tr>
+                                    <td>Eastern</td>
+                                    <td>38</td>
+                                    <td>202</td>
                                     <td>4</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
+                                    <td>244</td>
+                                </tr>
+                                <tr>
+                                    <td>Lautoka-Yasawa</td>
+                                    <td>28</td>
+                                    <td>179</td>
+                                    <td>9</td>
+                                    <td>216</td>
+                                </tr>
+                                <tr>
+                                    <td>Macuata-Bua</td>
+                                    <td>22</td>
+                                    <td>223</td>
+                                    <td>6</td>
+                                    <td>251</td>
+                                </tr>
+                                <tr>
+                                    <td>Nadroga-Navosa</td>
+                                    <td>24</td>
+                                    <td>118</td>
+                                    <td>5</td>
+                                    <td>147</td>
+                                </tr>
+                                <tr>
+                                    <td>Nausori</td>
+                                    <td>59</td>
+                                    <td>221</td>
+                                    <td>6</td>
+                                    <td>286</td>
+                                </tr>
+                                <tr>
+                                    <td>Ra</td>
+                                    <td>16</td>
+                                    <td>100</td>
+                                    <td>1</td>
+                                    <td>117</td>
+                                </tr>
+                                <tr>
+                                    <td>Suva</td>
+                                    <td>31</td>
+                                    <td>184</td>
+                                    <td>18</td>
+                                    <td>233</td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>257</td>
+                                    <td>1,477</td>
+                                    <td>53</td>
+                                    <td>1,787</td>
                                 </tr>
                                 </tbody>
                             </Table>
