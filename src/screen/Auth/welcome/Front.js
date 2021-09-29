@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Container, Col, Card,Tabs, Tab} from 'react-bootstrap';
+import {Row, Container, Col, Card,Tabs, Tab,Table} from 'react-bootstrap';
 //import './styles/app.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -37,7 +37,10 @@ export default function Front() {
                                 An affordable school centered integrated web solution developed by Fiji Ministry of Education, known as FEMIS provides alternative for developing countries. However, it has core architecture design deficiencies and focuses on business processes only (for managing allocation of grants to schools and provision of vouchers to students) rather than generating education statistic and indicators data that can give overall education performances in the country. 
                                 </p>
                                 <p>
-                                A modern web-based Intelligent EMIS (IEMIS) built on microservices architecture using MERN (MongoDB, ExpressJS, ReactJS, and NodeJS) stack to address EMIS challenges becomes necessary. IEMIS offers enhanced data management, automation and visualization of education data (indicators) imperative for educational planning and policy-making. 
+                                A modern web-based Intelligent EMIS (IEMIS) built on microservices architecture using MERN (MongoDB, ExpressJS, ReactJS, and NodeJS) stack to address EMIS challenges becomes necessary.  
+                                </p>
+                                <p>
+                                IEMIS offers enhanced data management, automation and visualization of education data (indicators) imperative for educational planning and policy-making.
                                 </p>
                             </Card.Body>
                         </Card>
@@ -48,9 +51,8 @@ export default function Front() {
                                 <Card.Title> EDUCATION DATA SYNOPSIS</Card.Title>
                             </Card.Header>
                             <Card.Body>
-                            <Tabs defaultActiveKey="current" id="uncontrolled-tab-example">
+                            <Tabs defaultActiveKey="new" id="uncontrolled-tab-example">
                             <Tab eventKey="last" title="2018 Insights">
-                                
                             </Tab>
                             <Tab eventKey="previous" title="2019 Insights">
                             </Tab>
@@ -59,6 +61,116 @@ export default function Front() {
                             <Tab eventKey="new" title="2021 Insights">
                             </Tab>
                         </Tabs>
+                        <div>
+                            <Table responsive="sm">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Pre-School</th>
+                                    <th>Primary</th>
+                                    <th>Secondary</th>
+                                    <th>TVET</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                            <Table responsive="sm">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Pre-School</th>
+                                    <th>Primary</th>
+                                    <th>Secondary</th>
+                                    <th>TVET</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                </tbody>
+                            </Table> <Table responsive="sm">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Pre-School</th>
+                                    <th>Primary</th>
+                                    <th>Secondary</th>
+                                    <th>TVET</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                            </div>
                         </Card.Body>
                     </Card>
                     </Col>
