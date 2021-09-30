@@ -69,6 +69,25 @@ export const countTeacherBySchool = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+// district/teacher/data/school/class/:district&:school
+export const countTeacherInSchool = async (district,school, token)=>{
+    try{                   
+        const response = await fetch(`${BASE_URL}/teacher/data/school/class/${district}&${school}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+
 
 //school dashboard
 export const readsSchool = async (user, token)=>{
