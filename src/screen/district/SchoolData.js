@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
-import {  studentDataBySchool, schoolDetails, readsSchool, countTeacherInSchool} from "./api"
+import {  studentDataBySchool, schoolDetails, readsSchool, countTeacherInSchool, countStudentByClassInSchool} from "./api"
 import Aux from "../../hoc/_Aux";
 import { isAuthenticated } from '../Auth/district/api';
 
@@ -50,8 +50,9 @@ class SchoolData extends React.Component {
             const studentDa = await studentDataBySchool(school, Auth.token)
             const schoolDe = await schoolDetails(school, Auth.token)
             const teacher = await countTeacherInSchool(Auth.district._id,school, Auth.token)
-            //console.log({teacher})
-            this.setState({students:studentDa.data, schools:schoolDe.data[0], countTeachbySchool:teacher.data }) 
+            const studentClass = await countStudentByClassInSchool(school, Auth.token)
+            console.log({studentClass})
+            this.setState({students:studentDa.data, schools:schoolDe.data[0], countTeachbySchool:teacher.data,countbyclass:studentClass.data }) 
             this.setState({loading:false}) 
         }
     }
