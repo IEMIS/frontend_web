@@ -36,6 +36,24 @@ export const countStudentByClass = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+// /district/student/data/class/school/:school
+export const countStudentByClassInSchool = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/student/data/class/school/${user}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
 export const schoolData = async (user, token)=>{
     try{
         // /district/school/data/student/:district
