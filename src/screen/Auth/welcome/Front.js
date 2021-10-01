@@ -24,7 +24,7 @@ export default function Front() {
                             </Card.Header>
                             <Card.Body>
                                 <p>
-                                The growing demand for valid and reliable data for planning, management of educational services and providing comparative information on performance globally led to Education Management Information System (EMIS). The outcomes are still largely poor with 75% in Pacific and 81% Sub-Saharan Africa countries are using paper based data collection  (UNESCO Institutes for Statistics report 2020), despite millions of dollars spent to strengthen EMIS by donors.
+                                The growing demand for valid and reliable data for planning, management of educational services and providing comparative information on performance globally led to Education Management Information System (EMIS). The outcomes are still largely poor with 75% in Pacific and 81% Sub-Saharan Africa countries are using paper based data collection  (UNESCO Institute for Statistics report 2020), despite millions of dollars spent to strengthen EMIS by donors.
                                 </p>
                                 <p> 
                                 Today, many countries are without EMIS and some with EMIS are yet to advance from desktop solutions to a web platform for wider accessibility and efficient data management.  

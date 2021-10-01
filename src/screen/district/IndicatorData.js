@@ -6,7 +6,7 @@ import NVD3Chart from 'react-nvd3';
 
 //import {countStudentByGender, countStudentByClass, countSchoolByOwnership, countTeacherBySchool} from "./api"
 import Aux from "../../hoc/_Aux";
-import {  studentIndicator } from './api';
+import { studentIndicator } from './api';
 /*
 import DEMO from "../../store/constant";
 
@@ -28,7 +28,7 @@ class IndicatorData extends React.Component {
 
     async componentDidMount(){
         this.setState({loading:true})
-      const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
+      const Auth = await JSON.parse(localStorage.getItem('district-Auth'));
       const indi = await studentIndicator(Auth.token);
     //   console.log({indi})
     //   const dist = await districtL(Auth.token)
@@ -55,7 +55,7 @@ class IndicatorData extends React.Component {
     
 
     render() {
-        const {indicators, districtList, district, loading} = this.state;
+        const {indicators, district, loading} = this.state;
         console.log({indicators, district})
         if(loading){
             return <h1>Loading ....</h1>

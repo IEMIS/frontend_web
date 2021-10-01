@@ -172,15 +172,15 @@ class SchoolData extends React.Component {
                                             School Name : {schools.names} <br />
                                             School Level : {schools.eduLevel} <br />
                                             School Type  : {schools.schoolType} <br />
-                                            School category : {schools.schoolCat} <br />
-                                            School ownership : {schools.ownership} <br />
+                                            School Category : {schools.schoolCat} <br />
+                                            School Ownership : {schools.ownership} <br />
                                             Established : {moment(schools.estabYear,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')}<br />
                                             <hr />
                                             School Contact  <br />
                                             Phone : {schools.contact[0].phone} <br />
                                             Fax : {schools.contact[0].fax} <br />
                                             Address : {schools.contact[0].address} <br />
-                                            Province : {schools.contact[0].province} <br />
+                                            Locality : {schools.contact[0].province} <br />
                                             <hr />
                                             District Details <br />
                                             Name: {schools.fromDistrict[0].names} <br />
@@ -229,7 +229,7 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by ethnicity</h5>
+                                        <h5>Student by Ethnicity</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
