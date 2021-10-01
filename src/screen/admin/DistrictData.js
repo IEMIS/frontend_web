@@ -193,7 +193,7 @@ class DistrictData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by ethnicity</h5>
+                                        <h5>Student by Ethnicity</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>

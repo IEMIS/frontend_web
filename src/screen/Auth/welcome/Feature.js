@@ -24,7 +24,7 @@ export default function Feature() {
                             <Card.Body>
                                 <h5>Web Application </h5>
                                 <p> 
-                                IEMIS is a non-commercial web based application developed on open source MERN stack technologies that allow user to access their dashboard via any device’s browsers and perform CRUD operation according to the authorization level. 
+                                IEMIS is a non-commercial web based application developed with open source MERN stack technologies that allow user to access their dashboard via any device’s browsers and perform CRUD operation according to the authorization level. 
                                 </p>
                                 <h5>Visualization of Education data and Indicators </h5>
                                 <p> 
