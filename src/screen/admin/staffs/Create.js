@@ -220,9 +220,9 @@ export default function Create() {
                                             <Form.Label>Nationality</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("nationality")} value={nationality}>
                                                 <option>Select </option>
-                                                <option value="Fijian">Male</option>
-                                                <option value="Regional">Female</option>
-                                                <option value="Foreigner">Foreigner</option>
+                                                <option value="Fijian">Fijian</option>
+                                                <option value="Regional">Pacifika</option>
+                                                <option value="expatriate">Expatriate</option>
                                             </Form.Control>
                                             </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlSelect1">

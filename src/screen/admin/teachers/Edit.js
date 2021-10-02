@@ -197,12 +197,12 @@ export default function Edit() {
                         <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h3">Error in Deleting School .</Card.Title>
+                                <Card.Title as="h3">Error in Updating Teacher .</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>School data failed to delete, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>Teacher data failed to update, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -303,7 +303,7 @@ export default function Edit() {
                     <Col>
                     <Card>
                         <Card.Header>
-                            <Card.Title as="h3">Add New Teacher</Card.Title>
+                            <Card.Title as="h3">Update Teacher</Card.Title>
                         </Card.Header>
                         <Card.Body>
                             <Row>
