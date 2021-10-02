@@ -138,7 +138,7 @@ export default function Read() {
     const ViewData = () =>{
         return(
           <Aux>
-            <h1>Manage Teacherdata</h1>
+            <h1>Manage Classes </h1>
             <hr />
             {
               datas.length > 0 ?  

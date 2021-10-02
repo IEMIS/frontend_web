@@ -2,7 +2,7 @@ export default {
     items: [
         {
             id: 'navigation',
-            title: 'admin Menu',
+            title: 'District Menu',
             type: 'group',
             icon: 'icon-navigation',
             children: [
@@ -117,7 +117,7 @@ export default {
                 },
                 {
                     id: 'extral',
-                    title: 'Extral Data',
+                    title: 'Extra Data',
                     type: 'collapse',
                     icon: 'feather icon-book',
                     children: [
@@ -139,7 +139,7 @@ export default {
             children: [
                 {
                     id: 'disabled-menu',
-                    title: 'Districts Signout',
+                    title: 'District Signout',
                     type: 'item',
                     url: '/district/signout',
                     classes: 'nav-item ',

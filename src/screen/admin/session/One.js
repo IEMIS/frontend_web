@@ -131,7 +131,26 @@ export default function One() {
             </Row>
             <Row>
                 <Card.Body>
-                    <Col>Session  : {name}</Col><Col>Session Description : {slung}</Col>
+                <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="Session">Session Name</label>
+              <input
+                type="text"
+                class="form-control"
+                value={name}
+                readOnly
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="description">Session Description</label>
+              <input
+                type="text"
+                class="form-control"
+                value={slung}
+                readOnly
+              />
+            </div>
+          </div>
                 </Card.Body>
             </Row>
         </Aux>
