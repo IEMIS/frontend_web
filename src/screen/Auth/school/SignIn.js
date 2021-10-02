@@ -110,8 +110,11 @@ const SignIn = () => {
                                             <label htmlFor="checkbox-fill-a1" className="cr"> Save credentials</label>
                                     </div>
                                 </div>
+                                <button className="btn btn-primary shadow-2 mb-4" disabled={loading} onClick={!loading ? submit : null}>
+                                    {loading ? 'loading..':'Login'}
+                                </button>
                                 {
-                                    loading ? "Loading ... " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
+                                    //loading ? "Loading ... " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
                                 }
                                 
                                 <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/school/forget">Reset</NavLink></p>

@@ -63,7 +63,7 @@ export default {
                 },
                 {
                     id: 'extral',
-                    title: 'Extral Data',
+                    title: 'Extra Data',
                     type: 'collapse',
                     icon: 'feather icon-book',
                     children: [

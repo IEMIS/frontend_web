@@ -131,7 +131,26 @@ export default function One() {
             </Row>
             <Row>
                 <Card.Body>
-                    <Col>Class Name : {names}</Col><Col> Class Code : {classCode}</Col>
+                <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="class_Name">Class Name</label>
+              <input
+                type="text"
+                class="form-control"
+                value={names}
+                readOnly
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="classCode">Class Code</label>
+              <input
+                type="text"
+                class="form-control"
+                value={classCode}
+                readOnly
+              />
+            </div>
+            </div>
                 </Card.Body>
             </Row>
         </Aux>

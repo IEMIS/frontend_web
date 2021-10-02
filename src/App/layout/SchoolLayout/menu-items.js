@@ -143,7 +143,7 @@ export default {
                 }, 
                 {
                     id: 'extral',
-                    title: 'Extral Data',
+                    title: 'Extra Data',
                     type: 'collapse',
                     icon: 'feather icon-book',
                     children: [
@@ -165,7 +165,7 @@ export default {
             children: [
                 {
                     id: 'disabled-menu',
-                    title: 'Districts Signout',
+                    title: 'School Signout',
                     type: 'item',
                     url: '/school/signout',
                     classes: 'nav-item ',
