@@ -160,7 +160,7 @@ export default function Create() {
         <Aux>
             {redirectUser()}
             <div className="container">
-                <h1>Add new District</h1> 
+                <h1>Add new School</h1> 
                 <hr />
                 <h2> <Link to="/admin/schools/read" > Read Schools </Link></h2>
                 <hr />
