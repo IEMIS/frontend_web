@@ -3,7 +3,7 @@ import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
-import { create, readsSchool } from './api';
+import { create, readsSchool, readsClass} from './api';
 import { isAuthenticated } from '../../Auth/district/api';
 
 
@@ -22,7 +22,6 @@ export default function Create() {
         email:"",
         phone:"",
         subjectTaught:"",
-        classTaking:"",
         subjectSpecialisation:"",
         level:"",
         typeOfstaff:"",
@@ -43,9 +42,14 @@ export default function Create() {
         loading:false,
         redirectToPage:false,
         schoolList:[],
-        subjectList:[]
+        subjectList:[],
+        classList:[],
+        classTaking:"",
     })
-    const {teacherCode, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,subjectTaught, classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session,gradeLevel, lastWorkshop, password, password2, loading, redirectToPage, schoolList,subjectList} = values
+    const {teacherCode, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,
+        subjectTaught, classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, 
+        retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session,gradeLevel, 
+        lastWorkshop, password, password2, loading, redirectToPage, schoolList,subjectList, classList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -157,7 +161,7 @@ export default function Create() {
 
     const handleCreate =async ()=>{
         const Auth = await isAuthenticated()
-        const teacher = {teacherCode, district:Auth.district._id, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session, lastWorkshop, password, password2}
+        const teacher = {teacherCode, district:Auth.district._id, classTaking, school,firstName, middleName,lastName,title,gender,dob,nationality,qualification,email, phone,classTaking,subjectSpecialisation,level,typeOfstaff, firstappt, lastPosting, contractYears, retirementyear, designation,serviceStatus,teachingTypes,teachingPeriodWK,Engagement,session, lastWorkshop, password, password2}
         console.log({teacher})
         const data = await create(teacher, Auth.token);
         if(!data){
@@ -196,8 +200,8 @@ export default function Create() {
         const bootstrap = async () =>{
             const Auth = await isAuthenticated()
             const scho = await readsSchool(Auth.district._id, Auth.token);
-            // console.log({scho})
-            setValues(v => ({...v, schoolList:scho.data})); 
+            const cla = await readsClass(Auth.token)
+            setValues(v => ({...v, schoolList:scho.data, classList:cla.data})); 
         }
         bootstrap()
     }, [])
@@ -254,6 +258,18 @@ export default function Create() {
                                                         <option key={id} value={scho._id}>{scho.names}</option>
                                                        ) 
                                                    }) : <option value="0">Fails to fetch school</option>
+                                               }
+                                            </Form.Control>
+                                            <Form.Control as="select" onChange={handleChange("classTaking")} value={classTaking}>
+                                                <option>Select Class </option>
+                                               {
+                                                   classList && classList.length > 0 
+                                                   ?
+                                                   classList.map((scho, id)=>{
+                                                       return(
+                                                        <option key={id} value={scho._id}>{scho.names}</option>
+                                                       ) 
+                                                   }) : <option value="0">Fails to fetch Classes</option>
                                                }
                                             </Form.Control>
                                             </Form.Group>
