@@ -333,7 +333,7 @@ class SchoolData extends React.Component {
                                     <Card.Title as='h5'> Teachers summary data by class</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart donut labelType='percent' id="barChart" type="multiBarChart" datum={countTeachbySchool} x="series" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart donut labelType='percent' id="barChart" type="multiBarChart" datum={countTeachbySchool} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
