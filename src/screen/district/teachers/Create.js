@@ -260,6 +260,10 @@ export default function Create() {
                                                    }) : <option value="0">Fails to fetch school</option>
                                                }
                                             </Form.Control>
+                                            </Form.Group>
+                                            
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Select class</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("classTaking")} value={classTaking}>
                                                 <option>Select Class </option>
                                                {
