@@ -87,7 +87,7 @@ export const countTeacherBySchool = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
-// district/teacher/data/school/class/:district&:school
+
 export const countTeacherInSchool = async (district,school, token)=>{
     try{                   
         const response = await fetch(`${BASE_URL}/teacher/data/school/class/${district}&${school}`,{
