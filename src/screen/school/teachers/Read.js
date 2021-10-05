@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import Datatable from 'react-bs-datatable'; 
 import moment from 'moment'
-import {isAuthenticated} from '../../Auth/admin/api'
+import {isAuthenticated} from '../../Auth/district/api'
 
 
 export default function Read() {
@@ -102,8 +102,7 @@ export default function Read() {
     const boot = async () => {
         setLoading(true)
         const Auth = await isAuthenticated()
-        const data = await reads(Auth.token);
-      
+        const data = await reads(Auth.district._id,Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)
@@ -145,7 +144,7 @@ export default function Read() {
     const ViewData = () =>{
         return(
           <Aux>
-            <h1>Manage Teacherdata</h1>
+            <h1>Manage Teacher data</h1>
             <hr />
             {
               datas.length > 0 ?  
@@ -166,14 +165,10 @@ export default function Read() {
         { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
         { title: 'Gender', prop: 'gender', filterable: true, sortable: true, },
         { title: 'Last Post', prop: 'lastp', filterable: true, sortable: true, },
-        //{ title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
         { title: 'School', prop: 'school', filterable: true, sortable: true, },
-        //{ title: 'Status', prop: 'status', filterable: true, sortable: true },
-        //{ title: 'Admission Year', prop: 'date', filterable: true, sortable: true },
-        //{ title: 'Class', prop: 'class', filterable: true, sortable: true },
-        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/admin/students/edit/${row.edit}`} > Edit</BtnEdit>},
-        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/admin/students/delete/${row.delete}`} > Delete </BtnDelete>},
-        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/admin/students/read/${row.detail}`} > Detail </BtnDetail>},
+        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/district/teachers/edit/${row.edit}`} > Edit</BtnEdit>},
+        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/district/teachers/delete/${row.delete}`} > Delete </BtnDelete>},
+        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/district/teachers/read/${row.detail}`} > Detail </BtnDetail>},
       ];
     
       const body = (dat) => {
@@ -183,11 +178,7 @@ export default function Read() {
             names:`${data.title} ${data.firstName} ${data.lastName}`,
             gender:data.gender,
             lastp:moment(data.lastPosting,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
-            //eduLevel:data.edulevel,
             school:data.fromSchool[0].names,
-            //status:data.status,
-            //date :moment(data.yearAdmission,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
-            //class:data.fromClass[0].names,
             edit:data._id,
             delete:data._id,
             detail:data._id,

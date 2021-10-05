@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link, useParams, Redirect } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import moment from 'moment';
 import { read } from "./api";
 import Aux from "../../../hoc/_Aux";
 import { isAuthenticated } from "../../Auth/admin/api";
@@ -98,7 +98,7 @@ export default function One() {
 
   const redirectUser = () => {
     if (redirectToPage) {
-      return <Redirect to="/admin/students/read" />;
+      return <Redirect to="/district/students/read" />;
     }
   };
 
@@ -175,7 +175,7 @@ export default function One() {
             <Col>
               <Card.Header>
                 <Card.Title>
-                  <Link to="/admin/students/read"> Read Student  </Link>
+                  <Link to="/district/students/read"> Read Student  </Link>
                 </Card.Title>
               </Card.Header>
             </Col>
@@ -238,13 +238,13 @@ export default function One() {
                             <Form.Label>School Category </Form.Label>
                             <Form.Control type="text" value={dat.fromSchool.length > 0 ? dat.fromSchool[0].schoolCat: ""} disabled />
                           </Form.Group>
-                        </Form>
-                      </Col>
-                      <Col md={6}>
-                        <Form.Group controlId="formBasicEmail">
+                          <Form.Group controlId="formBasicEmail">
                           <Form.Label>Education Level </Form.Label>
                           <Form.Control type="text" value={dat.edulevel} disabled />
                         </Form.Group>
+                        </Form>
+                      </Col>
+                      <Col md={6}>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Nationality</Form.Label>
                           <Form.Control type="text" value={dat.country} disabled />
@@ -263,7 +263,7 @@ export default function One() {
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>Date of Birth</Form.Label>
-                          <Form.Control type="text" value={dat.dob} disabled />
+                          <Form.Control type="text" value={moment(dat.dob,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} disabled />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>Age</Form.Label>
@@ -281,7 +281,14 @@ export default function One() {
                             <Form.Label>District Address</Form.Label>
                             <Form.Control type="text" value={dat.fromDistrict.length > 0 ? dat.fromDistrict[0].address : " "} disabled />
                         </Form.Group>
-                        
+                        <Form.Group controlId="formBasicEmail">
+                          <Form.Label>Creation Time </Form.Label>
+                          <Form.Control type="text" value={moment(dat.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} disabled />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicEmail">
+                          <Form.Label>Last Update</Form.Label>
+                          <Form.Control type="text" value={moment(dat.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} disabled />
+                        </Form.Group>
                       </Col>
                       <hr />
                     </Row>

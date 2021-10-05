@@ -4,7 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import { useParams, Redirect,} from "react-router-dom";
 import {  read } from './api';
-import { isAuthenticated } from '../../Auth/admin/api';
+import { isAuthenticated } from '../../Auth/district/api';
 
 export default function One() {
     let { id } = useParams();
@@ -21,7 +21,7 @@ export default function One() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/teachers/create" />
+            return <Redirect to="/district/teachers/create" />
         }
     };
 

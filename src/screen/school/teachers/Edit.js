@@ -4,7 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect, useParams} from 'react-router-dom'
 import { readsSchool, read, edit } from './api';
-import { isAuthenticated } from '../../Auth/admin/api';
+import { isAuthenticated } from '../../Auth/district/api';
 
 export default function Edit() {
     let { id } = useParams();
@@ -185,7 +185,7 @@ export default function Edit() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/teachers/read" />
+            return <Redirect to="/district/teachers/read" />
         }
     };
 
@@ -368,8 +368,8 @@ export default function Edit() {
                                         <Form.Control as="select" onChange={handleChange("nationality")} value={nationality}>
                                             <option>Select </option>
                                             <option value="Fijian">Fijian</option>
-                                                <option value="Regional">Pacifika</option>
-                                                <option value="expatriate">Expatriate</option>
+                                             <option value="Regional">Pacifika</option>
+                                            <option value="expatriate">Expatriate</option>
                                         </Form.Control>
                                         </Form.Group>
                                         <Form.Group controlId="formBasicEmail">
