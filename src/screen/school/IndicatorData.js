@@ -6,7 +6,7 @@ import NVD3Chart from 'react-nvd3';
 
 //import {countStudentByGender, countStudentByClass, countSchoolByOwnership, countTeacherBySchool} from "./api"
 import Aux from "../../hoc/_Aux";
-import { districtL, studentIndicator } from './api';
+import { studentIndicator } from './api';
 /*
 import DEMO from "../../store/constant";
 
@@ -28,11 +28,11 @@ class IndicatorData extends React.Component {
 
     async componentDidMount(){
         this.setState({loading:true})
-      const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
+      const Auth = await JSON.parse(localStorage.getItem('district-Auth'));
       const indi = await studentIndicator(Auth.token);
-      console.log({indi})
-      const dist = await districtL(Auth.token)
-      this.setState({indicators:indi.data, districtList:dist.data})
+    //   console.log({indi})
+    //   const dist = await districtL(Auth.token)
+      this.setState({indicators:indi.data,})
       this.setState({loading:false})
     }
 
@@ -55,73 +55,13 @@ class IndicatorData extends React.Component {
     
 
     render() {
-        const {indicators, districtList, district, loading} = this.state;
+        const {indicators, district, loading} = this.state;
         console.log({indicators, district})
         if(loading){
             return <h1>Loading ....</h1>
         }
         return (
             <Aux>
-                    <Row>
-                        <Col md={4} xl={4}>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title>
-                                        Choose District
-                                    </Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                        <Form.Label>District</Form.Label>
-                                        <Form.Control as="select" onChange={this.handleChange("district")} value={district} >
-                                                <option>Select district</option>
-                                               {
-                                                  
-                                                   districtList && districtList.length > 0 
-                                                   ?
-                                                   districtList.map((dist, id)=>{
-                                                       return(
-                                                        <option value={dist._id}>{dist.names}</option>
-                                                       ) 
-                                                   }) : <option value="0">Fails to fetch district</option>
-                                                  
-                                               }
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        {/* <Col md={4} xl={4}>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title>
-                                        Choose Session
-                                    </Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                    <Form.Group controlId="exampleForm.ControlSelect1">
-                                        <Form.Label>Session</Form.Label>
-                                        <Form.Control as="select">
-                                                <option>select session </option>
-                                                <option>2020 Academic Session</option>
-                                                <option>2019 Academic Session</option>
-                                               {
-                                                  
-                                                   sessionList && sessionList.length > 0 
-                                                   ?
-                                                   sessionList.map((sess, id)=>{
-                                                       return(
-                                                        <option value={sess._id}>{sess.names}</option>
-                                                       ) 
-                                                   }) : <option value="0">Fails to fetch session</option>
-                                                   
-                                               }
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Card.Body>
-                            </Card>
-                        </Col> */}
-                    </Row>
                     <Row>
                         <Col md={4} xl={4}>
                             <Card>

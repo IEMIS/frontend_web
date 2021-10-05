@@ -1,12 +1,14 @@
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin";
-//const BASE_URL = "localhost:9000/api/v1";
-//const BASE_URL = "http://localhost:9000/api/v1/admin" 
+
+const BASE_URL = "https://iemis.herokuapp.com/api/v1/schools";
+
+//const BASE_URL = "http://localhost:9000/api/v1/schools" 
 
 
-
-export const studentData = async (token)=>{
+//Dashboard 
+export const studentData = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/student/data/student`,{
+        // /student/data/school/:school
+        const response = await fetch(`${BASE_URL}/student/data/student/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -21,9 +23,10 @@ export const studentData = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countStudentByClass = async (token)=>{
+export const countStudentByClass = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/student/data/count/class`,{
+                                                ///student/data/class/school/:school
+        const response = await fetch(`${BASE_URL}/student/data/class/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -38,27 +41,11 @@ export const countStudentByClass = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const studentDataByDistrict = async (user, token)=>{
-    try{
-        const response = await fetch(`${BASE_URL}/student/data/student/district`,{
-            method:'POST',
-            body:JSON.stringify(user),
-            headers:{
-                'Content-Type':'application/json',
-                accept:'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        }).catch(err => {
-            console.log(err)
-        });
-        const data = response.json();
-        return data;
-    }catch(e){console.log(e)}
-}
 
-export const districtL = async (token)=>{
+// /district/student/data/class/school/:school
+export const countStudentByClassInSchool = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/district`,{
+        const response = await fetch(`${BASE_URL}/student/data/class/school/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -73,9 +60,64 @@ export const districtL = async (token)=>{
     }catch(e){console.log(e)}
 }
 
-export const schoolData = async (token)=>{
+export const schoolData = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/school/data/school`,{
+        // /district/school/data/student/:district
+        const response = await fetch(`${BASE_URL}/school/data/${user}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const countTeacherBySchool = async (user, token)=>{
+    try{                   
+        const response = await fetch(`${BASE_URL}/teacher/data/school/${user}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const countTeacherInSchool = async (school, token)=>{
+    try{                   
+        const response = await fetch(`${BASE_URL}/teacher/data/school/class/${school}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+
+
+//school dashboard
+export const readsSchool = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/schools/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -92,9 +134,8 @@ export const schoolData = async (token)=>{
 
 export const studentDataBySchool = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/student/data/student/school`,{
-            method:'POST',
-            body:JSON.stringify(user),
+        const response = await fetch(`${BASE_URL}/student/data/school/${user}`,{
+            method:'GET',
             headers:{
                 'Content-Type':'application/json',
                 accept:'application/json',
@@ -124,6 +165,8 @@ export const schoolDetails = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
+
 
 export const schoolDataByDistrict = async (user, token)=>{
     try{
@@ -162,164 +205,7 @@ export const schoolByDistrict = async (user, token)=>{
 }
 
 
-
-// export const countStudentByGender = async (token)=>{
-//     try{
-//         const response = await fetch(`${BASE_URL}/student/data/count/gender`,{
-//             method:'GET',
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 accept:'application/json',
-//                 Authorization: `Bearer ${token}`
-//             },
-//         }).catch(err => {
-//             console.log(err)
-//         });
-//         const data = response.json();
-//         return data;
-//     }catch(e){console.log(e)}
-// }
-
-// export const countStudentByYear = async (token)=>{
-//     try{
-//         const response = await fetch(`${BASE_URL}/student/data/count/yearadmission`,{
-//             method:'GET',
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 accept:'application/json',
-//                 Authorization: `Bearer ${token}`
-//             },
-//         }).catch(err => {
-//             console.log(err)
-//         });
-//         const data = response.json();
-//         return data;
-//     }catch(e){console.log(e)}
-// }
-
-
-
-// export const countStudentByProvidence  = async (token)=>{
-//     try{
-//         const response = await fetch(`${BASE_URL}/student/data/count/providence`,{
-//             method:'GET',
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 accept:'application/json',
-//                 Authorization: `Bearer ${token}`
-//             },
-//         }).catch(err => {
-//             console.log(err)
-//         });
-//         const data = response.json();
-//         return data;
-//     }catch(e){console.log(e)}
-// }
-
-// export const countSchoolByDistrict = async (token)=>{
-//     try{
-//         const response = await fetch(`${BASE_URL}/school/data/count/district`,{
-//             method:'GET',
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 accept:'application/json',
-//                 Authorization: `Bearer ${token}`
-//             },
-//         }).catch(err => {
-//             console.log(err)
-//         });
-//         const data = response.json();
-//         return data;
-//     }catch(e){console.log(e)}
-// }
-
-// export const countSchoolByEduLevel = async (token)=>{
-//     try{
-//         const response = await fetch(`${BASE_URL}/school/data/count/edulevel`,{
-//             method:'GET',
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 accept:'application/json',
-//                 Authorization: `Bearer ${token}`
-//             },
-//         }).catch(err => {
-//             console.log(err)
-//         });
-//         const data = response.json();
-//         return data;
-//     }catch(e){console.log(e)}
-// }
-
-// export const countSchoolByOwnership = async (token)=>{
-//     try{
-//         const response = await fetch(`${BASE_URL}/school/data/count/ownership`,{
-//             method:'GET',
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 accept:'application/json',
-//                 Authorization: `Bearer ${token}`
-//             },
-//         }).catch(err => {
-//             console.log(err)
-//         });
-//         const data = response.json();
-//         return data;
-//     }catch(e){console.log(e)}
-// }
-
-// export const countSchoolByType = async (token)=>{
-//     try{
-//         const response = await fetch(`${BASE_URL}/school/data/count/type`,{
-//             method:'GET',
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 accept:'application/json',
-//                 Authorization: `Bearer ${token}`
-//             },
-//         }).catch(err => {
-//             console.log(err)
-//         });
-//         const data = response.json();
-//         return data;
-//     }catch(e){console.log(e)}
-// }
-
-// export const countSchoolByCat = async (token)=>{
-//     try{
-//         const response = await fetch(`${BASE_URL}/school/data/count/cat`,{
-//             method:'GET',
-//             headers:{
-//                 'Content-Type':'application/json',
-//                 accept:'application/json',
-//                 Authorization: `Bearer ${token}`
-//             },
-//         }).catch(err => {
-//             console.log(err)
-//         });
-//         const data = response.json();
-//         return data;
-//     }catch(e){console.log(e)}
-// }
-
-/**Teacher summary endpoint  */
-export const countTeacherBySchool = async (token)=>{
-    try{
-        const response = await fetch(`${BASE_URL}/teachers/data/count/school`,{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json',
-                accept:'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        }).catch(err => {
-            console.log(err)
-        });
-        const data = response.json();
-        return data;
-    }catch(e){console.log(e)}
-}
-
-
+//Student Indicator 
 export const studentIndicator = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student/data/indicators`,{

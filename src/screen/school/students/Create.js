@@ -4,7 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create, readsClass, readsSchool, readsSession } from './api';
-import {isAuthenticated} from '../../Auth/admin/api'
+import {isAuthenticated} from '../../Auth/school/api'
 
 export default class Create extends Component {
     constructor(props){
@@ -47,9 +47,10 @@ export default class Create extends Component {
 
     async componentDidMount(){
         const Auth = await isAuthenticated()
-        const scho = await readsSchool(Auth.token);
+        const scho = await readsSchool(Auth.district._id,Auth.token);
         const sessionL = await readsSession(Auth.token);
         const classL = await readsClass(Auth.token);
+        console.log({scho, sessionL, classL})
         this.setState({schoolList:scho.data, sessionList:sessionL.data,  classList:classL.data});
     }
 
@@ -185,7 +186,7 @@ implement cohort generation presentClass-yearAdmission e.g (Y1-2020)
     redirectUser = () => {
         let {redirectToPage} = this.state;
         if (redirectToPage){
-            return <Redirect to="/admin/students/create" />
+            return <Redirect to="/school/students/create" />
         }
     };
 
@@ -412,6 +413,7 @@ implement cohort generation presentClass-yearAdmission e.g (Y1-2020)
                                                 <option value="deceased">Deceased</option>
                                                 <option value="relocate">Overseas Relocation</option>
                                                 <option value="graduate">Graduated</option>
+                                                <option value="admission">New Learner</option>
                                             </Form.Control>
                                      </Form.Group>
                                      <Form.Group controlId="exampleForm.ControlSelect1">

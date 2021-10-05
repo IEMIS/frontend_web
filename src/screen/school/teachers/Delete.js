@@ -4,10 +4,9 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {  remove} from './api';
 import { useParams, Redirect } from "react-router-dom";
-import { isAuthenticated } from '../../Auth/admin/api';
+import { isAuthenticated } from '../../Auth/school/api';
 
 export default function Delete(props) {
-
     let { id } = useParams();
     const [reload, setreload] = React.useState(false)
     const [error, seterror] = React.useState(false)
@@ -16,7 +15,7 @@ export default function Delete(props) {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/admin/teachers/read" />
+            return <Redirect to="/school/teachers/read" />
         }
     };
     const isError = () => {

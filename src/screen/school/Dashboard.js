@@ -1,26 +1,22 @@
+
 import React from 'react';
-import {Row, Col, Card,} from 'react-bootstrap';
+import {Row, Col, Card, } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
+import moment from 'moment'; 
 
-import { countStudentByClass, countTeacherBySchool, studentData, schoolData} from "./api"
+import {  studentDataBySchool, schoolDetails, countTeacherInSchool, countStudentByClassInSchool} from "./api"
 import Aux from "../../hoc/_Aux";
+import { isAuthenticated } from '../Auth/school/api';
 
-
-class Dashboard extends React.Component {
+class SchoolData extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            countbygender:[],
-            countbydistrict:[],
-            countbyschool : [],
-            countbyeduLevel :[],
-            countbyownership:[],
-            countbytype: [],
-            countbycat : [],
             countbyclass:[],
             countTeachbySchool:[],
-            school:'',
+            schools:{},
+            students:'',
             student:'',
             loading:false,
         }
@@ -28,51 +24,68 @@ class Dashboard extends React.Component {
 
     async componentDidMount(){
         this.setState({loading:true})
-      const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
-      //const countbygen = await countStudentByGender(Auth.token)
-      //const countbyowner = await countSchoolByOwnership(Auth.token)
-      const countbyclass = await countStudentByClass(Auth.token)
-      const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
-      const studentDa = await studentData(Auth.token);
-      const schoolDa = await schoolData(Auth.token);
-      this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data}) 
-      this.setState({loading:false}) 
+        const Auth = await isAuthenticated()
+   
+        const studentDa = await studentDataBySchool(Auth.school._id, Auth.token)
+        const teacher = await countTeacherInSchool(Auth.school._id, Auth.token)
+        const studentClass = await countStudentByClassInSchool(Auth.school._id, Auth.token)
+        const schoolDe = await schoolDetails(Auth.school._id, Auth.token) 
+        this.setState({students:studentDa.data,schools:schoolDe.data[0], countTeachbySchool:teacher.data,countbyclass:studentClass.data }) 
+        this.setState({loading:false}) 
     }
 
-    async componentDidUpdate(){
-
+    async componentDidUpdate(prevProps, prevState, snapshot){
     }
 
     async UNSAFE_componentWillUnmount(){
 
     }
 
+    handleChange = name=>event=>{
+        this.setState({[name]:event.target.value})
+    }
+
+    isempty = (data) =>{
+        return Object.keys(data).length === 0 && data.constructor === Object
+    }
+
     
 
     render() {
-        const {countbyclass,countTeachbySchool,student, school, loading} = this.state;
-       
+        const { countbyclass,countTeachbySchool,schools,students,loading} = this.state;
         if(loading){
             return <h1>Loading ....</h1>
         }
         return (
             <Aux>
-                {/*<Row>*/}
                     <Row>
                         <Col md={4} xl={4}>
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>All Student Data</h5>
-                                    </Card.Title>
-                                    <Card.Title>
-                                        Total students : {student.countStudent} 
+                                        <h5>School Details </h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/students">
-                                      <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByGender} x="_id" y="count"  />
-                                    </Link>
+                                    {
+                                        this.isempty(schools) ? "" : 
+                                        (
+                                            <>
+                                            School Name : {schools.names} <br />
+                                            School Level : {schools.eduLevel} <br />
+                                            School Type  : {schools.schoolType} <br />
+                                            School Category : {schools.schoolCat} <br />
+                                            School Ownership : {schools.ownership} <br />
+                                            Established : {moment(schools.estabYear,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} <br />
+                                            <hr />
+                                            School Contact  <br />
+                                            Phone : {schools.contact[0].phone} <br />
+                                            Fax : {schools.contact[0].fax} <br />
+                                            Address : {schools.contact[0].address} <br />
+                                            Locality : {schools.contact[0].province} <br />
+                                            </>
+                                        )
+                                    }
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -80,38 +93,31 @@ class Dashboard extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>School by Ownership</h5>
+                                        <h5>Student Data</h5>
                                     </Card.Title>
                                     <Card.Title>
-                                        Total Schools :  {school.countSchool}
+                                        Total students : {students.countStudent}
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/schools">
-                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByownership} x="_id" y="count"  />
+                                    <Link to="/">
+                                      <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByGender} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
+                        
                         <Col md={4} xl={4}>
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Total Number of Districts</h5>
+                                        <h5>Student by Religion</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/districts">
-                                        <h6 className='mb-4'>Total Number of Districts</h6>
-                                        <div className="row d-flex align-items-center">
-                                            <div className="col-9">
-                                                <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5"/> 9</h3>
-                                            </div>
-                                        </div>
-                                        <div className="progress m-t-30" style={{height: '7px'}}>
-                                            <div className="progress-bar progress-c-theme" role="progressbar" style={{width: '70%'}} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"/>
-                                        </div>
-                                    </Link>
+                                  <Link to="/">
+                                    <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={students.countStudentByReligion} x="_id" y="count"  />
+                                  </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -121,12 +127,12 @@ class Dashboard extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>School by District</h5>
+                                        <h5>Student by Ethnicity</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/district">
-                                      <NVD3Chart id="barChartyx" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count" donut labelType='percent' />
+                                    <Link to="/">
+                                      <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByEthnicity} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -135,12 +141,12 @@ class Dashboard extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>School by Category</h5>
+                                        <h5>Student by Province</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/schools">
-                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByCat} x="_id" y="count"  />
+                                    <Link to="/">
+                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByProvince} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -149,13 +155,75 @@ class Dashboard extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>School by Education Level</h5>
+                                        <h5>Student by year of Admission</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                  <Link to="/admin/schools">
-                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={school.countSchoolByEduLevel} x="_id" y="count" showValues groupSpacing={0.5}   />
+                                  <Link to="/">
+                                      {/* multiplebar chart is appropriate and should be disaggregate by gender */}
+                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByYear} x="_id" y="count"  />
                                   </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>Students by Session</h5>
+                                    </Card.Title>
+                                    <Card.Title>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Link to="/">
+                                      <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={students.countStudentBySession} x="name" y="count"  />
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>Student by Status</h5>
+                                    </Card.Title>
+                                    <Card.Title>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Link to="/">
+                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByStatus} x="_id" y="count"  />
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title>
+                                        <h5>Student by Nationality</h5>
+                                    </Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                  <Link to="/">
+                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByCountry} x="_id" y="count"  />
+                                  </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col md={12} xl={12}>
+                            <Card className='Recent-Users'>
+                                <Card.Header>
+                                    <Card.Title as='h5'>Students Enrolment by Class Summary</Card.Title>
+                                </Card.Header>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart donut labelType='percent' id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -164,9 +232,10 @@ class Dashboard extends React.Component {
                         <Col md={12} xl={12}>
                             <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'>Students Enrolment by Class Summary</Card.Title>
+                                    <Card.Title as='h5'>Students by Disability</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
+                                {/*Please include disability here by male and female by class */}
                                     <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
@@ -176,10 +245,10 @@ class Dashboard extends React.Component {
                         <Col md={12} xl={12}>
                             <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'> Teachers summary data</Card.Title>
+                                    <Card.Title as='h5'> Teachers summary data by class</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart donut labelType='percent' id="barChart" type="multiBarChart" datum={countTeachbySchool} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -189,4 +258,4 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard;
+export default SchoolData;
