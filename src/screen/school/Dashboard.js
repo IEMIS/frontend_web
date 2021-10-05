@@ -1,11 +1,11 @@
 
 import React from 'react';
-import {Row, Col, Card,Form} from 'react-bootstrap';
+import {Row, Col, Card, } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 import moment from 'moment'; 
 
-import {  studentDataBySchool, schoolDetails, readsSchool, countTeacherInSchool, countStudentByClassInSchool} from "./api"
+import {  studentDataBySchool, schoolDetails, countTeacherInSchool, countStudentByClassInSchool} from "./api"
 import Aux from "../../hoc/_Aux";
 import { isAuthenticated } from '../Auth/school/api';
 
@@ -17,11 +17,7 @@ class SchoolData extends React.Component {
             countTeachbySchool:[],
             schools:{},
             students:'',
-            school:'',
             student:'',
-            // district:"",
-            // districtList:[],
-            // schoolList:[],
             loading:false,
         }
     }
@@ -29,23 +25,30 @@ class SchoolData extends React.Component {
     async componentDidMount(){
         this.setState({loading:true})
         const Auth = await isAuthenticated()
-        // const scho = await readsSchool(Auth.district._id,Auth.token);
-        // this.setState({schoolList:scho.data})
+   
+        const studentDa = await studentDataBySchool(Auth.school._id, Auth.token)
+        //const schoolDe = await schoolDetails(Auth.school._id, Auth.token)
+        const teacher = await countTeacherInSchool(Auth.school._id, Auth.token)
+        const studentClass = await countStudentByClassInSchool(Auth.school._id, Auth.token)
+
+        // console.log(JSON.stringify(studentClass))
+        // schools:schoolDe.data[0],
+        this.setState({students:studentDa.data, countTeachbySchool:teacher.data,countbyclass:studentClass.data }) 
         this.setState({loading:false}) 
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot){
-        const {school} = this.state;
-        const Auth = await isAuthenticated()
-        if(prevState.school !== school){
-            this.setState({loading:true})
-            const studentDa = await studentDataBySchool(school, Auth.token)
-            const schoolDe = await schoolDetails(school, Auth.token)
-            const teacher = await countTeacherInSchool(Auth.district._id,school, Auth.token)
-            const studentClass = await countStudentByClassInSchool(school, Auth.token)
-            this.setState({students:studentDa.data, schools:schoolDe.data[0], countTeachbySchool:teacher.data,countbyclass:studentClass.data }) 
-            this.setState({loading:false}) 
-        }
+        // const {school} = this.state;
+        // const Auth = await isAuthenticated()
+        // if(prevState.school !== school){
+        //     this.setState({loading:true})
+        //     const studentDa = await studentDataBySchool(school, Auth.token)
+        //     const schoolDe = await schoolDetails(school, Auth.token)
+        //     const teacher = await countTeacherInSchool(Auth.district._id,school, Auth.token)
+        //     const studentClass = await countStudentByClassInSchool(school, Auth.token)
+        //     this.setState({students:studentDa.data, schools:schoolDe.data[0], countTeachbySchool:teacher.data,countbyclass:studentClass.data }) 
+        //     this.setState({loading:false}) 
+        // }
     }
 
     async UNSAFE_componentWillUnmount(){
@@ -63,8 +66,8 @@ class SchoolData extends React.Component {
     
 
     render() {
-        const { countbyclass,countTeachbySchool,school,schools,students,schoolList,loading} = this.state;
-        console.log({countTeachbySchool})
+        const { countbyclass,countTeachbySchool,schools,students,loading} = this.state;
+        // console.log({countTeachbySchool})
         if(loading){
             return <h1>Loading ....</h1>
         }
