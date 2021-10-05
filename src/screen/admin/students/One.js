@@ -20,6 +20,8 @@ export default function One() {
     edulevel: "",
     country: "",
     ethnicity: "",
+    updatedAt:"",
+    createdAt: "",
     district: "",
     loading: false,
     loadingBtn: false,
@@ -129,6 +131,8 @@ export default function One() {
             lastName,
             religion,
             edulevel,
+            updatedAt,
+            createdAt,
             country,
             ethnicity,
             district,
@@ -143,6 +147,8 @@ export default function One() {
             cohortA,
             firstName,
             middleName,
+            updatedAt,
+            createdAt,
             lastName,
             religion,
             edulevel,
@@ -287,11 +293,11 @@ export default function One() {
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Creation Time </Form.Label>
-                          <Form.Control type="text" value={moment(dat.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
+                          <Form.Control type="text" value={moment(dat.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Last Update</Form.Label>
-                          <Form.Control type="text" value={moment(dat.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
+                          <Form.Control type="text" value={moment(dat.updatedAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
                         </Form.Group>
                       </Col>
                       <hr />

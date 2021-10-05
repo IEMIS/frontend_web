@@ -259,11 +259,11 @@ export default function One() {
    
                                         <Form.Group controlId="formBasicEmail">
                                         <Form.Label>Creation Time </Form.Label>
-                                        <Form.Control type="text" value={moment(load.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
+                                        <Form.Control type="text" value={moment(load.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
                                         </Form.Group>
                                         <Form.Group controlId="formBasicEmail">
                                         <Form.Label>Last Update</Form.Label>
-                                        <Form.Control type="text" value={moment(load.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
+                                        <Form.Control type="text" value={moment(load.updatedAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
                                         </Form.Group>
                                     </Col>
                                 </Row>

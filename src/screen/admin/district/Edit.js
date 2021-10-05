@@ -217,7 +217,7 @@ export default function Edit() {
                                             <Form>
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>District Code</Form.Label>
-                                                    <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code} readOnly />
+                                                    <Form.Control type="text" placeholder="district code" onChange={handleChange("code")} value={code}  />
                                                 </Form.Group>
 
                                                 <Form.Group controlId="formBasicEmail">
@@ -249,7 +249,10 @@ export default function Edit() {
                                                 <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
                                             </Form.Group>
                                             {
-                                                    loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
+                                                   
+                                                    loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update District Data ..</Button> 
+                                                    
+                                                    //loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update..</Button>
                                                 }
                                         </Col>
                                     </Row>

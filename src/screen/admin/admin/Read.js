@@ -161,7 +161,7 @@ export default function Read() {
         email:data.email,
         phone:data.phone,
         designation:data.designation,
-        date :moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL'),
+        date :moment(data.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL'),
         level:data.level ==="2" ? "Moderator" :"Admin",
         edit:data._id,
         delete:data._id,

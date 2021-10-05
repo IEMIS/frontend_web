@@ -33,8 +33,8 @@ export default function One() {
     email,
     designation,
     level,
-    created_at,
-    updated_at,
+    createdAt,
+    updatedAt,
     error,
     loading,
     reload,
@@ -138,8 +138,8 @@ export default function One() {
           email: data.data.email,
           designation: data.data.designation,
           level: data.data.level,
-          created_at: data.data.created_at,
-          updated_at: data.data.updated_at, 
+          createdAt: data.data.createdAt,
+          updatedAt: data.data.updatedAt, 
         }));
         let Toast = Swal.mixin({
           toast: true,
@@ -233,13 +233,13 @@ export default function One() {
             </div>
             <div class="form-group col-md-6">
               <label for="level">Creation Time</label>
-              <input type="text" class="form-control" value={moment(created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
+              <input type="text" class="form-control" value={moment(createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
             </div>
             </div>
             <div class="form-row">
             <div class="form-group col-md-6">
               <label for="email">Last Update</label>
-              <input type="text" class="form-control" value={moment(updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
+              <input type="text" class="form-control" value={moment(updatedAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')} readOnly />
             </div>
           </div>
         </Card.Body>

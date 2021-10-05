@@ -27,10 +27,11 @@ export default function Edit() {
         schoolType:"",
         headID:"",
         loading:false,
+        loadingBtn:false,
         redirectToPage:false,
         districtList:[]
     })
-    const {code, names, district, phone, email, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading, redirectToPage, districtList} = values
+    const {code, names, district, phone, email, address,fax,mailBox,province,eduLevel,ownership,estabYear,schoolCat,schoolType,headID, loading,loadingBtn, redirectToPage, districtList} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -38,61 +39,61 @@ export default function Edit() {
 
     const submit = event =>{
         event.preventDefault();
-        setValues({...values, loading:true})
+        setValues({...values, loadingBtn:true})
          if(code===""){ 
-             setValues({...values, loading:false})
+             setValues({...values, loadingBtn:false})
              return Swal.fire('Oops...', 'School code is required', 'error');
          }
         if(district===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District is required', 'error');
         }
         if(names===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'School Name is required', 'error');
         }
         if(schoolType===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'School Type is required', 'error');
         }
         if(schoolCat===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'School Category is required', 'error');
         }
         if(estabYear===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'Establishment Year is required', 'error');
         }
         if(ownership===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'School ownership is required', 'error');
         }
         if(eduLevel===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'Education Level is required', 'error');
         }
         if(province===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'School locality is required', 'error');
         }
         if(mailBox===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'School mailBox is required', 'error');
         }
         if(fax===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'Fax is required', 'error');
         }
         if(phone===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'Phone number is required', 'error');
         }
         if(address===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District address is required', 'error');
         }
         if(email===""){ 
-            setValues({...values, loading:false})
+            setValues({...values, loadingBtn:false})
             return Swal.fire('Oops...', 'District email is required', 'error');
         }
         handleUpdate()
@@ -105,14 +106,14 @@ export default function Edit() {
         console.log({data})
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
-            return setValues({...values, loading:false})
+            return setValues({...values, loadingBtn:false})
         }
         if(data.error){
             Swal.fire('Oops...', data.error, 'error')
-            return setValues({...values, loading:false})
+            return setValues({...values, loadingBtn:false})
         }
         if(data.message){
-           setValues({...values, loading:false, redirectToPage:true})
+           setValues({...values, loadingBtn:false, redirectToPage:true})
            let Toast = Swal.mixin({
             toast: true,
             timerProgressBar: true,
@@ -267,7 +268,7 @@ export default function Edit() {
                                         </Form.Group>
                                     
                                         {
-                                            loading ? "loading ..." : <Button variant="primary" onClick={submit}  > Update ..</Button>
+                                            loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update School Data ..</Button>
                                         }
                                     </Col>
                                 </Row>
