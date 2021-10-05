@@ -4,7 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create, readsClass, readsSchool, readsSession } from './api';
-import {isAuthenticated} from '../../Auth/district/api'
+import {isAuthenticated} from '../../Auth/school/api'
 
 export default class Create extends Component {
     constructor(props){
@@ -186,7 +186,7 @@ implement cohort generation presentClass-yearAdmission e.g (Y1-2020)
     redirectUser = () => {
         let {redirectToPage} = this.state;
         if (redirectToPage){
-            return <Redirect to="/district/students/create" />
+            return <Redirect to="/school/students/create" />
         }
     };
 

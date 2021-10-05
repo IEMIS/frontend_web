@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import moment from 'moment';
 import { read } from "./api";
 import Aux from "../../../hoc/_Aux";
-import { isAuthenticated } from "../../Auth/admin/api";
+import { isAuthenticated } from "../../Auth/school/api";
 
 export default function One() {
   let { id } = useParams();
@@ -98,7 +98,7 @@ export default function One() {
 
   const redirectUser = () => {
     if (redirectToPage) {
-      return <Redirect to="/district/students/read" />;
+      return <Redirect to="/school/students/read" />;
     }
   };
 
@@ -175,7 +175,7 @@ export default function One() {
             <Col>
               <Card.Header>
                 <Card.Title>
-                  <Link to="/district/students/read"> Read Student  </Link>
+                  <Link to="/school/students/read"> Read Student  </Link>
                 </Card.Title>
               </Card.Header>
             </Col>

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment'; 
 import styled from "styled-components";
 import Datatable from 'react-bs-datatable'; 
-import { isAuthenticated } from '../../Auth/district/api';
+import { isAuthenticated } from '../../Auth/school/api';
 
 
 export default function Read() {
@@ -98,7 +98,7 @@ export default function Read() {
     const boot = async () => {
         setLoading(true)
         const Auth = await isAuthenticated()
-        const data = await reads(Auth.district._id ,Auth.token);
+        const data = await reads(Auth.school._id ,Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)
@@ -162,8 +162,8 @@ export default function Read() {
         { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
         { title: 'School', prop: 'school', filterable: true, sortable: true, },
         { title: 'Status', prop: 'status', filterable: true, sortable: true },
-        { title: 'Created', prop: 'date', filterable: true, sortable: true },
-        { title: 'Last Update', prop: 'date', filterable: true, sortable: true },
+        { title: 'Created', prop: 'created', filterable: true, sortable: true },
+        { title: 'Last Update', prop: 'updated', filterable: true, sortable: true },
         //{ title: 'Admission Year', prop: 'date', filterable: true, sortable: true },
         { title: 'Class', prop: 'class', filterable: true, sortable: true },
         { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/district/students/edit/${row.edit}`} > Edit</BtnEdit>},
@@ -181,8 +181,8 @@ export default function Read() {
             eduLevel:data.edulevel,
             school:data.fromSchool[0].names,
             status:data.status,
-            date:moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
-            date:moment(data.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
+            created:moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
+            updated:moment(data.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
             class:data.fromClass[0].classCode,
             edit:data._id,
             delete:data._id,
