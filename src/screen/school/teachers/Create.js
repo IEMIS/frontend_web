@@ -4,7 +4,7 @@ import Aux from "../../../hoc/_Aux";
 import Swal from 'sweetalert2'
 import {Redirect} from 'react-router-dom'
 import { create, readsSchool, readsClass} from './api';
-import { isAuthenticated } from '../../Auth/district/api';
+import { isAuthenticated } from '../../Auth/school/api';
 
 
 export default function Create() {
@@ -192,7 +192,7 @@ export default function Create() {
 
     const redirectUser = () => {
         if (redirectToPage){
-            return <Redirect to="/district/teachers/create" />
+            return <Redirect to="/school/teachers/create" />
         }
     };
 

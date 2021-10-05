@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import Datatable from 'react-bs-datatable'; 
 import moment from 'moment'
-import {isAuthenticated} from '../../Auth/district/api'
+import {isAuthenticated} from '../../Auth/school/api'
 
 
 export default function Read() {
@@ -102,7 +102,7 @@ export default function Read() {
     const boot = async () => {
         setLoading(true)
         const Auth = await isAuthenticated()
-        const data = await reads(Auth.district._id,Auth.token);
+        const data = await reads(Auth.school._id,Auth.token);
         if(!data){
             Swal.fire('Oops...', 'internet server error, Please, check your network connection', 'error')
             setLoading(false)
@@ -166,9 +166,9 @@ export default function Read() {
         { title: 'Gender', prop: 'gender', filterable: true, sortable: true, },
         { title: 'Last Post', prop: 'lastp', filterable: true, sortable: true, },
         { title: 'School', prop: 'school', filterable: true, sortable: true, },
-        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/district/teachers/edit/${row.edit}`} > Edit</BtnEdit>},
-        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/district/teachers/delete/${row.delete}`} > Delete </BtnDelete>},
-        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/district/teachers/read/${row.detail}`} > Detail </BtnDetail>},
+        { title: 'Details', prop: 'edit', cell: row =><BtnEdit to={`/school/teachers/edit/${row.edit}`} > Edit</BtnEdit>},
+        { title: 'Details', prop: 'delete', cell: row =><BtnDelete to={`/school/teachers/delete/${row.delete}`} > Delete </BtnDelete>},
+        { title: 'Details', prop: 'detail', cell: row =><BtnDetail to={`/school/teachers/read/${row.detail}`} > Detail </BtnDetail>},
       ];
     
       const body = (dat) => {
