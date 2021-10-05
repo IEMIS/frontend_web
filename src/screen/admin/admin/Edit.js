@@ -157,7 +157,7 @@ export default function Edit() {
                     return 
                 }
                 if(data.message){
-                    setValues(v => ({...v, loading:false, error:false, firstName:data.data.firstName, lastName:data.data.lastName, phone:data.data.phone, middleName:data.data.middleName, email:data.data.email, level:data.data.level}))
+                    setValues(v => ({...v, loading:false, error:false, firstName:data.data.firstName, lastName:data.data.lastName, phone:data.data.phone, middleName:data.data.middleName, email:data.data.email, level:data.data.level, designation:data.data.designation}))
                     let Toast = Swal.mixin({
                         toast: true,
                         timerProgressBar: true,

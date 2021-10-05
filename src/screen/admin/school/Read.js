@@ -157,7 +157,7 @@ export default function Read() {
             category:data.schoolCat,
             type:data.schoolType,
             owner:data.ownership,
-            date :moment(data.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
+            date :moment(data.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL'),
             edit:data._id,
             delete:data._id,
             detail:data._id,

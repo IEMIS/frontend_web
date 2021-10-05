@@ -2,7 +2,7 @@ import React from 'react'
 import {Row, Col, Card, Form, Button} from 'react-bootstrap';
 import {Link, useParams, Redirect} from 'react-router-dom'
 import Swal from 'sweetalert2'
-
+import moment from 'moment'; 
 import { read } from './api';
 import Aux from "../../../hoc/_Aux";
 import { isAuthenticated } from '../../Auth/admin/api';
@@ -17,6 +17,7 @@ export default function One() {
         address:"",
         email:"",
         status:"",
+        updatedAt:"",
         staffs:"",
         loading:false,
         loadingBtn:false,
@@ -25,7 +26,7 @@ export default function One() {
         reload:false,   
     })
 
-    const {code, names,staffs, status, phone, email, address, error, loading, reload, redirectToPage,} = values
+    const {code, names,staffs, status, phone, email, address,updatedAt, error, loading, reload, redirectToPage,} = values
 
     const handleChange = name=>event=>{
         setValues({...values, [name]:event.target.value})
@@ -44,7 +45,7 @@ export default function One() {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>Requesting for District  data</h1>
+                                        <h1>Requesting for District data</h1>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -107,8 +108,8 @@ export default function One() {
                 }
         
                 if(data.message){
-                    const {code, names, email, phone,address } = data.data;
-                    setValues(v => ({...v, loading:false, error:false, code, phone,email,names, address }))
+                    const {code, names, email, phone,address,updatedAt } = data.data;
+                    setValues(v => ({...v, loading:false, error:false, code, phone,email,names, address, updatedAt }))
                     let Toast = Swal.mixin({
                         toast: true,
                         timerProgressBar: true,
@@ -182,7 +183,12 @@ export default function One() {
                                                 <Form.Group controlId="formBasicEmail">
                                                         <Form.Label>Officer-in- charge</Form.Label>
                                                         <Form.Control type="text" placeholder="Education District officer" onChange={handleChange("staffs")} value={staffs} readOnly/>
+                                                </Form.Group>
+                                                    <Form.Group controlId="formBasicEmail">
+                                                        <Form.Label>Last Update</Form.Label>
+                                                        <Form.Control type="text" placeholder="update" onChange={handleChange("updatedAt")} value={moment(updatedAt,"YYYY-MM-DDTHH:mm:ss.SSSZ").format('LLLL')} readOnly />
                                                     </Form.Group>
+                                                
                                             </Col>
                                         </Row>
                                     </Card.Body>

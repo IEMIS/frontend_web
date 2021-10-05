@@ -153,7 +153,7 @@ export default function Read() {
             level:data.address,
             staffs:data.staffs,
             status:data.status,
-            date :moment(data.updateAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL'),
+            date :moment(data.updatedAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
             edit:data._id,
             delete:data._id,
             detail:data._id,
