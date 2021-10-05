@@ -1,11 +1,13 @@
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/district";
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/schools";
 
-//const BASE_URL = "http://localhost:9000/api/v1/district" 
+
+const BASE_URL = "http://localhost:9000/api/v1/schools" 
 
 
 //Dashboard 
 export const studentData = async (user, token)=>{
     try{
+        // /student/data/school/:school
         const response = await fetch(`${BASE_URL}/student/data/student/${user}`,{
             method:'GET',
             headers:{
@@ -20,8 +22,10 @@ export const studentData = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
 export const countStudentByClass = async (user, token)=>{
     try{
+                                                ///student/data/class/school/:school
         const response = await fetch(`${BASE_URL}/student/data/class/${user}`,{
             method:'GET',
             headers:{
@@ -36,6 +40,8 @@ export const countStudentByClass = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
+
 // /district/student/data/class/school/:school
 export const countStudentByClassInSchool = async (user, token)=>{
     try{
@@ -71,6 +77,7 @@ export const schoolData = async (user, token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
 export const countTeacherBySchool = async (user, token)=>{
     try{                   
         const response = await fetch(`${BASE_URL}/teacher/data/school/${user}`,{
@@ -88,9 +95,9 @@ export const countTeacherBySchool = async (user, token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countTeacherInSchool = async (district,school, token)=>{
+export const countTeacherInSchool = async (school, token)=>{
     try{                   
-        const response = await fetch(`${BASE_URL}/teacher/data/school/class/${district}&${school}`,{
+        const response = await fetch(`${BASE_URL}/teacher/data/school/class/${school}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
