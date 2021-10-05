@@ -27,28 +27,14 @@ class SchoolData extends React.Component {
         const Auth = await isAuthenticated()
    
         const studentDa = await studentDataBySchool(Auth.school._id, Auth.token)
-        //const schoolDe = await schoolDetails(Auth.school._id, Auth.token)
         const teacher = await countTeacherInSchool(Auth.school._id, Auth.token)
         const studentClass = await countStudentByClassInSchool(Auth.school._id, Auth.token)
-
-        // console.log(JSON.stringify(studentClass))
-        // schools:schoolDe.data[0],
-        this.setState({students:studentDa.data, countTeachbySchool:teacher.data,countbyclass:studentClass.data }) 
+        const schoolDe = await schoolDetails(Auth.school._id, Auth.token) 
+        this.setState({students:studentDa.data,schools:schoolDe.data[0], countTeachbySchool:teacher.data,countbyclass:studentClass.data }) 
         this.setState({loading:false}) 
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot){
-        // const {school} = this.state;
-        // const Auth = await isAuthenticated()
-        // if(prevState.school !== school){
-        //     this.setState({loading:true})
-        //     const studentDa = await studentDataBySchool(school, Auth.token)
-        //     const schoolDe = await schoolDetails(school, Auth.token)
-        //     const teacher = await countTeacherInSchool(Auth.district._id,school, Auth.token)
-        //     const studentClass = await countStudentByClassInSchool(school, Auth.token)
-        //     this.setState({students:studentDa.data, schools:schoolDe.data[0], countTeachbySchool:teacher.data,countbyclass:studentClass.data }) 
-        //     this.setState({loading:false}) 
-        // }
     }
 
     async UNSAFE_componentWillUnmount(){
@@ -67,7 +53,6 @@ class SchoolData extends React.Component {
 
     render() {
         const { countbyclass,countTeachbySchool,schools,students,loading} = this.state;
-        // console.log({countTeachbySchool})
         if(loading){
             return <h1>Loading ....</h1>
         }
