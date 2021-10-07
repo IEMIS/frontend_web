@@ -32,7 +32,7 @@ export default function Feature() {
                                 </p>
                                 <h5>Wider coverage </h5>
                                 <p> 
-                                Most of EMIS solutions are only accessible to Ministry of Education and District because of associated cost in managing many users on premise servers and databases, IEMIS is a cloud native web application that is highly available, scalable as users grow, no downtime as a result of updates and inclusive security with an affordable pay as you go model. Schools/parent/ student/ teachers can conveniently access IEMIS from their comfort zones.
+                                Most of EMIS solutions are only accessible to Ministry of Education and District because of associated cost in managing many users on premise servers and databases, IEMIS is a cloud native web application that is highly available, scalable as users grow, no downtime as a result of updates and inclusive security with an affordable pay for what you use model. Schools/parent/ student/ teachers can conveniently access IEMIS from their comfort zones.
                                 </p>
                                 <h5>Single Database </h5>
                                 <p>IEMIS uses MongoDB (NoSQL database) that has an expressive query language, indexing for fast lookup and real time aggregation which provides powerful ways to access and analyse data. This ensure a single record per user throughout education level for handling cohort analysis and improve data quality on record retrieval per academic session.
