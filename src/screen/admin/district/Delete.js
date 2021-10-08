@@ -114,7 +114,7 @@ export default function Delete(props) {
             }  
         }
         Swal.fire({
-            title: 'Do you sure to delete this user?',
+            title: 'Are you sure you want to permanently delete this selected record?',
             allowOutsideClick:false,
             showDenyButton: true,
             showCancelButton: false,

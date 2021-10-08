@@ -183,7 +183,7 @@ export default function Create() {
             <div className="col-4">
               <div className="form-group">
                 <label htmlFor="exampleInputEmail1">Designation </label>
-                  <input type="text" placeholder="Director of Teacher Education" onChange={handleChange("designation")} value={password2} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                  <input type="text" placeholder="Director of Planning" onChange={handleChange("designation")} value={password2} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
             </div>
             {loading ? <button type="submit"  className="btn btn-primary offset-9" disabled >Loading ...</button> : <button type="submit" onClick={submit}  className="btn btn-primary offset-9">Submit</button>}

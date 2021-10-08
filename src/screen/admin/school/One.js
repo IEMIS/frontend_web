@@ -56,7 +56,7 @@ export default function One() {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <h1>failed to read district data, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
+                                        <h1>failed to read school data, Try again <Button variant="primary" onClick={handleReload}>Reload</Button> </h1>
                                     </Col>
                                 </Row>
                             </Card.Body>

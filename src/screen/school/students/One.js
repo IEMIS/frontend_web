@@ -283,11 +283,11 @@ export default function One() {
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Creation Time </Form.Label>
-                          <Form.Control type="text" value={moment(dat.created_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} disabled />
+                          <Form.Control type="text" value={moment(dat.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} disabled />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                           <Form.Label>Last Update</Form.Label>
-                          <Form.Control type="text" value={moment(dat.updated_at,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} disabled />
+                          <Form.Control type="text" value={moment(dat.updatedAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')} disabled />
                         </Form.Group>
                       </Col>
                       <hr />
