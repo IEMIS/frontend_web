@@ -89,11 +89,11 @@ export default function Edit() {
         }
         if(address===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'District address is required', 'error');
+            return Swal.fire('Oops...', 'School address is required', 'error');
         }
         if(email===""){ 
             setValues({...values, loading:false})
-            return Swal.fire('Oops...', 'District email is required', 'error');
+            return Swal.fire('Oops...', 'School email is required', 'error');
         }
         handleUpdate()
     }

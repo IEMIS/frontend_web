@@ -200,22 +200,22 @@ export default function Edit() {
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>Middle Name</Form.Label>
                                                     <Form.Control type="text" placeholder="Middle name" onChange={handleChange("middleName")} value={middleName} />
+                                                    <Form.Group controlId="exampleForm.ControlInput1">
+                                                <Form.Label>Last name</Form.Label>
+                                                <Form.Control type="text" placeholder="Last name" onChange={handleChange("lastName")} value={lastName} />
+                                            </Form.Group>
                                                 </Form.Group>
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Label>Phone </Form.Label>
                                                     <Form.Control type="text" placeholder="phone" onChange={handleChange("phone")} value={phone} />
                                                 </Form.Group>
-                                                <Form.Group controlId="formBasicEmail">
-                                                    <Form.Label>Designation </Form.Label>
-                                                    <Form.Control type="text" placeholder="Director of Teacher Education" onChange={handleChange("designation")} value={designation} />
-                                                </Form.Group>  
                                             </Form>
                                         </Col>
                                         <Col md={6}>
-                                            <Form.Group controlId="exampleForm.ControlInput1">
-                                                <Form.Label>Last name</Form.Label>
-                                                <Form.Control type="text" placeholder="Last name" onChange={handleChange("lastName")} value={lastName} />
-                                            </Form.Group>
+                                        <Form.Group controlId="formBasicEmail">
+                                                <Form.Label>Designation </Form.Label>
+                                                <Form.Control type="text" placeholder="Director of Teacher Education" onChange={handleChange("designation")} value={designation} />
+                                          </Form.Group>  
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>email </Form.Label>
                                                 <Form.Control type="email" placeholder="email" onChange={handleChange("email")} value={email}/>
@@ -229,7 +229,7 @@ export default function Edit() {
                                                 </Form.Control>
                                             </Form.Group>
                                             {
-                                                    loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update Admin Data ..</Button>
+                                                    loadingBtn ? <Button variant="outline-secondary" disabled>wait ......</Button> : <Button variant="primary" onClick={submit}  >Update Admin Data</Button>
                                                 }
                                         </Col>
                                 </Row>
