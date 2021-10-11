@@ -127,12 +127,15 @@ class IndicatorData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Gross Intake Ratio</h5>
+                                        <h5>Gross Intake </h5>
+                                    </Card.Title>
+                                    <Card.Title>
+                                        Total GI  : 
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/students">
-                                      {/* <NVD3Chart id="chart" height={200} type="pieChart" datum={countbygender} x="_id" y="count"  /> */}
+                                      { <NVD3Chart id="chart" height={200} type="pieChart" datum={indicators.grossInTake} x="_id" y="count"  /> }
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -141,12 +144,15 @@ class IndicatorData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Net Intake Ratio</h5>
+                                        <h5>Net Intake </h5>
+                                    </Card.Title>
+                                    <Card.Title>
+                                        Total NI  : 
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        {/* <NVD3Chart id="chart" height={200} type="pieChart" datum={countbyownership} x="_id" y="count"  /> */}
+                                        { <NVD3Chart id="chart" height={200} type="pieChart" datum={indicators.netInTake} x="_id" y="count"  /> }
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -155,12 +161,15 @@ class IndicatorData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Adjusted Net Intake Ratio</h5>
+                                        <h5>Adjusted Net Intake </h5>
+                                    </Card.Title>
+                                    <Card.Title>
+                                        Total ANI  : 
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                   <Link to="/admin/schools">
-                                     <NVD3Chart id="barChart" height={200} type="multiBarChart" datum={indicators.aNetIntake} x="_id" y="count"  /> 
+                                     <NVD3Chart id="chart" height={200} type="pieChart" datum={indicators.aNetIntake} x="_id" y="count"  /> 
                                   </Link>
                                 </Card.Body>
                             </Card>
@@ -171,7 +180,7 @@ class IndicatorData extends React.Component {
                         {/* ===== GER Group by education level and display by gender======*/}
                         <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'>Gross Enrolment Ratio</Card.Title>
+                                    <Card.Title as='h5'>Gross Enrolment </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                      <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.grossEnroll} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
@@ -182,10 +191,10 @@ class IndicatorData extends React.Component {
                         {/* =====NER Group by education level and display by gender======*/}
                         <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'>Net Enrolment Ratio (%)</Card.Title>
+                                    <Card.Title as='h5'>Net Enrolment </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                     <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.netEnroll} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> 
+                                     <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.netEnroll} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> 
                                 </Card.Body>
                             </Card>
                             </Col>
@@ -196,7 +205,7 @@ class IndicatorData extends React.Component {
                             {/* =====ASER group by Age and display by gender ======*/}
                             <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'>Age Specific Enrolment Ratio (%)</Card.Title>
+                                    <Card.Title as='h5'>Age Specific Enrolment </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                     <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.ageSpec} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
@@ -212,12 +221,12 @@ class IndicatorData extends React.Component {
                                         <h5>Out of School Children</h5>
                                     </Card.Title>
                                     <Card.Title>
-                                        Total OOS (%) : 
+                                        Total OOS  : 
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        <NVD3Chart id="barChart" height={200} type="multiBarChart" datum={indicators.outOfSchool} x="_id" y="count"  />
+                                        <NVD3Chart id="chart" height={200} type="pieChart" datum={indicators.outOfSchool} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -226,7 +235,7 @@ class IndicatorData extends React.Component {
                          {/* =====SLE group by Age and display by gender ======*/}
                         <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'>School Life Expectancy (%)</Card.Title>
+                                    <Card.Title as='h5'>School Life Expectancy </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                     {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
@@ -250,7 +259,7 @@ class IndicatorData extends React.Component {
                         <Card className='Recent-Users'>
                             {/*=====RR group by Grade =======*/}
                                 <Card.Header>
-                                    <Card.Title as='h5'>Repetition Rate by Grade (%)</Card.Title>
+                                    <Card.Title as='h5'>Repetition by Grade</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                      <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repetition} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
@@ -263,7 +272,7 @@ class IndicatorData extends React.Component {
                         <Card className='Recent-Users'>
                             {/*=====SR group by Grade =======*/}
                                 <Card.Header>
-                                    <Card.Title as='h5'>Survival Rate by Grade (%)</Card.Title>
+                                    <Card.Title as='h5'>Survival by Grade (%)</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                     <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.survival} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
@@ -475,7 +484,7 @@ class IndicatorData extends React.Component {
                                         <h5>Expected Gross Primary Graduation Ratio </h5>
                                     </Card.Title>
                                     <Card.Title>
-                                        Total EGPGR (%) :  
+                                        Total EGPG :  
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
