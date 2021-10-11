@@ -193,7 +193,7 @@ implement cohort generation presentClass-yearAdmission e.g (Y1-2020)
     render() {
         //const { school, parent,presentClass,classList, stream, firstName, middleName, lastName, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity, loading, schoolList,parentList,subjectList,sessionList} = this.state;
         const { studentCode, cohortA, school, parent,presentClass,classList, firstName, middleName, lastName,edulevel,age, gender, religion, dob,country, disability, yearAdmission, HadEce,subject, status, session, province,ethnicity,district, loading, schoolList,parentList,subjectList,sessionList} = this.state;
-        console.log({sessionList, classList, schoolList,edulevel,age,cohortA, district})
+        // console.log({sessionList, classList, schoolList,edulevel,age,cohortA, district})
         return (
             <Aux>
             {this.redirectUser()}
@@ -340,7 +340,10 @@ implement cohort generation presentClass-yearAdmission e.g (Y1-2020)
                                             </Form.Group>
                                     <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Admission Year </Form.Label>
-                                                <Form.Control type="date" placeholder="Admission Year" onChange={this.handleChange("yearAdmission")} value={yearAdmission} />
+                                                <Form.Control as="select" onChange={this.handleChange("yearAdmission")} value={yearAdmission}>
+                                                    <option>Select year of Admission</option>
+                                                    <option value="2020">2020</option>
+                                                </Form.Control>
                                             </Form.Group>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Present Class</Form.Label>
