@@ -213,6 +213,41 @@ class IndicatorData extends React.Component {
                             </Card>
                         </Col>
                     </Row>
+                     <Row>
+                        <Col md={4} xl={4}>
+                            {/* =====SLE ECE ======*/}
+                            <Card className='Recent-Users'>
+                                <Card.Header>
+                                    <Card.Title as='h5'>School Life Expectancy (ECE) </Card.Title>
+                                </Card.Header>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLEE} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={4} xl={4}>
+                            {/* =====SLE Primary======*/}
+                            <Card className='Recent-Users'>
+                                <Card.Header>
+                                    <Card.Title as='h5'>School Life Expectancy (Primary) </Card.Title>
+                                </Card.Header>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLEP} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    <Col md={4} xl={4}>
+                            {/* =====SLE secondary ======*/}
+                            <Card className='Recent-Users'>
+                                <Card.Header>
+                                    <Card.Title as='h5'>School Life Expectancy (Secondary) </Card.Title>
+                                </Card.Header>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLES} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                     <Row>
                         <Col md={4} xl={4}>
                             <Card>
@@ -231,25 +266,14 @@ class IndicatorData extends React.Component {
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col md={4} xl={4}>
-                         {/* =====SLE group by Age and display by gender ======*/}
-                        <Card className='Recent-Users'>
-                                <Card.Header>
-                                    <Card.Title as='h5'>School Life Expectancy </Card.Title>
-                                </Card.Header>
-                                <Card.Body className='px-0 py-2'>
-                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} xl={4}>
+                        <Col md={8} xl={8}>
                         <Card className='Recent-Users'>
                             {/* =====TR group by prep, YR8 and YR 10 =======*/}
                                 <Card.Header>
                                     <Card.Title as='h5'>Transition Rate (%)</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                     <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.transition} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                     <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.transition} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -262,7 +286,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Repetition by Grade</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                     <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repetition} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                     <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.repetition} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -275,52 +299,47 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Survival by Grade (%)</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.survival} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.survival} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
                         </Row>
                     <Row>
-                        <Col md={4} xl={4}>
+                        <Col md={6} xl={6}>
                         <Card className='Recent-Users'>
                             {/*=====SR group by Grade =======*/}
                                 <Card.Header>
-                                    <Card.Title as='h5'>Survival Rate by Grade (%)</Card.Title>
+                                    <Card.Title as='h5'>Coefficient of Efficiency </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
+                                    {<NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.coe} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col md={4} xl={4}>
+                        <Col md={6} xl={6}>
                         <Card>
                                 <Card.Header>
-                                    <Card.Title>
-                                        <h5>Years-Input Per Graduate</h5>
-                                    </Card.Title>
-                                    <Card.Title>
-                                        Total YIPG (%) :  
-                                    </Card.Title>
+                                <Card.Title as='h5'>Years-Input Per Graduate</Card.Title>
                                 </Card.Header>
-                                <Card.Body>
-                                    <Link to="/admin/schools">
-                                        {/* <NVD3Chart id="chart" height={200} type="pieChart" datum={countbyownership} x="_id" y="count"  /> */}
-                                    </Link>
+                                <Card.Body className='px-0 py-2'>
+                                        { <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.YIP} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col md={4} xl={4}>
+                    </Row>
+                <Row>
+                <Col md={12} xl={12}>
                         <Card className='Recent-Users'>
                             {/*=====%Repeater group by education level =======*/}
                                 <Card.Header>
                                     <Card.Title as='h5'>% of Repeater by Education Level by Gender</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
+                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repeater} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
                                 </Card.Body>
                             </Card>
                         </Col>
-                    </Row>
+                </Row>
                 <Row>
                 <Col md={6} xl={6}>
                         <Card className='Recent-Users'>
