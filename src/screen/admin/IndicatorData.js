@@ -270,7 +270,7 @@ class IndicatorData extends React.Component {
                         <Card className='Recent-Users'>
                             {/* =====TR group by prep, YR8 and YR 10 =======*/}
                                 <Card.Header>
-                                    <Card.Title as='h5'>Transition Rate (%)</Card.Title>
+                                    <Card.Title as='h5'>Transition</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                      <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.transition} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
@@ -332,10 +332,10 @@ class IndicatorData extends React.Component {
                         <Card className='Recent-Users'>
                             {/*=====%Repeater group by education level =======*/}
                                 <Card.Header>
-                                    <Card.Title as='h5'>% of Repeater by Education Level by Gender</Card.Title>
+                                    <Card.Title as='h5'>Repeater by Education Level</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repeater} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
+                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repeaters} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -348,7 +348,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Pupil-Teacher Ratio</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
+                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.Pupils} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
                                 </Card.Body>
                             </Card>
                         </Col>  
@@ -359,7 +359,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Pupil-Teacher Ratio</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {/* <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} /> */}
+                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.Tea} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
                                 </Card.Body>
                             </Card>
                         </Col>  
@@ -370,7 +370,7 @@ class IndicatorData extends React.Component {
                                 <Card.Header>
                                  {/*=====Pupil-Teacher Ratio by Education Level Private Schools =======*/}
                                     <Card.Title>
-                                        <h5>% of Female Teachers</h5>
+                                        <h5>% of Teachers</h5>
                                     </Card.Title>
                                     <Card.Title>
                                         Total PFT (%) : 
@@ -378,6 +378,7 @@ class IndicatorData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
+                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={indicators.PercenT} x="_id" y="count"  />
                                         {/* <NVD3Chart id="chart" height={200} type="pieChart" datum={countbyownership} x="_id" y="count"  /> */}
                                     </Link>
                                 </Card.Body>
