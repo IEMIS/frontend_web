@@ -6,6 +6,7 @@ const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
 
 export const studentData = async (token)=>{
     try{
+                                        // /admin/student/data/student"
         const response = await fetch(`${BASE_URL}/student/data/student`,{
             method:'GET',
             headers:{
@@ -17,6 +18,7 @@ export const studentData = async (token)=>{
             console.log(err)
         });
         const data = response.json();
+        console.log(JSON.stringify({data}))
         return data;
     }catch(e){console.log(e)}
 }

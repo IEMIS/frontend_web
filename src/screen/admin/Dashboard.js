@@ -33,8 +33,8 @@ class Dashboard extends React.Component {
       //const countbyowner = await countSchoolByOwnership(Auth.token)
       const countbyclass = await countStudentByClass(Auth.token)
       const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
-      const studentDa = await studentData(Auth.token);
       const schoolDa = await schoolData(Auth.token);
+      const studentDa = await studentData(Auth.token);
       this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data}) 
       this.setState({loading:false}) 
     }
