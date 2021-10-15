@@ -176,6 +176,18 @@ class Dashboard extends React.Component {
                         <Col md={12} xl={12}>
                             <Card className='Recent-Users'>
                                 <Card.Header>
+                                    <Card.Title as='h5'>Students by Disability</Card.Title>
+                                </Card.Header>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={student.disability} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={12} xl={12}>
+                            <Card className='Recent-Users'>
+                                <Card.Header>
                                     <Card.Title as='h5'> Teachers summary data</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>

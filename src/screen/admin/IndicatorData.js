@@ -6,7 +6,7 @@ import NVD3Chart from 'react-nvd3';
 
 //import {countStudentByGender, countStudentByClass, countSchoolByOwnership, countTeacherBySchool} from "./api"
 import Aux from "../../hoc/_Aux";
-import { districtL, studentIndicator } from './api';
+import { districtL, studentIndicator,indicatorByDistrict } from './api';
 /*
 import DEMO from "../../store/constant";
 
@@ -36,7 +36,18 @@ class IndicatorData extends React.Component {
       this.setState({loading:false})
     }
 
-    async componentDidUpdate(){
+    async componentDidUpdate(prevProps, prevState, snapshot){
+        const {district} = this.state;
+        const user = {district};
+        if(prevState.district !== district){
+            this.setState({loading:true})
+            const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
+            const indi = await studentIndicator(Auth.token);
+            console.log({indi})
+            const dist = await districtL(Auth.token)
+            this.setState({indicators:indi.data, districtList:dist.data})
+            this.setState({loading:false})
+        }
 
     }
 
@@ -286,7 +297,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Repetition by Grade</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                     <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.repetition} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                     <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.repetition} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -299,7 +310,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Survival by Grade (%)</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.survival} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.survival} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -335,7 +346,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Repeater by Education Level</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repeaters} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
+                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repeaters} x="classCode" y="count" height={380} showValues groupSpacing={0.5} /> }
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -534,7 +545,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Promotion by Grade</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {<NVD3Chart id="barChart" type="multiBarChart" datum={indicators.PromoR} x="_id" y="count" height={380} showValues groupSpacing={0.5} />}
+                                    {<NVD3Chart id="barChart" type="multiBarChart" datum={indicators.PromoR} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />}
                                 </Card.Body>
                             </Card>
                         </Col>  
