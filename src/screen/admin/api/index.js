@@ -23,6 +23,7 @@ export const studentData = async (token)=>{
     }catch(e){console.log(e)}
 }
 
+
 export const countStudentByClass = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student/data/count/class`,{
@@ -39,6 +40,25 @@ export const countStudentByClass = async (token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+
+export const countStudentByClassAllByDistrict= async (user,token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/student/data/count/class/district`,{
+            method:'GET',
+            body:JSON.stringify(user),
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
 
 export const studentDataByDistrict = async (user, token)=>{
     try{
@@ -326,6 +346,24 @@ export const studentIndicator = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student/data/indicators`,{
             method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const indicatorByDistrict = async (user, token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/student/data/indicators/district`,{
+            method:'POST',
+            body:JSON.stringify(user),
             headers:{
                 'Content-Type':'application/json',
                 accept:'application/json',
