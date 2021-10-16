@@ -44,7 +44,7 @@ export const countStudentByClass = async (token)=>{
 export const countStudentByClassAllByDistrict= async (user,token)=>{
     try{
         const response = await fetch(`${BASE_URL}/student/data/count/class/district`,{
-            method:'GET',
+            method:'POST',
             body:JSON.stringify(user),
             headers:{
                 'Content-Type':'application/json',
@@ -324,7 +324,7 @@ export const schoolByDistrict = async (user, token)=>{
 // }
 
 /**Teacher summary endpoint  */
-export const countTeacherBySchool = async (token)=>{
+export const countTeacherBySchoolAll = async (token)=>{
     try{
         const response = await fetch(`${BASE_URL}/teachers/data/count/school`,{
             method:'GET',
@@ -341,6 +341,59 @@ export const countTeacherBySchool = async (token)=>{
     }catch(e){console.log(e)}
 }
 
+export const countTeacherBySchoolDis = async (user,token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/teachers/data/count/school/district`,{
+            method:'POST',
+            body:JSON.stringify(user),
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const countStudentByClassAllBy = async (user,token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/student/data/count/school/sudentclass`,{
+            method:'POST',
+            body:JSON.stringify(user),
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const countTeacherBySchoolByClass = async (user,token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/teachers/data/count/school/tclass`,{
+            method:'POST',
+            body:JSON.stringify(user),
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
 
 export const studentIndicator = async (token)=>{
     try{

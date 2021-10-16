@@ -6,10 +6,10 @@ import moment from 'moment';
 import NVD3Chart from 'react-nvd3';
 
 
-import { countStudentByClass, countTeacherBySchool, studentData, 
+import { countStudentByClass, studentData, 
     // schoolData, 
     // studentDataByDistrict, schoolDataByDistrict,
-    districtL,  schoolByDistrict, studentDataBySchool, schoolDetails} from "./api"
+    districtL,  schoolByDistrict, studentDataBySchool, schoolDetails, countTeacherBySchoolByClass,countTeacherBySchoolAll, countStudentByClassAllBy} from "./api"
 import Aux from "../../hoc/_Aux";
 
 class SchoolData extends React.Component {
@@ -51,7 +51,7 @@ class SchoolData extends React.Component {
         const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
         // const school = "60ef9ddf0bd7840036e5bd9f"
         const countbyclass = await countStudentByClass(Auth.token)
-        const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+        const countTeachbySchoolResp = await countTeacherBySchoolAll(Auth.token)
         const distirct = await districtL(Auth.token)
         const studentDa = await studentData(Auth.token);
         // const schoolDe = await schoolDetails(school, Auth.token)
@@ -71,8 +71,11 @@ class SchoolData extends React.Component {
         if(prevState.school !== school){
             this.setState({loading:true})
             const studentDa = await studentDataBySchool(user, Auth.token);
-            const schoolDe = await schoolDetails(school, Auth.token)
-            this.setState({students:studentDa.data, schools:schoolDe.data[0], }) 
+            const schoolDe = await schoolDetails(school, Auth.token);
+            const countTeachbySchoolResp = await countTeacherBySchoolByClass(user, Auth.token);
+            const countbyclass = await countStudentByClassAllBy(user, Auth.token)
+
+            this.setState({students:studentDa.data, schools:schoolDe.data[0],countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data,}) 
             this.setState({loading:false}) 
         }
     }
@@ -93,7 +96,7 @@ class SchoolData extends React.Component {
 
     render() {
         const { countbyclass,countTeachbySchool,school,student,schools,students, districtList,schoolList, district, loading} = this.state;
-        console.log({district, school,student,schools,students,})
+        console.log({district, school,student,schools,students})
         if(loading){
             return <h1>Loading ....</h1>
         }
@@ -361,7 +364,18 @@ class SchoolData extends React.Component {
                             </Card>
                         </Col>
                     </Row>
-
+                    <Row>
+                        <Col md={12} xl={12}>
+                            <Card className='Recent-Users'>
+                                <Card.Header>
+                                    <Card.Title as='h5'> Teachers summary data by class</Card.Title>
+                                </Card.Header>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart donut labelType='percent' id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} />
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                     <Row>
                         <Col md={12} xl={12}>
                             <Card className='Recent-Users'>
@@ -390,18 +404,7 @@ class SchoolData extends React.Component {
                     </Row>
                     */}
                     
-                    <Row>
-                        <Col md={12} xl={12}>
-                            <Card className='Recent-Users'>
-                                <Card.Header>
-                                    <Card.Title as='h5'> Teachers summary data by class</Card.Title>
-                                </Card.Header>
-                                <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart donut labelType='percent' id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} />
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
+                    
             </Aux>
         );
     }

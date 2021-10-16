@@ -42,7 +42,7 @@ class IndicatorData extends React.Component {
         if(prevState.district !== district){
             this.setState({loading:true})
             const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
-            const indi = await studentIndicator(Auth.token);
+            const indi = await indicatorByDistrict (user, Auth.token);
             console.log({indi})
             const dist = await districtL(Auth.token)
             this.setState({indicators:indi.data, districtList:dist.data})
