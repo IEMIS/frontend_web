@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
 
-import { countStudentByClass, countTeacherBySchool, studentData, schoolData, districtL, studentDataByDistrict, schoolDataByDistrict} from "./api"
+import { countStudentByClass, countTeacherBySchoolAll, studentData, schoolData, districtL, studentDataByDistrict, schoolDataByDistrict, countStudentByClassAllByDistrict, countTeacherBySchoolDis} from "./api"
 import Aux from "../../hoc/_Aux";
 
 class DistrictData extends React.Component {
@@ -33,7 +33,7 @@ class DistrictData extends React.Component {
         this.setState({loading:true})
         const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
         const countbyclass = await countStudentByClass(Auth.token)
-        const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+        const countTeachbySchoolResp = await countTeacherBySchoolAll(Auth.token)
         const studentDa = await studentData(Auth.token);
         const schoolDa = await schoolData(Auth.token);
         const distirct = await districtL(Auth.token)
@@ -47,8 +47,8 @@ class DistrictData extends React.Component {
         if(prevState.district !== district){
             this.setState({loading:true})
             const Auth = await JSON.parse(localStorage.getItem('admin-Auth'));
-            const countbyclass = await countStudentByClass(Auth.token)
-            const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+            const countbyclass = await countStudentByClassAllByDistrict(user, Auth.token)
+            const countTeachbySchoolResp = await countTeacherBySchoolDis(user, Auth.token)
             const studentDa = await studentDataByDistrict(user, Auth.token);
             const schoolDa = await schoolDataByDistrict(user, Auth.token);
             //console.log({schoolDa})
@@ -198,7 +198,7 @@ class DistrictData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/students">
-                                      <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByEthnicity} x="_id" y="count"  />
+                                      <NVD3Chart donut labelType='percent'  id="chart" height={320} type="pieChart" datum={student.countStudentByEthnicity} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -212,40 +212,40 @@ class DistrictData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByProvince} x="_id" y="count"  />
+                                        <NVD3Chart donut labelType='percent'  id="chart" height={320} type="pieChart" datum={student.countStudentByProvince} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
                         <Col md={4} xl={4}>
-                            <Card>
+                        <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by year of Admission</h5>
+                                        <h5>Student by Status</h5>
+                                    </Card.Title>
+                                    <Card.Title>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                  <Link to="/admin/schools">
-                                      {/* multiplebar chart is appropriate and should be disaggregate by gender */}
-                                      {/**The spaces are small, I used another method */}
-                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByYear} x="_id" y="count"  />
-                                  </Link>
+                                    <Link to="/admin/schools">
+                                        <NVD3Chart donut labelType='percent' id="chart" height={320} type="pieChart" datum={student.countStudentByStatus} x="_id" y="count"  />
+                                    </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
                     </Row>
                     <Row>
                         <Col md={4} xl={4}>
-                            <Card>
+                        <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>School by District </h5>
+                                        <h5>Student by Country</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/district">
-                                      <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count"  />
-                                    </Link>
+                                  <Link to="/admin/schools">
+                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByCountry} x="_id" y="count"  />
+                                  </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -279,7 +279,21 @@ class DistrictData extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={4} xl={4}>
+                    <Col md={4} xl={4}>
+                    <Card>
+                     <Card.Header>
+                        <Card.Title>
+                         <h5>School by District </h5>
+                         </Card.Title>
+                        </Card.Header>
+                        <Card.Body>
+                        <Link to="/admin/district">
+                         <NVD3Chart donut labelType='percent' id="chart" height={320} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count"  />
+                         </Link>
+                         </Card.Body>
+                        </Card>
+                        </Col>
+                        <Col md={8} xl={8}>
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
@@ -288,45 +302,31 @@ class DistrictData extends React.Component {
                                     <Card.Title>
                                     </Card.Title>
                                 </Card.Header>
-                                <Card.Body>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={student.datasession} x="name" y="count" height={380} showValues groupSpacing={0.5} />
+                                </Card.Body>
+                               {/**  <Card.Body>
                                     <Link to="/admin/students">
                                       <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentBySession} x="name" y="count"  />
                                     </Link>
-                                </Card.Body>
+                                </Card.Body>*/}
                             </Card>
                         </Col>
-                        <Col md={4} xl={4}>
-                            <Card>
+                        </Row>
+                        <Row>
+                        <Col md={12} xl={12}>
+                        <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by Status</h5>
-                                    </Card.Title>
-                                    <Card.Title>
+                                        <h5>Student by year of Admission</h5>
                                     </Card.Title>
                                 </Card.Header>
-                                <Card.Body>
-                                    <Link to="/admin/schools">
-                                        <NVD3Chart donut labelType='percent' id="chart" height={200} type="pieChart" datum={student.countStudentByStatus} x="_id" y="count"  />
-                                    </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} xl={4}>
-                            <Card>
-                                <Card.Header>
-                                    <Card.Title>
-                                        <h5>Student by Country</h5>
-                                    </Card.Title>
-                                </Card.Header>
-                                <Card.Body>
-                                  <Link to="/admin/schools">
-                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={student.countStudentByCountry} x="_id" y="count"  />
-                                  </Link>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={student.adminYear} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
                     </Row>
-
                     <Row>
                         <Col md={12} xl={12}>
                             <Card className='Recent-Users'>

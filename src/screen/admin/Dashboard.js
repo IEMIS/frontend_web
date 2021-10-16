@@ -3,7 +3,7 @@ import {Row, Col, Card,} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 
-import { countStudentByClass, countTeacherBySchool, studentData, schoolData} from "./api"
+import { countStudentByClass, countTeacherBySchoolAll, studentData, schoolData} from "./api"
 import Aux from "../../hoc/_Aux";
 
 
@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
       //const countbyowner = await countSchoolByOwnership(Auth.token)
       const countbyclass = await countStudentByClass(Auth.token)
       //const countbydisable = await countStudentByClass(Auth.token)
-      const countTeachbySchoolResp = await countTeacherBySchool(Auth.token)
+      const countTeachbySchoolResp = await countTeacherBySchoolAll(Auth.token)
       const schoolDa = await schoolData(Auth.token);
       const studentDa = await studentData(Auth.token);
       this.setState({student:studentDa.data, school:schoolDa.data, countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data}) 
