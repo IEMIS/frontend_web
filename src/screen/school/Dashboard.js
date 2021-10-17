@@ -236,7 +236,7 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                 {/*Please include disability here by male and female by class */}
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={students.disability} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
