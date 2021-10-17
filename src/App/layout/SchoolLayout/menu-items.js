@@ -13,6 +13,15 @@ export default {
                     url: '/school',
                     icon: 'feather icon-home',
                 },
+
+                {
+                    id: 'm-indicator',
+                    title: 'Indicators Data',
+                    type: 'item',
+                    url: '/school/indicator',
+                    icon: 'feather icon-book',
+                }
+                
             ],
         },
         {
