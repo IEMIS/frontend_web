@@ -9,7 +9,7 @@ import NVD3Chart from 'react-nvd3';
 import { countStudentByClass, studentData, 
     // schoolData, 
     // studentDataByDistrict, schoolDataByDistrict,
-    districtL,  schoolByDistrict, studentDataBySchool, schoolDetails, countTeacherBySchoolByClass,countTeacherBySchoolAll, countStudentByClassAllBy} from "./api"
+    districtL,  schoolByDistrict, studentDataBySchool, schoolDetails, countTeacherByClass,countTeacherBySchoolAll, countStudentByClassAllBy} from "./api"
 import Aux from "../../hoc/_Aux";
 
 class SchoolData extends React.Component {
@@ -72,7 +72,7 @@ class SchoolData extends React.Component {
             this.setState({loading:true})
             const studentDa = await studentDataBySchool(user, Auth.token);
             const schoolDe = await schoolDetails(school, Auth.token);
-            const countTeachbySchoolResp = await countTeacherBySchoolByClass(user, Auth.token);
+            const countTeachbySchoolResp = await countTeacherByClass(user, Auth.token);
             const countbyclass = await countStudentByClassAllBy(user, Auth.token)
 
             this.setState({students:studentDa.data, schools:schoolDe.data[0],countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data,}) 

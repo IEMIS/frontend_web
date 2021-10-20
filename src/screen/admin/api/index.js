@@ -377,7 +377,7 @@ export const countStudentByClassAllBy = async (user,token)=>{
     }catch(e){console.log(e)}
 }
 
-export const countTeacherBySchoolByClass = async (user,token)=>{
+export const countTeacherByClass = async (user,token)=>{
     try{
         const response = await fetch(`${BASE_URL}/teachers/data/count/school/tclass`,{
             method:'POST',

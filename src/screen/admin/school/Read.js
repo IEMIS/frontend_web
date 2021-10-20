@@ -136,7 +136,7 @@ export default function Read() {
         { title: 'SN', prop: 'id', filterable: true, sortable: true, },
         { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
         { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
-        { title: 'District', prop: 'district', filterable: true, sortable: true, },
+        //{ title: 'District', prop: 'district', filterable: true, sortable: true, },
         { title: 'category', prop: 'category', filterable: true, sortable: true },
         { title: 'Type', prop: 'type', filterable: true, sortable: true },
         { title: 'Ownership', prop: 'owner', filterable: true, sortable: true },
@@ -152,7 +152,7 @@ export default function Read() {
           return{
             id:index +1,
             names:data.names,
-            district:data.fromDistrict[0].names,
+            //district:data.fromDistrict[0].names,
             eduLevel:data.eduLevel,
             category:data.schoolCat,
             type:data.schoolType,
