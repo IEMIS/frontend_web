@@ -1,7 +1,7 @@
 
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/schools";
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/schools";
 
-//const BASE_URL = "http://localhost:9000/api/v1/schools" 
+const BASE_URL = "http://localhost:9000/api/v1/schools" 
 
 
 //Dashboard 
@@ -206,9 +206,9 @@ export const schoolByDistrict = async (user, token)=>{
 
 
 //Student Indicator 
-export const studentIndicator = async (token)=>{
+export const studentIndicator = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/student/data/indicators`,{
+        const response = await fetch(`${BASE_URL}/student/data/indicators/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
