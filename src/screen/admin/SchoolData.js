@@ -232,12 +232,14 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by Ethnicity</h5>
+                                        <h5>Student by Status</h5>
+                                    </Card.Title>
+                                    <Card.Title>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/students">
-                                      <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByEthnicity} x="_id" y="count"  />
+                                    <Link to="/admin/schools">
+                                        <NVD3Chart donut labelType='percent'  id="chart" height={300} type="pieChart" datum={students.countStudentByStatus} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -251,7 +253,7 @@ class SchoolData extends React.Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByProvince} x="_id" y="count"  />
+                                        <NVD3Chart donut labelType='percent'  id="chart" height={300} type="pieChart" datum={students.countStudentByProvince} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -266,7 +268,7 @@ class SchoolData extends React.Component {
                                 <Card.Body>
                                   <Link to="/admin/schools">
                                       {/* multiplebar chart is appropriate and should be disaggregate by gender */}
-                                    <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByYear} x="_id" y="count"  />
+                                    <NVD3Chart donut labelType='percent'  id="chart" height={300} type="pieChart" datum={students.countStudentByYear} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
                             </Card>
@@ -337,14 +339,12 @@ class SchoolData extends React.Component {
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        <h5>Student by Status</h5>
-                                    </Card.Title>
-                                    <Card.Title>
+                                        <h5>Student by Ethnicity</h5>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/schools">
-                                        <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByStatus} x="_id" y="count"  />
+                                    <Link to="/admin/students">
+                                      <NVD3Chart donut labelType='percent'  id="chart" height={200} type="pieChart" datum={students.countStudentByEthnicity} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
