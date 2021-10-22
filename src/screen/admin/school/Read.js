@@ -134,7 +134,8 @@ export default function Read() {
       }
       const header = [
         { title: 'SN', prop: 'id', filterable: true, sortable: true, },
-        { title: 'Full Names', prop: 'names', filterable: true, sortable: true, },
+        { title: 'School Names', prop: 'names', filterable: true, sortable: true, },
+        { title: 'School Code', prop: 'code', filterable: true, sortable: true, },
         { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
         { title: 'District', prop: 'district', filterable: true, sortable: true, },
         { title: 'category', prop: 'category', filterable: true, sortable: true },
@@ -151,6 +152,7 @@ export default function Read() {
             console.log(JSON.stringify({data}))
           return{
             id:index +1,
+            code:data.code,
             names:data.names,
             district:data.fromDistrict[0].names,
             eduLevel:data.eduLevel,

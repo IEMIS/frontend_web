@@ -119,7 +119,7 @@ class Dashboard extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <Link to="/admin/district">
+                                    <Link to="/admin/districts/read">
                                       <NVD3Chart id="barChartyx" height={300} type="pieChart" datum={school.countSchoolByDistrict} x="names" y="count" donut labelType='percent' />
                                     </Link>
                                 </Card.Body>
