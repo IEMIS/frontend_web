@@ -145,8 +145,8 @@ export default function Read() {
               <Datatable 
                 tableHeaders={header} 
                 tableBody={body(datas)} 
-                rowsPerPage={10}
-                rowsPerPageOption={[5, 10, 15, 20, 30, 40, 50, 100]}
+                rowsPerPage={20}
+                rowsPerPageOption={[20, 50, 100, 200]}
               />
               : <h1>No Data </h1>
             }
@@ -160,7 +160,7 @@ export default function Read() {
         { title: 'Gender', prop: 'gender', filterable: true, sortable: true, },
         { title: 'Age', prop: 'age', filterable: true, sortable: true, },
         { title: 'Edu Level', prop: 'eduLevel', filterable: true, sortable: true },
-       // { title: 'School', prop: 'school', filterable: true, sortable: true, },
+        { title: 'School', prop: 'school', filterable: true, sortable: true, },
         { title: 'Status', prop: 'status', filterable: true, sortable: true },
         { title: 'Created', prop: 'date', filterable: true, sortable: true },
         { title: 'Last Update', prop: 'date', filterable: true, sortable: true },
@@ -179,7 +179,7 @@ export default function Read() {
             gender:data.gender,
             age:data.age,
             eduLevel:data.edulevel,
-            //school:data.fromSchool[0].names,
+            school:data.fromSchool[0].code,
             status:data.status,
             date:moment(data.createdAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
             date:moment(data.updatedAt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),

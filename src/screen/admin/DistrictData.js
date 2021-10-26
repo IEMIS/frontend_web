@@ -322,7 +322,7 @@ class DistrictData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={student.adminYear} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={student.adminYear} x="_id" y="count" height={380} showValues groupSpacing={0.1} />
                                 </Card.Body>
                             </Card>
                         </Col>
