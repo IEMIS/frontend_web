@@ -24,7 +24,7 @@ export const create = async (user, token)=>{
 
 export const reads = async (token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/student`,{
+        const response = await fetch(`${BASE_URL}/students`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -41,7 +41,7 @@ export const reads = async (token)=>{
 
 export const read = async (user, token)=>{
     try{
-        const response = await fetch(`${BASE_URL}/student/${user}`,{
+        const response = await fetch(`${BASE_URL}/students/${user}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',

@@ -182,7 +182,7 @@ export default function Read() {
             id:index +1,
             names:`${data.title} ${data.firstName} ${data.lastName}`,
             gender:data.gender,
-            school:data.fromSchool[0].names,
+            school:data.fromSchool[0].code,
             dob :moment(data.dob,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
             firstappt:moment(data.firstappt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
             lastp:moment(data.lastPosting,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('L'),
