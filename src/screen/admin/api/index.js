@@ -1,5 +1,5 @@
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
-//const BASE_URL = "localhost:9000/api/v1";
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
+const BASE_URL = "localhost:9000/api/v1";
 //const BASE_URL = "http://localhost:9000/api/v1/admin" 
 
 
