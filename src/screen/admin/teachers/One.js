@@ -142,7 +142,7 @@ export default function One() {
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                 <Form.Label>Title</Form.Label>
-                                                <Form.Control type="test"  value={load.title} />
+                                                <Form.Control type="text"  value={load.title} />
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>First Name</Form.Label>
@@ -197,12 +197,6 @@ export default function One() {
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Role</Form.Label>
                                             <Form.Control type="text" value={load.level}readOnly />
-                                            
-                                            </Form.Group>
-                                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Staff Type</Form.Label>
-                                            <Form.Control type="text" value={load.typeOfstaff}readOnly />
-                                               
                                             </Form.Group>
                                         </Form>
                                     </Col>
@@ -210,6 +204,11 @@ export default function One() {
                                     <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>First Appointment </Form.Label>
                                                 <Form.Control type="text" placeholder="23/12/2020"  value={moment(load.firstappt,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LLLL')}readOnly />
+                                            </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>Staff Type</Form.Label>
+                                            <Form.Control type="text" value={load.typeOfstaff}readOnly />
+                                               
                                             </Form.Group>
                                     <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Last Posting </Form.Label>
@@ -254,7 +253,7 @@ export default function One() {
                                         </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Last Workshop</Form.Label>
-                                            <Form.Control type="text" placeholder="most recent"  value={load.lastWorkshop}readOnly/>
+                                            <Form.Control type="text" placeholder="most recent"   value={moment(load.lastWorkshop,"YYYY-MM-DDTHH:mm:ss.SSSSZ").format('LL')}readOnly />
                                         </Form.Group>
    
                                         <Form.Group controlId="formBasicEmail">
