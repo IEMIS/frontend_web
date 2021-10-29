@@ -73,12 +73,12 @@ export default function Edit() {
             this.setState({ loadingBtn:false})
             return Swal.fire('Oops...', 'Present Class is required', 'error');
         }
-        /*
-        if(stream===""){ 
+        
+        if(ethnicity===""){ 
             this.setState({ loading:false})
-            return Swal.fire('Oops...', 'Class Stream is required', 'error');
+            return Swal.fire('Oops...', 'Ethnic Identity is required', 'error');
         }
-        */
+        
         if(firstName===""){ 
             this.setState({loadingBtn:false})
             return Swal.fire('Oops...', 'First Name  is required', 'error');

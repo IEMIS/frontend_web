@@ -141,12 +141,12 @@ class IndicatorData extends React.Component {
                                         <h5>Gross Intake </h5>
                                     </Card.Title>
                                     <Card.Title>
-                                        Total GI  : 
+                             <h10> New entrants in the first grade of primary education, regardless of age</h10>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/students">
-                                      { <NVD3Chart id="chart" height={200} type="pieChart" datum={indicators.grossInTake} x="_id" y="count"  /> }
+                                    <NVD3Chart donut labelType='percent'  id="chart" height={250} type="pieChart" datum={indicators.grossInTake} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -158,12 +158,12 @@ class IndicatorData extends React.Component {
                                         <h5>Net Intake </h5>
                                     </Card.Title>
                                     <Card.Title>
-                                        Total NI  : 
+                                   <h9> New entrants in the first grade of primary education who are of the official primary school-entrance age (6years)</h9>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
                                     <Link to="/admin/schools">
-                                        { <NVD3Chart id="chart" height={200} type="pieChart" datum={indicators.netInTake} x="_id" y="count"  /> }
+                                    <NVD3Chart donut labelType='percent'  id="chart" height={240} type="pieChart" datum={indicators.netInTake} x="_id" y="count"  />
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -175,12 +175,12 @@ class IndicatorData extends React.Component {
                                         <h5>Adjusted Net Intake </h5>
                                     </Card.Title>
                                     <Card.Title>
-                                        Total ANI  : 
+                                   <h8>Enrolment in all primary education by official entrance age (6years)</h8>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                  <Link to="/admin/schools">
-                                     <NVD3Chart id="chart" height={200} type="pieChart" datum={indicators.aNetIntake} x="_id" y="count"  /> 
+                                 <Link to="/admin/students">
+                            <NVD3Chart donut labelType='percent'  id="chart" height={250} type="pieChart" datum={indicators.aNetIntake} x="_id" y="count"  />
                                   </Link>
                                 </Card.Body>
                             </Card>
@@ -192,6 +192,9 @@ class IndicatorData extends React.Component {
                         <Card className='Recent-Users'>
                                 <Card.Header>
                                     <Card.Title as='h5'>Gross Enrolment </Card.Title>
+                                    <Card.Title>
+                                   <h8> Total enrolment in a specific level of education, regardless of age</h8>
+                                    </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                      <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.grossEnroll} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
@@ -203,6 +206,9 @@ class IndicatorData extends React.Component {
                         <Card className='Recent-Users'>
                                 <Card.Header>
                                     <Card.Title as='h5'>Net Enrolment </Card.Title>
+                                    <Card.Title>
+                                   <h8> Enrolment of the official age group for a given level of education </h8>
+                                    </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                      <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.netEnroll} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> 
@@ -212,53 +218,55 @@ class IndicatorData extends React.Component {
                             </Row>
                    
                     <Row>
-                        <Col md={12} xl={12}>
+                        <Col md={6} xl={6}>
                             {/* =====ASER group by Age and display by gender ======*/}
                             <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'>Age Specific Enrolment </Card.Title>
+                                    <Card.Title ><h5>Age Specific Enrolment </h5> </Card.Title>
+                                    <Card.Title>
+                                   <h8>Enrolment by single years of age</h8>
+                                    </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.ageSpec} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                             <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.ageSpec} x="_id" y="count" height={380} showValues groupSpacing={0.2} />
                                 </Card.Body>
                             </Card>
                         </Col>
-                    </Row>
-                     <Row>
-                        <Col md={4} xl={4}>
+                        <Col md={6} xl={6}>
                             {/* =====SLE ECE ======*/}
                             <Card className='Recent-Users'>
                                 <Card.Header>
                                     <Card.Title as='h5'>School Life Expectancy (ECE) </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLEE} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLEE} x="_id" y="count" height={380} showValues groupSpacing={0.2} />
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col md={4} xl={4}>
-                            {/* =====SLE Primary======*/}
-                            <Card className='Recent-Users'>
-                                <Card.Header>
-                                    <Card.Title as='h5'>School Life Expectancy (Primary) </Card.Title>
-                                </Card.Header>
-                                <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLEP} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    <Col md={4} xl={4}>
-                            {/* =====SLE secondary ======*/}
+                    </Row>
+                     <Row>
+                        <Col md={6} xl={6}>
+            <Card className='Recent-Users'>
+                <Card.Header>
+                    <Card.Title as='h5'>School Life Expectancy (Primary) </Card.Title>
+                </Card.Header>
+                <Card.Body className='px-0 py-2'>
+                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLEP} x="_id" y="count" height={380} showValues groupSpacing={0.2} />
+                </Card.Body>
+            </Card>
+        </Col>
+                    <Col md={6} xl={6}>
                             <Card className='Recent-Users'>
                                 <Card.Header>
                                     <Card.Title as='h5'>School Life Expectancy (Secondary) </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLES} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.SLES} x="_id" y="count" height={380} showValues groupSpacing={0.2} />
                                 </Card.Body>
                             </Card>
                         </Col>
-                    </Row>
+                    </Row> 
+                    
                     <Row>
                         <Col md={4} xl={4}>
                             <Card>

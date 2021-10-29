@@ -309,10 +309,10 @@ export default function Edit() {
                             <Row>
                                 <Col md={6}>
                                     <Form>
-                                        {/*<Form.Group controlId="formBasicEmail">
+                                        <Form.Group controlId="formBasicEmail">
                                             <Form.Label>Teacher Code</Form.Label>
                                             <Form.Control type="text" placeholder="Teacher Code" onChange={handleChange("teacherCode")} value={teacherCode} disabled />
-                                        </Form.Group>*/}
+                                        </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlSelect1">
                                         <Form.Label>Title</Form.Label>
                                         <Form.Control as="select" onChange={handleChange("title")} value={title}>
@@ -472,20 +472,20 @@ export default function Edit() {
                                             <Form.Label>Role</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("level")} value={level}>
                                                 <option>Select </option>
-                                                <option value="1">Class Teacher</option>
-                                                <option value="2">Subject Teacher</option>
-                                                <option value="3">Ass. Teacher</option>
+                                                <option value="class Teacher ">Class Teacher</option>
+                                                <option value="subject Teacher">Subject Teacher</option>
+                                                <option value="Asst. Teacher">Ass. Teacher</option>
                                             </Form.Control>
-                                        </Form.Group>
-                                        <Form.Group controlId="exampleForm.ControlSelect1">
+                                            </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Staff Type</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("typeOfstaff")} value={typeOfstaff}>
                                                 <option>Select </option>
-                                                <option value="1">Government</option>
-                                                <option value="2">PTA </option>
-                                                <option value="2">Private </option>
+                                                <option value="Government">Government</option>
+                                                <option value="PTA">PTA </option>
+                                                <option value="Private">Private </option>
                                             </Form.Control>
-                                        </Form.Group>
+                                            </Form.Group>
                                     {
                                         loadingBtn ? "loading ..." : <Button variant="primary" onClick={submit}  >Update ..</Button>
                                     }

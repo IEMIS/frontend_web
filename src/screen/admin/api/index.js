@@ -1,6 +1,6 @@
-const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
+//const BASE_URL = "https://iemis.herokuapp.com/api/v1/admin"
 //const BASE_URL = "localhost:9000/api/v1";
-//const BASE_URL = "http://localhost:9000/api/v1/admin" 
+const BASE_URL = "http://localhost:9000/api/v1/admin" 
 
 
 
@@ -355,6 +355,24 @@ export const countTeacherBySchoolDis = async (user,token)=>{
             console.log(err)
         });
         const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
+
+export const teacherData = async (token)=>{
+    try{                             
+        const response = await fetch(`${BASE_URL}/teachers/data/count/teachers`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        console.log(JSON.stringify({data}))
         return data;
     }catch(e){console.log(e)}
 }

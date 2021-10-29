@@ -334,7 +334,7 @@ class DistrictData extends React.Component {
                                     <Card.Title as='h5'>Students Enrolment by Class Summary</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="classCode" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -359,7 +359,7 @@ class DistrictData extends React.Component {
                                     <Card.Title as='h5'>Teachers summary data by Education Level </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="eduLevel" y="count" height={380} showValues groupSpacing={0.5} />
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>

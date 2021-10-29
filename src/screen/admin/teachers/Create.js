@@ -214,10 +214,10 @@ export default function Create() {
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            {/*<Form.Group controlId="formBasicEmail">
+                                            <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Teacher Code</Form.Label>
-                                                <Form.Control type="text" placeholder="Teacher Code" onChange={handleChange("teacherCode")} value={teacherCode} disabled />
-                                            </Form.Group>*/}
+                                                <Form.Control type="text" placeholder="Teacher Code" onChange={handleChange("teacherCode")} value={teacherCode} />
+                                            </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Title</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("title")} value={title}>
@@ -312,18 +312,18 @@ export default function Create() {
                                             <Form.Label>Role</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("level")} value={level}>
                                                 <option>Select </option>
-                                                <option value="1">Class Teacher</option>
-                                                <option value="2">Subject Teacher</option>
-                                                <option value="3">Ass. Teacher</option>
+                                                <option value="class Teacher ">Class Teacher</option>
+                                                <option value="subject Teacher">Subject Teacher</option>
+                                                <option value="Asst. Teacher">Ass. Teacher</option>
                                             </Form.Control>
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Staff Type</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("typeOfstaff")} value={typeOfstaff}>
                                                 <option>Select </option>
-                                                <option value="1">Government</option>
-                                                <option value="2">PTA </option>
-                                                <option value="2">Private </option>
+                                                <option value="Government">Government</option>
+                                                <option value="PTA">PTA </option>
+                                                <option value="Private">Private </option>
                                             </Form.Control>
                                             </Form.Group>
                                         </Form>
@@ -386,8 +386,8 @@ export default function Create() {
                                             <Form.Label>Teaching Type</Form.Label>
                                             <Form.Control as="select" onChange={handleChange("teachingTypes")} value={teachingTypes}>
                                                 <option>Select </option>
-                                                <option value="1">Full-Time</option>
-                                                <option value="2">Part-Time</option>
+                                                <option value="Full-Time">Full-Time</option>
+                                                <option value="Part-Time">Part-Time</option>
                                             </Form.Control>
                                             </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
@@ -396,7 +396,7 @@ export default function Create() {
                                         </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Last Workshop</Form.Label>
-                                            <Form.Control type="date" placeholder="most recent" onChange={handleChange("lastWorskshop")} value={lastWorkshop}/>
+                                            <Form.Control type="date" placeholder="most recent" onChange={handleChange("lastWorkshop")} value={lastWorkshop}/>
                                         </Form.Group>
                                         {
                                             loading ? "loading ..." : <Button variant="primary" onClick={submit}  >Create ..</Button>
