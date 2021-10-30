@@ -54,7 +54,10 @@ export default class Create extends Component {
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot){
-        const {school, schoolList, dob} = this.state;
+        const {school, schoolList, dob, yearAdmission, cclass } = this.state;
+        if(prevState.yearAdmission !== yearAdmission || prevState.cclass!==cclass){
+            cohortA = yearAdmission+ "-"+cclass 
+            this.setstate({cohortA})}
         if(prevState.school !== school){
             schoolList.map((scho, id)=>{
                 if(scho._id===school){
@@ -330,7 +333,7 @@ implement cohort generation presentClass-yearAdmission e.g (Y1-2020)
                                                 <option value="albinism">Albinism</option>
                                                 <option value="behaviour">Behavioural Disoder</option>
                                                 <option value="hearing">Hearing/Auditory Challenged</option>
-                                                <option value="intellect">Visually Challenged</option>
+                                                <option value="intellect">Intellectually Challenged</option>
                                                 <option value="learning">Learning</option>
                                                 <option value="mobility">Mobility Restricted</option> 
                                                 <option value="speech">Speech</option>
