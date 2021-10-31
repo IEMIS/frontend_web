@@ -295,7 +295,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Transition</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                     <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.transition} x="_id" y="count" height={380} showValues groupSpacing={0.5} />
+                                     <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.transition} x="_id" y="count" height={400} showValues groupSpacing={0.5} />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -309,7 +309,7 @@ class IndicatorData extends React.Component {
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                 <NVD3Chart id="chart" height={250} type="pieChart" datum={indicators.DropoutR} x="_id" y="count"  />
+                                <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.DropoutR} x="_id" y="count" height={300} showValues groupSpacing={0.5} />  
                                 </Card.Body>
                             </Card>
                         </Col>  
