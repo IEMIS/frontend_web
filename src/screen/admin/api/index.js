@@ -394,6 +394,23 @@ export const studentperschoolrecords = async (user,token)=>{
         return data;
     }catch(e){console.log(e)}
 }
+export const countTeacherBySchoolservice = async (user,token)=>{
+    try{
+        const response = await fetch(`${BASE_URL}/teachers/data/count/school/teachers`,{
+            method:'POST',
+            body:JSON.stringify(user),
+            headers:{
+                'Content-Type':'application/json',
+                accept:'application/json',
+                Authorization: `Bearer ${token}`
+            },
+        }).catch(err => {
+            console.log(err)
+        });
+        const data = response.json();
+        return data;
+    }catch(e){console.log(e)}
+}
 export const countTeacherByClass = async (user,token)=>{
     try{
         const response = await fetch(`${BASE_URL}/teachers/data/count/school/school`,{

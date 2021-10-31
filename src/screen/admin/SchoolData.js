@@ -9,7 +9,7 @@ import NVD3Chart from 'react-nvd3';
 import { countStudentByClass, studentData, teacherData,
     // schoolData, 
     // studentDataByDistrict, schoolDataByDistrict,
-    districtL,  schoolByDistrict, studentDataBySchool, schoolDetails, countTeacherByClass, studentperschoolrecords, countTeacherBySchoolAll} from "./api"
+    districtL,  schoolByDistrict, studentDataBySchool, schoolDetails, countTeacherByClass, studentperschoolrecords, countTeacherBySchoolAll, countTeacherBySchoolservice} from "./api"
 import Aux from "../../hoc/_Aux";
 
 class SchoolData extends React.Component {
@@ -73,14 +73,14 @@ class SchoolData extends React.Component {
         if(prevState.school !== school){
             this.setState({loading:true})
             const studentDa = await studentDataBySchool(user, Auth.token);
-            //const teacherDa = await countTeacherBySchoolservice(user, Auth.token);
+            const teacherDa = await countTeacherBySchoolservice(user, Auth.token);
             const schoolDe = await schoolDetails(school, Auth.token);
             const countbyclass = await studentperschoolrecords(user, Auth.token);
             const countTeachbySchoolResp = await countTeacherByClass(user, Auth.token)
             
             
 
-            this.setState({students:studentDa.data, schools:schoolDe.data[0],countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data,teachers:teacherDa.data}) 
+            this.setState({students:studentDa.data, schools:schoolDe.data[0],countbyclass:countbyclass.data, countTeachbySchool:countTeachbySchoolResp.data, teachers:teacherDa}) 
             this.setState({loading:false}) 
         }
     }
@@ -327,6 +327,16 @@ class SchoolData extends React.Component {
                     </Row>
                     <Row>
                     <Col md={6} xl={6}>
+                            <Card className='Recent-Users'>
+                                <Card.Header>
+                                    <Card.Title as='h5'>Students Enrolment by Class Summary</Card.Title>
+                                </Card.Header>
+                                <Card.Body className='px-0 py-2'>
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="_id" y="count" height={380} showValues groupSpacing={0.3} />
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    <Col md={6} xl={6}>
                     <Card className='Recent-Users'>
                                 <Card.Header>
                                     <Card.Title as='h5'>Students Enrolment by Disability</Card.Title>
@@ -336,25 +346,15 @@ class SchoolData extends React.Component {
                                       </Card.Body>
                             </Card>
                         </Col>
-                        <Col md={6} xl={6}>
-                            <Card className='Recent-Users'>
-                                <Card.Header>
-                                    <Card.Title as='h5'>Students Enrolment by Education Level</Card.Title>
-                                </Card.Header>
-                                <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countbyclass} x="_id" y="count" height={380} showValues groupSpacing={0.3} />
-                                </Card.Body>
-                            </Card>
-                        </Col>
                     </Row>
                     <Row>
-                        <Col md={6} xl={6}>
+                    <Col md={6} xl={6}>
                             <Card className='Recent-Users'>
                                 <Card.Header>
-                                    <Card.Title as='h5'> Teachers Summary data by Education Level</Card.Title>
+                                    <Card.Title as='h5'>Teachers summary data by Education Level </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    <NVD3Chart donut labelType='percent' id="barChart" type="multiBarChart" datum={countTeachbySchool} x="_id" y="count" height={380} showValues groupSpacing={0.3} />
+                                    <NVD3Chart id="barChart" type="multiBarChart" datum={countTeachbySchool} x="_id" y="count" height={380} showValues groupSpacing={0.3} />
                                 </Card.Body>
                             </Card>
                         </Col>
