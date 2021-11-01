@@ -344,7 +344,7 @@ class IndicatorData extends React.Component {
                             {/*=====SR group by Grade =======*/}
                                 <Card.Header>
                                     <Card.Title as='h5'>Coefficient of Efficiency </Card.Title>
-                                    <Card.Title> <h8> Graduate / Pupil-Year </h8> </Card.Title>
+                                    <Card.Title> <h8> Graduates / Pupil-Year </h8> </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                     {<NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.coe} x="_id" y="count" height={380} showValues groupSpacing={0.3} /> }
@@ -355,7 +355,7 @@ class IndicatorData extends React.Component {
                         <Card>
                                 <Card.Header>
                                 <Card.Title as='h5'>Years-Input Per Graduate</Card.Title>
-                                <Card.Title> <h8> Pupil Year Per cohort ÷  Graduates belonging to the same cohort </h8> </Card.Title>
+                                <Card.Title> <h8> (Pupil Year ÷ Graduates)* Number of years of study </h8> </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                         { <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.YIP} x="_id" y="count" height={380} showValues groupSpacing={0.3} /> }
