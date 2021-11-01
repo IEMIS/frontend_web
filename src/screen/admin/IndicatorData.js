@@ -158,7 +158,7 @@ class IndicatorData extends React.Component {
                                         <h5>Net Intake </h5>
                                     </Card.Title>
                                     <Card.Title>
-                                   <h9> New entrants in the first grade of primary education who are of the official primary school-entrance age (6year)</h9>
+                                   <h9> New entrants in the first grade of primary education who are of the official primary school-entrance age (6years)</h9>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
@@ -175,7 +175,7 @@ class IndicatorData extends React.Component {
                                         <h5>Adjusted Net Intake </h5>
                                     </Card.Title>
                                     <Card.Title>
-                                   <h8>Enrolment in all primary education by official entrance age (6year)</h8>
+                                   <h8>Enrolment in all primary education by official entrance age (6years)</h8>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
@@ -344,7 +344,7 @@ class IndicatorData extends React.Component {
                             {/*=====SR group by Grade =======*/}
                                 <Card.Header>
                                     <Card.Title as='h5'>Coefficient of Efficiency </Card.Title>
-                                    <Card.Title> <h8>Total number of pupil-years spent by a pupil-cohort (graduates plus dropouts) in the specified level of education </h8> </Card.Title>
+                                    <Card.Title> <h8> Graduate / Pupil-Year </h8> </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                     {<NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.coe} x="_id" y="count" height={380} showValues groupSpacing={0.3} /> }
@@ -355,7 +355,7 @@ class IndicatorData extends React.Component {
                         <Card>
                                 <Card.Header>
                                 <Card.Title as='h5'>Years-Input Per Graduate</Card.Title>
-                                <Card.Title> <h8> successive batch of graduates belonging to the same cohort i.e YIP =Result from COE ÷ successive batch of graduates belonging to the same cohort </h8> </Card.Title>
+                                <Card.Title> <h8> Pupil Year Per cohort ÷  Graduates belonging to the same cohort </h8> </Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
                                         { <NVD3Chart labelType='percent' id="barChart" type="multiBarChart" datum={indicators.YIP} x="_id" y="count" height={380} showValues groupSpacing={0.3} /> }
@@ -371,7 +371,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Repeater by Grade</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repeaters} x="_id" y="count" height={380} showValues groupSpacing={0.5} /> }
+                                    { <NVD3Chart id="barChart" type="multiBarChart" datum={indicators.repeaters} x="classCode" y="count" height={380} showValues groupSpacing={0.5} /> }
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -562,7 +562,7 @@ class IndicatorData extends React.Component {
                                     <Card.Title as='h5'>Promotion by Grade</Card.Title>
                                 </Card.Header>
                                 <Card.Body className='px-0 py-2'>
-                                    {<NVD3Chart id="barChart" type="multiBarChart" datum={indicators.PromoR} x="_id" y="count" height={380} showValues groupSpacing={0.3} />}
+                                    {<NVD3Chart id="barChart" type="multiBarChart" datum={indicators.PromoR} x="classCode" y="count" height={380} showValues groupSpacing={0.3} />}
                                 </Card.Body>
                             </Card>
                         </Col> 
