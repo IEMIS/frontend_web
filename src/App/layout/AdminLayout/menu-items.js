@@ -153,7 +153,7 @@ export default {
                         },
                     ]
                 },
-                
+               /* 
                 {
                     id: 'staff',
                     title: 'Staff',
@@ -174,7 +174,7 @@ export default {
                         },
                     ]
                 },
-            
+            */
                 {
                     id: 'teachers',
                     title: 'Teachers',
