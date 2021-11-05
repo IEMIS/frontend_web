@@ -68,6 +68,9 @@ const EditPopulation = React.lazy(()=>import('./population/Edit'));
 const ReadOnePopulation = React.lazy(()=>import('./population/One'))
 const DeletePopulation = React.lazy(()=>import('./population/Delete'))
 
+const Predictive = React.lazy(() => import('./Predictive'))
+const Aper = React.lazy(() => import('./Aper'))
+
 
 
 const Nvd3Chart = React.lazy(() => import('../../Demo/Charts/Nvd3Chart/index'));
@@ -148,9 +151,11 @@ const routes = [
     { path: '/admin/population/read', exact: true, name: 'admin-population-read', component: ReadPopulation},
     { path: '/admin/population/read/:id', exact: true, name: 'admin-population-read-one', component:ReadOnePopulation},
     { path: '/admin/population/edit/:id', exact: true, name: 'admin-population-edit', component: EditPopulation},
-    { path: '/admin/population/delete/:id', exact: true, name: 'admin-population-delete', component: DeletePopulation},
+    { path: '/admin/population/delete/:id', exact: true, name: 'admin-population-delete', component: DeletePopulation}, 
 
-
+    { path: '/admin/predict', exact: true, name: 'admin-predict', component: Predictive },
+    { path: '/admin/aper', exact: true, name: 'admin-aper',component: Aper },
+    
 
     { path: '/admin/indicator', exact: true, name: 'admin-indicator', component: IndicatorData },
 

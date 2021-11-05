@@ -489,7 +489,7 @@ class IndicatorData extends React.Component {
                                         <h5>Expected Gross Intake Ratio in YR8 </h5>
                                     </Card.Title>
                                     <Card.Title>
-                                    <h8>Gross Intake Ratio in the first grade of primary in school year t (〖EGIRLG〗^t=〖GIR〗^t*〖SR〗_(g,l)^(t-1)</h8>
+                                    <h8>Gross Intake Ratio in the first grade of primary in school year t * Survival Rate in the Last Grade of Primary t-1 </h8>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>
@@ -525,9 +525,6 @@ class IndicatorData extends React.Component {
                                  {/*=====EXPECTED GROSS PRIMARY GRADUATION RATIO (EGPGR)=======*/}
                                     <Card.Title>
                                         <h5>Expected Gross Primary Graduation Ratio </h5>
-                                    </Card.Title>
-                                    <Card.Title>
-                                        <h8>〖EGPGR〗^t=〖EGIRLG〗^t*〖PG〗^t</h8>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>

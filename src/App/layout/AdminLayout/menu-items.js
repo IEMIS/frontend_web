@@ -43,8 +43,28 @@ export default {
                     type: 'item',
                     url: '/admin/indicator',
                     icon: 'feather icon-book',
-                }
-                
+                },
+                {
+                    id: 'm-iReport',
+                        title: 'iReport',
+                        type: 'collapse',
+                        icon: 'feather icon-user',
+                        children: [
+                            {
+                                id: 'admin-predict',
+                                title: 'Predictive Analytics',
+                                type: 'item',
+                                url: 'admin/predict'
+                            },
+                            {
+                                id: 'admin-aper',
+                                title: 'APER',
+                                type: 'item',
+                                url: 'admin/aper'
+                            },
+                        ]
+                    },
+            
             ],
         },
         {
@@ -133,7 +153,7 @@ export default {
                         },
                     ]
                 },
-                /*
+                
                 {
                     id: 'staff',
                     title: 'Staff',
@@ -154,7 +174,7 @@ export default {
                         },
                     ]
                 },
-                */
+            
                 {
                     id: 'teachers',
                     title: 'Teachers',
