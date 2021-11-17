@@ -1,0 +1,1 @@
+{"version":3,"sources":["screen/admin/students/Edit.js"],"names":["Edit"],"mappings":"kGAAA,mEAEe,SAASA,IACpB,OACI,6BACI","file":"static/js/115.5de347b0.chunk.js","sourcesContent":["import React from 'react'\r\n\r\nexport default function Edit() {\r\n    return (\r\n        <div>\r\n            <h1>Edit</h1>\r\n        </div>\r\n    )\r\n}\r\n"],"sourceRoot":""}

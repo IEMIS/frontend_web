@@ -111,7 +111,7 @@ const SignIn = () => {
                                     loading ? "Loading ... " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Login</button>
                                 }
                                 
-                                {/* <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/school/forget">Reset</NavLink></p> */}
+                                {/* <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/student/forget">Reset</NavLink></p> */}
                             </div>
                         </div>
                     </div>

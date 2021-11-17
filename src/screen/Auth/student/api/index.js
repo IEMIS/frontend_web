@@ -3,7 +3,7 @@
 const BASE_URL = "https://iemis.herokuapp.com/api/v1"
 
 export const signin = user => {
-    return fetch(`${BASE_URL}/schools/signin`, {
+    return fetch(`${BASE_URL}/students/signin`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -22,7 +22,7 @@ export const signin = user => {
 
 export const login = async (user)=>{
     try{
-        const response = await fetch(`${BASE_URL}/schools/signin`,{
+        const response = await fetch(`${BASE_URL}/students/signin`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -40,14 +40,14 @@ export const login = async (user)=>{
 
 export const authenticate = (data, next) => {
     if (typeof window !== 'undefined') {
-        localStorage.setItem('schools-Auth', JSON.stringify(data));
+        localStorage.setItem('students-Auth', JSON.stringify(data));
         next();
     }
 };
 
 export const signout = next => {
     if (typeof window !== 'undefined') {
-        localStorage.removeItem('schools-Auth');
+        localStorage.removeItem('students-Auth');
         next();
     }
 };
@@ -56,8 +56,8 @@ export const isAuthenticated = () => {
     if (typeof window == 'undefined') {
         return false;
     }
-    if (localStorage.getItem('schools-Auth')) {
-        return JSON.parse(localStorage.getItem('schools-Auth'));
+    if (localStorage.getItem('students-Auth')) {
+        return JSON.parse(localStorage.getItem('students-Auth'));
     } else {
         return false;
     }
@@ -66,7 +66,7 @@ export const isAuthenticated = () => {
 
 export const forget = async (user) =>{
     try{
-        const response = await fetch(`${BASE_URL}/schools/forgetPassword`,{
+        const response = await fetch(`${BASE_URL}/students/forgetPassword`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{
@@ -82,7 +82,7 @@ export const forget = async (user) =>{
 
 export const reset = async (user) =>{
     try{
-        const response = await fetch(`${BASE_URL}/schools/resetPassword`,{
+        const response = await fetch(`${BASE_URL}/students/resetPassword`,{
             method:'POST',
             body:JSON.stringify(user),
             headers:{

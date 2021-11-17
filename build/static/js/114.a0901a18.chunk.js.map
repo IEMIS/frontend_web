@@ -1,0 +1,1 @@
+{"version":3,"sources":["screen/admin/staffs/One.js"],"names":["One"],"mappings":"kGAAA,mEAEe,SAASA,IACpB,OACI,6BACI","file":"static/js/114.a0901a18.chunk.js","sourcesContent":["import React from 'react'\r\n\r\nexport default function One() {\r\n    return (\r\n        <div>\r\n            <h1>read one</h1>\r\n        </div>\r\n    )\r\n}\r\n"],"sourceRoot":""}

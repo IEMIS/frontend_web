@@ -61,7 +61,7 @@ const Forget = () => {
 
         const redirectUser = () => {
             if (redirectToPage){
-                return <Redirect to="/auth/school/reset" />
+                return <Redirect to="/auth/student/reset" />
             }
         };
         return(
@@ -89,7 +89,7 @@ const Forget = () => {
                                 {
                                     loading ? "Loading " : <button className="btn btn-primary shadow-2 mb-4" onClick={submit}>Request !</button>
                                 }
-                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/school/signin">Login</NavLink></p>
+                                <p className="mb-2 text-muted">I know password? <NavLink to="/auth/student/signin">Login</NavLink></p>
                             </div>
                         </div>
                     </div>

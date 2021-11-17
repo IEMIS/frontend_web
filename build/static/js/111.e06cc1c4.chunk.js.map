@@ -1,0 +1,1 @@
+{"version":3,"sources":["screen/admin/district/One.js"],"names":["One"],"mappings":"kGAAA,mEAEe,SAASA,IACpB,OACI","file":"static/js/111.e06cc1c4.chunk.js","sourcesContent":["import React from 'react'\r\n\r\nexport default function One() {\r\n    return (\r\n        <div>\r\n            Hello word\r\n        </div>\r\n    )\r\n}\r\n"],"sourceRoot":""}
